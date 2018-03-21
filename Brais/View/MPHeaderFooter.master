@@ -1,0 +1,131 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="~/Controller/MPHeaderFooter.master.cs" Inherits="View_MPHeaderFooter" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Brais</title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+
+    <style>
+
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        header{
+            background-color: deepskyblue;
+        }
+
+        footer{
+            background-color: darkgrey;
+            height: 100px;
+        }
+
+        footer h1{
+            text-align: center;
+        }
+
+        div#contenido{
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        #titulo{
+            text-align: center;
+            font-size: 4rem;
+            color: white;
+            
+        }
+
+        ul{
+            list-style: none;
+        }
+        
+        *[id^="BTN"] { 
+            padding: 7px;
+        }
+
+        *[id^="BTN"]:hover{
+            cursor: pointer;
+        }
+
+        header nav ul{
+            display: flex;
+            justify-content: center;
+        }
+
+        header nav *[id^="BTN"]{
+            background-color: orange;
+            border: 1px solid gray;
+            border-radius: 5px;
+            color: white;
+            width: 200px;
+        }
+        header nav *[id^="BTN"]:hover{
+            background-color: orangered;
+        }
+
+        header div{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        header div #BTN_Recargar{
+            margin: 30px;
+            align-self: flex-start;
+        }
+
+        header div *[id^="BTN"]:hover{
+            background-color: aliceblue;
+            border-radius: 20px;
+        }
+
+
+    </style>
+
+    <form id="form1" runat="server">
+
+        <header>
+            <div>
+                <asp:Image runat="server" ID="IMG_Logo" ImageAlign="Middle" ImageUrl="~/Imagen/logo.png" Width="200px"></asp:Image>
+                <h1 id="titulo">Brais</h1>
+                <asp:ImageButton runat="server" ImageUrl="~/Imagen/recargar.svg" Width="30px" ID="BTN_Recargar" OnClick="BTN_Recargar_Click"></asp:ImageButton>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><asp:Button runat="server" Text="Pagina Principal" ID="BTN_PaginaPrincipal" OnClick="BTN_PaginaPrincipal_Click"></asp:Button></li>
+                    <li><asp:Button runat="server" Text="Sobre Nosotros" ID="BTN_SobreNosotros" OnClick="BTN_SobreNosotros_Click"></asp:Button></li>
+                    <li><asp:Button runat="server" Text="Crear Cuenta" ID="BTN_CrearCuenta" OnClick="BTN_CrearCuenta_Click"></asp:Button></li>
+                    <li><asp:Button runat="server" Text="Login"  ID="BTN_Login" OnClick="BTN_Login_Click"></asp:Button></li>
+                </ul>
+            </nav>
+
+        </header>
+
+        <div id="contenido">
+            <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+            </asp:ContentPlaceHolder>
+        </div>
+
+        <footer>
+
+            <h1>Falta el Contenido del Footer</h1>
+
+        </footer>
+
+    </form>
+
+    
+
+</body>
+</html>
