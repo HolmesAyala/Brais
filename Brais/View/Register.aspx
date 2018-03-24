@@ -28,6 +28,10 @@
 
         <table class="auto-style1">
             <tr>
+                <td colspan="2">&nbsp;</td>
+
+            </tr>
+            <tr>
                 <td class="auto-style2" colspan="2">
                     <asp:Label ID="Label1" runat="server" Font-Bold="True" Font-Size="30px" ForeColor="#33CCFF" Text="Crear Una Cuenta"></asp:Label>
                 </td>

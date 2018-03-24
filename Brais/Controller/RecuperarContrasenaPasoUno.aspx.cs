@@ -39,7 +39,10 @@ public partial class View_RecuperarContrasenaPasoUno : System.Web.UI.Page
 
             GestorCorreo gestorCorreo = new GestorCorreo();
 
-            gestorCorreo.enviarCorreo("holmesayala9@gmail.com", "Restablecer Contraseña", mensaje);
+            DataTable usuario = dBFunciones.verificarUsuario(TB_Identificacion.Text.ToString());
+
+
+            gestorCorreo.enviarCorreo(usuario.Rows[0]["correo"].ToString(), "Restablecer Contraseña", mensaje);
 
             LB_Mensaje.Text = "Se envio informacion a su correo!";
 

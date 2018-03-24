@@ -93,7 +93,7 @@
         </tr>
         <tr>
             <td colspan="2" class="informacion">
-                <asp:HyperLink ID="Hp_olvidoContrasena" runat="server" NavigateUrl="~/View/Login.aspx">¿Olvido su contraseña?</asp:HyperLink>
+                <asp:HyperLink ID="Hp_olvidoContrasena" runat="server" NavigateUrl="~/View/RecuperarContrasenaPasoUno.aspx">¿Olvido su contraseña?</asp:HyperLink>
             </td>
         </tr>
         <tr>
