@@ -24,7 +24,7 @@ public partial class View_MPHeaderFooter : System.Web.UI.MasterPage
 
     protected void BTN_CrearCuenta_Click(object sender, EventArgs e)
     {
-
+        Response.Redirect("Register.aspx");
     }
 
     protected void BTN_Login_Click(object sender, EventArgs e)
