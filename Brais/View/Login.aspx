@@ -49,10 +49,10 @@
         .informacion {
             text-align: center;
         }
-        .auto-style1 {
+        .label_informacion{
             color: #FF0000;
         }
-        .auto-style2 {
+        .RFV_estilos {
             height: 30px;
         }
     </style>
@@ -88,7 +88,7 @@
             </td>
             <td class="textBox">
                 <asp:TextBox ID="Tx_contrasena" runat="server" Width="25%" TextMode="Password"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="RFV_Contrasena" runat="server" ErrorMessage="La Contraseña es obligatoria" CssClass="auto-style1" ToolTip="La Contraseña es obligatoria" ControlToValidate="Tx_contrasena">*</asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="RFV_Contrasena" runat="server" ErrorMessage="La Contraseña es obligatoria" CssClass="RFV_estilos" ToolTip="La Contraseña es obligatoria" ControlToValidate="Tx_contrasena">*</asp:RequiredFieldValidator>
             </td>
         </tr>
         <tr>
@@ -97,9 +97,8 @@
             </td>
         </tr>
         <tr>
-            <td>&nbsp;</td>
-            <td>
-                <asp:Label ID="L_Informacion" runat="server" CssClass="auto-style1"></asp:Label>
+            <td colspan="2" class="informacion">
+                <asp:Label ID="L_Informacion" runat="server" CssClass="label_informacion"></asp:Label>
             </td>
         </tr>
         <tr>

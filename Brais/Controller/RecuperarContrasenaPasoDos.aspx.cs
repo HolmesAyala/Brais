@@ -15,23 +15,29 @@ public partial class View_RecuperarContrasenaPasoDos : System.Web.UI.Page
         {
             string token = Request.QueryString[0];
 
-            DBFunciones dBFunciones = new DBFunciones();
+            DBRecuperarContrasena dBRecuperarContrasena = new DBRecuperarContrasena();
 
-            DataTable solicitud = dBFunciones.verificarVigenciaSolicitud(token);
+            DataTable solicitudValida = dBRecuperarContrasena.obtenerSolicitudValida(token);
 
-            if(solicitud.Rows.Count > 0)
+            if(solicitudValida.Rows.Count > 0)
             {
-                Session["identificacion"] = solicitud.Rows[0]["identificacion_usuario"].ToString();
+                Session["identificacion"] = solicitudValida.Rows[0]["identificacion_usuario"].ToString();
             }
             else
             {
-                LB_Mensaje.Text = "Su solicitud esta vencida o no existe!";
-                deshabilitarCampos();
+                DataTable solicitud = dBRecuperarContrasena.obtenerSolicitud(token);
+
+                if (solicitud.Rows.Count > 0)
+                {
+                    dBRecuperarContrasena.eliminarSolicitud(solicitud.Rows[0]["identificacion_usuario"].ToString());
+                }
+
+                Response.Redirect("RecuperarContrasenaPasoUno.aspx");
             }
         }
         else
         {
-            //  Redireccionar a login
+            Response.Redirect("Login.aspx");
         }
     }
 
@@ -39,7 +45,7 @@ public partial class View_RecuperarContrasenaPasoDos : System.Web.UI.Page
     {
         if (validarContrasena())
         {
-            DBFunciones dBFunciones = new DBFunciones();
+            DBRecuperarContrasena dBFunciones = new DBRecuperarContrasena();
             dBFunciones.restablecerContrasena(Session["identificacion"].ToString(), TB_Contrasena.Text);
             dBFunciones.eliminarSolicitud(Session["identificacion"].ToString());
             deshabilitarCampos();

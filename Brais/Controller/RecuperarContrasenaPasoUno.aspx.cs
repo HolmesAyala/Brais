@@ -17,14 +17,15 @@ public partial class View_RecuperarContrasenaPasoUno : System.Web.UI.Page
 
     protected void BTN_Restablecer_Click(object sender, EventArgs e)
     {
-        DBFunciones dBFunciones = new DBFunciones();
+        DBRecuperarContrasena dBRecuperarContrasena = new DBRecuperarContrasena();
+        DBUsuario dBUsuario = new DBUsuario();
 
-        if (dBFunciones.verificarUsuario(TB_Identificacion.Text.ToString()).Rows.Count == 0)
+        if (dBUsuario.obtenerUsuario(TB_Identificacion.Text.ToString()).Rows.Count == 0)
         {
             LB_Mensaje.Text = "El usuario NO es valido!";
             TB_Identificacion.Text = "";
         }
-        else if (dBFunciones.verificarExistenciaSolicitud(TB_Identificacion.Text.ToString()).Rows.Count > 0)
+        else if (dBRecuperarContrasena.verificarExistenciaSolicitud(TB_Identificacion.Text.ToString()).Rows.Count > 0)
         {
             LB_Mensaje.Text = "Ya tiene una solicitud de restablecimiento, verifique en su correo.";
             TB_Identificacion.Text = "";
@@ -33,13 +34,13 @@ public partial class View_RecuperarContrasenaPasoUno : System.Web.UI.Page
         {
             string token = encriptar(TB_Identificacion.Text.ToString());
 
-            dBFunciones.agregarSolicitudDeRestablecerContrasena(TB_Identificacion.Text.ToString(), token);
+            dBRecuperarContrasena.agregarSolicitudDeRestablecerContrasena(TB_Identificacion.Text.ToString(), token);
 
             string mensaje = "Su link para restablecer su contraseña: " + "http://localhost:51250/View/RecuperarContrasenaPasoDos.aspx?" + token;
 
             GestorCorreo gestorCorreo = new GestorCorreo();
 
-            DataTable usuario = dBFunciones.verificarUsuario(TB_Identificacion.Text.ToString());
+            DataTable usuario = dBUsuario.obtenerUsuario(TB_Identificacion.Text.ToString());
 
 
             gestorCorreo.enviarCorreo(usuario.Rows[0]["correo"].ToString(), "Restablecer Contraseña", mensaje);
@@ -47,6 +48,8 @@ public partial class View_RecuperarContrasenaPasoUno : System.Web.UI.Page
             LB_Mensaje.Text = "Se envio informacion a su correo!";
 
             TB_Identificacion.Text = "";
+
+            TB_Identificacion.Enabled = false;
 
             BTN_Restablecer.Enabled = false;
         }
