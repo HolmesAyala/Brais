@@ -20,6 +20,17 @@
             height: 200px;
         }
 
+        div#restablecer .BTN_Cambiar{
+            background-color: rgb(24, 177, 228);
+            color: white;
+            border: 1px solid rgb(24, 177, 228);
+            border-radius: 5px;
+        }
+
+        div#restablecer .BTN_Cambiar:hover{
+            background-color: rgb(0, 131, 175);
+        }
+
     </style>
 
     <h3>Paso 2 para restablecer su contraseña</h3>
@@ -30,7 +41,7 @@
         <asp:TextBox runat="server" ID="TB_Contrasena" TextMode="Password"></asp:TextBox>
         <asp:Label runat="server" Text="Repetir Contraseña: " ID="LB_RepetirContrasena"></asp:Label>
         <asp:TextBox runat="server" ID="TB_RepetirContrasena" TextMode="Password"></asp:TextBox>
-        <asp:Button runat="server" Text="Cambiar" ID="BTN_Cambiar" OnClick="BTN_Cambiar_Click"></asp:Button>
+        <asp:Button runat="server" Text="Cambiar" class="BTN_Cambiar" ID="BTN_Cambiar" OnClick="BTN_Cambiar_Click"></asp:Button>
     </div>
 
 </asp:Content>

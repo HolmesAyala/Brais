@@ -1,0 +1,58 @@
+
+
+##################################################################################
+
+
+CREATE OR REPLACE FUNCTION usuario.f_obtener_usuario(_identificacion text)
+  RETURNS SETOF usuario.usuario AS
+$BODY$
+BEGIN 
+	return query
+		select * from usuario.usuario where tipo = 3 and identificacion = _identificacion;
+END
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100
+  ROWS 1000;
+ALTER FUNCTION usuario.f_obtener_usuario(text)
+  OWNER TO postgres;
+
+
+##################################################################################
+
+
+CREATE OR REPLACE FUNCTION usuario.f_eliminar_usuario(_id text)
+  RETURNS SETOF void AS
+$BODY$
+BEGIN
+		DELETE FROM usuario.usuario
+		WHERE identificacion = _id;
+
+END
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100
+  ROWS 1000;
+ALTER FUNCTION usuario.f_eliminar_usuario(text)
+  OWNER TO postgres;
+
+
+##################################################################################
+
+
+CREATE OR REPLACE FUNCTION usuario.f_buscar_usuario(_id text)
+  RETURNS SETOF usuario.usuario AS
+$BODY$
+BEGIN 
+	return query
+		select * from usuario.usuario where tipo = 3 and identificacion like '%'||_id||'%';
+END
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100
+  ROWS 1000;
+ALTER FUNCTION usuario.f_buscar_usuario(text)
+  OWNER TO postgres;
+
+
+##################################################################################

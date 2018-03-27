@@ -18,7 +18,6 @@ public partial class View_RecuperarContrasenaPasoDos : System.Web.UI.Page
             DBRecuperarContrasena dBRecuperarContrasena = new DBRecuperarContrasena();
 
             DataTable solicitudValida = dBRecuperarContrasena.obtenerSolicitudValida(token);
-
             if(solicitudValida.Rows.Count > 0)
             {
                 Session["identificacion"] = solicitudValida.Rows[0]["identificacion_usuario"].ToString();
@@ -45,9 +44,9 @@ public partial class View_RecuperarContrasenaPasoDos : System.Web.UI.Page
     {
         if (validarContrasena())
         {
-            DBRecuperarContrasena dBFunciones = new DBRecuperarContrasena();
-            dBFunciones.restablecerContrasena(Session["identificacion"].ToString(), TB_Contrasena.Text);
-            dBFunciones.eliminarSolicitud(Session["identificacion"].ToString());
+            DBRecuperarContrasena dBRecuperarContrasena = new DBRecuperarContrasena();
+            dBRecuperarContrasena.restablecerContrasena(Session["identificacion"].ToString(), TB_Contrasena.Text);
+            dBRecuperarContrasena.eliminarSolicitud(Session["identificacion"].ToString());
             deshabilitarCampos();
             LB_Mensaje.Text = "Restablecio su contraseña correctamente!";
         }

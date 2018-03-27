@@ -1,0 +1,49 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/View/MPHeaderFooter.master" AutoEventWireup="true" CodeFile="~/Controller/Administrador/MPAdministrador.master.cs" Inherits="View_Administrador_MPAdministrador" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+
+    <style>
+
+        nav{
+            margin: 20px 0;
+        }
+
+        nav#administrador ul{
+            display: flex;
+            justify-content: center;
+        }
+
+        nav#administrador ul [class^="BTN"]{
+            background-color: rgb(0, 141, 177);
+            border-radius: 5px;
+            border: 2px solid rgb(0, 77, 99);
+            color: white;
+        }
+
+        nav#administrador ul .BTN_CerrarSesion{
+            background-color: rgb(255, 56, 34);
+        }
+
+    </style>
+
+    <nav id="administrador">
+
+        <ul>
+            <li><asp:Button runat="server" class="BTN_VerUsuarios" ID="BTN_VerUsuarios" Text="Ver usuarios" OnClick="BTN_VerUsuarios_Click"></asp:Button></li>
+            <li><asp:Button runat="server" class="BTN_VerMedicos" ID="BTN_VerMedicos" Text="Ver medicos" OnClick="BTN_VerMedicos_Click"></asp:Button></li>
+            <li><asp:Button runat="server" class="BTN_ConfigurarParametros" ID="BTN_ConfigurarParametros" Text="Configurar parametros" OnClick="BTN_ConfigurarParametros_Click"></asp:Button></li>
+            <li><asp:Button runat="server" class="BTN_CerrarSesion" ID="BTN_CerrarSesion" Text="Cerrar sesión" OnClick="BTN_CerrarSesion_Click"></asp:Button></li>
+        </ul>
+
+    </nav>
+
+    <div>
+      <asp:ContentPlaceHolder ID="contenido" runat="server">
+
+      </asp:ContentPlaceHolder>
+    </div>
+
+</asp:Content>
+
