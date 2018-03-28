@@ -16,7 +16,9 @@ public partial class View_Administrador_VerUsuarios : System.Web.UI.Page
 
     protected void BTN_AgregarUsuario_Click(object sender, EventArgs e)
     {
-
+        Session["Accion"] = "Insertar";
+        Session["PaginaAnterior"] = Request.Url.AbsoluteUri;
+        Response.Redirect("~/View/Usuario/InsertarEliminarActualizar.aspx");
     }
 
     protected void BTN_Buscar_Click(object sender, EventArgs e)
@@ -28,7 +30,10 @@ public partial class View_Administrador_VerUsuarios : System.Web.UI.Page
     {
         Button btnModificar = (Button)sender;
         Label lbModificar = (Label)btnModificar.Parent.Controls[1];
-        imprimirConsola("Quiere Modificar a: "+lbModificar.Text);
+        Session["Accion"] = "Actualizar";
+        Session["identificacion"] = lbModificar.Text;
+        Session["PaginaAnterior"] = Request.Url.AbsoluteUri;
+        Response.Redirect("~/View/Usuario/InsertarEliminarActualizar.aspx");
     }
 
     protected void BTN_Eliminar_Click(object sender, EventArgs e)

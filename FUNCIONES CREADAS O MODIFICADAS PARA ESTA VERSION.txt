@@ -3,55 +3,74 @@
 ##################################################################################
 
 
-CREATE OR REPLACE FUNCTION usuario.f_obtener_usuario(_identificacion text)
-  RETURNS SETOF usuario.usuario AS
+CREATE OR REPLACE FUNCTION usuario.f_obtener_tipo_afiliacion()
+  RETURNS SETOF usuario.tipo_afiliacion AS
 $BODY$
-BEGIN 
-	return query
-		select * from usuario.usuario where tipo = 3 and identificacion = _identificacion;
-END
+begin
+
+	return query select * from usuario.tipo_afiliacion order by id;
+
+end
 $BODY$
   LANGUAGE plpgsql VOLATILE
   COST 100
   ROWS 1000;
-ALTER FUNCTION usuario.f_obtener_usuario(text)
+ALTER FUNCTION usuario.f_obtener_tipo_afiliacion()
   OWNER TO postgres;
 
 
 ##################################################################################
 
 
-CREATE OR REPLACE FUNCTION usuario.f_eliminar_usuario(_id text)
+CREATE OR REPLACE FUNCTION usuario.f_obtener_tipo_identificacion()
+  RETURNS SETOF usuario.tipo_identificacion AS
+$BODY$
+begin
+
+	return query select * from usuario.tipo_identificacion order by id;
+
+end
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100
+  ROWS 1000;
+ALTER FUNCTION usuario.f_obtener_tipo_identificacion()
+  OWNER TO postgres;
+
+
+##################################################################################
+
+
+CREATE OR REPLACE FUNCTION usuario.f_actualizar_usuario(
+    _identificacion text,
+    _id_tipo_identificacion integer,
+    _nombre text,
+    _apellido text,
+    _fecha_nacimiento date,
+    _id_tipo_afiliacion integer,
+    _correo text,
+    _contrasena text)
   RETURNS SETOF void AS
 $BODY$
-BEGIN
-		DELETE FROM usuario.usuario
-		WHERE identificacion = _id;
+begin
 
-END
+	UPDATE usuario.usuario
+	SET 	identificacion = _identificacion, 
+		id_tipo_identificacion = _id_tipo_identificacion, 
+		nombre = _nombre, 
+		apellido = _apellido, 
+		fecha_nacimiento = _fecha_nacimiento, 
+		id_tipo_afiliacion = _id_tipo_afiliacion, 
+		correo = _correo, 
+		contrasena = _contrasena
+	WHERE identificacion = _identificacion;
+
+end
 $BODY$
   LANGUAGE plpgsql VOLATILE
   COST 100
   ROWS 1000;
-ALTER FUNCTION usuario.f_eliminar_usuario(text)
-  OWNER TO postgres;
-
-
-##################################################################################
-
-
-CREATE OR REPLACE FUNCTION usuario.f_buscar_usuario(_id text)
-  RETURNS SETOF usuario.usuario AS
-$BODY$
-BEGIN 
-	return query
-		select * from usuario.usuario where tipo = 3 and identificacion like '%'||_id||'%';
-END
-$BODY$
-  LANGUAGE plpgsql VOLATILE
-  COST 100
-  ROWS 1000;
-ALTER FUNCTION usuario.f_buscar_usuario(text)
+ALTER FUNCTION usuario.f_actualizar_usuario(text, integer, text, text, date, integer, text, text)
   OWNER TO postgres;
 
 
