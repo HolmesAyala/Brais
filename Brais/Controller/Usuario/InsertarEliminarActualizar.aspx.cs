@@ -79,24 +79,27 @@ public partial class View_Usuario_InsertarEliminarActualizar : System.Web.UI.Pag
     protected void BTN_Accion_Click(object sender, EventArgs e)
     {
         Button btnAccion = (Button)sender;
-        if (btnAccion.Text.Equals("Agregar"))
+        if (validarDatos())
         {
-            EUsuario eUsuario = recolectarDatos();
-            DBUsuario dBUsuario = new DBUsuario();
-            dBUsuario.CrearUsuario(eUsuario);
+            if (btnAccion.Text.Equals("Agregar"))
+            {
+                EUsuario eUsuario = recolectarDatos();
+                DBUsuario dBUsuario = new DBUsuario();
+                dBUsuario.CrearUsuario(eUsuario);
+            }
+            else if (btnAccion.Text.Equals("Actualizar"))
+            {
+                EUsuario eUsuario = recolectarDatos();
+                DBUsuario dBUsuario = new DBUsuario();
+                dBUsuario.actualizarUsuario(eUsuario);
+            }
+            else if (btnAccion.Text.Equals("Eliminar"))
+            {
+            }
+            Session["Accion"] = null;
+            Session["identificacion"] = null;
+            Response.Redirect(Session["PaginaAnterior"].ToString());
         }
-        else if (btnAccion.Text.Equals("Actualizar"))
-        {
-            EUsuario eUsuario = recolectarDatos();
-            DBUsuario dBUsuario = new DBUsuario();
-            dBUsuario.actualizarUsuario(eUsuario);
-        }
-        else if (btnAccion.Text.Equals("Eliminar"))
-        {
-        }
-        Session["Accion"] = null;
-        Session["identificacion"] = null;
-        Response.Redirect(Session["PaginaAnterior"].ToString());
     }
 
     protected EUsuario recolectarDatos()
@@ -111,5 +114,80 @@ public partial class View_Usuario_InsertarEliminarActualizar : System.Web.UI.Pag
         eUsuario.Correo = TB_Correo.Text;
         eUsuario.Password = TB_Clave.Text;
         return eUsuario;
+    }
+
+    protected Boolean validarDatos()
+    {
+        string mensaje = "";
+        if (DDL_Tipo_Documento.SelectedIndex == 0)
+        {
+            mensaje += "- No ha seleccionado un tipo de documento<br/>";
+        }
+
+        if (TB_Numero_Documento.Text.Trim().Equals(""))
+        {
+            mensaje += "- El campo Numero de documento esta vacio<br/>";
+        }
+        else
+        {
+            DBUsuario dBUsuario = new DBUsuario();
+            if (dBUsuario.obtenerUsuario(TB_Numero_Documento.Text.Trim()).Rows.Count > 0 && BTN_Accion.Text.Equals("Agregar"))
+            {
+                mensaje += "- YA EXISTE UN USUARIO CON ESA IDENTIFICACION<br/>";
+            }
+            try
+            {
+                int.Parse(TB_Numero_Documento.Text.Trim());
+            }
+            catch (Exception)
+            {
+                mensaje += "- El numero de documento solo debe incluir numeros<br/>";
+            }
+        }
+
+        if (TB_Nombre.Text.Trim().Equals(""))
+        {
+            mensaje += "- El campo nombre esta vacio<br/>";
+        }
+        if (TB_Apellido.Text.Trim().Equals(""))
+        {
+            mensaje += "- El campo apellido esta vacio<br/>";
+        }
+
+        if (TB_FechaNacimiento.Text.Equals(""))
+        {
+            mensaje += "- No ha seleccionado fecha de nacimiento<br/>";
+        }
+        else if (Convert.ToDateTime(TB_FechaNacimiento.Text) > DateTime.Now)
+        {
+            mensaje += "- Su fecha de nacimiento debe <br/>  ser menor a la fecha actual<br/>";
+        }
+
+        if (DDL_TipoAfiliacion.SelectedIndex == 0)
+        {
+            mensaje += "- No ha seleccionado el tipo de afiliacion<br/>";
+        }
+
+        if (TB_Correo.Text.Trim().Equals(""))
+        {
+            mensaje += "- El campo correo esta vacio<br/>";
+        }
+
+        if (TB_Clave.Text.Equals("") || TB_RepetirClave.Text.Equals(""))
+        {
+            mensaje += "- Los campos de contraseña estan vacios<br/>";
+        }
+        else if (!TB_Clave.Text.Equals(TB_RepetirClave.Text))
+        {
+            mensaje += "- Las contraseñas no coinciden<br/>";
+        }
+
+        if (!mensaje.Equals(""))
+        {
+            LB_Mensaje.Text = "Tenga en cuenta:<br/>" + mensaje;
+            LB_Mensaje.Visible = true;
+            return false;
+        }
+        return true;
     }
 }

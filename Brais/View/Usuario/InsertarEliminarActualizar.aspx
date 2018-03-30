@@ -36,6 +36,15 @@
             border: 1px solid rgb(0, 200, 248);
             border-radius: 5px;
         }
+        div.mensaje{
+            font-weight: bold;
+            line-height: 1.5rem;
+            text-align: left;
+            color: white;
+            background-color: rgb(255, 95, 95);
+            padding: 10px;
+            border-radius: 5px;
+        }
 
     </style>
 
@@ -88,6 +97,12 @@
         <div class="campo">
             <asp:Label class="LB_RepetirClave" ID="LB_RepetirClave" runat="server" Text="Repetir clave: "></asp:Label>
             <asp:TextBox class="TB_RepetirClave" ID="TB_RepetirClave" runat="server" TextMode="Password"></asp:TextBox>
+        </div>
+
+        <div class="campo">
+            <div class="mensaje">
+                <asp:Label class="LB_Mensaje" ID="LB_Mensaje" runat="server" Visible="False"></asp:Label>
+            </div>
         </div>
 
         <div class="campo">
