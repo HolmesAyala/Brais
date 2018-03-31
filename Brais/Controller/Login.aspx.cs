@@ -15,7 +15,7 @@ public partial class View_Login : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        ///aaa
+
     }
 
     protected void B_Ingresar_Click(object sender, EventArgs e)
@@ -38,7 +38,7 @@ public partial class View_Login : System.Web.UI.Page
         {
             Session["identificacion"] = usuario.Rows[0]["identificacion"];
             Session["contrasena"] = usuario.Rows[0]["contrasena"];
-            Session["tipo_user"] = usuario.Rows[0]["fk_tipo"];
+            Session["tipo_user"] = usuario.Rows[0]["tipo"];
             if (int.Parse(Session["tipo_user"].ToString()) == 3)
             {
                 Response.Redirect("Usuario/AsignarCita.aspx");

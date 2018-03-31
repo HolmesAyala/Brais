@@ -11,6 +11,11 @@ public partial class View_Usuario_InsertarEliminarActualizar : System.Web.UI.Pag
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+
+    }
+
+    protected void Page_LoadComplete(object sender, EventArgs e)
+    {
         Response.Cache.SetNoStore();
         if (Session["Accion"] != null)
         {
@@ -20,7 +25,7 @@ public partial class View_Usuario_InsertarEliminarActualizar : System.Web.UI.Pag
             }
             else if (Session["Accion"].ToString().Equals("Actualizar"))
             {
-                adecuarParaActualizar();
+               adecuarParaActualizar();
             }
             else if (Session["Accion"].ToString().Equals("Eliminar"))
             {
@@ -31,8 +36,6 @@ public partial class View_Usuario_InsertarEliminarActualizar : System.Web.UI.Pag
             Response.Redirect("~/View/PaginaPrincipal.aspx");
         }
     }
-
-
 
 
     protected void adecuarParaInsertar()
@@ -59,16 +62,14 @@ public partial class View_Usuario_InsertarEliminarActualizar : System.Web.UI.Pag
         eUsuario.Correo = usuario.Rows[0]["correo"].ToString();
         eUsuario.Password = usuario.Rows[0]["contrasena"].ToString();
 
-        //DDL_Tipo_Documento.SelectedIndex = 0;
-        //eUsuario.Tipo_id-1
+        DDL_Tipo_Documento.SelectedIndex = eUsuario.Tipo_id;
         TB_Numero_Documento.Text = eUsuario.Identificacion;
         TB_Numero_Documento.Enabled = false;
         TB_Nombre.Text = usuario.Rows[0]["nombre"].ToString();
         TB_Apellido.Text = eUsuario.Apellido;
         TB_FechaNacimiento.TextMode = TextBoxMode.Date;
         TB_FechaNacimiento.Text = string.Join("-", eUsuario.Fecha.Substring(0, 10).Split('/').Reverse());
-        //DDL_TipoAfiliacion.SelectedIndex =0;
-        // eUsuario.Tipo_afiliacion-1
+        DDL_TipoAfiliacion.SelectedIndex = eUsuario.Tipo_afiliacion;
         TB_Correo.Text = eUsuario.Correo;
         TB_Clave.Attributes.Add("value", eUsuario.Password);
         TB_RepetirClave.Attributes.Add("value", eUsuario.Password);
