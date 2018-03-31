@@ -1,0 +1,50 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/View/MPHeaderFooter.master" AutoEventWireup="true" CodeFile="~/Controller/Usuario/MPUsuario.master.cs" Inherits="Controller_Usuario_MPUsuario" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+
+    <style>
+        div.mensaje_botones{
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+        }
+
+        div.mensaje_botones [class ^= "BTN"], ul.menu [class ^= "BTN"]{
+            border-radius: 5px;
+            border: 1px solid black;
+        }
+
+        ul.menu{
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+    </style>
+
+    <div class="mensaje_botones">
+        <asp:Label ID="LB_MensajeBienvenida" class="LB_MensajeBienvenida" runat="server" Text="Bienvenido Usuario: "></asp:Label>
+        <div>
+            <asp:Button ID="BTN_ActualizarDatos" class="BTN_ActualizarDatos" runat="server" Text="Actualizar Datos" OnClick="BTN_ActualizarDatos_Click"></asp:Button>
+            <asp:Button ID="BTN_CerrarSesion" class="BTN_CerrarSesion" runat="server" Text="Cerrar Sesión" OnClick="BTN_CerrarSesion_Click"></asp:Button>
+        </div>
+    </div>
+
+    <ul class="menu">
+        <li><asp:Button ID="BTN_AsignarCita" class="BTN_AsignarCita" runat="server" Text="Asignar cita" OnClick="BTN_AsignarCita_Click"></asp:Button></li>
+        <li><asp:Button ID="BTN_ReprogramarCita" class="BTN_ReprogramarCita" runat="server" Text="Reprogramar cita" OnClick="BTN_ReprogramarCita_Click"></asp:Button></li>
+        <li><asp:Button ID="BTN_CancelarCita" class="BTN_CancelarCita" runat="server" Text="Cancelar cita" OnClick="BTN_CancelarCita_Click"></asp:Button></li>
+        <li><asp:Button ID="BTN_VerCitasProgramadas" class="BTN_VerCitasProgramadas" runat="server" Text="Ver citas Programadas" OnClick="BTN_VerCitasProgramadas_Click"></asp:Button></li>
+    </ul>
+
+
+    <div>
+      <asp:ContentPlaceHolder ID="contenido" runat="server">
+
+      </asp:ContentPlaceHolder>
+    </div>
+
+</asp:Content>
+
