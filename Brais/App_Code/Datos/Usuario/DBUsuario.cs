@@ -29,6 +29,7 @@ public class DBUsuario
             dataAdapter.SelectCommand.Parameters.Add("_password", NpgsqlDbType.Text).Value = eUsuario.Password;
             dataAdapter.SelectCommand.Parameters.Add("_tipoid", NpgsqlDbType.Integer).Value = eUsuario.Tipo_id;
             dataAdapter.SelectCommand.Parameters.Add("_date", NpgsqlDbType.Date).Value = eUsuario.Fecha;
+            dataAdapter.SelectCommand.Parameters.Add("_tipo", NpgsqlDbType.Integer).Value = 3;
             conection.Open();
             dataAdapter.Fill(new_file);
         }

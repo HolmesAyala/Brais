@@ -38,6 +38,19 @@ public partial class View_Login : System.Web.UI.Page
         {
             Session["identificacion"] = usuario.Rows[0]["identificacion"];
             Session["contrasena"] = usuario.Rows[0]["contrasena"];
+            Session["tipo_user"] = usuario.Rows[0]["fk_tipo"];
+            if (int.Parse(Session["tipo_user"].ToString()) == 3)
+            {
+                Response.Redirect("Usuario/AsignarCita.aspx");
+            }else if(int.Parse(Session["tipo_user"].ToString()) == 2){
+                //Medico Aun No Existe La Vista :v
+                
+            }else if (int.Parse(Session["tipo_user"].ToString()) == 1){
+                //Administrador
+                Response.Redirect("Administrador/VerUsuarios.aspx");
+            }
+            
+
             Response.Redirect("PaginaPrincipal.aspx");
             //L_Informacion.Text = "Correcto! " + usuario.Rows[0]["usuario"] + usuario.Rows[0]["clave"] + usuario.Rows[0]["rol_id"];
         }
