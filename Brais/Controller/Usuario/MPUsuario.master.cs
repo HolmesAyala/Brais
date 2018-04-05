@@ -9,7 +9,10 @@ public partial class Controller_Usuario_MPUsuario : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if (Session["usuario"] == null || ((EUsuario)Session["usuario"]).TipoUsuario != 3)
+        {
+            Response.Redirect("~/View/Login.aspx");
+        }
     }
 
     protected void BTN_ActualizarDatos_Click(object sender, EventArgs e)
@@ -19,7 +22,8 @@ public partial class Controller_Usuario_MPUsuario : System.Web.UI.MasterPage
 
     protected void BTN_CerrarSesion_Click(object sender, EventArgs e)
     {
-
+        Session["usuario"] = null;
+        Response.Redirect("~/View/Login.aspx");
     }
 
     protected void BTN_AsignarCita_Click(object sender, EventArgs e)

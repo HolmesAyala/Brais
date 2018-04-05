@@ -1,7 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/View/Administrador/MPAdministrador.master" AutoEventWireup="true" CodeFile="~/Controller/Administrador/VerMedicos.aspx.cs" Inherits="View_Administrador_VerMedicos" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="contenido" Runat="Server">
-     <style>
+
+        <h3>Ver Medicos</h3>
+
+        <%-- <style>
 
         h2{
             text-align: center;
@@ -120,6 +123,7 @@
             <SortedDescendingHeaderStyle BackColor="#4870BE" />
         </asp:GridView>
 
-    </div>
+    </div>--%>
+
 </asp:Content>
 

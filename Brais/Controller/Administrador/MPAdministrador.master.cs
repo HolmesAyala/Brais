@@ -9,7 +9,10 @@ public partial class View_Administrador_MPAdministrador : System.Web.UI.MasterPa
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if ( Session["usuario"] == null || ((EUsuario)Session["usuario"]).TipoUsuario != 1 )
+        {
+            Response.Redirect("~/View/Login.aspx");
+        }
     }
 
     protected void BTN_VerUsuarios_Click(object sender, EventArgs e)
@@ -19,7 +22,7 @@ public partial class View_Administrador_MPAdministrador : System.Web.UI.MasterPa
 
     protected void BTN_VerMedicos_Click(object sender, EventArgs e)
     {
-
+        Response.Redirect("~/View/Administrador/VerMedicos.aspx");
     }
 
     protected void BTN_ConfigurarParametros_Click(object sender, EventArgs e)
@@ -29,6 +32,7 @@ public partial class View_Administrador_MPAdministrador : System.Web.UI.MasterPa
 
     protected void BTN_CerrarSesion_Click(object sender, EventArgs e)
     {
-
+        Session["usuario"] = null;
+        Response.Redirect("~/View/Login.aspx");
     }
 }

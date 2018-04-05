@@ -32,7 +32,7 @@ public partial class View_RecuperarContrasenaPasoUno : System.Web.UI.Page
         }
         else
         {
-            string token = encriptar(TB_Identificacion.Text.ToString());
+            string token = Funcion.encriptar(TB_Identificacion.Text.ToString());
 
             dBRecuperarContrasena.agregarSolicitudDeRestablecerContrasena(TB_Identificacion.Text.ToString(), token);
 
@@ -54,21 +54,6 @@ public partial class View_RecuperarContrasenaPasoUno : System.Web.UI.Page
             BTN_Restablecer.Enabled = false;
         }
 
-    }
-
-    private string encriptar(string input)
-    {
-        SHA256CryptoServiceProvider provider = new SHA256CryptoServiceProvider();
-
-        byte[] inputBytes = Encoding.UTF8.GetBytes(input);
-        byte[] hashedBytes = provider.ComputeHash(inputBytes);
-
-        StringBuilder output = new StringBuilder();
-
-        for (int i = 0; i < hashedBytes.Length; i++)
-            output.Append(hashedBytes[i].ToString("x2").ToLower());
-
-        return output.ToString();
     }
 
 }

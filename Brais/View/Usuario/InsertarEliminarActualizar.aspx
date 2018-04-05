@@ -61,17 +61,17 @@
 
         <div class="campo">
             <asp:Label class="LB_Numero_Documento" ID="LB_Numero_Documento" runat="server" Text="Numero Documento: "></asp:Label>
-            <asp:TextBox class="TB_Numero_Documento" ID="TB_Numero_Documento" runat="server"></asp:TextBox>
+            <asp:TextBox class="TB_Numero_Documento" ID="TB_Numero_Documento" runat="server" MaxLength="20"></asp:TextBox>
         </div>
 
         <div class="campo">
             <asp:Label class="LB_Nombre" ID="LB_Nombre" runat="server" Text="Nombres: "></asp:Label>
-            <asp:TextBox class="TB_Nombre" ID="TB_Nombre" runat="server"></asp:TextBox>
+            <asp:TextBox class="TB_Nombre" ID="TB_Nombre" runat="server" MaxLength="20"></asp:TextBox>
         </div>
 
         <div class="campo">
             <asp:Label class="LB_Apellido" ID="LB_Apellido" runat="server" Text="Apellidos: "></asp:Label>
-            <asp:TextBox class="TB_Apellido" ID="TB_Apellido" runat="server"></asp:TextBox>
+            <asp:TextBox class="TB_Apellido" ID="TB_Apellido" runat="server" MaxLength="20"></asp:TextBox>
         </div>
 
         <div class="campo">
@@ -86,17 +86,17 @@
         </div>
         <div class="campo">
             <asp:Label class="LB_Correo" ID="LB_Correo" runat="server" Text="Correo electronico: "></asp:Label>
-            <asp:TextBox class="TB_Correo" ID="TB_Correo" runat="server" TextMode="Email"></asp:TextBox>
+            <asp:TextBox class="TB_Correo" ID="TB_Correo" runat="server" TextMode="Email" MaxLength="50"></asp:TextBox>
         </div>
 
         <div class="campo">
             <asp:Label class="LB_Clave" ID="LB_Clave" runat="server" Text="Clave: "></asp:Label>
-            <asp:TextBox class="TB_Clave" ID="TB_Clave" runat="server" TextMode="Password"></asp:TextBox>
+            <asp:TextBox class="TB_Clave" ID="TB_Clave" runat="server" TextMode="Password" MaxLength="20"></asp:TextBox>
         </div>
 
         <div class="campo">
             <asp:Label class="LB_RepetirClave" ID="LB_RepetirClave" runat="server" Text="Repetir clave: "></asp:Label>
-            <asp:TextBox class="TB_RepetirClave" ID="TB_RepetirClave" runat="server" TextMode="Password"></asp:TextBox>
+            <asp:TextBox class="TB_RepetirClave" ID="TB_RepetirClave" runat="server" TextMode="Password" MaxLength="20"></asp:TextBox>
         </div>
 
         <div class="campo">

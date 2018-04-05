@@ -32,26 +32,28 @@ public partial class View_Login : System.Web.UI.Page
         if (usuario.Rows.Count == 0)
         {
             L_Informacion.Text = "El usuario no existe";
-            Session["identificacion"] = null;
+            Session["usuario"] = null;
         }
         else
         {
-            Session["identificacion"] = usuario.Rows[0]["identificacion"];
-            Session["contrasena"] = usuario.Rows[0]["contrasena"];
-            Session["tipo_user"] = usuario.Rows[0]["tipo"];
-            if (int.Parse(Session["tipo_user"].ToString()) == 3)
+            if ( int.Parse(usuario.Rows[0]["tipo"].ToString()) == 3)
             {
+                Session["usuario"] = Funcion.dataTableToEUsuario(usuario);
                 Response.Redirect("Usuario/AsignarCita.aspx");
-            }else if(int.Parse(Session["tipo_user"].ToString()) == 2){
+            }
+            else if ( int.Parse(usuario.Rows[0]["tipo"].ToString()) == 2)
+            {
                 //Medico Aun No Existe La Vista :v
-                
-            }else if (int.Parse(Session["tipo_user"].ToString()) == 1){
-                //Administrador
+
+            }
+            else if ( int.Parse(usuario.Rows[0]["tipo"].ToString()) == 1)
+            {
+                EUsuario eUsuario = new EUsuario();
+                eUsuario.TipoUsuario = 1;
+                Session["usuario"] = eUsuario;
                 Response.Redirect("Administrador/VerUsuarios.aspx");
             }
-            
 
-            Response.Redirect("PaginaPrincipal.aspx");
             //L_Informacion.Text = "Correcto! " + usuario.Rows[0]["usuario"] + usuario.Rows[0]["clave"] + usuario.Rows[0]["rol_id"];
         }
     }
