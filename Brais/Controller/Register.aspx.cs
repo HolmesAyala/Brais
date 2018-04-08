@@ -16,7 +16,10 @@ public partial class View_Default : System.Web.UI.Page
     {
         EUsuario user = new EUsuario();
         ClientScriptManager cm = this.ClientScript;
-        if (TB_pasword.Text == TB_password2.Text)
+        if (int.Parse(eps.SelectedItem.Value.ToString())== 0)
+        {
+            cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('Seleccione una EPS')</script>;");
+        }else if (TB_pasword.Text == TB_password2.Text)
         {
             user.Apellido = TB_lastName.Text.ToString();
             user.Correo = TB_email.Text.ToString();
@@ -29,6 +32,7 @@ public partial class View_Default : System.Web.UI.Page
             DBUsuario bd =new DBUsuario();
             bd.CrearUsuario(user);
             cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('Se Ha Creado Usuario Exitosamente');</script>");
+            Response.Redirect("PaginaPrincipal.aspx");
         }
         else
         {

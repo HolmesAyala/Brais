@@ -44,6 +44,9 @@
         .auto-style7 {
             margin-left: 0;
         }
+    .auto-style8 {
+        margin-right: 0;
+    }
     </style>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" Runat="Server">
@@ -81,7 +84,8 @@
                 </td>
                 <td class="auto-style6">
                     <asp:Label ID="Label6" runat="server" Font-Bold="True" Text="Tipo De Afliliacion"></asp:Label>
-                    &nbsp;&nbsp;<asp:RadioButtonList ID="Tipo" runat="server" Font-Bold="True" Width="125px">
+                    &nbsp;&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="Tipo" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
+                    <asp:RadioButtonList ID="Tipo" runat="server" Font-Bold="True" Width="125px">
                         <asp:ListItem Value="1">EPS</asp:ListItem>
                         <asp:ListItem Value="2">Particular</asp:ListItem>
                     </asp:RadioButtonList>
@@ -89,8 +93,9 @@
                 </td>
                 <td>
                     <span id="opcion">Seleccione su EPS</span>
-                    <asp:DropDownList ID="DropDownList3" runat="server">
+                    <asp:DropDownList ID="eps" runat="server" CssClass="auto-style8" DataSourceID="ODS_eps" DataTextField="nombre" DataValueField="id">
                     </asp:DropDownList>
+                    <asp:ObjectDataSource ID="ODS_eps" runat="server" SelectMethod="obtenerEps" TypeName="DBEps"></asp:ObjectDataSource>
                     <br />
                     <span id="advertencia">(*Obligatorio solo si escogio la opcion EPS)</span></td>
             </tr>
@@ -99,11 +104,13 @@
                     <asp:Label ID="Label10" runat="server" Font-Bold="True" Text="Numero De Documento"></asp:Label>
 &nbsp;&nbsp;<asp:TextBox ID="TB_id" runat="server" Width="117px"></asp:TextBox>
                     &nbsp;
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TB_id" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
                 </td>
                 <td colspan="2">
                     <asp:Label ID="Label7" runat="server" Font-Bold="True" Text="Correo Electronico"></asp:Label>
 &nbsp;&nbsp;
                     <asp:TextBox ID="TB_email" runat="server" TextMode="Email"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="TB_email" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
@@ -111,11 +118,13 @@
                     <asp:Label ID="Label3" runat="server" Font-Bold="True" Text="Nombres"></asp:Label>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:TextBox ID="TB_name" runat="server" Width="117px"></asp:TextBox>
                     &nbsp;
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TB_name" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
                 </td>
                 <td colspan="2">
                     <asp:Label ID="Label8" runat="server" Font-Bold="True" Text="Clave"></asp:Label>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
                     <asp:TextBox ID="TB_pasword" runat="server" TextMode="Password"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="TB_pasword" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
@@ -123,11 +132,13 @@
                     <asp:Label ID="Label4" runat="server" Font-Bold="True" Text="Apellidos"></asp:Label>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:TextBox ID="TB_lastName" runat="server" Width="117px"></asp:TextBox>
                     &nbsp;
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="TB_lastName" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
                 </td>
                 <td colspan="2">
                     <asp:Label ID="Label9" runat="server" Font-Bold="True" Text="Confirmar Clave"></asp:Label>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <asp:TextBox ID="TB_password2" runat="server" TextMode="Password"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="TB_password2" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
@@ -136,6 +147,7 @@
                     <asp:Label ID="Label5" runat="server" Font-Bold="True" Text="Fecha Nacimiento"></asp:Label>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:TextBox ID="TB_date" runat="server" TextMode="Date" Width="117px" CssClass="auto-style7"></asp:TextBox>
                     &nbsp;&nbsp;
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="TB_date" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
                 </td>
                 <td class="auto-style5" colspan="2"></td>
             </tr>

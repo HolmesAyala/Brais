@@ -14,7 +14,7 @@ public partial class View_MPHeaderFooter : System.Web.UI.MasterPage
 
     protected void BTN_PaginaPrincipal_Click(object sender, EventArgs e)
     {
-        Response.Redirect("~/View/PaginaPrincipal.aspx");
+        Response.Redirect("PaginaPrincipal.aspx");
     }
 
     protected void BTN_SobreNosotros_Click(object sender, EventArgs e)
@@ -24,17 +24,17 @@ public partial class View_MPHeaderFooter : System.Web.UI.MasterPage
 
     protected void BTN_CrearCuenta_Click(object sender, EventArgs e)
     {
-        Response.Redirect("~/View/Register.aspx");
+        Response.Redirect("Register.aspx");
     }
 
     protected void BTN_Login_Click(object sender, EventArgs e)
     {
-        Response.Redirect("~/View/Login.aspx");
+        Response.Redirect("Login.aspx");
     }
 
     protected void BTN_Recargar_Click(object sender, EventArgs e)
     {
-        Response.Redirect("~/View/PaginaPrincipal.aspx");
+        Response.Redirect("PaginaPrincipal.aspx");
     }
 
 }
