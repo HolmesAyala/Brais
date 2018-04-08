@@ -48,6 +48,7 @@ public abstract class Funcion
             eUsuario.Correo = dtUsuario.Rows[0]["correo"].ToString();
             eUsuario.Password = dtUsuario.Rows[0]["contrasena"].ToString();
             eUsuario.TipoUsuario = int.Parse(dtUsuario.Rows[0]["tipo"].ToString());
+            eUsuario.IdEps = int.Parse(dtUsuario.Rows[0]["id_eps"].ToString());
         }
         catch (Exception)
         {

@@ -9,7 +9,7 @@ using System.Web;
 public class EUsuario
 {
     private string identificacion, nombre, apellido, correo, password,fecha;
-    private int tipo_afiliacion, tipo_id, tipoUsuario;
+    private int tipo_afiliacion, tipo_id, tipoUsuario, idEps;
 
     public string Identificacion
     {
@@ -125,6 +125,19 @@ public class EUsuario
         set
         {
             tipoUsuario = value;
+        }
+    }
+
+    public int IdEps
+    {
+        get
+        {
+            return idEps;
+        }
+
+        set
+        {
+            idEps = value;
         }
     }
 }

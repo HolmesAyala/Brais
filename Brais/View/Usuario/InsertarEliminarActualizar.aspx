@@ -85,6 +85,11 @@
             <asp:ObjectDataSource ID="ODS_ObtenerTipoAfiliacion" runat="server" SelectMethod="obtenerTipoAfiliacion" TypeName="DBTipoAfiliacion"></asp:ObjectDataSource>
         </div>
         <div class="campo">
+            <asp:Label class="LB_Eps" ID="LB_Eps" runat="server" Text="EPS: "></asp:Label>
+            <asp:DropDownList class="DDL_Eps" ID="DDL_Eps" runat="server" DataSourceID="ODS_ObtenerEps" DataTextField="nombre" DataValueField="id"></asp:DropDownList>
+            <asp:ObjectDataSource ID="ODS_ObtenerEps" runat="server" SelectMethod="obtenerEps" TypeName="DBEps"></asp:ObjectDataSource>
+        </div>
+        <div class="campo">
             <asp:Label class="LB_Correo" ID="LB_Correo" runat="server" Text="Correo electronico: "></asp:Label>
             <asp:TextBox class="TB_Correo" ID="TB_Correo" runat="server" TextMode="Email" MaxLength="50"></asp:TextBox>
         </div>
@@ -98,7 +103,7 @@
             <asp:Label class="LB_RepetirClave" ID="LB_RepetirClave" runat="server" Text="Repetir clave: "></asp:Label>
             <asp:TextBox class="TB_RepetirClave" ID="TB_RepetirClave" runat="server" TextMode="Password" MaxLength="20"></asp:TextBox>
         </div>
-
+        
         <div class="campo">
             <div class="mensaje">
                 <asp:Label class="LB_Mensaje" ID="LB_Mensaje" runat="server" Visible="False"></asp:Label>
@@ -108,7 +113,7 @@
         <div class="campo">
             <asp:Button class="BTN_Accion" ID="BTN_Accion" runat="server" Text="BTN" OnClick="BTN_Accion_Click"></asp:Button>
         </div>
-
+        
     </div>
 
 </asp:Content>
