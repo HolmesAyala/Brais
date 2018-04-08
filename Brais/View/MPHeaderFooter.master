@@ -111,7 +111,12 @@
             </nav>
 
         </header>
+        <div id="banner">
 
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
+            </asp:ContentPlaceHolder>
+
+        </div>
         <div id="contenido">
             <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
         
