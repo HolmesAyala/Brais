@@ -30,6 +30,8 @@ public class DBUsuario
             dataAdapter.SelectCommand.Parameters.Add("_tipoid", NpgsqlDbType.Integer).Value = eUsuario.Tipo_id;
             dataAdapter.SelectCommand.Parameters.Add("_date", NpgsqlDbType.Date).Value = eUsuario.Fecha;
             dataAdapter.SelectCommand.Parameters.Add("_tipo", NpgsqlDbType.Integer).Value = 3;
+            dataAdapter.SelectCommand.Parameters.Add("_session", NpgsqlDbType.Text).Value = "000";
+            dataAdapter.SelectCommand.Parameters.Add("_id_eps", NpgsqlDbType.Integer).Value = eUsuario.IdEps;
             conection.Open();
             dataAdapter.Fill(new_file);
         }
@@ -63,6 +65,7 @@ public class DBUsuario
             dataAdapter.SelectCommand.Parameters.Add("_id_tipo_afiliacion", NpgsqlDbType.Integer).Value = eUsuario.Tipo_afiliacion;
             dataAdapter.SelectCommand.Parameters.Add("_correo", NpgsqlDbType.Text).Value = eUsuario.Correo;
             dataAdapter.SelectCommand.Parameters.Add("_contrasena", NpgsqlDbType.Text).Value = eUsuario.Password;
+            dataAdapter.SelectCommand.Parameters.Add("_id_eps", NpgsqlDbType.Integer).Value = eUsuario.IdEps;
             conection.Open();
             dataAdapter.Fill(resultado);
         }
