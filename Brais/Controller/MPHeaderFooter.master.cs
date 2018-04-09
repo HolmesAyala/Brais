@@ -19,7 +19,7 @@ public partial class View_MPHeaderFooter : System.Web.UI.MasterPage
 
     protected void BTN_SobreNosotros_Click(object sender, EventArgs e)
     {
-
+        Response.Redirect("~/View/SobreNosotros.aspx");
     }
 
     protected void BTN_CrearCuenta_Click(object sender, EventArgs e)
