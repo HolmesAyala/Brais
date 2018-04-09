@@ -27,7 +27,7 @@ public partial class View_Administrador_MPAdministrador : System.Web.UI.MasterPa
 
     protected void BTN_ConfigurarParametros_Click(object sender, EventArgs e)
     {
-
+        Response.Redirect("~/View/Administrador/parametros.aspx");
     }
 
     protected void BTN_CerrarSesion_Click(object sender, EventArgs e)

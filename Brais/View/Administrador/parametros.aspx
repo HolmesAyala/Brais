@@ -1,19 +1,40 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/View/Administrador/MPAdministrador.master" AutoEventWireup="true" CodeFile="~/Controller/Administrador/parametros.aspx.cs" Inherits="View_Administrador_parametros" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="contenido" Runat="Server">
+    <style>
+        .bordes{
+            border-radius:5px;
+            font-family:Arial;
+            font-size:medium;
+            color:white;
+        }
+    </style>
     <table style="width: 100%">
         <tr>
             <td colspan="2" rowspan="4" style="text-align: center">
                 <asp:Label ID="Label1" runat="server" Font-Bold="True" Font-Size="X-Large" ForeColor="#00CCFF" Text="Consultorios"></asp:Label>
                 <br />
-                <asp:GridView ID="GridView3" runat="server" Width="364px" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical">
+                <asp:GridView ID="GV_consultorios" runat="server" Width="364px" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical">
                     <AlternatingRowStyle BackColor="#CCCCCC" />
+                    <Columns>
+                        <asp:BoundField DataField="nombre_consultorio" HeaderText="Nombre Consultorio" />
+                        <asp:TemplateField HeaderText="Editar">
+                            <ItemTemplate>
+                                <asp:Button ID="Button2" runat="server" Text="Editar" />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Eliminar">
+                            <ItemTemplate>
+                                <asp:Button ID="Button3" runat="server" Text="Eliminar" />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
                     <FooterStyle BackColor="#CCCCCC" />
                     <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
                     <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
                     <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
                     <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                    <SortedAscendingHeaderStyle BackColor="#808080" />
+                    <SortedAscendingHeaderStyle BackColor="Gray" />
                     <SortedDescendingCellStyle BackColor="#CAC9C9" />
                     <SortedDescendingHeaderStyle BackColor="#383838" />
                 </asp:GridView>
@@ -31,32 +52,40 @@
                 <br />
                 <br />
                 <asp:Label ID="Label4" runat="server" Font-Bold="True">Ubicacion</asp:Label>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
             </td>
             <td style="height: 20px; text-align: left">
                 <asp:TextBox ID="TextBox1" runat="server" Width="166px" placeholder="Nombre Consultorio (Unico)"></asp:TextBox>
                 <br />
                 <br />
                 <asp:TextBox ID="TextBox2" runat="server" Width="166px" placeholder="Localizacion"></asp:TextBox>
+                <br />
+                <br />
+                <br />
+                <asp:Button ID="Button1" runat="server" Text="Agregar" Width="96px" BackColor="#1A9996" CssClass="bordes" Height="29px" OnClick="Button1_Click" />
             </td>
         </tr>
         <tr>
             <td colspan="2" style="height: 20px; text-align: center">
-                <asp:Button ID="Button1" runat="server" Text="Agregar" Width="56px" />
-            </td>
+                &nbsp;</td>
         </tr>
         <tr>
-            <td style="height: 20px" colspan="4"><br /><hr style="color:deepskyblue" /></td>
+            <td style="height: 20px" colspan="4"><br /><hr style="height:3px;background-color:deepskyblue" /></td>
         </tr>
         <tr>
-            <td style="width: 466px; height: 20px">&nbsp;</td>
-            <td style="width: 333px; height: 20px; text-align: center;">
+            <td style="width: 458px; height: 20px">&nbsp;</td>
+            <td style="width: 345px; height: 20px; text-align: center;">
                 <asp:Label ID="Label5" runat="server" Font-Bold="True" Font-Size="X-Large" ForeColor="#00CCFF" Text="Tiempos"></asp:Label>
                 </td>
             <td colspan="2" style="height: 20px">&nbsp;</td>
         </tr>
         <tr>
-            <td style="width: 466px; height: 20px">&nbsp;</td>
-            <td style="width: 333px; height: 20px">&nbsp;</td>
+            <td style="width: 33%; height: 20px">&nbsp;</td>
+            <td style="width: 33%; height: 20px">&nbsp;</td>
             <td colspan="2" style="height: 20px">&nbsp;</td>
         </tr>
     </table>

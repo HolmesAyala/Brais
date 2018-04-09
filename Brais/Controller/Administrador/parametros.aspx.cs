@@ -11,4 +11,18 @@ public partial class View_Administrador_parametros : System.Web.UI.Page
     {
 
     }
+
+
+    private void llenarGridView()
+    {
+        DBAdministrador admin = new DBAdministrador();
+        GV_consultorios.DataSource = admin.obtenerConsultorios();
+        GV_consultorios.DataBind();
+    }
+
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+
+    }
 }
