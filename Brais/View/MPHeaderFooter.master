@@ -25,7 +25,6 @@
 
         footer{
             background-color: darkgrey;
-            height: 100px;
         }
 
         footer h1{
@@ -37,7 +36,7 @@
             margin: 0 auto;
         }
 
-        #titulo{
+        .titulo{
             text-align: center;
             font-size: 4rem;
             color: white;
@@ -89,6 +88,35 @@
             border-radius: 20px;
         }
 
+        footer{
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        footer > div{
+            width: 30%;
+            padding: 10px;
+        }
+
+        footer > p{
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+        }
+
+        div.datos{
+            display: flex;
+            flex-direction: column;
+        }
+
+        div.ubicacion, div.telefono{
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            margin: 10px;
+        }
 
     </style>
 
@@ -97,7 +125,7 @@
         <header>
             <div>
                 <asp:Image runat="server" ID="IMG_Logo" ImageAlign="Middle" ImageUrl="~/Imagen/logo.png" Width="200px"></asp:Image>
-                <h1 id="titulo">Brais</h1>
+                <h1 class="titulo">Brais</h1>
                 <asp:ImageButton runat="server" ImageUrl="~/Imagen/recargar.svg" Width="30px" ID="BTN_Recargar" OnClick="BTN_Recargar_Click"></asp:ImageButton>
             </div>
             
@@ -125,8 +153,27 @@
 
         <footer>
 
-            <h1>Falta el Contenido del Footer</h1>
+            <div>
+                <h1 class="titulo">Brais</h1>
+            </div>
 
+            <div>
+                <p>Proin laoreet metus nibh, eu sodales nisi consectetur at. Donec volutpat a mi sit amet aliquet. Proin nec tortor at lacus posuere eleifend. Vestibulum ut fringilla ligula, id congue ante. Maecenas nec nunc lacinia, facilisis mi sit amet, fermentum magna. Praesent vel tellus ac velit iaculis gravida in sit amet augue. Sed consectetur massa urna</p>
+            </div>
+
+            <div class="datos">
+                <div class="telefono">
+                    <asp:Image runat="server" ImageUrl="~/Imagen/telefono.svg" Width="30px"></asp:Image>
+                    <h3>######</h3>
+                </div>
+
+                <div class="ubicacion">
+                    <asp:Image runat="server" ImageUrl="~/Imagen/ubicacion.svg" Width="30px"></asp:Image>
+                    <h3>######</h3>
+                </div>
+            </div>
+
+            <p>2018 Todos los derechos reservados</p>
         </footer>
 
     </form>

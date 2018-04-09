@@ -170,4 +170,33 @@ public class DBUsuario
         return resultado;
     }
 
+    public static Boolean validarExistenciaCorreo(string correo)
+    {
+        DataTable dtUsuario = new DataTable();
+
+        NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+
+        try
+        {
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_validar_existencia_correo", conection);
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dataAdapter.SelectCommand.Parameters.Add("_correo", NpgsqlDbType.Text).Value = correo;
+
+            conection.Open();
+            dataAdapter.Fill(dtUsuario);
+        }
+        catch (Exception Ex)
+        {
+            throw Ex;
+        }
+        finally
+        {
+            if (conection != null)
+            {
+                conection.Close();
+            }
+        }
+        return dtUsuario.Rows.Count == 0;
+    }
+
 }

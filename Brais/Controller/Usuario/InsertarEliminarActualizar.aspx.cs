@@ -11,6 +11,7 @@ public partial class View_Usuario_InsertarEliminarActualizar : System.Web.UI.Pag
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        MaintainScrollPositionOnPostBack = true;
         Response.Cache.SetNoStore();
         if (Session["usuario"] == null)
         {
@@ -38,6 +39,7 @@ public partial class View_Usuario_InsertarEliminarActualizar : System.Web.UI.Pag
     protected void adecuarParaInsertar()
     {
         BTN_Accion.Text = "Agregar";
+        DDL_Eps.Enabled = false;
     }
 
     protected void adecuarParaActualizar()
@@ -63,6 +65,12 @@ public partial class View_Usuario_InsertarEliminarActualizar : System.Web.UI.Pag
         TB_Clave.Attributes.Add("value", eUsuario.Password);
         TB_RepetirClave.Attributes.Add("value", eUsuario.Password);
         BTN_Accion.Text = "Actualizar";
+
+        if (eUsuario.Tipo_afiliacion == 2)
+        {
+            DDL_Eps.Enabled = false;
+        }
+
     }
 
     protected void BTN_Accion_Click(object sender, EventArgs e)
@@ -87,6 +95,21 @@ public partial class View_Usuario_InsertarEliminarActualizar : System.Web.UI.Pag
             }
             Response.Redirect(Session["PaginaAnterior"].ToString());
         }
+    }
+
+    protected void DDL_TipoAfiliacion_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        DropDownList DDLTipoAfiliacion = (DropDownList)sender;
+        if (DDLTipoAfiliacion.SelectedItem.Text == "E.P.S.")
+        {
+            DDL_Eps.Enabled = true;
+        }
+        else
+        {
+            DDL_Eps.Enabled = false;
+            DDL_Eps.SelectedIndex = 0;
+        }
+        
     }
 
     protected EUsuario recolectarDatos()
@@ -155,10 +178,18 @@ public partial class View_Usuario_InsertarEliminarActualizar : System.Web.UI.Pag
         {
             mensaje += "- No ha seleccionado el tipo de afiliacion<br/>";
         }
+        else if (DDL_TipoAfiliacion.SelectedItem.Text.Equals("E.P.S.") && DDL_Eps.SelectedIndex == 0)
+        {
+            mensaje += "- No ha seleccionado su E.P.S.<br/>";
+        }
 
         if (TB_Correo.Text.Trim().Equals(""))
         {
             mensaje += "- El campo correo esta vacio<br/>";
+        }
+        else if (!DBUsuario.validarExistenciaCorreo(TB_Correo.Text.Trim()) && BTN_Accion.Text.Equals("Agregar"))
+        {
+            mensaje += "- El correo ya se encuentra registrado<br/>";
         }
 
         if (TB_Clave.Text.Equals("") || TB_RepetirClave.Text.Equals(""))
@@ -178,4 +209,10 @@ public partial class View_Usuario_InsertarEliminarActualizar : System.Web.UI.Pag
         }
         return true;
     }
+
+    protected void imprimirConsola(String mensaje)
+    {
+        Response.Write("<script>console.log('" + mensaje + "');</script>");
+    }
+
 }
