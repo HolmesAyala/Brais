@@ -1,12 +1,21 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/View/Administrador/MPAdministrador.master" AutoEventWireup="true" CodeFile="parametros.aspx.cs" Inherits="View_Administrador_parametros" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/View/Administrador/MPAdministrador.master" AutoEventWireup="true" CodeFile="~/Controller/Administrador/parametros.aspx.cs" Inherits="View_Administrador_parametros" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="contenido" Runat="Server">
     <table style="width: 100%">
         <tr>
-            <td colspan="2" rowspan="4" style="height: 20px; text-align: center">
+            <td colspan="2" rowspan="4" style="text-align: center">
                 <asp:Label ID="Label1" runat="server" Font-Bold="True" Font-Size="X-Large" ForeColor="#00CCFF" Text="Consultorios"></asp:Label>
                 <br />
-                <asp:GridView ID="GridView3" runat="server" Width="364px">
+                <asp:GridView ID="GridView3" runat="server" Width="364px" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical">
+                    <AlternatingRowStyle BackColor="#CCCCCC" />
+                    <FooterStyle BackColor="#CCCCCC" />
+                    <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+                    <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+                    <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
+                    <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                    <SortedAscendingHeaderStyle BackColor="#808080" />
+                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                    <SortedDescendingHeaderStyle BackColor="#383838" />
                 </asp:GridView>
             </td>
             <td colspan="2" style="height: 20px; text-align: left">
@@ -36,9 +45,19 @@
             </td>
         </tr>
         <tr>
-            <td style="width: 466px; height: 20px"></td>
-            <td style="width: 333px; height: 20px"></td>
-            <td colspan="2" style="height: 20px"></td>
+            <td style="height: 20px" colspan="4"><br /><hr style="color:deepskyblue" /></td>
+        </tr>
+        <tr>
+            <td style="width: 466px; height: 20px">&nbsp;</td>
+            <td style="width: 333px; height: 20px; text-align: center;">
+                <asp:Label ID="Label5" runat="server" Font-Bold="True" Font-Size="X-Large" ForeColor="#00CCFF" Text="Tiempos"></asp:Label>
+                </td>
+            <td colspan="2" style="height: 20px">&nbsp;</td>
+        </tr>
+        <tr>
+            <td style="width: 466px; height: 20px">&nbsp;</td>
+            <td style="width: 333px; height: 20px">&nbsp;</td>
+            <td colspan="2" style="height: 20px">&nbsp;</td>
         </tr>
     </table>
 </asp:Content>

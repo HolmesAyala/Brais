@@ -29,6 +29,7 @@ public partial class View_Default : System.Web.UI.Page
             user.Tipo_afiliacion = int.Parse(Tipo.SelectedValue);
             user.Tipo_id = int.Parse(DropDownList1.SelectedValue);
             user.Fecha = TB_date.Text.ToString();
+            user.IdEps = int.Parse(eps.SelectedItem.Value.ToString());
             DBUsuario bd =new DBUsuario();
             bd.CrearUsuario(user);
             cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('Se Ha Creado Usuario Exitosamente');</script>");
