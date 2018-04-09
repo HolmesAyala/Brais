@@ -23,6 +23,12 @@ public partial class View_Administrador_parametros : System.Web.UI.Page
 
     protected void Button1_Click(object sender, EventArgs e)
     {
+        DBAdministrador admin = new DBAdministrador();
+        EConsultorio consul = new EConsultorio();
+        consul.Nombre = TB_Consultorio.Text;
+        consul.Ubicacion = TB_Ubicacion.Text;
+        consul.Session = Session.SessionID;
+        admin.insertarConsultorio(consul);
 
     }
 }

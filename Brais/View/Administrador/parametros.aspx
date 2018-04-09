@@ -8,6 +8,11 @@
             font-size:medium;
             color:white;
         }
+        .textBox{
+            border-radius:20px;
+            border-color:black;
+            border-width:1px;
+        }
     </style>
     <table style="width: 100%">
         <tr>
@@ -59,10 +64,10 @@
                 <br />
             </td>
             <td style="height: 20px; text-align: left">
-                <asp:TextBox ID="TextBox1" runat="server" Width="166px" placeholder="Nombre Consultorio (Unico)"></asp:TextBox>
+                <asp:TextBox ID="TB_Consultorio" runat="server" Width="179px" placeholder="Nombre Consultorio (Unico)" CssClass="textBox" Height="26px"></asp:TextBox>
                 <br />
                 <br />
-                <asp:TextBox ID="TextBox2" runat="server" Width="166px" placeholder="Localizacion"></asp:TextBox>
+                <asp:TextBox ID="TB_Ubicacion" runat="server" Width="179px" placeholder="Localizacion" CssClass="textBox" Height="26px"></asp:TextBox>
                 <br />
                 <br />
                 <br />
