@@ -131,10 +131,10 @@
             
             <nav>
                 <ul>
-                    <li><asp:Button runat="server" Text="Pagina Principal" class="BTN_PaginaPrincipal" ID="BTN_PaginaPrincipal" OnClick="BTN_PaginaPrincipal_Click"></asp:Button></li>
-                    <li><asp:Button runat="server" Text="Sobre Nosotros" class="BTN_SobreNosotros" ID="BTN_SobreNosotros" OnClick="BTN_SobreNosotros_Click"></asp:Button></li>
-                    <li><asp:Button runat="server" Text="Crear Cuenta" class="BTN_CrearCuenta" ID="BTN_CrearCuenta" OnClick="BTN_CrearCuenta_Click"></asp:Button></li>
-                    <li><asp:Button runat="server" Text="Login" class="BTN_Login" ID="BTN_Login" OnClick="BTN_Login_Click"></asp:Button></li>
+                    <li><asp:Button runat="server" Text="Pagina Principal" class="BTN_PaginaPrincipal" ID="BTN_PaginaPrincipal" OnClick="BTN_PaginaPrincipal_Click" CausesValidation="False" ValidateRequestMode="Disabled"></asp:Button></li>
+                    <li><asp:Button runat="server" Text="Sobre Nosotros" class="BTN_SobreNosotros" ID="BTN_SobreNosotros" OnClick="BTN_SobreNosotros_Click" CausesValidation="False" ValidateRequestMode="Disabled"></asp:Button></li>
+                    <li><asp:Button runat="server" Text="Crear Cuenta" class="BTN_CrearCuenta" ID="BTN_CrearCuenta" OnClick="BTN_CrearCuenta_Click" CausesValidation="False" ValidateRequestMode="Disabled"></asp:Button></li>
+                    <li><asp:Button runat="server" Text="Login" class="BTN_Login" ID="BTN_Login" OnClick="BTN_Login_Click" CausesValidation="False" ValidateRequestMode="Disabled"></asp:Button></li>
                 </ul>
             </nav>
 
