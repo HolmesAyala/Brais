@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -7,6 +8,7 @@ using System.Web.UI.WebControls;
 
 public partial class View_Default : System.Web.UI.Page
 {
+    bool validacionCorreo;
     protected void Page_Load(object sender, EventArgs e)
     {
         Response.Cache.SetNoStore();
@@ -31,9 +33,17 @@ public partial class View_Default : System.Web.UI.Page
             user.Fecha = TB_date.Text.ToString();
             user.IdEps = int.Parse(eps.SelectedItem.Value.ToString());
             DBUsuario bd =new DBUsuario();
-            bd.CrearUsuario(user);
-            cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('Se Ha Creado Usuario Exitosamente');</script>");
-            Response.Redirect("PaginaPrincipal.aspx");
+            DataTable error;
+            error = bd.CrearUsuario(user);
+            if (error.Rows[0]["error"].ToString() == "error"){
+                //fallo
+                cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('El correo ingresado ya existe');</script>");
+            }
+            else
+            {
+                cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('Se Ha Creado Usuario Exitosamente');</script>");
+                Response.Redirect("PaginaPrincipal.aspx");
+            } 
         }
         else
         {

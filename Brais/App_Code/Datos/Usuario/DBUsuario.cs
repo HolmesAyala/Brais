@@ -37,7 +37,17 @@ public class DBUsuario
         }
         catch (Exception Ex)
         {
-            throw Ex;
+            if(Ex.Message== "23505: llave duplicada viola restricción de unicidad «usuario_correo_key»"){
+                //Muestro el error
+                DataTable error = new DataTable();
+                error.Columns.Add("error");
+                DataRow data = error.NewRow();
+                data["error"] = "error";
+                error.Rows.Add(data);
+                return error;
+
+            }else throw Ex;
+
         }
         finally
         {

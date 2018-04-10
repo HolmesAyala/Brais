@@ -4,7 +4,7 @@
 
         <h3>Ver Medicos</h3>
 
-        <%-- <style>
+        <%--<style>
 
         h2{
             text-align: center;
@@ -83,14 +83,14 @@
 
     <div id="tabla">
 
-        <asp:GridView class="GV_Usuarios" runat="server" ID="GV_Usuarios" AllowPaging="True" AutoGenerateColumns="False" CellPadding="10" CellSpacing="5" ForeColor="#333333" GridLines="None" HorizontalAlign="Center" EnableModelValidation="False" OnPageIndexChanging="GV_Usuarios_PageIndexChanging" Width="1329px">
+        <asp:GridView class="GV_Usuarios" runat="server" ID="GV_Usuarios" AllowPaging="True" AutoGenerateColumns="False" CellPadding="10" CellSpacing="5" ForeColor="#333333" GridLines="None" HorizontalAlign="Center" EnableModelValidation="False" OnPageIndexChanging="GV_Usuarios_PageIndexChanging" Width="1329px" OnSelectedIndexChanged="GV_Usuarios_SelectedIndexChanged">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
                 <asp:BoundField DataField="identificacion" HeaderText="Identificacion" />
                 <asp:BoundField DataField="id_tipo_identificacion" HeaderText="Tipo" />
                 <asp:BoundField DataField="nombre" HeaderText="Nombre" />
                 <asp:BoundField DataField="apellido" HeaderText="Apellido" />
-                <asp:BoundField DataField="id_tipo_afiliacion" HeaderText="Afiliacion" />
+                <asp:BoundField DataField="id_especialidad" HeaderText="Especialidad" />
                 <asp:BoundField DataField="correo" HeaderText="Correo" />
                 <asp:TemplateField>
                     <EditItemTemplate>

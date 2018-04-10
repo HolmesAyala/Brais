@@ -88,7 +88,7 @@
             <asp:Label class="LB_Eps" ID="LB_Eps" runat="server" Text="EPS: "></asp:Label>
             <asp:UpdatePanel runat="server">
                 <ContentTemplate>
-                    <asp:DropDownList class="DDL_Eps" ID="DDL_Eps" runat="server" DataSourceID="ODS_ObtenerEps" DataTextField="nombre" DataValueField="id" Width="100%" Height="100%"></asp:DropDownList>
+                    <asp:DropDownList class="DDL_Eps" ID="DDL_Eps" runat="server" DataSourceID="ODS_ObtenerEps" DataTextField="nombre" DataValueField="id" Width="100%"></asp:DropDownList>
                 </ContentTemplate>
                 <Triggers>
                     <asp:AsyncPostBackTrigger ControlID="DDL_TipoAfiliacion" EventName="SelectedIndexChanged" />

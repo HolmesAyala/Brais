@@ -58,7 +58,7 @@ public partial class View_Usuario_InsertarEliminarActualizar : System.Web.UI.Pag
         TB_Nombre.Text = eUsuario.Nombre;
         TB_Apellido.Text = eUsuario.Apellido;
         TB_FechaNacimiento.TextMode = TextBoxMode.Date;
-        TB_FechaNacimiento.Text = string.Join("-", eUsuario.Fecha.Substring(0, 10).Split('/').Reverse());
+        TB_FechaNacimiento.Text = DateTime.Parse(eUsuario.Fecha).ToString("yyyy-MM-dd");
         DDL_TipoAfiliacion.SelectedIndex = eUsuario.Tipo_afiliacion;
         DDL_Eps.SelectedIndex = eUsuario.IdEps;
         TB_Correo.Text = eUsuario.Correo;
