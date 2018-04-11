@@ -1,10 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/View/Administrador/MPAdministrador.master" AutoEventWireup="true" CodeFile="~/Controller/Administrador/VerMedicos.aspx.cs" Inherits="View_Administrador_VerMedicos" %>
+﻿<%@ Page EnableEventValidation="false" Title="" Language="C#" MasterPageFile="~/View/Administrador/MPAdministrador.master" AutoEventWireup="true" CodeFile="~/Controller/Administrador/VerMedicos.aspx.cs" Inherits="View_Administrador_VerMedicos" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="contenido" Runat="Server">
 
-        <h3>Ver Medicos</h3>
-
-        <%--<style>
+        <style>
 
         h2{
             text-align: center;
@@ -51,7 +49,7 @@
             margin-bottom: 30px;
         }
 
-        div#Tabla .GV_Usuarios{
+        div#Tabla .GV_Medicos{
             width: 80%;
             margin: 0 auto;
         }
@@ -69,29 +67,30 @@
             border: 1px solid rgb(0, 77, 99);
             border-radius: 5px;
         }
-
     </style>
 
     <h2>Medicos Registrados</h2>
+
     <div id="Buscar_Agregar">
         <div>
             <asp:TextBox runat="server" class="TB_Buscar" ID="TB_Buscar" placeholder="Buscar por identificacion"></asp:TextBox>
             <asp:Button runat="server" Text="Buscar" class="BTN_Buscar" ID="BTN_Buscar" OnClick="BTN_Buscar_Click"></asp:Button>
         </div>
-        <asp:Button runat="server" class="BTN_AgregarMedico" ID="BTN_AgregarMedico" Text="Agregar Medico" OnClick="BTN_AgregarUsuario_Click"></asp:Button>
+        <asp:Button runat="server" class="BTN_AgregarMedico" ID="BTN_AgregarMedico" Text="Agregar Medico" OnClick="BTN_AgregarMedico_Click"></asp:Button>
     </div>
 
-    <div id="tabla">
+    <div id="Tabla">
 
-        <asp:GridView class="GV_Usuarios" runat="server" ID="GV_Usuarios" AllowPaging="True" AutoGenerateColumns="False" CellPadding="10" CellSpacing="5" ForeColor="#333333" GridLines="None" HorizontalAlign="Center" EnableModelValidation="False" OnPageIndexChanging="GV_Usuarios_PageIndexChanging" Width="1329px" OnSelectedIndexChanged="GV_Usuarios_SelectedIndexChanged">
+        <asp:GridView class="GV_Medicos" runat="server" ID="GV_Medicos" AllowPaging="True" AutoGenerateColumns="False" CellPadding="10" CellSpacing="5" ForeColor="#333333" GridLines="None" HorizontalAlign="Center" EnableModelValidation="False" OnPageIndexChanging="GV_Medicos_PageIndexChanging">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
                 <asp:BoundField DataField="identificacion" HeaderText="Identificacion" />
-                <asp:BoundField DataField="id_tipo_identificacion" HeaderText="Tipo" />
+                <asp:BoundField DataField="tipo_identificacion" HeaderText="Tipo" />
                 <asp:BoundField DataField="nombre" HeaderText="Nombre" />
                 <asp:BoundField DataField="apellido" HeaderText="Apellido" />
-                <asp:BoundField DataField="id_especialidad" HeaderText="Especialidad" />
+                <asp:BoundField DataField="especialidad" HeaderText="Especialidad" />
                 <asp:BoundField DataField="correo" HeaderText="Correo" />
+                <asp:BoundField DataField="nombre_consultorio" HeaderText="Consultorio" />
                 <asp:TemplateField>
                     <EditItemTemplate>
                         <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
@@ -123,7 +122,7 @@
             <SortedDescendingHeaderStyle BackColor="#4870BE" />
         </asp:GridView>
 
-    </div>--%>
+    </div>
 
 </asp:Content>
 

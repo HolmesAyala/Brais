@@ -59,4 +59,30 @@ public abstract class Funcion
         return eUsuario;
     }
 
+    public static EMedico dataTableToEMedico(DataTable dtMedico)
+    {
+        EMedico eMedico = new EMedico();
+
+        try
+        {
+            eMedico.Identificacion = dtMedico.Rows[0]["identificacion"].ToString();
+            eMedico.TipoIdentificacion = int.Parse(dtMedico.Rows[0]["id_tipo_identificacion"].ToString());
+            eMedico.Nombre = dtMedico.Rows[0]["nombre"].ToString();
+            eMedico.Apellido = dtMedico.Rows[0]["apellido"].ToString();
+            eMedico.FechaNacimiento = dtMedico.Rows[0]["fecha_nacimiento"].ToString();
+            eMedico.TipoEspecialidad = int.Parse(dtMedico.Rows[0]["id_especialidad"].ToString());
+            eMedico.Correo = dtMedico.Rows[0]["correo"].ToString();
+            eMedico.Password = dtMedico.Rows[0]["contrasena"].ToString();
+            eMedico.TipoUsuario = int.Parse(dtMedico.Rows[0]["tipo"].ToString());
+            eMedico.Consultorio = int.Parse(dtMedico.Rows[0]["consultorio_pk"].ToString());
+        }
+        catch (Exception)
+        {
+            return null;
+            //throw;
+        }
+
+        return eMedico;
+    }
+
 }

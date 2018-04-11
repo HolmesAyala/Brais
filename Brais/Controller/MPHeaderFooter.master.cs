@@ -14,7 +14,7 @@ public partial class View_MPHeaderFooter : System.Web.UI.MasterPage
 
     protected void BTN_PaginaPrincipal_Click(object sender, EventArgs e)
     {
-        Response.Redirect(" ~ / View /PaginaPrincipal.aspx");
+        Response.Redirect("~/View/PaginaPrincipal.aspx");
     }
 
     protected void BTN_SobreNosotros_Click(object sender, EventArgs e)
