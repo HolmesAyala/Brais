@@ -4,7 +4,7 @@
 
     <style>
 
-        h1.titulo{
+        h1.titulo_usuario{
             color: rgb(0, 200, 248);
             text-align: center;
             padding: 20px;
@@ -12,7 +12,7 @@
 
     </style>
 
-    <h1 class="titulo">Citas Programadas</h1>
+    <h1 class="titulo_usuario">Citas Programadas</h1>
 
 </asp:Content>
 

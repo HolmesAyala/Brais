@@ -4,7 +4,7 @@
 
     <style>
 
-        h1.titulo{
+        h1.titulo_usuario{
             color: rgb(0, 200, 248);
             text-align: center;
             padding: 20px;
@@ -56,7 +56,7 @@
 
     </style>
 
-    <h1 class="titulo">Asignar Citas</h1>
+    <h1 class="titulo_usuario">Asignar Citas</h1>
 
     <div class="tipocita_fechasdisponibles">
         <div class="tipo_cita">

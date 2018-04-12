@@ -13,17 +13,23 @@ public partial class Controller_Usuario_MPUsuario : System.Web.UI.MasterPage
         {
             Response.Redirect("~/View/Login.aspx");
         }
-    }
-
-    protected void BTN_ActualizarDatos_Click(object sender, EventArgs e)
-    {
-
+        DBUsuario dBUsuario = new DBUsuario();
+        Session["usuario"] = Funcion.dataTableToEUsuario(dBUsuario.obtenerUsuario(((EUsuario)Session["usuario"]).Identificacion));
+        LB_MensajeBienvenida.Text += ((EUsuario)Session["usuario"]).Nombre + " " + ((EUsuario)Session["usuario"]).Apellido;
     }
 
     protected void BTN_CerrarSesion_Click(object sender, EventArgs e)
     {
         Session["usuario"] = null;
         Response.Redirect("~/View/Login.aspx");
+    }
+
+    protected void BTN_ActualizarDatos_Click(object sender, EventArgs e)
+    {
+        Session["Accion"] = "Actualizar";
+        Session["identificacion"] = ((EUsuario)Session["usuario"]).Identificacion;
+        Session["PaginaAnterior"] = Request.Url.AbsoluteUri;
+        Response.Redirect("~/View/Usuario/InsertarEliminarActualizar.aspx");
     }
 
     protected void BTN_AsignarCita_Click(object sender, EventArgs e)

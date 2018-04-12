@@ -1,9 +1,12 @@
-﻿<%@ Master Language="C#" MasterPageFile="~/View/MPHeaderFooter.master" AutoEventWireup="true" CodeFile="~/Controller/Usuario/MPUsuario.master.cs" Inherits="Controller_Usuario_MPUsuario" %>
+﻿<%@ Master Language="C#" MasterPageFile="~/View/MPHeaderFooter.master" AutoEventWireup="true" CodeFile="~/Controller/Medico/MPMedico.master.cs" Inherits="View_Medico_MPMedico" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" Runat="Server">
+
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <style>
         div.mensaje_botones{
             display: flex;
@@ -33,18 +36,16 @@
     </div>
 
     <ul class="menu">
-        <li><asp:Button ID="BTN_AsignarCita" class="BTN_AsignarCita" runat="server" Text="Asignar cita" OnClick="BTN_AsignarCita_Click"></asp:Button></li>
-        <li><asp:Button ID="BTN_ReprogramarCita" class="BTN_ReprogramarCita" runat="server" Text="Reprogramar cita" OnClick="BTN_ReprogramarCita_Click"></asp:Button></li>
-        <li><asp:Button ID="BTN_CancelarCita" class="BTN_CancelarCita" runat="server" Text="Cancelar cita" OnClick="BTN_CancelarCita_Click"></asp:Button></li>
-        <li><asp:Button ID="BTN_VerCitasProgramadas" class="BTN_VerCitasProgramadas" runat="server" Text="Ver citas Programadas" OnClick="BTN_VerCitasProgramadas_Click"></asp:Button></li>
+        <li><asp:Button ID="BTN_VerPacientes" class="BTN_VerPacientes" runat="server" Text="Ver pacientes" OnClick="BTN_VerPacientes_Click1"></asp:Button></li>
+        <li><asp:Button ID="BTN_HorarioTrabajo" class="BTN_HorarioTrabajo" runat="server" Text="Horario de trabajo" OnClick="BTN_HorarioTrabajo_Click"></asp:Button></li>
     </ul>
-
 
     <div>
       <asp:ContentPlaceHolder ID="contenido" runat="server">
 
       </asp:ContentPlaceHolder>
     </div>
+
 
 </asp:Content>
 

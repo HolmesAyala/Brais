@@ -43,8 +43,8 @@ public partial class View_Login : System.Web.UI.Page
             }
             else if ( int.Parse(usuario.Rows[0]["tipo"].ToString()) == 2)
             {
-                //Medico Aun No Existe La Vista :v
-
+                Session["usuario"] = Funcion.dataTableToEMedico(usuario);
+                Response.Redirect("~/View/Medico/VerPacientes.aspx");
             }
             else if ( int.Parse(usuario.Rows[0]["tipo"].ToString()) == 1)
             {
