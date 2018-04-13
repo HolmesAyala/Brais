@@ -2,6 +2,8 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="contenido" Runat="Server">
 
+    &nbsp;&nbsp;&nbsp;
+
     <style>
         .campo{
             display: flex;
@@ -30,12 +32,15 @@
             padding: 10px;
             border-radius: 5px;
         }
+        .auto-style1 {
+            font-size: large;
+        }
     </style>
     <asp:ScriptManager runat="server"></asp:ScriptManager>
     <table style="width: 100%">
         <tr>
             <td colspan="2" style="text-align: center; height: 29px"><strong>
-                <asp:Label ID="L_Titulo" runat="server" style="color: #00C8F8; font-size: medium"></asp:Label>
+                <asp:Label ID="L_Titulo" runat="server" style="color: #00C8F8; " CssClass="auto-style1"></asp:Label>
                 </strong>
             </td>
         </tr>
@@ -108,7 +113,7 @@
             <td>
                 <asp:DropDownList ID="DDL_Consultorio" runat="server" DataSourceID="ODS_Consultorio" DataTextField="nombre_consultorio" DataValueField="id">
                 </asp:DropDownList>
-                <asp:ObjectDataSource ID="ODS_Consultorio" runat="server" SelectMethod="obtenerConsultorio" TypeName="DBConsultorio"></asp:ObjectDataSource>
+                <asp:ObjectDataSource ID="ODS_Consultorio" runat="server" SelectMethod="obtenerConsultoriosDisponibles" TypeName="DBConsultorio"></asp:ObjectDataSource>
             </td>
         </tr>
         <tr>
@@ -126,7 +131,7 @@
                 &nbsp;&nbsp;&nbsp;
             </td>
             <td>
-                <asp:TextBox ID="TB_Contrasena" runat="server"></asp:TextBox>
+                <asp:TextBox ID="TB_Contrasena" runat="server" TextMode="Password"></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -135,7 +140,7 @@
                 &nbsp;&nbsp;&nbsp;
             </td>
             <td>
-                <asp:TextBox ID="TB_Repetir_Contrasena" runat="server"></asp:TextBox>
+                <asp:TextBox ID="TB_Repetir_Contrasena" runat="server" TextMode="Password"></asp:TextBox>
             </td>
         </tr>
     </table>

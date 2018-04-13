@@ -38,12 +38,21 @@ public partial class View_Administrador_VerMedicos : System.Web.UI.Page
 
     protected void BTN_Eliminar_Click(object sender, EventArgs e)
     {
-
+        Button btnEliminar = (Button)sender;
+        Label lbEliminar = (Label)btnEliminar.Parent.Controls[1];
+        DBMedico dBMedico = new DBMedico();
+        DBConsultorio dBConsultorio = new DBConsultorio();
+        DataTable medico = dBMedico.obtenerMedico(lbEliminar.Text);
+        dBMedico.eliminarMedico(lbEliminar.Text);
+        obtenerDatosMedico(TB_Buscar.Text.Trim());
+        dBConsultorio.liberarDisponibilidad(int.Parse(medico.Rows[0]["id_especialidad"].ToString()));
     }
 
     protected void BTN_AgregarMedico_Click(object sender, EventArgs e)
     {
-
+        Session["Accion"] = "Insertar";
+        Session["PaginaAnterior"] = Request.Url.AbsoluteUri;
+        Response.Redirect("~/View/Medico/InsertarEliminarActualizar.aspx");
     }
 
     protected void GV_Medicos_PageIndexChanging(object sender, GridViewPageEventArgs e)
