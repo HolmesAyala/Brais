@@ -13,6 +13,9 @@
             border-color:black;
             border-width:1px;
         }
+        .auto-style1 {
+            font-weight: bold;
+        }
     </style>
     <table style="width: 100%">
         <tr>
@@ -54,8 +57,7 @@
         </tr>
         <tr>
             <td style="height: 20px; text-align: left; width: 117px">
-                <asp:Label ID="Label3" runat="server" Font-Bold="True" Text=" ID Consultorio"></asp:Label>
-                <br />
+                <span class="auto-style1">Nombre Consultorio</span><br />
                 <br />
                 <asp:Label ID="Label4" runat="server" Font-Bold="True">Ubicacion</asp:Label>
                 <br />

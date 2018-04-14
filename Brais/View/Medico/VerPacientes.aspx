@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/View/Medico/MPMedico.master" AutoEventWireup="true" CodeFile="~/Controller/Medico/VerPacientes.aspx.cs" Inherits="View_Medico_VerPacientes" %>
+﻿<%@ Page EnableEventValidation="false" Title="" Language="C#" MasterPageFile="~/View/Medico/MPMedico.master" AutoEventWireup="true" CodeFile="~/Controller/Medico/VerPacientes.aspx.cs" Inherits="View_Medico_VerPacientes" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="contenido" Runat="Server">
 
@@ -8,41 +8,6 @@
             text-align: center;
             color: rgb(0, 200, 248);
             margin: 50px 0;
-        }
-
-        .TB_Buscar{
-            font-size: 1rem;
-            border-top-left-radius: 10px;
-            border-bottom-left-radius: 10px;
-            border: 1px solid rgb(128, 128, 128);
-            padding: 5px;
-            width: 300px;
-        }
-
-        .BTN_Buscar{
-            border: 1px solid rgb(128, 128, 128);
-            border-bottom-right-radius: 10px;
-            border-top-right-radius: 10px;
-            padding: 5px;
-            font-size: 1rem;
-        }
-
-        .BTN_AgregarMedico{
-            border-radius: 5px;
-            border: 1px solid rgb(128, 128, 128);
-            color: white;
-            background-color: rgb(22, 157, 179);
-        }
-
-        div#Buscar_Agregar div{
-            display: flex;
-            justify-content:center;
-        }
-
-        div#Buscar_Agregar{
-            display: flex;
-            justify-content: space-around;
-            margin-bottom: 30px;
         }
 
         div#Tabla{
@@ -56,15 +21,14 @@
         
         .BTN_Confirmar_Cita{
             color: white;
-            background-color: rgb(255, 56, 34);
+            background-color: rgb(22, 157, 179);
             border: 1px solid rgb(0, 77, 99);
             border-radius: 5px;
-            width: 200px;
         }
 
         .BTN_Modificar_Historial{
-            color: white;
-            background-color: rgb(22, 157, 179);
+            color: rgb(22, 157, 179);
+            background-color: rgb(241, 232, 54);
             border: 1px solid rgb(0, 77, 99);
             border-radius: 5px;
         }
@@ -78,6 +42,7 @@
             <AlternatingRowStyle BackColor="White" />
             <Columns>
                 <asp:BoundField DataField="hora" HeaderText="Hora" />
+                <asp:BoundField DataField="tipo_identificacion" HeaderText="Tipo Identificacion" />
                 <asp:BoundField DataField="identificacion" HeaderText="Identificación" />
                 <asp:BoundField DataField="nombre" HeaderText="Nombre" />
                 <asp:BoundField DataField="apellido" HeaderText="Apellido" />
@@ -87,7 +52,7 @@
                     </EditItemTemplate>
                     <ItemTemplate>
                         <asp:Label ID="LB_Modificar_Historial" runat="server" Text='<%# Eval("identificacion") %>' Visible="False"></asp:Label>
-                        <asp:Button class="BTN_Modificar_Historial" ID="BTN_Modificar_Historial" runat="server" Text="Modificar Historial"/>
+                        <asp:Button class="BTN_Modificar_Historial" ID="BTN_Modificar_Historial" runat="server" OnClick="BTN_Modificar_Historial_Click" Text="Modificar Historial"/>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField>
@@ -96,7 +61,7 @@
                     </EditItemTemplate>
                     <ItemTemplate>
                         <asp:Label ID="LB_Confirmar_Cita" runat="server" Text='<%# Eval("identificacion") %>' Visible="False"></asp:Label>
-                        <asp:Button ID="BTN_Confirmar_Cita" runat="server" class="BTN_Confirmar_Cita" Text="Cita atendida"/>
+                        <asp:Button ID="BTN_Confirmar_Cita" runat="server" class="BTN_Confirmar_Cita" OnClick="BTN_Confirmar_Cita_Click" Text="Cita atendida"/>
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>

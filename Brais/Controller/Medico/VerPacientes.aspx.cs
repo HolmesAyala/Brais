@@ -26,4 +26,13 @@ public partial class View_Medico_VerPacientes : System.Web.UI.Page
         obtenerDatosPaciente();
     }
 
+    protected void BTN_Modificar_Historial_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/View/Usuario/InsertarEliminarActualizar.aspx");
+    }
+
+    protected void BTN_Confirmar_Cita_Click(object sender, EventArgs e)
+    {
+    }
+
 }

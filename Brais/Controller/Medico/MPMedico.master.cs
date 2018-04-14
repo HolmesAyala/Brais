@@ -31,7 +31,9 @@ public partial class View_Medico_MPMedico : System.Web.UI.MasterPage
 
     protected void BTN_ActualizarDatos_Click(object sender, EventArgs e)
     {
-
+        Session["Accion"] = "Actualizar";
+        Session["PaginaAnterior"] = Request.Url.AbsoluteUri;
+        Response.Redirect("~/View/Medico/InsertarEliminarActualizar.aspx");
     }
 
     protected void BTN_VerPacientes_Click1(object sender, EventArgs e)
