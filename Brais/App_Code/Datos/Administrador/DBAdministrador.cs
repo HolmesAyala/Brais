@@ -24,7 +24,7 @@ public class DBAdministrador
         NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
         try
         {
-            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("public.f_obtener_consultorios",conection);
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("public.f_obtener_consultorios", conection);
             dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
             conection.Open();
             dataAdapter.Fill(consultorios);
@@ -58,7 +58,7 @@ public class DBAdministrador
             dataAdapter.Fill(consultorios);
 
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             throw ex;
         }
@@ -69,7 +69,59 @@ public class DBAdministrador
                 conection.Close();
             }
         }
-        
+
+    }
+
+    public DataTable obtenerConsultorio(int id)
+    {
+        DataTable consultorio = new DataTable();
+        NpgsqlConnection conexion = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+        try
+        {
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("f_obtener_consultorio", conexion);
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlDbType.Integer).Value = id;
+            conexion.Open();
+            dataAdapter.Fill(consultorio);
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+        finally
+        {
+            if (conexion != null)
+            {
+                conexion.Close();
+            }
+        }
+        return consultorio;
+    }
+
+    public void eliminarConsultorio(int id)
+    {
+        DataTable delete = new DataTable();
+        NpgsqlConnection conexion = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+        try
+        {
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("f_delete_consultorio", conexion);
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlDbType.Integer).Value = id;
+            conexion.Open();
+            dataAdapter.Fill(delete);
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+        finally
+        {
+            if (conexion != null)
+            {
+                conexion.Close();
+            }
+        }
+        return;
     }
 
 
