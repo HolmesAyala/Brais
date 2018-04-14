@@ -39,17 +39,21 @@ public partial class View_Login : System.Web.UI.Page
             if ( int.Parse(usuario.Rows[0]["tipo"].ToString()) == 3)
             {
                 Session["usuario"] = Funcion.dataTableToEUsuario(usuario);
+                Session["tipo"] = "3";
                 Response.Redirect("Usuario/AsignarCita.aspx");
             }
             else if ( int.Parse(usuario.Rows[0]["tipo"].ToString()) == 2)
             {
                 Session["usuario"] = Funcion.dataTableToEMedico(usuario);
+                Session["identificacion_medico"] = datosUsuario.Identificacion;
+                Session["tipo"] = "2";
                 Response.Redirect("~/View/Medico/VerPacientes.aspx");
             }
             else if ( int.Parse(usuario.Rows[0]["tipo"].ToString()) == 1)
             {
                 EUsuario eUsuario = new EUsuario();
                 eUsuario.TipoUsuario = 1;
+                Session["tipo"] = "1";
                 Session["usuario"] = eUsuario;
                 Response.Redirect("Administrador/VerUsuarios.aspx");
             }

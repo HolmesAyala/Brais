@@ -45,36 +45,78 @@ public partial class View_Medico_InsertarEliminarActualizar : System.Web.UI.Page
 
     protected void adecuarParaActualizar()
     {
-        string identificacion = Session["identificacion"].ToString();
-
-        DBMedico dBMedico = new DBMedico();
-
-        DataTable dtMedico = dBMedico.obtenerMedico(identificacion);
-
-        EMedico eMedico = Funcion.dataTableToEMedico(dtMedico);
-
-        DDL_Tipo_Documento.SelectedIndex = eMedico.TipoIdentificacion;
-        TB_Numero_Documento.Text = eMedico.Identificacion; ;
-        TB_Numero_Documento.Enabled = false;
-        TB_Nombre.Text = eMedico.Nombre;
-        TB_Apellido.Text = eMedico.Apellido;
-        TB_Fecha_Nacimiento.TextMode = TextBoxMode.Date;
-        TB_Fecha_Nacimiento.Text = DateTime.Parse(eMedico.FechaNacimiento).ToString("yyyy-MM-dd");
-        DDL_Especialidad.SelectedIndex = eMedico.TipoEspecialidad;
-        if (eMedico.Consultorio != 0)
+        if((string)Session["tipo"] == "2")
         {
-            DBConsultorio dBConsultorio = new DBConsultorio();
-            dBConsultorio.liberarDisponibilidad(eMedico.Consultorio);
-            DDL_Consultorio.SelectedIndex = 0;
+            string identificacion = Session["identificacion_medico"].ToString();
+
+            DBMedico dBMedico = new DBMedico();
+
+            DataTable dtMedico = dBMedico.obtenerMedico(identificacion);
+
+            EMedico eMedico = Funcion.dataTableToEMedico(dtMedico);
+
+            DDL_Tipo_Documento.SelectedIndex = eMedico.TipoIdentificacion;
+            DDL_Tipo_Documento.Enabled = false;
+            TB_Numero_Documento.Text = eMedico.Identificacion; ;
+            TB_Numero_Documento.Enabled = false;
+            TB_Nombre.Text = eMedico.Nombre;
+            TB_Nombre.Enabled = false;
+            TB_Apellido.Text = eMedico.Apellido;
+            TB_Apellido.Enabled = false;
+            TB_Fecha_Nacimiento.TextMode = TextBoxMode.Date;
+            TB_Fecha_Nacimiento.Text = DateTime.Parse(eMedico.FechaNacimiento).ToString("yyyy-MM-dd");
+            TB_Fecha_Nacimiento.Enabled = false;
+            DDL_Especialidad.SelectedIndex = eMedico.TipoEspecialidad;
+            if (eMedico.Consultorio != 0)
+            {
+                DBConsultorio dBConsultorio = new DBConsultorio();
+                dBConsultorio.liberarDisponibilidad(eMedico.Consultorio);
+                DDL_Consultorio.SelectedIndex = 0;
+            }
+            else
+            {
+                DDL_Consultorio.SelectedIndex = eMedico.Consultorio;
+            }
+            TB_Correo.Text = eMedico.Correo;
+            TB_Contrasena.Attributes.Add("value", eMedico.Password);
+            TB_Repetir_Contrasena.Attributes.Add("value", eMedico.Password);
+            BTN_Accion.Text = "Actualizar";
+
         }
-        else
+        else if((string)Session["tipo"] == "1")
         {
-            DDL_Consultorio.SelectedIndex = eMedico.Consultorio;
+            string identificacion = Session["identificacion"].ToString();
+
+            DBMedico dBMedico = new DBMedico();
+
+            DataTable dtMedico = dBMedico.obtenerMedico(identificacion);
+
+            EMedico eMedico = Funcion.dataTableToEMedico(dtMedico);
+
+            DDL_Tipo_Documento.SelectedIndex = eMedico.TipoIdentificacion;
+            TB_Numero_Documento.Text = eMedico.Identificacion; ;
+            TB_Numero_Documento.Enabled = false;
+            TB_Nombre.Text = eMedico.Nombre;
+            TB_Apellido.Text = eMedico.Apellido;
+            TB_Fecha_Nacimiento.TextMode = TextBoxMode.Date;
+            TB_Fecha_Nacimiento.Text = DateTime.Parse(eMedico.FechaNacimiento).ToString("yyyy-MM-dd");
+            DDL_Especialidad.SelectedIndex = eMedico.TipoEspecialidad;
+            if (eMedico.Consultorio != 0)
+            {
+                DBConsultorio dBConsultorio = new DBConsultorio();
+                dBConsultorio.liberarDisponibilidad(eMedico.Consultorio);
+                DDL_Consultorio.SelectedIndex = 0;
+            }
+            else
+            {
+                DDL_Consultorio.SelectedIndex = eMedico.Consultorio;
+            }
+            TB_Correo.Text = eMedico.Correo;
+            TB_Contrasena.Attributes.Add("value", eMedico.Password);
+            TB_Repetir_Contrasena.Attributes.Add("value", eMedico.Password);
+            BTN_Accion.Text = "Actualizar";
         }
-        TB_Correo.Text = eMedico.Correo;
-        TB_Contrasena.Attributes.Add("value", eMedico.Password);
-        TB_Repetir_Contrasena.Attributes.Add("value", eMedico.Password);
-        BTN_Accion.Text = "Actualizar";
+
     }
 
     protected Boolean validarDatos()

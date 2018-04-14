@@ -1,7 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/View/Administrador/MPAdministrador.master" AutoEventWireup="true" CodeFile="~/Controller/Medico/InsertarEliminarActualizar.aspx.cs" Inherits="View_Medico_InsertarEliminarActualizar" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/View/MPHeaderFooter.master" AutoEventWireup="true" CodeFile="~/Controller/Medico/InsertarEliminarActualizar.aspx.cs" Inherits="View_Medico_InsertarEliminarActualizar" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="contenido" Runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
+    
     &nbsp;&nbsp;&nbsp;
 
     <style>
@@ -160,5 +163,8 @@
         <div class="campo">
             <asp:Button class="BTN_Accion" ID="BTN_Accion" runat="server" Text="BTN" OnClick="BTN_Accion_Click"></asp:Button>
         </div>
+
+
 </asp:Content>
+
 
