@@ -23,10 +23,11 @@
         </style>
     <table style="width: 100%">
         <tr>
-            <td colspan="2" rowspan="4" style="text-align: center">
+            <td colspan="2" rowspan="3" style="text-align: center">
                 <asp:Label ID="Label1" runat="server" Font-Bold="True" Font-Size="X-Large" ForeColor="#00CCFF" Text="Consultorios"></asp:Label>
                 <br />
-                <asp:GridView ID="GV_consultorios" runat="server" Width="364px" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical" DataSourceID="ODS_consultorios">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:GridView ID="GV_consultorios" runat="server" Width="80%" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical" DataSourceID="ODS_consultorios" AllowPaging="True" PageSize="3">
                     <AlternatingRowStyle BackColor="#CCCCCC" />
                     <Columns>
                         <asp:BoundField DataField="nombre_consultorio" HeaderText="Nombre Consultorio" >
@@ -38,12 +39,12 @@
                                 <br />
                                 <asp:Button ID="Button2" runat="server" CommandArgument='<%# Eval("id") %>' Text="Editar" OnClick="Button2_Click" BackColor="Black" BorderColor="#333300" BorderWidth="2px" CssClass="bordes" Font-Bold="True" Font-Names="Arial" ForeColor="White" Height="25px" Width="54px" />
                                 <br />
-                                <br />
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Eliminar">
                             <ItemTemplate>
-                                <asp:Button ID="Button3" runat="server" Text="Eliminar" CommandArgument='<%# Eval("id") %>' OnClick="Button3_Click" BackColor="Black" CssClass="bordes" Font-Bold="True" Font-Names="Arial" Height="26px" Width="89px" />
+                                <br />
+                                <asp:Button ID="Button3" runat="server" Text="Eliminar" CommandArgument='<%# Eval("id") %>' OnClick="Button3_Click" BackColor="Black" CssClass="bordes" Font-Bold="True" Font-Names="Arial" Height="26px" Width="89px" ForeColor="White" />
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
@@ -56,14 +57,13 @@
                     <SortedDescendingCellStyle BackColor="#CAC9C9" />
                     <SortedDescendingHeaderStyle BackColor="#383838" />
                 </asp:GridView>
+                &nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:ObjectDataSource ID="ODS_consultorios" runat="server" SelectMethod="obtenerConsultorios" TypeName="DBAdministrador"></asp:ObjectDataSource>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </td>
-            <td colspan="2" style="height: 20px; text-align: left">
+            <td colspan="2" style="text-align: left">
                 <asp:Label ID="Label2" runat="server" Font-Bold="True" Font-Size="X-Large" ForeColor="#00CCFF" Text="Agregar Consultorio"></asp:Label>
             </td>
-        </tr>
-        <tr>
-            <td colspan="2" style="height: 20px; text-align: left">&nbsp;</td>
         </tr>
         <tr>
             <td style="height: 20px; text-align: left; width: 117px">
@@ -120,7 +120,7 @@
                     </div>
                 
             </td>
-            <td style="width: 33%; height: 20px">&nbsp;</td>
+            <td style="width: 33%; height: 20px">&nbsp; &nbsp;</td>
             <td colspan="2" style="height: 20px">&nbsp;</td>
         </tr>
         <tr>
