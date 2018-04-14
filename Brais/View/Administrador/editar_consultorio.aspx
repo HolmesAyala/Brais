@@ -13,16 +13,16 @@
         <tr>
             <td style="text-align: center; height: 25px;">
                 <asp:Label ID="Label3" runat="server" Text="Nombre Consultorio"></asp:Label>&nbsp;&nbsp;&nbsp; &nbsp;
-                <asp:TextBox ID="TB_nombre" runat="server"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TB_nombre" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
+                <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TextBox1" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
             </td>
         </tr>
         <tr>
             <td style="text-align: center">
                 <asp:Label ID="Label4" runat="server" Text="Ubicacion Consultorio"></asp:Label>
 &nbsp;&nbsp;
-                <asp:TextBox ID="TB_ubicacion" runat="server"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TB_ubicacion" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
+                <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TextBox2" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
             </td>
         </tr>
         <tr>

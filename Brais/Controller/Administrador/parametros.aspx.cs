@@ -47,8 +47,5 @@ public partial class View_Administrador_parametros : System.Web.UI.Page
         Button btn = (Button)sender;
         String id;
         id = btn.CommandArgument.ToString();
-        DBAdministrador ad = new DBAdministrador();
-        ad.eliminarConsultorio(int.Parse(id));
-        Response.Redirect("parametros.aspx");
     }
 }
