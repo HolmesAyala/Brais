@@ -19,10 +19,10 @@
             <td colspan="2" rowspan="4" style="text-align: center">
                 <asp:Label ID="Label1" runat="server" Font-Bold="True" Font-Size="X-Large" ForeColor="#00CCFF" Text="Consultorios"></asp:Label>
                 <br />
-                <asp:GridView ID="GV_consultorios" runat="server" Width="364px" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical" DataSourceID="ODS_consultorios">
+                <asp:GridView ID="GV_consultorios" runat="server" Width="364px" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical" DataSourceID="ODS_Consultorio">
                     <AlternatingRowStyle BackColor="#CCCCCC" />
                     <Columns>
-                        <asp:BoundField DataField="nombre" HeaderText="Nombre Consultorio" />
+                        <asp:BoundField DataField="nombre_consultorio" HeaderText="Nombre Consultorio" />
                         <asp:TemplateField HeaderText="Editar">
                             <ItemTemplate>
                                 <asp:Button ID="Button2" runat="server" CommandArgument='<%# Eval("id") %>' Text="Editar" OnClick="Button2_Click" />
@@ -43,7 +43,7 @@
                     <SortedDescendingCellStyle BackColor="#CAC9C9" />
                     <SortedDescendingHeaderStyle BackColor="#383838" />
                 </asp:GridView>
-                <asp:ObjectDataSource ID="ODS_consultorios" runat="server" SelectMethod="obtenerConsultorios" TypeName="DBAdministrador"></asp:ObjectDataSource>
+                <asp:ObjectDataSource ID="ODS_Consultorio" runat="server" SelectMethod="obtenerConsultorios" TypeName="DBAdministrador"></asp:ObjectDataSource>
             </td>
             <td colspan="2" style="height: 20px; text-align: left">
                 <asp:Label ID="Label2" runat="server" Font-Bold="True" Font-Size="X-Large" ForeColor="#00CCFF" Text="Agregar Consultorio"></asp:Label>

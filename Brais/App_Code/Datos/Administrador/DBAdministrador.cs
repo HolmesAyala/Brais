@@ -24,7 +24,7 @@ public class DBAdministrador
         NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
         try
         {
-            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("f_obtener_consultorios",conection);
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("public.f_obtener_consultorios",conection);
             dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
             conection.Open();
             dataAdapter.Fill(consultorios);
