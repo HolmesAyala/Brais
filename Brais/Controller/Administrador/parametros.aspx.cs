@@ -29,6 +29,23 @@ public partial class View_Administrador_parametros : System.Web.UI.Page
         consul.Ubicacion = TB_Ubicacion.Text;
         consul.Session = Session.SessionID;
         admin.insertarConsultorio(consul);
+        Response.Redirect("parametros.aspx");
+    }
 
+    protected void Button2_Click(object sender, EventArgs e)
+    {
+        Button btn = (Button)sender;
+        String id;
+        id=btn.CommandArgument.ToString();
+        Session["id"] = id;
+        Response.Redirect("editar_consultorio.aspx");
+
+    }
+
+    protected void Button3_Click(object sender, EventArgs e)
+    {
+        Button btn = (Button)sender;
+        String id;
+        id = btn.CommandArgument.ToString();
     }
 }
