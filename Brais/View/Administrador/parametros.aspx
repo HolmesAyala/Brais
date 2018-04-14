@@ -13,7 +13,14 @@
             border-color:black;
             border-width:1px;
         }
-    </style>
+        .label{
+         float:left;
+         
+        }
+        .mitad{
+           float:left;
+        }
+        </style>
     <table style="width: 100%">
         <tr>
             <td colspan="2" rowspan="4" style="text-align: center">
@@ -22,15 +29,21 @@
                 <asp:GridView ID="GV_consultorios" runat="server" Width="364px" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical" DataSourceID="ODS_consultorios">
                     <AlternatingRowStyle BackColor="#CCCCCC" />
                     <Columns>
-                        <asp:BoundField DataField="nombre" HeaderText="Nombre Consultorio" />
+                        <asp:BoundField DataField="nombre" HeaderText="Nombre Consultorio" >
+                        <ControlStyle Font-Names="Arial" />
+                        </asp:BoundField>
+                        <asp:BoundField AccessibleHeaderText="Ubicacion" DataField="ubicacion" HeaderText="Ubicacion" />
                         <asp:TemplateField HeaderText="Editar">
                             <ItemTemplate>
-                                <asp:Button ID="Button2" runat="server" CommandArgument='<%# Eval("id") %>' Text="Editar" OnClick="Button2_Click" />
+                                <br />
+                                <asp:Button ID="Button2" runat="server" CommandArgument='<%# Eval("id") %>' Text="Editar" OnClick="Button2_Click" BackColor="Black" BorderColor="#333300" BorderWidth="2px" CssClass="bordes" Font-Bold="True" Font-Names="Arial" ForeColor="White" Height="25px" Width="54px" />
+                                <br />
+                                <br />
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Eliminar">
                             <ItemTemplate>
-                                <asp:Button ID="Button3" runat="server" Text="Eliminar" CommandArgument='<%# Eval("id") %>' OnClick="Button3_Click" />
+                                <asp:Button ID="Button3" runat="server" Text="Eliminar" CommandArgument='<%# Eval("id") %>' OnClick="Button3_Click" BackColor="Black" CssClass="bordes" Font-Bold="True" Font-Names="Arial" Height="26px" Width="89px" />
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
@@ -90,7 +103,29 @@
             <td colspan="2" style="height: 20px">&nbsp;</td>
         </tr>
         <tr>
+            <td style="width: 33%; height: 20px">
+                <div>
+                   &nbsp;<asp:Label ID="Label7" runat="server" Text="Dias Laborales" AssociatedControlID="CB_dias" CssClass="label" Width="78px"></asp:Label>
+                        
+                    
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:CheckBoxList ID="CB_dias" runat="server" CssClass="mitad">
+                        <asp:ListItem>Lunes</asp:ListItem>
+                        <asp:ListItem>Martes</asp:ListItem>
+                        <asp:ListItem>Miercoles</asp:ListItem>
+                        <asp:ListItem>Jueves</asp:ListItem>
+                        <asp:ListItem>Viernes</asp:ListItem>
+                        <asp:ListItem>Sabado</asp:ListItem>
+                        <asp:ListItem>Domingo</asp:ListItem>
+                    </asp:CheckBoxList>            
+                    </div>
+                
+            </td>
             <td style="width: 33%; height: 20px">&nbsp;</td>
+            <td colspan="2" style="height: 20px">&nbsp;</td>
+        </tr>
+        <tr>
+            <td style="width: 33%; height: 20px">
+                &nbsp;</td>
             <td style="width: 33%; height: 20px">&nbsp;</td>
             <td colspan="2" style="height: 20px">&nbsp;</td>
         </tr>
