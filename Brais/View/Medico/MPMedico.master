@@ -32,6 +32,7 @@
         <div>
             <asp:Button ID="BTN_ActualizarDatos" class="BTN_ActualizarDatos" runat="server" Text="Actualizar Datos" OnClick="BTN_ActualizarDatos_Click"></asp:Button>
             <asp:Button ID="BTN_CerrarSesion" class="BTN_CerrarSesion" runat="server" Text="Cerrar Sesión" OnClick="BTN_CerrarSesion_Click"></asp:Button>
+            <asp:Button ID="BTN_ProbarHistorial" runat="server" Text="Para probar el historial" OnClick="BTN_ProbarHistorial_Click"></asp:Button>
         </div>
     </div>
 

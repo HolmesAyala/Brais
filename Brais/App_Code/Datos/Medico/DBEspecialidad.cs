@@ -46,4 +46,35 @@ public class DBEspecialidad
 
         return tipoEspecialidad;
     }
+
+    public DataTable obtenerEspecialidad(int id)
+    {
+        DataTable dtEspecialidad = new DataTable();
+
+        NpgsqlConnection conexion = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+
+        try
+        {
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_obtener_especialidad", conexion);
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlTypes.NpgsqlDbType.Integer).Value = id;
+
+            conexion.Open();
+            dataAdapter.Fill(dtEspecialidad);
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+        finally
+        {
+            if (conexion != null)
+            {
+                conexion.Close();
+            }
+        }
+
+        return dtEspecialidad;
+    }
+
 }

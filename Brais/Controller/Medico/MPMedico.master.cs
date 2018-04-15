@@ -45,4 +45,16 @@ public partial class View_Medico_MPMedico : System.Web.UI.MasterPage
     {
         Response.Redirect("~/View/Medico/HorarioTrabajo.aspx");
     }
+
+
+
+    protected void BTN_ProbarHistorial_Click(object sender, EventArgs e)
+    {
+        DBUsuario dBUsuario = new DBUsuario();
+        Session["Paciente"] = Funcion.dataTableToEUsuario(dBUsuario.obtenerUsuario("0000"));
+        DBMedico dBMedico = new DBMedico();
+        Session["Medico"] = Funcion.dataTableToEMedico(dBMedico.obtenerMedico("10922"));
+        Session["PaginaAnterior"] = Request.Url.AbsoluteUri;
+        Response.Redirect("~/View/Medico/HistorialPaciente.aspx");
+    }
 }
