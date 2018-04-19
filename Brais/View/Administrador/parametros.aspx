@@ -67,7 +67,7 @@
         </tr>
         <tr>
             <td style="height: 20px; text-align: left; width: 117px">
-                <asp:Label ID="Label3" runat="server" Font-Bold="True" Text=" ID Consultorio"></asp:Label>
+                <asp:Label ID="Label3" runat="server" Font-Bold="True" Text=" Nombre Consultorio"></asp:Label>
                 <br />
                 <br />
                 <asp:Label ID="Label4" runat="server" Font-Bold="True">Ubicacion</asp:Label>
