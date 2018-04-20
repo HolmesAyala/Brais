@@ -23,6 +23,18 @@
         .auto-style1 {
             text-align: center;
         }
+        .auto-style2 {
+            width: 33%;
+            height: 20px;
+        }
+        .auto-style3 {
+            text-align: center;
+            width: 33%;
+            height: 20px;
+        }
+        .auto-style4 {
+            height: 20px;
+        }
         </style>
     <table style="width: 100%">
         <tr>
@@ -106,20 +118,22 @@
             <td colspan="2" style="height: 20px">&nbsp;</td>
         </tr>
         <tr>
-            <td style="width: 33%; height: 20px">
+            <td class="auto-style2">
                 <div>
                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
                 
             </td>
-            <td style="width: 33%; height: 20px" class="auto-style1">&nbsp; &nbsp;<b>Duracion De Citas</b></td>
-            <td colspan="2" style="height: 20px">&nbsp;</td>
+            <td class="auto-style3">&nbsp; &nbsp;<b>Duracion De Citas</b></td>
+            <td colspan="2" class="auto-style4"></td>
         </tr>
         <tr>
             <td style="width: 33%; height: 20px">
-                &nbsp;</td>
+                Estos Cambios afectaran a las nuevas citas, las actuales siguen iguales.</td>
             <td style="width: 33%; height: 20px" class="auto-style1">
-                <asp:DropDownList ID="DL_tiempo" runat="server">
+                <asp:DropDownList ID="DL_tiempo" runat="server" DataSourceID="ODS_duracion" DataTextField="duracion_citas" DataValueField="id_parametros">
                 </asp:DropDownList>
+                <asp:ObjectDataSource ID="ODS_duracion" runat="server" SelectMethod="traerTiempos" TypeName="DBAdministrador"></asp:ObjectDataSource>
+                <br />
             </td>
             <td colspan="2" style="height: 20px">&nbsp;</td>
         </tr>
@@ -127,7 +141,7 @@
             <td style="width: 33%; height: 20px">
                 &nbsp;</td>
             <td style="width: 33%; height: 20px" class="auto-style1">
-                <asp:Button ID="Button4" runat="server" Text="Aceptar" />
+                <asp:Button ID="Button4" runat="server" Text="Aceptar" BackColor="Blue" CssClass="bordes" Font-Bold="True" ForeColor="White" Height="27px" Width="69px" />
             </td>
             <td colspan="2" style="height: 20px">&nbsp;</td>
         </tr>

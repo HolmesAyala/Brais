@@ -53,6 +53,9 @@
             height: 50%;
             text-align: center;
         }
+        .button{
+            border-radius:5px;
+        }
     </style>
 
     <section>
@@ -105,7 +108,7 @@
                     <td class="auto-style7">
                         &nbsp;</td>
                     <td class="auto-style9">
-                        <asp:Button ID="Button1" runat="server" Text="Crear Cuenta" Height="28px" OnClick="Button1_Click" Width="114px" />
+                        <asp:Button ID="Button1" runat="server" Text="Crear Cuenta" Height="30px" OnClick="Button1_Click" Width="115px" BackColor="#33CCFF" ForeColor="White" CssClass="button" />
                     </td>
                 </tr>
 

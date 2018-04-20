@@ -123,6 +123,31 @@ public class DBAdministrador
         }
         return;
     }
+    //Funcion para traer las duraciones de citas posibles para programar en el sistema cabe recalcar que solo aplica a partir de las citas nuevas
+    public DataTable traerTiempos()
+    {
+        DataTable datos = new DataTable();
+        NpgsqlConnection conexion = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+        try
+        {
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("administrador.f_obtener_horarios", conexion);
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            conexion.Open();
+            dataAdapter.Fill(datos);
+
+        }catch(Exception ex)
+        {
+            throw ex;
+        }
+        finally
+        {
+            if (conexion != null)
+            {
+                conexion.Close();
+            }
+        }
+        return datos;
+    }
 
 
 }
