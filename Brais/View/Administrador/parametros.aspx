@@ -20,6 +20,9 @@
         .mitad{
            float:left;
         }
+        .auto-style1 {
+            text-align: center;
+        }
         </style>
     <table style="width: 100%">
         <tr>
@@ -97,7 +100,7 @@
         </tr>
         <tr>
             <td style="width: 458px; height: 20px">&nbsp;</td>
-            <td style="width: 345px; height: 20px; text-align: center;">
+            <td style="width: 345px; height: 20px; " class="auto-style1">
                 <asp:Label ID="Label5" runat="server" Font-Bold="True" Font-Size="X-Large" ForeColor="#00CCFF" Text="Tiempos"></asp:Label>
                 </td>
             <td colspan="2" style="height: 20px">&nbsp;</td>
@@ -105,28 +108,27 @@
         <tr>
             <td style="width: 33%; height: 20px">
                 <div>
-                   &nbsp;<asp:Label ID="Label7" runat="server" Text="Dias Laborales" AssociatedControlID="CB_dias" CssClass="label" Width="78px"></asp:Label>
-                        
-                    
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:CheckBoxList ID="CB_dias" runat="server" CssClass="mitad">
-                        <asp:ListItem>Lunes</asp:ListItem>
-                        <asp:ListItem>Martes</asp:ListItem>
-                        <asp:ListItem>Miercoles</asp:ListItem>
-                        <asp:ListItem>Jueves</asp:ListItem>
-                        <asp:ListItem>Viernes</asp:ListItem>
-                        <asp:ListItem>Sabado</asp:ListItem>
-                        <asp:ListItem>Domingo</asp:ListItem>
-                    </asp:CheckBoxList>            
-                    </div>
+                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
                 
             </td>
-            <td style="width: 33%; height: 20px">&nbsp; &nbsp;</td>
+            <td style="width: 33%; height: 20px" class="auto-style1">&nbsp; &nbsp;<b>Duracion De Citas</b></td>
             <td colspan="2" style="height: 20px">&nbsp;</td>
         </tr>
         <tr>
             <td style="width: 33%; height: 20px">
                 &nbsp;</td>
-            <td style="width: 33%; height: 20px">&nbsp;</td>
+            <td style="width: 33%; height: 20px" class="auto-style1">
+                <asp:DropDownList ID="DL_tiempo" runat="server">
+                </asp:DropDownList>
+            </td>
+            <td colspan="2" style="height: 20px">&nbsp;</td>
+        </tr>
+        <tr>
+            <td style="width: 33%; height: 20px">
+                &nbsp;</td>
+            <td style="width: 33%; height: 20px" class="auto-style1">
+                <asp:Button ID="Button4" runat="server" Text="Aceptar" />
+            </td>
             <td colspan="2" style="height: 20px">&nbsp;</td>
         </tr>
     </table>

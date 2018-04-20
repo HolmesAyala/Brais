@@ -33,7 +33,26 @@
         .auto-style4 {
             text-align: justify;
         }
-
+        #profesionals1{
+            background-color:darkseagreen;
+        }
+        .auto-style5 {
+            width: 100%;
+        }
+        .auto-style6 {
+            height: 50%;
+        }
+        .auto-style7 {
+            height: 50%;
+            width: 183px;
+        }
+        .auto-style8 {
+           
+        }
+        .auto-style9 {
+            height: 50%;
+            text-align: center;
+        }
     </style>
 
     <section>
@@ -67,7 +86,32 @@
 
     <section>
         <h2>Una breve informacion sobre nosotros</h2>
+        <div id="profesionals1" style="height:86%;">
 
+            <table class="auto-style5">
+                <tr>
+                    <td class="auto-style7">
+                        <video class="auto-style8" controls height="60%">
+                            <source src="Video/big_buck_bunny.mp4" type="video/mp4" />
+                        </video></td>
+                    <td class="auto-style6">
+                        <p style="margin:auto 5%" class="auto-style4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vitae tellus quam. Donec faucibus lacinia tortor, eget fringilla purus tempus quis. Nunc molestie in elit at eleifend. Nunc dapibus nisl elit, quis dapibus mauris sollicitudin vel. Suspendisse facilisis risus sit amet fermentum tincidunt. Suspendisse vitae elementum eros, a tempor nunc. Nulla nec porta odio. Fusce risus leo, ultrices et rhoncus at, faucibus quis arcu. Aliquam erat volutpat. Curabitur at consectetur lacus.
+</p>
+                        <br />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="auto-style7">
+                        &nbsp;</td>
+                    <td class="auto-style9">
+                        <asp:Button ID="Button1" runat="server" Text="Crear Cuenta" Height="28px" OnClick="Button1_Click" Width="114px" />
+                    </td>
+                </tr>
+
+                </table>
+
+        </div>
     </section>
 
 </asp:Content>
