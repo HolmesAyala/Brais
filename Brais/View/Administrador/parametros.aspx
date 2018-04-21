@@ -141,7 +141,7 @@
             <td style="width: 33%; height: 20px">
                 &nbsp;</td>
             <td style="width: 33%; height: 20px" class="auto-style1">
-                <asp:Button ID="Button4" runat="server" Text="Aceptar" BackColor="Blue" CssClass="bordes" Font-Bold="True" ForeColor="White" Height="27px" Width="69px" />
+                <asp:Button ID="Button4" runat="server" Text="Aceptar" BackColor="Blue" CssClass="bordes" Font-Bold="True" ForeColor="White" Height="27px" Width="69px" OnClick="Button4_Click" />
             </td>
             <td colspan="2" style="height: 20px">&nbsp;</td>
         </tr>

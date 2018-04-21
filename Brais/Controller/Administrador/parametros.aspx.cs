@@ -48,4 +48,14 @@ public partial class View_Administrador_parametros : System.Web.UI.Page
         String id;
         id = btn.CommandArgument.ToString();
     }
+
+    protected void Button4_Click(object sender, EventArgs e)
+    {
+        int fk_parametro =int.Parse(DL_tiempo.SelectedItem.Value);
+        DBAdministrador admin = new DBAdministrador();
+        admin.actualizar_param(fk_parametro);
+        ClientScriptManager cm = this.ClientScript;
+        String dato = "<script type='text/javascript'>alert('A Partir de este momento las citas van a durar "+DL_tiempo.SelectedItem+" minutos')</script>;";
+        cm.RegisterClientScriptBlock(this.GetType(), "", dato);
+    }
 }
