@@ -193,4 +193,55 @@ public class DBMedico
         return resultado;
     }
 
+    public DataTable obtener_dias()
+    {
+        DataTable datos = new DataTable();
+        NpgsqlConnection connection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+        try
+        {
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("medico.f_obtener_dias",connection);
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            connection.Open();
+            dataAdapter.Fill(datos);
+
+        }catch(Exception e)
+        {
+            throw e;
+        }
+        finally
+        {
+            if (connection != null)
+            {
+                connection.Close();
+            }
+        }
+        return datos;
+    }
+
+    public DataTable obtener_horas()
+    {
+        DataTable data = new DataTable();
+        NpgsqlConnection connection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+        try
+        {
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("medico.f_obtener_horas", connection);
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            connection.Open();
+            dataAdapter.Fill(data);
+
+        }
+        catch(Exception e)
+        {
+            throw e;
+        }
+        finally
+        {
+            if (connection != null)
+            {
+                connection.Close();
+            }
+        }
+        return data;
+    }
+
 }

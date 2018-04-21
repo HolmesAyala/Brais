@@ -30,15 +30,15 @@
     <div class="mensaje_botones">
         <asp:Label ID="LB_MensajeBienvenida" class="LB_MensajeBienvenida" runat="server" Text="Bienvenido: "></asp:Label>
         <div>
-            <asp:Button ID="BTN_ActualizarDatos" class="BTN_ActualizarDatos" runat="server" Text="Actualizar Datos" OnClick="BTN_ActualizarDatos_Click"></asp:Button>
-            <asp:Button ID="BTN_CerrarSesion" class="BTN_CerrarSesion" runat="server" Text="Cerrar Sesión" OnClick="BTN_CerrarSesion_Click"></asp:Button>
+            <asp:Button ID="BTN_ActualizarDatos" class="BTN_ActualizarDatos" runat="server" Text="Actualizar Datos" OnClick="BTN_ActualizarDatos_Click" CausesValidation="False"></asp:Button>
+            <asp:Button ID="BTN_CerrarSesion" class="BTN_CerrarSesion" runat="server" Text="Cerrar Sesión" OnClick="BTN_CerrarSesion_Click" CausesValidation="False"></asp:Button>
             <asp:Button ID="BTN_ProbarHistorial" runat="server" Text="Para probar el historial" OnClick="BTN_ProbarHistorial_Click"></asp:Button>
         </div>
     </div>
 
     <ul class="menu">
-        <li><asp:Button ID="BTN_VerPacientes" class="BTN_VerPacientes" runat="server" Text="Ver pacientes" OnClick="BTN_VerPacientes_Click1"></asp:Button></li>
-        <li><asp:Button ID="BTN_HorarioTrabajo" class="BTN_HorarioTrabajo" runat="server" Text="Horario de trabajo" OnClick="BTN_HorarioTrabajo_Click"></asp:Button></li>
+        <li><asp:Button ID="BTN_VerPacientes" class="BTN_VerPacientes" runat="server" Text="Ver pacientes" OnClick="BTN_VerPacientes_Click1" CausesValidation="False"></asp:Button></li>
+        <li><asp:Button ID="BTN_HorarioTrabajo" class="BTN_HorarioTrabajo" runat="server" Text="Horario de trabajo" OnClick="BTN_HorarioTrabajo_Click" CausesValidation="False"></asp:Button></li>
     </ul>
 
     <div>
