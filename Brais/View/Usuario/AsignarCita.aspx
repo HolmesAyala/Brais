@@ -56,6 +56,8 @@
 
     </style>
 
+    <asp:ScriptManager runat="server"></asp:ScriptManager>
+
     <h1 class="titulo_usuario">Asignar Citas</h1>
 
     <div class="tipocita_fechasdisponibles">
@@ -83,16 +85,25 @@
 
         <div class="fechas_disponibles">
             <h3>Fechas Disponibles</h3>
-            <asp:Calendar ID="C_FechasDisponibles" class="C_FechasDisponibles" runat="server" BackColor="White" BorderColor="#3366CC" BorderWidth="1px" CellPadding="1" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="#003399" Height="200px" Width="220px">
-                <DayHeaderStyle BackColor="#99CCCC" ForeColor="#336666" Height="1px" />
-                <NextPrevStyle Font-Size="8pt" ForeColor="#CCCCFF" />
-                <OtherMonthDayStyle ForeColor="#999999" />
-                <SelectedDayStyle BackColor="#009999" Font-Bold="True" ForeColor="#CCFF99" />
-                <SelectorStyle BackColor="#99CCCC" ForeColor="#336666" />
-                <TitleStyle BackColor="#003399" BorderColor="#3366CC" BorderWidth="1px" Font-Bold="True" Font-Size="10pt" ForeColor="#CCCCFF" Height="25px" />
-                <TodayDayStyle BackColor="#99CCCC" ForeColor="White" />
-                <WeekendDayStyle BackColor="#CCCCFF" />
-            </asp:Calendar>
+
+            <asp:UpdatePanel runat="server">
+                <ContentTemplate>
+                    <asp:Calendar ID="C_FechasDisponibles" class="C_FechasDisponibles" runat="server" BackColor="White" BorderColor="#0099CC" BorderWidth="2px" CellPadding="3" DayNameFormat="Shortest" Font-Names="Arial" Font-Size="12pt" ForeColor="#003399" Height="270px" Width="300px" BorderStyle="None" CellSpacing="3" OnDayRender="C_FechasDisponibles_DayRender">
+                        <DayHeaderStyle BackColor="#99CCCC" ForeColor="#336666" Height="1px" />
+                        <NextPrevStyle Font-Size="8pt" ForeColor="#CCCCFF" />
+                        <OtherMonthDayStyle ForeColor="#999999" />
+                        <SelectedDayStyle BackColor="#FF5050" Font-Bold="True" ForeColor="#CCFF99" />
+                        <SelectorStyle BackColor="#99CCCC" ForeColor="#336666" />
+                        <TitleStyle BackColor="#003399" BorderColor="#3366CC" BorderWidth="1px" Font-Bold="True" Font-Size="10pt" ForeColor="#CCCCFF" Height="25px" />
+                        <TodayDayStyle BackColor="#99CCCC" ForeColor="White" />
+                        <WeekendDayStyle BackColor="#CCCCFF" />
+                    </asp:Calendar>
+                </ContentTemplate>
+                <Triggers>
+                    <asp:AsyncPostBackTrigger ControlID="GV_DisponibilidadHoraria" />
+                </Triggers>
+            </asp:UpdatePanel>
+            
         </div>
     </div>
 

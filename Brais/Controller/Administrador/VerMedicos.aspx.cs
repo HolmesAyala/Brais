@@ -29,9 +29,8 @@ public partial class View_Administrador_VerMedicos : System.Web.UI.Page
     protected void BTN_Modificar_Click(object sender, EventArgs e)
     {
         Button btnModificar = (Button)sender;
-        Label lbModificar = (Label)btnModificar.Parent.Controls[1];
         Session["Accion"] = "Actualizar";
-        Session["identificacion"] = lbModificar.Text;
+        Session["identificacion"] = btnModificar.CommandName;
         Session["PaginaAnterior"] = Request.Url.AbsoluteUri;
         Response.Redirect("~/View/Medico/InsertarEliminarActualizar.aspx");
     }
@@ -39,11 +38,10 @@ public partial class View_Administrador_VerMedicos : System.Web.UI.Page
     protected void BTN_Eliminar_Click(object sender, EventArgs e)
     {
         Button btnEliminar = (Button)sender;
-        Label lbEliminar = (Label)btnEliminar.Parent.Controls[1];
         DBMedico dBMedico = new DBMedico();
         DBConsultorio dBConsultorio = new DBConsultorio();
-        DataTable medico = dBMedico.obtenerMedico(lbEliminar.Text);
-        dBMedico.eliminarMedico(lbEliminar.Text);
+        DataTable medico = dBMedico.obtenerMedico(btnEliminar.CommandName);
+        dBMedico.eliminarMedico(btnEliminar.CommandName);
         obtenerDatosMedico(TB_Buscar.Text.Trim());
         dBConsultorio.liberarDisponibilidad(int.Parse(medico.Rows[0]["id_especialidad"].ToString()));
     }

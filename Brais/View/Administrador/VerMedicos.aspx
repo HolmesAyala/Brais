@@ -96,8 +96,7 @@
                         <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
                     </EditItemTemplate>
                     <ItemTemplate>
-                        <asp:Label ID="LB_Modificar" runat="server" Text='<%# Eval("identificacion") %>' Visible="False"></asp:Label>
-                        <asp:Button class="BTN_Modificar" ID="BTN_Modificar" runat="server" Text="Modificar" OnClick="BTN_Modificar_Click" />
+                        <asp:Button class="BTN_Modificar" ID="BTN_Modificar" CommandName='<%# Eval("identificacion") %>' runat="server" Text="Modificar" OnClick="BTN_Modificar_Click" />
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField>
@@ -105,8 +104,7 @@
                         <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
                     </EditItemTemplate>
                     <ItemTemplate>
-                        <asp:Label ID="LB_Eliminar" runat="server" Text='<%# Eval("identificacion") %>' Visible="False"></asp:Label>
-                        <asp:Button ID="BTN_Eliminar" runat="server" class="BTN_Eliminar" OnClick="BTN_Eliminar_Click" Text="Eliminar" />
+                        <asp:Button class="BTN_Eliminar" ID="BTN_Eliminar" CommandName='<%# Eval("identificacion") %>' runat="server" OnClick="BTN_Eliminar_Click" Text="Eliminar" />
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>

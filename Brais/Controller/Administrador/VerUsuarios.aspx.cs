@@ -29,9 +29,8 @@ public partial class View_Administrador_VerUsuarios : System.Web.UI.Page
     protected void BTN_Modificar_Click(object sender, EventArgs e)
     {
         Button btnModificar = (Button)sender;
-        Label lbModificar = (Label)btnModificar.Parent.Controls[1];
         Session["Accion"] = "Actualizar";
-        Session["identificacion"] = lbModificar.Text;
+        Session["identificacion"] = btnModificar.CommandName;
         Session["PaginaAnterior"] = Request.Url.AbsoluteUri;
         Response.Redirect("~/View/Usuario/InsertarEliminarActualizar.aspx");
     }
@@ -39,9 +38,8 @@ public partial class View_Administrador_VerUsuarios : System.Web.UI.Page
     protected void BTN_Eliminar_Click(object sender, EventArgs e)
     {
         Button btnEliminar = (Button)sender;
-        Label lbEliminar = (Label)btnEliminar.Parent.Controls[1];
         DBUsuario dBUsuario = new DBUsuario();
-        dBUsuario.eliminarUsuario(lbEliminar.Text);
+        dBUsuario.eliminarUsuario(btnEliminar.CommandName);
         llenarDatosUsuarios(TB_Buscar.Text.Trim());
     }
 

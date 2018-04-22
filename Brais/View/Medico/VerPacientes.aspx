@@ -35,7 +35,7 @@
     </style>
 
     <h2 style="text-align:center">Pacientes Agendados</h2>
-
+    <asp:Label ID="LB_Mensaje" runat="server" Text="Label"></asp:Label>
     <div id="Tabla">
 
         <asp:GridView class="GV_Pacientes" runat="server" ID="GV_Pacientes" AllowPaging="True" AutoGenerateColumns="False" CellPadding="10" CellSpacing="5" ForeColor="#333333" GridLines="None" HorizontalAlign="Center" EnableModelValidation="False" OnPageIndexChanging="GV_Pacientes_PageIndexChanging">
@@ -51,8 +51,7 @@
                         <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
                     </EditItemTemplate>
                     <ItemTemplate>
-                        <asp:Label ID="LB_Modificar_Historial" runat="server" Text='<%# Eval("identificacion") %>' Visible="False"></asp:Label>
-                        <asp:Button class="BTN_Modificar_Historial" ID="BTN_Modificar_Historial" runat="server" OnClick="BTN_Modificar_Historial_Click" Text="Modificar Historial"/>
+                        <asp:Button class="BTN_Modificar_Historial" ID="BTN_Modificar_Historial" CommandName='<%# Eval("identificacion") %>' runat="server" OnClick="BTN_Modificar_Historial_Click" Text="Modificar Historial"/>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField>
@@ -60,8 +59,7 @@
                         <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
                     </EditItemTemplate>
                     <ItemTemplate>
-                        <asp:Label ID="LB_Confirmar_Cita" runat="server" Text='<%# Eval("identificacion") %>' Visible="False"></asp:Label>
-                        <asp:Button ID="BTN_Confirmar_Cita" runat="server" class="BTN_Confirmar_Cita" OnClick="BTN_Confirmar_Cita_Click" Text="Cita atendida"/>
+                        <asp:Button ID="BTN_Confirmar_Cita" runat="server" class="BTN_Confirmar_Cita" CommandName='<%# Eval("identificacion") %>' OnClick="BTN_Confirmar_Cita_Click" Text="Cita atendida"/>
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>

@@ -28,6 +28,17 @@ public partial class View_Medico_VerPacientes : System.Web.UI.Page
 
     protected void BTN_Modificar_Historial_Click(object sender, EventArgs e)
     {
+        Button btnModificarHistorial = (Button)sender;
+        string idPaciente = btnModificarHistorial.CommandName;
+
+        DBUsuario dBUsuario = new DBUsuario();
+
+        Session["paciente"] = Funcion.dataTableToEUsuario(dBUsuario.obtenerUsuario(idPaciente));
+
+        Session["medico"] = Session["usuario"];
+
+        Session["PaginaAnterior"] = Request.Url.AbsoluteUri;
+
         Response.Redirect("~/View/Medico/HistorialPaciente.aspx");
     }
 
