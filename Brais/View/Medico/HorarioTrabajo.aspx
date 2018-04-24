@@ -28,6 +28,10 @@
             height: 29px;
         }
 
+        .auto-style6 {
+            height: 26px;
+        }
+
     </style>
     <h2 style="text-align:center">Horario de Trabajo</h2>
     <p style="text-align:center">&nbsp;</p>
@@ -39,16 +43,15 @@
         </tr>
         <tr>
             <td style="text-align: center;" class="auto-style5" colspan="2">
-                <asp:CustomValidator ID="CustomValidator1" ErrorMessage="*Debe Seleccionar Al Menos 1 Dia"
-    ForeColor="Red" ClientValidationFunction="ValidateCheckBoxList" runat="server" />
-            </td>
+                &nbsp;</td>
         </tr>
         <tr>
-            <td colspan="2">
-                <asp:DropDownList ID="DropDownList2" runat="server" DataSourceID="ODS_dias" DataTextField="nombre_dia" DataValueField="id_dia">
-                </asp:DropDownList>
+            <td colspan="2" style="margin-left:auto;margin-right:auto; text-align: center;" class="auto-style2">
                
                 <asp:ObjectDataSource ID="ODS_dias" runat="server" SelectMethod="obtener_dias" TypeName="DBMedico"></asp:ObjectDataSource>
+               
+                <asp:DropDownList ID="DL_dias" runat="server" DataSourceID="ODS_dias" DataTextField="nombre_dia" DataValueField="id_dia" Font-Bold="True">
+                </asp:DropDownList>
                
             </td>
         </tr>
@@ -67,6 +70,7 @@
         <tr>
             <td style="width: 50%" class="auto-style3">
                 <asp:Label ID="Label5" runat="server" Font-Bold="True" ForeColor="#00CCFF" Text="Seleccione La Hora De Inicio"></asp:Label>
+            &nbsp;<br />
             </td>
             <td style="text-align: center">
                 <asp:DropDownList ID="DL_hora_inicial" runat="server" DataSourceID="ODS_horas_dia" DataTextField="hora" DataValueField="id_hora_inicio" Font-Bold="True" AppendDataBoundItems="True">
@@ -78,15 +82,44 @@
         <tr>
             <td class="auto-style1">
                 <asp:Label ID="Label4" runat="server" Font-Bold="True" ForeColor="#00CCFF" Text="Seleccione La Hora De Finalizacion"></asp:Label>
+                <br />
+                <br />
                 </td>
             <td style="text-align: center" class="auto-style2">
-                <asp:DropDownList ID="DropDownList3" runat="server" DataSourceID="ODS_horas_dia" DataTextField="hora" DataValueField="id_hora_inicio">
+                <asp:DropDownList ID="DL_hora_fin" runat="server" DataSourceID="ODS_horas_dia" DataTextField="hora" DataValueField="id_hora_inicio" Font-Bold="True" style="text-align: left" AppendDataBoundItems="true">
+                    <asp:ListItem Value="">---------</asp:ListItem>
                 </asp:DropDownList>
+                <br />
+                <br />
                 </td>
+        </tr>
+        <tr>
+            <td class="auto-style1">
+                &nbsp;</td>
+            <td style="text-align: center" class="auto-style2">
+                &nbsp;</td>
+        </tr>
+        <tr>
+            <td class="auto-style1">
+                </td>
+            <td style="text-align: center" class="auto-style2">
+                </td>
+        </tr>
+        <tr>
+            <td style="text-align: center;" colspan="2" class="auto-style6">
+                <asp:Button ID="Button2" runat="server" Height="24px" Text="Confirmar Dia" Width="108px" OnClick="Button2_Click" />
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center;" colspan="2">
+                <asp:Label ID="dias_escogidos" runat="server"></asp:Label>
+            </td>
         </tr>
         <tr>
             <td style="text-align: center;" colspan="2">
                 <asp:Button ID="Button1" runat="server" Text="Enviar Datos" Height="29px" Width="110px" CssClass="boton" BackColor="#3333CC" OnClick="Button1_Click" />
+                <br />
+                <br />
             </td>
         </tr>
     </table>
