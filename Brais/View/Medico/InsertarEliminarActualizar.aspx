@@ -40,6 +40,7 @@
         }
     </style>
     <asp:ScriptManager runat="server"></asp:ScriptManager>
+    <asp:Label ID="prueba" runat="server" Text="Label"></asp:Label>
     <table style="width: 100%">
         <tr>
             <td colspan="2" style="text-align: center; height: 29px"><strong>

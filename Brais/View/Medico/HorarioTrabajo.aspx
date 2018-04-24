@@ -15,6 +15,7 @@
         .auto-style1 {
             width: 50%;
             height: 20px;
+            text-align: center;
         }
         .auto-style2 {
             height: 20px;
@@ -23,58 +24,32 @@
             text-align: center;
         }
 
-    </style>
-
-
-
-    <!--Script para validar si al menos un campo ha sido seleccionado-->
-    <script type="text/javascript">
-    function ValidateCheckBoxList(sender, args) {
-        var checkBoxList = document.getElementById("<%=CB_dias.ClientID %>");
-        var checkboxes = checkBoxList.getElementsByTagName("input");
-        var isValid = false;
-        for (var i = 0; i < checkboxes.length; i++) {
-            if (checkboxes[i].checked) {
-                isValid = true;
-                break;
-            }
+        .auto-style5 {
+            height: 29px;
         }
-        args.IsValid = isValid;
-    }
-</script>
+
+    </style>
     <h2 style="text-align:center">Horario de Trabajo</h2>
     <p style="text-align:center">&nbsp;</p>
     <table style="width: 100%">
         <tr>
-            <td style="width: 50%; text-align: center;">
+            <td style="text-align: center;" colspan="2">
                 <asp:Label ID="Label1" runat="server" Font-Bold="True" ForeColor="#00CCFF" Text="Seleccione Los Dias Que Desea Trabajar:"></asp:Label>
-            </td>
-            <td style="text-align: center">
-                <asp:Label ID="Label2" runat="server" Font-Bold="True" ForeColor="#00CCFF" Text="Seleccione Las Horas De Trabajo Diarias"></asp:Label>
             </td>
         </tr>
         <tr>
-            <td style="width: 50%; text-align: center;">
+            <td style="text-align: center;" class="auto-style5" colspan="2">
                 <asp:CustomValidator ID="CustomValidator1" ErrorMessage="*Debe Seleccionar Al Menos 1 Dia"
     ForeColor="Red" ClientValidationFunction="ValidateCheckBoxList" runat="server" />
             </td>
-            <td style="text-align: center">
-                <asp:RequiredFieldValidator ID="validar" runat="server" ErrorMessage="* Debe Escoger Una Intensidad Horaria" ForeColor="Red" ControlToValidate="DL_horas"></asp:RequiredFieldValidator>
-            </td>
         </tr>
         <tr>
-            <td style="width: 50%">
-                <asp:CheckBoxList ID="CB_dias" runat="server" Font-Bold="True" Font-Names="Goudy Old Style" CausesValidation="True" DataSourceID="ODS_dias" DataTextField="nombre_dia" DataValueField="id_dia" ValidateRequestMode="Enabled" CssClass="list">
-                </asp:CheckBoxList>
+            <td colspan="2">
+                <asp:DropDownList ID="DropDownList2" runat="server" DataSourceID="ODS_dias" DataTextField="nombre_dia" DataValueField="id_dia">
+                </asp:DropDownList>
                
                 <asp:ObjectDataSource ID="ODS_dias" runat="server" SelectMethod="obtener_dias" TypeName="DBMedico"></asp:ObjectDataSource>
                
-            </td>
-            <td style="text-align: center">
-                <asp:DropDownList ID="DL_horas" runat="server" DataSourceID="ODS_horas" DataTextField="hora_valor" DataValueField="id_hora" Font-Bold="True" AppendDataBoundItems="True">
-                    <asp:ListItem Value="">---------</asp:ListItem>
-                </asp:DropDownList>
-                 <asp:ObjectDataSource ID="ODS_horas" runat="server" SelectMethod="obtener_horas" TypeName="DBMedico"></asp:ObjectDataSource>
             </td>
         </tr>
         <tr>
@@ -86,12 +61,13 @@
         </tr>
         <tr>
             <td style="text-align: center;" colspan="2">
-                <asp:Label ID="Label3" runat="server" Text="A continuacion seleccione la hora que desea laborar diariamente cumpliendo la cuota de horas seleccionada" Font-Bold="True" ForeColor="#333333"></asp:Label>
+                <asp:Label ID="Label3" runat="server" Text="A continuacion seleccione el Rango Del Dia" Font-Bold="True" ForeColor="#333333"></asp:Label>
                 </td>
         </tr>
         <tr>
             <td style="width: 50%" class="auto-style3">
-                Hora Disponible</td>
+                <asp:Label ID="Label5" runat="server" Font-Bold="True" ForeColor="#00CCFF" Text="Seleccione La Hora De Inicio"></asp:Label>
+            </td>
             <td style="text-align: center">
                 <asp:DropDownList ID="DL_hora_inicial" runat="server" DataSourceID="ODS_horas_dia" DataTextField="hora" DataValueField="id_hora_inicio" Font-Bold="True" AppendDataBoundItems="True">
                     <asp:ListItem Value="">---------</asp:ListItem>
@@ -101,8 +77,11 @@
         </tr>
         <tr>
             <td class="auto-style1">
+                <asp:Label ID="Label4" runat="server" Font-Bold="True" ForeColor="#00CCFF" Text="Seleccione La Hora De Finalizacion"></asp:Label>
                 </td>
             <td style="text-align: center" class="auto-style2">
+                <asp:DropDownList ID="DropDownList3" runat="server" DataSourceID="ODS_horas_dia" DataTextField="hora" DataValueField="id_hora_inicio">
+                </asp:DropDownList>
                 </td>
         </tr>
         <tr>

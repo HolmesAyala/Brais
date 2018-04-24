@@ -45,7 +45,8 @@ public partial class View_Medico_InsertarEliminarActualizar : System.Web.UI.Page
 
     protected void adecuarParaActualizar()
     {
-        if((string)Session["tipo"] == "2")
+
+        if (Session["usuario"].GetType() == new EMedico().GetType() )
         {
             string identificacion = Session["identificacion_medico"].ToString();
 
@@ -83,7 +84,7 @@ public partial class View_Medico_InsertarEliminarActualizar : System.Web.UI.Page
             BTN_Accion.Text = "Actualizar";
 
         }
-        else if((string)Session["tipo"] == "1")
+        else if( Session["usuario"].GetType() == new EUsuario().GetType() )
         {
             string identificacion = Session["identificacion"].ToString();
 
@@ -115,6 +116,7 @@ public partial class View_Medico_InsertarEliminarActualizar : System.Web.UI.Page
             TB_Contrasena.Attributes.Add("value", eMedico.Password);
             TB_Repetir_Contrasena.Attributes.Add("value", eMedico.Password);
             BTN_Accion.Text = "Actualizar";
+            
         }
 
     }
