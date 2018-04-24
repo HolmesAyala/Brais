@@ -12,6 +12,17 @@
             color:white;
         }
 
+        .auto-style1 {
+            width: 50%;
+            height: 20px;
+        }
+        .auto-style2 {
+            height: 20px;
+        }
+        .auto-style3 {
+            text-align: center;
+        }
+
     </style>
 
 
@@ -48,7 +59,7 @@
     ForeColor="Red" ClientValidationFunction="ValidateCheckBoxList" runat="server" />
             </td>
             <td style="text-align: center">
-                <asp:RequiredFieldValidator ID="validar" runat="server" ErrorMessage="* Debe Escoger Una Intensidad Horaria" ForeColor="Red" ControlToValidate="DropDownList1"></asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="validar" runat="server" ErrorMessage="* Debe Escoger Una Intensidad Horaria" ForeColor="Red" ControlToValidate="DL_horas"></asp:RequiredFieldValidator>
             </td>
         </tr>
         <tr>
@@ -60,7 +71,7 @@
                
             </td>
             <td style="text-align: center">
-                <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="ODS_horas" DataTextField="hora_valor" DataValueField="id_hora" Font-Bold="True" AppendDataBoundItems="True">
+                <asp:DropDownList ID="DL_horas" runat="server" DataSourceID="ODS_horas" DataTextField="hora_valor" DataValueField="id_hora" Font-Bold="True" AppendDataBoundItems="True">
                     <asp:ListItem Value="">---------</asp:ListItem>
                 </asp:DropDownList>
                  <asp:ObjectDataSource ID="ODS_horas" runat="server" SelectMethod="obtener_horas" TypeName="DBMedico"></asp:ObjectDataSource>
@@ -75,24 +86,28 @@
         </tr>
         <tr>
             <td style="text-align: center;" colspan="2">
-                <asp:Label ID="Label3" runat="server" Text="A Continuacion Seleccione La Hora En El Dia Que Va A Laborar" Font-Bold="True" ForeColor="#333333"></asp:Label>
+                <asp:Label ID="Label3" runat="server" Text="A continuacion seleccione la hora que desea laborar diariamente cumpliendo la cuota de horas seleccionada" Font-Bold="True" ForeColor="#333333"></asp:Label>
                 </td>
         </tr>
         <tr>
-            <td style="width: 50%">
-                &nbsp;</td>
+            <td style="width: 50%" class="auto-style3">
+                Hora Disponible</td>
             <td style="text-align: center">
-                &nbsp;</td>
+                <asp:DropDownList ID="DL_hora_inicial" runat="server" DataSourceID="ODS_horas_dia" DataTextField="hora" DataValueField="id_hora_inicio" Font-Bold="True" AppendDataBoundItems="True">
+                    <asp:ListItem Value="">---------</asp:ListItem>
+                </asp:DropDownList>
+                <asp:ObjectDataSource ID="ODS_horas_dia" runat="server" SelectMethod="obtenerHoras_dia" TypeName="DBMedico"></asp:ObjectDataSource>
+            </td>
         </tr>
         <tr>
-            <td style="width: 50%">
-                &nbsp;</td>
-            <td style="text-align: center">
-                &nbsp;</td>
+            <td class="auto-style1">
+                </td>
+            <td style="text-align: center" class="auto-style2">
+                </td>
         </tr>
         <tr>
             <td style="text-align: center;" colspan="2">
-                <asp:Button ID="Button1" runat="server" Text="Enviar Datos" Height="29px" Width="110px" CssClass="boton" BackColor="#3333CC" />
+                <asp:Button ID="Button1" runat="server" Text="Enviar Datos" Height="29px" Width="110px" CssClass="boton" BackColor="#3333CC" OnClick="Button1_Click" />
             </td>
         </tr>
     </table>

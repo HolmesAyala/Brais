@@ -9,7 +9,8 @@ using System.Web;
 public class EMedico
 {
     private string identificacion, nombre, apellido, correo, password, fechaNacimiento;
-    private int tipoEspecialidad, consultorio, tipoUsuario, tipoIdentificacion;
+    private int tipoEspecialidad, consultorio, tipoUsuario, tipoIdentificacion,horas_trabajo_dia;
+    private DateTime hora_inicio;
 
     public string Identificacion
     {
@@ -138,6 +139,32 @@ public class EMedico
         set
         {
             tipoIdentificacion = value;
+        }
+    }
+
+    public int Horas_trabajo_dia
+    {
+        get
+        {
+            return horas_trabajo_dia;
+        }
+
+        set
+        {
+            horas_trabajo_dia = value;
+        }
+    }
+
+    public DateTime Hora_inicio
+    {
+        get
+        {
+            return hora_inicio;
+        }
+
+        set
+        {
+            hora_inicio = value;
         }
     }
 }
