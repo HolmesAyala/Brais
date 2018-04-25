@@ -125,6 +125,24 @@
         </tr>
         <tr>
             <td style="text-align: center;" colspan="2">
+                &nbsp;</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;" colspan="2">
+                <asp:Label ID="Label6" runat="server" Font-Bold="True" ForeColor="#FF6600" Text="Si Desea Eliminar Un Dia Por Favor Seleccionelo Aqui Y Dar Click En El Boton Eliminar Dia"></asp:Label>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">
+                <asp:DropDownList ID="DL_deleteDay" runat="server" DataSourceID="ODS_dias" DataTextField="nombre_dia" DataValueField="id_dia" Font-Bold="True">
+                </asp:DropDownList>
+            </td>
+            <td style="text-align: center;">
+                <asp:Button ID="Button4" runat="server" OnClick="Button4_Click" Text="Eliminar Dia" />
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center;" colspan="2">
                 <asp:Button ID="Button1" runat="server" Text="Enviar Datos" Height="29px" Width="110px" CssClass="boton" BackColor="#3333CC" OnClick="Button1_Click" />
                 <br />
                 <br />
