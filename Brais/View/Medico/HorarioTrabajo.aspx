@@ -32,10 +32,19 @@
             height: 26px;
         }
 
+        .auto-style7 {
+            width: 100%;
+        }
+
+        .auto-style8 {
+            height: 20px;
+            text-align: center;
+        }
+
     </style>
     <h2 style="text-align:center">Horario de Trabajo</h2>
     <p style="text-align:center">&nbsp;</p>
-    <table style="width: 100%">
+    <table class="auto-style7">
         <tr>
             <td style="text-align: center;" colspan="2">
                 <asp:Label ID="Label1" runat="server" Font-Bold="True" ForeColor="#00CCFF" Text="Seleccione Los Dias Que Desea Trabajar:"></asp:Label>
@@ -64,7 +73,7 @@
         </tr>
         <tr>
             <td style="text-align: center;" colspan="2">
-                <asp:Label ID="Label3" runat="server" Text="A continuacion seleccione el Rango Del Dia" Font-Bold="True" ForeColor="#333333"></asp:Label>
+                <asp:Label ID="Label3" runat="server" Text="A continuacion seleccione el Rango(s) Del Dia" Font-Bold="True" ForeColor="#333333"></asp:Label>
                 </td>
         </tr>
         <tr>
@@ -100,9 +109,8 @@
                 &nbsp;</td>
         </tr>
         <tr>
-            <td class="auto-style1">
-                </td>
-            <td style="text-align: center" class="auto-style2">
+            <td class="auto-style8" colspan="2">
+                <asp:Button ID="Button3" runat="server" OnClick="Button3_Click" Text="Establecer Rango" />
                 </td>
         </tr>
         <tr>

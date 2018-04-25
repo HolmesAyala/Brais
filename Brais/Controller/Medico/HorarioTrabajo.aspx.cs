@@ -54,11 +54,9 @@ public partial class View_Medico_HorarioTrabajo : System.Web.UI.Page
         {
             seman = (ESemana)Session["semana"];
         }
-        EDia day = new EDia();
-        day.Dia = DL_dias.SelectedItem.ToString();
-        day.Hora_inicio = DL_hora_inicial.SelectedItem.ToString();
-        day.Hora_fin= DL_hora_fin.SelectedItem.ToString(); 
+        EDia[] day = (EDia [])Session["rang"];
         String aux= JsonConvert.SerializeObject(day);
+        Session["rang"] = null;
         //SE EVALUA EL DIA CON EL FIN DE CREAR LA ACTIVIDAD SEMANAL DEL MEDICO
         switch (DL_dias.SelectedItem.ToString())
         {
@@ -93,22 +91,67 @@ public partial class View_Medico_HorarioTrabajo : System.Web.UI.Page
         if (sem.Lunes != null)
         {
             dias=dias+" Lunes ";
-        }if (sem.Martes != null)
+            dias = dias + Environment.NewLine + "</br>" + sem.Lunes+ "</br>";
+        }
+        if (sem.Martes != null)
         {
             dias=dias+" Martes ";
-        }if (sem.Miercoles != null)
+            dias = dias + Environment.NewLine + "</br>" + sem.Martes + "</br>";
+        }
+        if (sem.Miercoles != null)
         {
             dias = dias + " Miercoles ";
-        }if (sem.Jueves != null)
+            dias = dias + Environment.NewLine + "</br>" + sem.Miercoles + "</br>";
+        }
+        if (sem.Jueves != null)
         {
             dias = dias + " Jueves ";
-        }if (sem.Viernes != null)
+            dias = dias + Environment.NewLine +"</br>"+ sem.Jueves + "</br>";
+        }
+        if (sem.Viernes != null)
         {
             dias = dias + " Viernes ";
-        }if (sem.Sabado != null)
+            dias = dias + Environment.NewLine + "</br>" + sem.Viernes + "</br>";
+        }
+        if (sem.Sabado != null)
         {
             dias = dias + " Sabado ";
+            dias = dias + Environment.NewLine + "</br>" + sem.Sabado + "</br>";
         }
         dias_escogidos.Text = dias;
+    }
+
+    protected void Button3_Click(object sender, EventArgs e)
+    {
+        if (Session["rang"] == null)
+        {
+            EDia []dia = new EDia[1];
+            dia[0] = new EDia();
+            dia[0].Hora_inicio = DL_hora_inicial.SelectedItem.ToString();
+            dia[0].Hora_fin = DL_hora_fin.SelectedItem.ToString();
+            dia[0].Dia = DL_dias.SelectedItem.ToString();
+            Session["rang"] = dia;
+            String ayu = JsonConvert.SerializeObject(dia);
+            dias_escogidos.Text = ayu;
+        }
+        else
+        {
+            EDia [] aux = (EDia[])Session["rang"];
+            EDia [] dias = new  EDia[aux.Length+1];
+            for (int i = 0; i < aux.Length; i++)
+            {
+                dias[i] = aux[i];
+            }
+            dias[aux.Length] = new EDia();
+            dias[aux.Length].Hora_inicio = DL_hora_inicial.SelectedItem.ToString();
+            dias[aux.Length].Hora_fin = DL_hora_fin.SelectedItem.ToString();
+            dias[aux.Length].Dia = DL_dias.SelectedItem.ToString();
+            Session["rang"] = dias;
+            String ayu= JsonConvert.SerializeObject(dias);
+            dias_escogidos.Text = ayu;
+        }
+        
+
+
     }
 }
