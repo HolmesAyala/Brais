@@ -117,22 +117,27 @@ public partial class View_Medico_HorarioTrabajo : System.Web.UI.Page
     //METODO PARA INSERTAR UN RANGO EN EL DIA SELECCIONADO
     protected void Button3_Click(object sender, EventArgs e)
     {
-        if (Session["rang"] == null)
+        if (DL_hora_inicial.SelectedItem.ToString()== "---------"||DL_hora_fin.SelectedItem.ToString()== "---------")
         {
+            ClientScriptManager cm = this.ClientScript;
+            String dato = "<script type='text/javascript'>alert('Debe Seleccionar Un Dato Para La H.inicial y H.final')</script>;";
+            cm.RegisterClientScriptBlock(this.GetType(), "", dato);
+        }
+        else if (Session["rang"] == null){
             insertarFirst();
-        }
-        else 
-        {
-            if ((String)Session["ant_day"]!= DL_dias.SelectedItem.ToString())
-            {
-                Session["rang"] = null;
-                insertarFirst();
             }
-            else
+            else 
             {
-                insertar_after();
+                if ((String)Session["ant_day"]!= DL_dias.SelectedItem.ToString())
+                {
+                    Session["rang"] = null;
+                    insertarFirst();
+                }
+                else
+                {
+                    insertar_after();
+                }
             }
-        }
     }
     //INSERTAR RANGO CUANDO HAY MAS DE 1
     private void insertar_after()
