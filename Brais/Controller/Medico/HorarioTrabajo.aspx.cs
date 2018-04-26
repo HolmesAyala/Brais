@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 
 public partial class View_Medico_HorarioTrabajo : System.Web.UI.Page
 {
+    bool validate=true;
     protected void Page_Load(object sender, EventArgs e)
     {
     }
@@ -94,40 +95,106 @@ public partial class View_Medico_HorarioTrabajo : System.Web.UI.Page
         }
         dias_escogidos.Text = dias;
     }
+    //METODO PARA INSERTAR POR PRIMERA VEZ UN RANGO DE UN DIA NUEVO
+    private void insertarFirst()
+    {
+        EDia[] dia = new EDia[1];
+        dia[0] = new EDia();
+        dia[0].Hora_inicio = DL_hora_inicial.SelectedItem.ToString();
+        dia[0].Hora_fin = DL_hora_fin.SelectedItem.ToString();
+        dia[0].Dia = DL_dias.SelectedItem.ToString();
+        validarRango(DL_hora_inicial.SelectedItem.ToString(), DL_hora_fin.SelectedItem.ToString());
+        if (validate)
+        {
+            Session["rang"] = dia;
+            Session["ant_day"] = DL_dias.SelectedItem.ToString();
+            String ayu = JsonConvert.SerializeObject(dia);
+            dias_escogidos.Text = ayu;
+        }
+    }
 
+
+    //METODO PARA INSERTAR UN RANGO EN EL DIA SELECCIONADO
     protected void Button3_Click(object sender, EventArgs e)
     {
         if (Session["rang"] == null)
         {
-            EDia []dia = new EDia[1];
-            dia[0] = new EDia();
-            dia[0].Hora_inicio = DL_hora_inicial.SelectedItem.ToString();
-            dia[0].Hora_fin = DL_hora_fin.SelectedItem.ToString();
-            dia[0].Dia = DL_dias.SelectedItem.ToString();
-            Session["rang"] = dia;
-            String ayu = JsonConvert.SerializeObject(dia);
+            insertarFirst();
+        }
+        else 
+        {
+            if ((String)Session["ant_day"]!= DL_dias.SelectedItem.ToString())
+            {
+                Session["rang"] = null;
+                insertarFirst();
+            }
+            else
+            {
+                insertar_after();
+            }
+        }
+    }
+    //INSERTAR RANGO CUANDO HAY MAS DE 1
+    private void insertar_after()
+    {
+        EDia[] aux = (EDia[])Session["rang"];
+        EDia[] dias = new EDia[aux.Length + 1];
+        for (int i = 0; i < aux.Length; i++)
+        {
+            dias[i] = aux[i];
+        }
+        dias[aux.Length] = new EDia();
+        dias[aux.Length].Hora_inicio = DL_hora_inicial.SelectedItem.ToString();
+        dias[aux.Length].Hora_fin = DL_hora_fin.SelectedItem.ToString();
+        dias[aux.Length].Dia = DL_dias.SelectedItem.ToString();
+        validarRango(DL_hora_inicial.SelectedItem.ToString(), DL_hora_fin.SelectedItem.ToString());
+        if (validate)
+        {
+            Session["rang"] = dias;
+            String ayu = JsonConvert.SerializeObject(dias);
             dias_escogidos.Text = ayu;
+        }
+    }
+
+    //VALIDAR RANGO INSERTADO
+    private void validarRango(String inicio,String fin)
+    {
+        int va_inicio = DateTime.Parse(inicio).Hour;
+        int va_fin = DateTime.Parse(fin).Hour;
+        EDia[] rang = (EDia [])Session["rang"];
+        ClientScriptManager cm = this.ClientScript;
+        if (va_inicio > va_fin)
+        {
+            //ERROR
+            String dato = "<script type='text/javascript'>alert('El Rango Insertado No es Valido')</script>;";
+            cm.RegisterClientScriptBlock(this.GetType(), "", dato);
+            validate = false;
         }
         else
         {
-            EDia [] aux = (EDia[])Session["rang"];
-            EDia [] dias = new  EDia[aux.Length+1];
-            for (int i = 0; i < aux.Length; i++)
+            if (Session["rang"] != null)
             {
-                dias[i] = aux[i];
+                for (int i = 0; i < rang.Length; i++)
+                {
+                    int va_in_old = DateTime.Parse(rang[i].Hora_inicio).Hour;
+                    int va_fi_old = DateTime.Parse(rang[i].Hora_fin).Hour;
+                    if (va_fi_old > va_inicio)
+                    {
+                        //ERROR
+                        String dato = "<script type='text/javascript'>alert('El Rango Insertado Ya Se Encuentra en Otro Rango')</script>;";
+                        cm.RegisterClientScriptBlock(this.GetType(), "", dato);
+                        validate = false;
+                    }
+                    else
+                    {
+                        
+                    }
+                }
             }
-            dias[aux.Length] = new EDia();
-            dias[aux.Length].Hora_inicio = DL_hora_inicial.SelectedItem.ToString();
-            dias[aux.Length].Hora_fin = DL_hora_fin.SelectedItem.ToString();
-            dias[aux.Length].Dia = DL_dias.SelectedItem.ToString();
-            Session["rang"] = dias;
-            String ayu= JsonConvert.SerializeObject(dias);
-            dias_escogidos.Text = ayu;
         }
-        
-
 
     }
+
 
     protected void Button4_Click(object sender, EventArgs e)
     {
