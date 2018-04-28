@@ -16,9 +16,14 @@ public partial class View_Medico_HorarioTrabajo : System.Web.UI.Page
     {
         if (Session["Semana"] != null)
         {
+            DBMedico medicdb = new DBMedico();
+            EMedico medic = new EMedico();
             String horario_full = JsonConvert.SerializeObject((ESemana)Session["semana"]);
+            medic.Horario = horario_full;
+            medic.Identificacion = (String)Session["identificacion_medico"];
+            medicdb.crear_horario(medic);
             dias_escogidos.Text = horario_full;
-            pintar_horario(horario_full);
+            //pintar_horario(horario_full);
         }
         else
         {
@@ -29,7 +34,7 @@ public partial class View_Medico_HorarioTrabajo : System.Web.UI.Page
 
     }
 
-    protected void pintar_horario(String horario)
+    /**protected void pintar_horario(String horario)
     {
         String final = "";
         ESemana sem = JsonConvert.DeserializeObject<ESemana>(horario);
@@ -58,7 +63,7 @@ public partial class View_Medico_HorarioTrabajo : System.Web.UI.Page
             final = final + "Sabado" + recorrer_dia(day);
         }
         dias_escogidos.Text = final;
-    }
+    }**/
 
     private String recorrer_dia(EDia [] day)
     {
@@ -82,28 +87,51 @@ public partial class View_Medico_HorarioTrabajo : System.Web.UI.Page
             seman = (ESemana)Session["semana"];
         }
         EDia[] day = (EDia [])Session["rang"];
-        String aux= JsonConvert.SerializeObject(day);
         Session["rang"] = null;
         //SE EVALUA EL DIA CON EL FIN DE CREAR LA ACTIVIDAD SEMANAL DEL MEDICO
         switch (DL_dias.SelectedItem.ToString())
         {
             case "Lunes":
-                seman.Lunes = aux;
+                for (int i = 0; i < day.Length; i++)
+                {
+                    String aux = JsonConvert.SerializeObject((EDia)day[i]);
+                    seman.Lunes.Add(aux);
+                }
                 break;
             case "Martes":
-                seman.Martes = aux;
+                for (int i = 0; i < day.Length; i++)
+                {
+                    String aux = JsonConvert.SerializeObject((EDia)day[i]);
+                    seman.Martes.Add(aux);
+                }
                 break;
             case "Miercoles":
-                seman.Miercoles = aux;
+                for (int i = 0; i < day.Length; i++)
+                {
+                    String aux = JsonConvert.SerializeObject((EDia)day[i]);
+                    seman.Miercoles.Add(aux);
+                }
                 break;
             case "Jueves":
-                seman.Jueves = aux;
+                for (int i = 0; i < day.Length; i++)
+                {
+                    String aux = JsonConvert.SerializeObject((EDia)day[i]);
+                    seman.Jueves.Add(aux);
+                }
                 break;
             case "Viernes":
-                seman.Viernes = aux;
+                for (int i = 0; i < day.Length; i++)
+                {
+                    String aux = JsonConvert.SerializeObject((EDia)day[i]);
+                    seman.Viernes.Add(aux);
+                }
                 break;
             case "Sabado":
-                seman.Sabado = aux;
+                for (int i = 0; i < day.Length; i++)
+                {
+                    String aux = JsonConvert.SerializeObject((EDia)day[i]);
+                    seman.Sabado.Add(aux);
+                }
                 break;
         }
         Session["semana"] = seman;
@@ -245,7 +273,7 @@ public partial class View_Medico_HorarioTrabajo : System.Web.UI.Page
                     {
                         if (va_inicio < va_in_old)
                         {
-                            if (va_fin <= va_fi_old)
+                            if (va_fin >= va_fi_old)
                             {
                                 String dato = "<script type='text/javascript'>alert('El Rango Insertado Ya Se Encuentra en Otro Rango')</script>;";
                                 cm.RegisterClientScriptBlock(this.GetType(), "", dato);

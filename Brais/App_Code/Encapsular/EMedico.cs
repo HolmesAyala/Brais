@@ -8,9 +8,8 @@ using System.Web;
 /// </summary>
 public class EMedico
 {
-    private string identificacion, nombre, apellido, correo, password, fechaNacimiento;
-    private int tipoEspecialidad, consultorio, tipoUsuario, tipoIdentificacion,horas_trabajo_dia;
-    private DateTime hora_inicio;
+    private string identificacion, nombre, apellido, correo, password, fechaNacimiento,horario;
+    private int tipoEspecialidad, consultorio, tipoUsuario, tipoIdentificacion;
 
     public string Identificacion
     {
@@ -142,29 +141,16 @@ public class EMedico
         }
     }
 
-    public int Horas_trabajo_dia
+    public string Horario
     {
         get
         {
-            return horas_trabajo_dia;
+            return horario;
         }
 
         set
         {
-            horas_trabajo_dia = value;
-        }
-    }
-
-    public DateTime Hora_inicio
-    {
-        get
-        {
-            return hora_inicio;
-        }
-
-        set
-        {
-            hora_inicio = value;
+            horario = value;
         }
     }
 }

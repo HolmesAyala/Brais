@@ -270,7 +270,7 @@ public class DBMedico
         return data;
     }
 
-    public void insertar_dias_de_trabajo(int id_dia,String id_medico)
+    /**public void insertar_dias_de_trabajo(int id_dia,String id_medico)
     {
         DataTable data = new DataTable();
         NpgsqlConnection conexion = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
@@ -295,7 +295,7 @@ public class DBMedico
             }
         }
         return;
-    }
+    }**/
 
     public void crear_horario(EMedico medico)
     {
@@ -306,9 +306,7 @@ public class DBMedico
             NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("medico.f_insertar_horario", conexion);
             dataAdapter.SelectCommand.CommandType=CommandType.StoredProcedure;
             dataAdapter.SelectCommand.Parameters.Add("_id_medic", NpgsqlDbType.Text).Value=medico.Identificacion;
-            dataAdapter.SelectCommand.Parameters.Add("_horas_diarias", NpgsqlDbType.Integer).Value = medico.Horas_trabajo_dia;
-            dataAdapter.SelectCommand.Parameters.Add("_hora_inicio", NpgsqlDbType.Timestamp).Value = medico.Hora_inicio;
-            conexion.Open();
+            dataAdapter.SelectCommand.Parameters.Add("_horario", NpgsqlDbType.Json).Value = medico.Horario;
             dataAdapter.Fill(data);
         }
         catch (Exception e)

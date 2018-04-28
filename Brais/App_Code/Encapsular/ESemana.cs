@@ -8,15 +8,13 @@ using System.Web;
 /// </summary>
 public class ESemana
 {
-    private String lunes, martes, miercoles, jueves, viernes, sabado, domingo;
+    private List<String> lunes, martes, miercoles, jueves, viernes, sabado, domingo;
     public ESemana()
     {
-        //
-        // TODO: Agregar aquí la lógica del constructor
-        //
+        lunes = new List<string>();
     }
 
-    public string Lunes
+    public List<string> Lunes
     {
         get
         {
@@ -29,7 +27,7 @@ public class ESemana
         }
     }
 
-    public string Martes
+    public List<string> Martes
     {
         get
         {
@@ -42,7 +40,7 @@ public class ESemana
         }
     }
 
-    public string Miercoles
+    public List<string> Miercoles
     {
         get
         {
@@ -55,7 +53,7 @@ public class ESemana
         }
     }
 
-    public string Jueves
+    public List<string> Jueves
     {
         get
         {
@@ -68,7 +66,7 @@ public class ESemana
         }
     }
 
-    public string Viernes
+    public List<string> Viernes
     {
         get
         {
@@ -81,7 +79,7 @@ public class ESemana
         }
     }
 
-    public string Sabado
+    public List<string> Sabado
     {
         get
         {
@@ -94,7 +92,7 @@ public class ESemana
         }
     }
 
-    public string Domingo
+    public List<string> Domingo
     {
         get
         {
