@@ -19,11 +19,13 @@ public partial class View_Medico_HorarioTrabajo : System.Web.UI.Page
             DBMedico medicdb = new DBMedico();
             EMedico medic = new EMedico();
             String horario_full = JsonConvert.SerializeObject((ESemana)Session["semana"]);
+           
+          
             medic.Horario = horario_full;
             medic.Identificacion = (String)Session["identificacion_medico"];
             medicdb.crear_horario(medic);
             dias_escogidos.Text = horario_full;
-            //pintar_horario(horario_full);
+            
         }
         else
         {
@@ -34,36 +36,10 @@ public partial class View_Medico_HorarioTrabajo : System.Web.UI.Page
 
     }
 
-    /**protected void pintar_horario(String horario)
+    protected void pintar_horario(String horario)
     {
-        String final = "";
-        ESemana sem = JsonConvert.DeserializeObject<ESemana>(horario);
-        if (sem.Lunes != null){
-            EDia[] day = JsonConvert.DeserializeObject<EDia[]>(sem.Lunes);
-            final = "Lunes" + recorrer_dia(day);
-        }
-        if (sem.Martes != null){
-            EDia[] day = JsonConvert.DeserializeObject<EDia[]>(sem.Martes);
-            final = final + "Martes" + recorrer_dia(day);
-        }
-        if (sem.Miercoles != null){
-            EDia[] day = JsonConvert.DeserializeObject<EDia[]>(sem.Miercoles);
-            final = final + "Miercoles" + recorrer_dia(day);
-        }
-        if (sem.Jueves != null){
-            EDia[] day = JsonConvert.DeserializeObject<EDia[]>(sem.Jueves);
-            final = final + "Jueves" + recorrer_dia(day);
-        }
-        if (sem.Viernes != null){
-            EDia[] day = JsonConvert.DeserializeObject<EDia[]>(sem.Viernes);
-            final = final + "Viernes" + recorrer_dia(day);
-        }
-        if (sem.Sabado != null){
-            EDia[] day = JsonConvert.DeserializeObject<EDia[]>(sem.Sabado);
-            final = final + "Sabado" + recorrer_dia(day);
-        }
-        dias_escogidos.Text = final;
-    }**/
+        
+    }
 
     private String recorrer_dia(EDia [] day)
     {
@@ -86,67 +62,75 @@ public partial class View_Medico_HorarioTrabajo : System.Web.UI.Page
         {
             seman = (ESemana)Session["semana"];
         }
+
         EDia[] day = (EDia [])Session["rang"];
         Session["rang"] = null;
         //SE EVALUA EL DIA CON EL FIN DE CREAR LA ACTIVIDAD SEMANAL DEL MEDICO
-        switch (DL_dias.SelectedItem.ToString())
+        if (day != null)
         {
-            case "Lunes":
-                for (int i = 0; i < day.Length; i++)
-                {
-                    String aux = JsonConvert.SerializeObject((EDia)day[i]);
-                    seman.Lunes.Add(aux);
-                }
-                break;
-            case "Martes":
-                for (int i = 0; i < day.Length; i++)
-                {
-                    String aux = JsonConvert.SerializeObject((EDia)day[i]);
-                    seman.Martes.Add(aux);
-                }
-                break;
-            case "Miercoles":
-                for (int i = 0; i < day.Length; i++)
-                {
-                    String aux = JsonConvert.SerializeObject((EDia)day[i]);
-                    seman.Miercoles.Add(aux);
-                }
-                break;
-            case "Jueves":
-                for (int i = 0; i < day.Length; i++)
-                {
-                    String aux = JsonConvert.SerializeObject((EDia)day[i]);
-                    seman.Jueves.Add(aux);
-                }
-                break;
-            case "Viernes":
-                for (int i = 0; i < day.Length; i++)
-                {
-                    String aux = JsonConvert.SerializeObject((EDia)day[i]);
-                    seman.Viernes.Add(aux);
-                }
-                break;
-            case "Sabado":
-                for (int i = 0; i < day.Length; i++)
-                {
-                    String aux = JsonConvert.SerializeObject((EDia)day[i]);
-                    seman.Sabado.Add(aux);
-                }
-                break;
+            switch (DL_dias.SelectedItem.ToString())
+            {
+                case "Lunes":
+                    for (int i = 0; i < day.Length; i++)
+                    {
+                        String aux = JsonConvert.SerializeObject((EDia)day[i]);
+                        seman.crear_lunes();
+                        seman.Lunes.Add(aux);
+                    }
+                    break;
+                case "Martes":
+                    for (int i = 0; i < day.Length; i++)
+                    {
+                        String aux = JsonConvert.SerializeObject((EDia)day[i]);
+                        seman.crear_Martes();
+                        seman.Martes.Add(aux);
+                    }
+                    break;
+                case "Miercoles":
+                    for (int i = 0; i < day.Length; i++)
+                    {
+                        String aux = JsonConvert.SerializeObject((EDia)day[i]);
+                        seman.crear_Miercoles();
+                        seman.Miercoles.Add(aux);
+                    }
+                    break;
+                case "Jueves":
+                    for (int i = 0; i < day.Length; i++)
+                    {
+                        String aux = JsonConvert.SerializeObject((EDia)day[i]);
+                        seman.crear_Jueves();
+                        seman.Jueves.Add(aux);
+                    }
+                    break;
+                case "Viernes":
+                    for (int i = 0; i < day.Length; i++)
+                    {
+                        String aux = JsonConvert.SerializeObject((EDia)day[i]);
+                        seman.crear_Viernes();
+                        seman.Viernes.Add(aux);
+                    }
+                    break;
+                case "Sabado":
+                    for (int i = 0; i < day.Length; i++)
+                    {
+                        String aux = JsonConvert.SerializeObject((EDia)day[i]);
+                        seman.Sabado.Add(aux);
+                    }
+                    break;
+            }
+            Session["semana"] = seman;
+            mostrar_datos();
         }
-        Session["semana"] = seman;
-        mostrar_datos();
-
     }
 
-    public void mostrar_datos()
+    protected void mostrar_datos()
     {
         String dias="";
         ESemana sem=(ESemana)Session["semana"];
         if (sem.Lunes != null)
         {
             dias=dias+" Lunes ";
-            dias = dias + Environment.NewLine + "</br>" + sem.Lunes+ "</br>";
+            dias = dias + Environment.NewLine + "</br>" + JsonConvert.SerializeObject(sem.Lunes)+ "</br>";
         }
         if (sem.Martes != null)
         {

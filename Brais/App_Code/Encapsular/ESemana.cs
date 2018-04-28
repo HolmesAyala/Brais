@@ -9,10 +9,33 @@ using System.Web;
 public class ESemana
 {
     private List<String> lunes, martes, miercoles, jueves, viernes, sabado, domingo;
-    public ESemana()
+
+    public void crear_lunes()
     {
         lunes = new List<string>();
     }
+
+    public void crear_Martes()
+    {
+        martes = new List<string>();
+    }
+    public void crear_Miercoles()
+    {
+        miercoles = new List<string>();
+    }
+    public void crear_Jueves()
+    {
+        jueves = new List<string>();
+    }
+    public void crear_Viernes()
+    {
+        viernes = new List<string>();
+    }
+    public void crear_Sabado()
+    {
+        sabado = new List<string>();
+    }
+
 
     public List<string> Lunes
     {
