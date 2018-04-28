@@ -14,10 +14,33 @@ public partial class View_Medico_HorarioTrabajo : System.Web.UI.Page
     }
     protected void Button1_Click(object sender, EventArgs e)
     {
-        
+        if (Session["Semana"] != null)
+        {
+            String horario_full = JsonConvert.SerializeObject((ESemana)Session["semana"]);
+            dias_escogidos.Text = horario_full;
+            pintar_horario(horario_full);
+        }
+        else
+        {
+            ClientScriptManager cm = this.ClientScript;
+            String dato = "<script type='text/javascript'>alert('Debe Por Lo Menos Haber Añadido un Dia Para Cambiar Su Horario')</script>;";
+            cm.RegisterClientScriptBlock(this.GetType(), "", dato);
+        }
 
     }
 
+    protected void pintar_horario(String horario)
+    {
+        ESemana sem = JsonConvert.DeserializeObject<ESemana>(horario);
+        String horar = sem.Lunes;
+        String final = "Lunes";
+        EDia[] day =JsonConvert.DeserializeObject<EDia[]>(horar);
+        for (int i = 0; i < day.Length; i++)
+        {
+            final = final +"</br>" +day[i].Hora_inicio+" "+day[i].Hora_fin+"</br>";
+        }
+        dias_escogidos.Text = final;
+    }
     protected void Button2_Click(object sender, EventArgs e)
     {
         ESemana seman;
@@ -168,7 +191,7 @@ public partial class View_Medico_HorarioTrabajo : System.Web.UI.Page
         int va_fin = DateTime.Parse(fin).Hour;
         EDia[] rang = (EDia [])Session["rang"];
         ClientScriptManager cm = this.ClientScript;
-        if (va_inicio > va_fin)
+        if (va_inicio >= va_fin)
         {
             //ERROR
             String dato = "<script type='text/javascript'>alert('El Rango Insertado No es Valido')</script>;";
@@ -183,16 +206,30 @@ public partial class View_Medico_HorarioTrabajo : System.Web.UI.Page
                 {
                     int va_in_old = DateTime.Parse(rang[i].Hora_inicio).Hour;
                     int va_fi_old = DateTime.Parse(rang[i].Hora_fin).Hour;
-                    if (va_fi_old > va_inicio)
+                    if (va_inicio == va_fin)
                     {
-                        //ERROR
-                        String dato = "<script type='text/javascript'>alert('El Rango Insertado Ya Se Encuentra en Otro Rango')</script>;";
+                        String dato = "<script type='text/javascript'>alert('El Rango Insertado No Es Valido')</script>;";
                         cm.RegisterClientScriptBlock(this.GetType(), "", dato);
                         validate = false;
                     }
-                    else
+                    if (va_fi_old > va_inicio)
                     {
-                        
+                        if (va_inicio < va_in_old)
+                        {
+                            if (va_fin <= va_fi_old)
+                            {
+                                String dato = "<script type='text/javascript'>alert('El Rango Insertado Ya Se Encuentra en Otro Rango')</script>;";
+                                cm.RegisterClientScriptBlock(this.GetType(), "", dato);
+                                validate = false;
+                            }
+                        }
+                        else
+                        {
+                            //ERROR
+                            String dato = "<script type='text/javascript'>alert('El Rango Insertado Ya Se Encuentra en Otro Rango')</script>;";
+                            cm.RegisterClientScriptBlock(this.GetType(), "", dato);
+                            validate = false;
+                        }
                     }
                 }
             }
