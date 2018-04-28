@@ -31,16 +31,45 @@ public partial class View_Medico_HorarioTrabajo : System.Web.UI.Page
 
     protected void pintar_horario(String horario)
     {
+        String final = "";
         ESemana sem = JsonConvert.DeserializeObject<ESemana>(horario);
-        String horar = sem.Lunes;
-        String final = "Lunes";
-        EDia[] day =JsonConvert.DeserializeObject<EDia[]>(horar);
-        for (int i = 0; i < day.Length; i++)
-        {
-            final = final +"</br>" +day[i].Hora_inicio+" "+day[i].Hora_fin+"</br>";
+        if (sem.Lunes != null){
+            EDia[] day = JsonConvert.DeserializeObject<EDia[]>(sem.Lunes);
+            final = "Lunes" + recorrer_dia(day);
+        }
+        if (sem.Martes != null){
+            EDia[] day = JsonConvert.DeserializeObject<EDia[]>(sem.Martes);
+            final = final + "Martes" + recorrer_dia(day);
+        }
+        if (sem.Miercoles != null){
+            EDia[] day = JsonConvert.DeserializeObject<EDia[]>(sem.Miercoles);
+            final = final + "Miercoles" + recorrer_dia(day);
+        }
+        if (sem.Jueves != null){
+            EDia[] day = JsonConvert.DeserializeObject<EDia[]>(sem.Jueves);
+            final = final + "Jueves" + recorrer_dia(day);
+        }
+        if (sem.Viernes != null){
+            EDia[] day = JsonConvert.DeserializeObject<EDia[]>(sem.Viernes);
+            final = final + "Viernes" + recorrer_dia(day);
+        }
+        if (sem.Sabado != null){
+            EDia[] day = JsonConvert.DeserializeObject<EDia[]>(sem.Sabado);
+            final = final + "Sabado" + recorrer_dia(day);
         }
         dias_escogidos.Text = final;
     }
+
+    private String recorrer_dia(EDia [] day)
+    {
+        String final = "";
+        for (int i = 0; i < day.Length; i++)
+        {
+            final = final + "</br>" + day[i].Hora_inicio + " " + day[i].Hora_fin + "</br>";
+        }
+        return final;
+    }
+
     protected void Button2_Click(object sender, EventArgs e)
     {
         ESemana seman;
