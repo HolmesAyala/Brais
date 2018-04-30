@@ -74,7 +74,6 @@
                     <br />
                     <br />
                     <br />
-                    <asp:Button ID="Button1" runat="server" Height="27px" Text="Pagar" Width="72px" BackColor="Lime" BorderColor="Black" Font-Bold="True" />
                     </td>
                 <td class="auto-style1"></td>
             </tr>
@@ -85,6 +84,16 @@
             <tr>
                 <td class="auto-style7">&nbsp;</td>
                 <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>
+
+                </td>
+                <td class="auto-style15" colspan="2">
+
+                    <asp:Button ID="Button1" runat="server" Height="27px" Text="Pagar" Width="72px" BackColor="Lime" BorderColor="Black" Font-Bold="True" />
+
+                </td>
             </tr>
         </table>
     </div>
