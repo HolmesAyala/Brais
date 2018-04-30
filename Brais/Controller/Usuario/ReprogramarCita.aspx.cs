@@ -17,4 +17,13 @@ public partial class View_Usuario_ReprogramarCita : System.Web.UI.Page
         GV_CitasAgendadas.DataSource = datos;
         GV_CitasAgendadas.DataBind();
     }
+    //AL PRESIONAR EL BOTON SE VAN A CARGAR LAS CITAS DEL MISMO TIPO EN EL OTRO GRIDVIEW
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        Button btn = (Button)sender;
+        String id;
+        id = btn.CommandArgument.ToString();
+        Session["id_cita"] = id;
+        Response.Redirect("cambiarCita.aspx");
+    }
 }

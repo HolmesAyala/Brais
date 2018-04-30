@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/View/Usuario/MPUsuario.master" AutoEventWireup="true" CodeFile="~/Controller/Usuario/ReprogramarCita.aspx.cs" Inherits="View_Usuario_ReprogramarCita" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/View/Usuario/MPUsuario.master" AutoEventWireup="true" CodeFile="~/Controller/Usuario/ReprogramarCita.aspx.cs" Inherits="View_Usuario_ReprogramarCita"  EnableEventValidation="false"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="contenido" Runat="Server">
 
@@ -35,7 +35,7 @@
             text-align: center;
         }
 
-    </style>
+        </style>
 
     <h1 class="titulo_usuario">Reprogramar Citas</h1>
 
@@ -43,14 +43,19 @@
         <h3>
             <asp:Label ID="Label1" runat="server" ForeColor="#33CCFF" Text="Cita a Cambiar"></asp:Label>
         </h3>
-        <asp:GridView ID="GV_CitasAgendadas" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" Width="1261px" CssClass="centrar">
+        <div class="auto-style1">
+        <asp:GridView ID="GV_CitasAgendadas" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" Width="1189px" CssClass="centrar" AutoGenerateColumns="False">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
                 <asp:TemplateField HeaderText="Seleccione">
                     <ItemTemplate>
-                        <asp:RadioButton ID="RadioButton1" runat="server" />
+                        <asp:Button ID="Button1" runat="server" Text="Seleccionar" CommandArgument='<%# Eval("id") %>' OnClick="Button1_Click"/>
                     </ItemTemplate>
                 </asp:TemplateField>
+                <asp:BoundField DataField="id_medico" HeaderText="Medico" />
+                <asp:BoundField DataField="hora_inicio" HeaderText="Hora Inicio" />
+                <asp:BoundField DataField="hora_fin" HeaderText="Hora Fin" />
+                <asp:BoundField DataField="dia" HeaderText="Dia" />
             </Columns>
             <EditRowStyle BackColor="#2461BF" />
             <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
@@ -63,26 +68,9 @@
             <SortedDescendingCellStyle BackColor="#E9EBEF" />
             <SortedDescendingHeaderStyle BackColor="#4870BE" />
         </asp:GridView>
-    </div>
-
-    <div>
-        <h3>
-            <asp:Label ID="Label2" runat="server" ForeColor="#33CCFF" Text="Citas disponibles"></asp:Label>
-        </h3>
-        <asp:GridView ID="GV_CitasDisponibles" runat="server" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4" Width="1261px" CssClass="centrar">
-            <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
-            <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="#FFFFCC" />
-            <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
-            <RowStyle BackColor="White" ForeColor="#330099" />
-            <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
-            <SortedAscendingCellStyle BackColor="#FEFCEB" />
-            <SortedAscendingHeaderStyle BackColor="#AF0101" />
-            <SortedDescendingCellStyle BackColor="#F6F0C0" />
-            <SortedDescendingHeaderStyle BackColor="#7E0000" />
-        </asp:GridView>
+        </div>
     </div>
     <div class="auto-style1">
-        <asp:Button ID="BTN_Confirmar" class="BTN_Confirmar" runat="server" Text="Confirmar" Font-Bold="True" Width="98px"></asp:Button>
     </div>
 
 </asp:Content>

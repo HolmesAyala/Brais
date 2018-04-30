@@ -46,4 +46,33 @@ public class DBCitasUsr
 
         return dtEps;
     }
+
+    public DataTable obtener_disp_tipo(int id)
+    {
+        DataTable dtcita = new DataTable();
+        EUsuario usr = new EUsuario();
+        NpgsqlConnection conexion = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+
+        try
+        {
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_obtener_citas_seg_esp", conexion);
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlDbType.Integer).Value = id;
+            conexion.Open();
+            dataAdapter.Fill(dtcita);
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+        finally
+        {
+            if (conexion != null)
+            {
+                conexion.Close();
+            }
+        }
+
+        return dtcita;
+    }
 }
