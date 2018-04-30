@@ -303,11 +303,23 @@ public class DBMedico
         NpgsqlConnection conexion = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
         try
         {
-            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("medico.f_insertar_horario", conexion);
-            dataAdapter.SelectCommand.CommandType=CommandType.StoredProcedure;
-            dataAdapter.SelectCommand.Parameters.Add("_id_medic", NpgsqlDbType.Text).Value=medico.Identificacion;
-            dataAdapter.SelectCommand.Parameters.Add("_horario", NpgsqlDbType.Json).Value = medico.Horario;
-            dataAdapter.Fill(data);
+            if (schedule_is_already(medico.Identificacion))
+            {
+                NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("medico.f_update_horario_medico", conexion);
+                dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+                dataAdapter.SelectCommand.Parameters.Add("_id_medic", NpgsqlDbType.Text).Value = medico.Identificacion;
+                dataAdapter.SelectCommand.Parameters.Add("_horario", NpgsqlDbType.Json).Value = medico.Horario;
+                dataAdapter.Fill(data);
+            }
+            else
+            {
+                NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("medico.f_insertar_horario", conexion);
+                dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+                dataAdapter.SelectCommand.Parameters.Add("_id_medic", NpgsqlDbType.Text).Value = medico.Identificacion;
+                dataAdapter.SelectCommand.Parameters.Add("_horario", NpgsqlDbType.Json).Value = medico.Horario;
+                dataAdapter.Fill(data);
+            }
+           
         }
         catch (Exception e)
         {
@@ -323,6 +335,35 @@ public class DBMedico
         return;
             
            
+    }
+
+    public bool schedule_is_already(String id)
+    {
+        DataTable data = new DataTable();
+        NpgsqlConnection conexion = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+        try
+        {
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("medico.f_obtener_horario_medico", conexion);
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dataAdapter.SelectCommand.Parameters.Add("_id_medic", NpgsqlDbType.Text).Value = id;
+            dataAdapter.Fill(data);
+        }
+        catch(Exception e)
+        {
+            throw e;
+        }
+        finally
+        {
+            if (conexion != null)
+            {
+                conexion.Close();
+            }
+        }
+        if (data.Rows.Count == 0)
+        {
+            return false;
+        }
+        else return true;
     }
 
 }
