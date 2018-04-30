@@ -25,7 +25,9 @@ public partial class View_Medico_HorarioTrabajo : System.Web.UI.Page
             medic.Identificacion = (String)Session["identificacion_medico"];
             medicdb.crear_horario(medic);
             dias_escogidos.Text = horario_full;
-            
+            pintar_horario();
+
+
         }
         else
         {
@@ -36,9 +38,74 @@ public partial class View_Medico_HorarioTrabajo : System.Web.UI.Page
 
     }
 
-    protected void pintar_horario(String horario)
+    protected void pintar_horario()
     {
-        
+        String pinta_horar;
+        pinta_horar = "";
+        ESemana semana =(ESemana) Session["semana"];
+        if (semana.Lunes != null)
+        {
+            pinta_horar = pinta_horar + "LUNES";
+            for (int i = 0; i < semana.Lunes.Count; i++)
+            {
+                pinta_horar = pinta_horar + "</br>" + obtener_hora(semana.Lunes.ElementAt(i));
+            }
+            pinta_horar = pinta_horar + "</br></br>";
+        }if (semana.Martes != null)
+        {
+            pinta_horar = pinta_horar + "MARTES";
+            for (int i = 0; i < semana.Martes.Count; i++)
+            {
+                pinta_horar = pinta_horar + "</br>" + obtener_hora(semana.Martes.ElementAt(i));
+            }
+            pinta_horar = pinta_horar + "</br></br>";
+        }
+        if (semana.Miercoles !=null)
+        {
+            pinta_horar = pinta_horar + "MIERCOLES";
+            for (int i = 0; i < semana.Miercoles.Count; i++)
+            {
+                pinta_horar = pinta_horar + "</br>" + obtener_hora(semana.Miercoles.ElementAt(i));
+            }
+            pinta_horar = pinta_horar + "</br></br>";
+        }
+        if (semana.Jueves != null)
+        {
+            pinta_horar = pinta_horar + "JUEVES";
+            for (int i = 0; i < semana.Jueves.Count; i++)
+            {
+                pinta_horar = pinta_horar + "</br>" + obtener_hora(semana.Jueves.ElementAt(i));
+            }
+            pinta_horar = pinta_horar + "</br></br>";
+        }
+        if (semana.Viernes != null)
+        {
+            pinta_horar = pinta_horar + "VIERNES";
+            for (int i = 0; i < semana.Viernes.Count; i++)
+            {
+                pinta_horar = pinta_horar + "</br>" + obtener_hora(semana.Viernes.ElementAt(i));
+            }
+            pinta_horar = pinta_horar + "</br></br>";
+        }
+        if (semana.Sabado != null)
+        {
+            pinta_horar = pinta_horar + "SABADO";
+            for (int i = 0; i < semana.Sabado.Count; i++)
+            {
+                pinta_horar = pinta_horar + "</br>" + obtener_hora(semana.Sabado.ElementAt(i));
+            }
+            pinta_horar = pinta_horar + "</br></br>";
+        }
+        dias_escogidos.Text = pinta_horar;
+       
+    }
+
+    private String obtener_hora(String dia)
+    {
+        String res="";
+        EDia day=JsonConvert.DeserializeObject<EDia>(dia);
+        res = res + day.Hora_inicio+"-"+day.Hora_fin;
+        return res;
     }
 
     private String recorrer_dia(EDia [] day)
@@ -74,7 +141,7 @@ public partial class View_Medico_HorarioTrabajo : System.Web.UI.Page
                     for (int i = 0; i < day.Length; i++)
                     {
                         String aux = JsonConvert.SerializeObject((EDia)day[i]);
-                        seman.crear_lunes();
+                        if (seman.Lunes==null)seman.crear_lunes();
                         seman.Lunes.Add(aux);
                     }
                     break;
@@ -82,7 +149,7 @@ public partial class View_Medico_HorarioTrabajo : System.Web.UI.Page
                     for (int i = 0; i < day.Length; i++)
                     {
                         String aux = JsonConvert.SerializeObject((EDia)day[i]);
-                        seman.crear_Martes();
+                        if (seman.Martes==null)seman.crear_Martes();
                         seman.Martes.Add(aux);
                     }
                     break;
@@ -90,7 +157,7 @@ public partial class View_Medico_HorarioTrabajo : System.Web.UI.Page
                     for (int i = 0; i < day.Length; i++)
                     {
                         String aux = JsonConvert.SerializeObject((EDia)day[i]);
-                        seman.crear_Miercoles();
+                        if (seman.Miercoles==null)seman.crear_Miercoles();
                         seman.Miercoles.Add(aux);
                     }
                     break;
@@ -98,7 +165,7 @@ public partial class View_Medico_HorarioTrabajo : System.Web.UI.Page
                     for (int i = 0; i < day.Length; i++)
                     {
                         String aux = JsonConvert.SerializeObject((EDia)day[i]);
-                        seman.crear_Jueves();
+                        if (seman.Jueves==null)seman.crear_Jueves();
                         seman.Jueves.Add(aux);
                     }
                     break;
@@ -106,13 +173,14 @@ public partial class View_Medico_HorarioTrabajo : System.Web.UI.Page
                     for (int i = 0; i < day.Length; i++)
                     {
                         String aux = JsonConvert.SerializeObject((EDia)day[i]);
-                        seman.crear_Viernes();
+                        if (seman.Viernes==null)seman.crear_Viernes();
                         seman.Viernes.Add(aux);
                     }
                     break;
                 case "Sabado":
                     for (int i = 0; i < day.Length; i++)
                     {
+                        if (seman.Sabado==null)seman.crear_Sabado();
                         String aux = JsonConvert.SerializeObject((EDia)day[i]);
                         seman.Sabado.Add(aux);
                     }

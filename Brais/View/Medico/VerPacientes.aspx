@@ -35,7 +35,7 @@
     </style>
 
     <h2 style="text-align:center">Pacientes Agendados</h2>
-    <asp:Label ID="LB_Mensaje" runat="server" Text="Label"></asp:Label>
+    <asp:Label ID="LB_Mensaje" runat="server"></asp:Label>
     <div id="Tabla">
 
         <asp:GridView class="GV_Pacientes" runat="server" ID="GV_Pacientes" AllowPaging="True" AutoGenerateColumns="False" CellPadding="10" CellSpacing="5" ForeColor="#333333" GridLines="None" HorizontalAlign="Center" EnableModelValidation="False" OnPageIndexChanging="GV_Pacientes_PageIndexChanging">

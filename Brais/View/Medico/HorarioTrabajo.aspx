@@ -110,12 +110,12 @@
         </tr>
         <tr>
             <td class="auto-style8" colspan="2">
-                <asp:Button ID="Button3" runat="server" OnClick="Button3_Click" Text="Establecer Rango" />
+                <asp:Button ID="Button3" runat="server" OnClick="Button3_Click" Text="Establecer Rango" BackColor="#339933" Font-Bold="True" ForeColor="White" />
                 </td>
         </tr>
         <tr>
             <td style="text-align: center;" colspan="2" class="auto-style6">
-                <asp:Button ID="Button2" runat="server" Height="24px" Text="Confirmar Dia" Width="108px" OnClick="Button2_Click" />
+                <asp:Button ID="Button2" runat="server" Height="24px" Text="Confirmar Dia" Width="108px" OnClick="Button2_Click" BackColor="#0099FF" Font-Bold="True" ForeColor="White" />
             </td>
         </tr>
         <tr>
@@ -138,7 +138,7 @@
                 </asp:DropDownList>
             </td>
             <td style="text-align: center;">
-                <asp:Button ID="Button4" runat="server" OnClick="Button4_Click" Text="Eliminar Dia" />
+                <asp:Button ID="Button4" runat="server" OnClick="Button4_Click" Text="Eliminar Dia" BackColor="Red" Font-Bold="True" ForeColor="White" />
             </td>
         </tr>
         <tr>
