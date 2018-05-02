@@ -149,11 +149,11 @@
         </tr>
         <tr>
             <td class="boton_confirmar">
-                <asp:Button class="Btn_Confirmar_Cita" ID="Btn_Confirmar_Cita" runat="server" Text="Confirmar cita" />
+                <asp:Button class="BTN_Confirmar_Cita" ID="BTN_ConfirmarCita" runat="server" Text="Confirmar cita" OnClick="BTN_ConfirmarCita_Click" />
                 &nbsp;&nbsp;
             </td>
             <td class="boton-volver">
-                <asp:Button class="Btn_Volver" ID="Btn_Volver" runat="server" Text="Volver a asignación" />
+                <asp:Button class="BTN_Volver" ID="Btn_Volver" runat="server" Text="Volver a asignación" OnClick="Btn_Volver_Click" />
                 &nbsp;&nbsp;
             </td>
         </tr>

@@ -11,7 +11,9 @@ public partial class View_Medico_HorarioTrabajo : System.Web.UI.Page
     bool validate=true;
     protected void Page_Load(object sender, EventArgs e)
     {
+
     }
+
     protected void Button1_Click(object sender, EventArgs e)
     {
         if (Session["Semana"] != null)

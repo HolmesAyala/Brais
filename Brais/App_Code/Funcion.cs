@@ -75,6 +75,7 @@ public abstract class Funcion
             eMedico.Password = dtMedico.Rows[0]["contrasena"].ToString();
             eMedico.TipoUsuario = int.Parse(dtMedico.Rows[0]["tipo"].ToString());
             eMedico.Consultorio = int.Parse(dtMedico.Rows[0]["consultorio_pk"].ToString());
+            eMedico.EEspecialidad = EEspecialidad.dataTableToEEspecialidad(new DBEspecialidad().obtenerEspecialidad(int.Parse(dtMedico.Rows[0]["id_especialidad"].ToString())));
         }
         catch (Exception)
         {
@@ -83,6 +84,11 @@ public abstract class Funcion
         }
 
         return eMedico;
+    }
+
+    public static void mostrarMensaje(string mensaje)
+    {
+
     }
 
 }

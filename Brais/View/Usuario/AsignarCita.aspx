@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/View/Usuario/MPUsuario.master" AutoEventWireup="true" CodeFile="~/Controller/Usuario/AsignarCita.aspx.cs" Inherits="View_Usuario_AsignarCita" %>
+﻿<%@ Page EnableEventValidation="false" Title="" Language="C#" MasterPageFile="~/View/Usuario/MPUsuario.master" AutoEventWireup="true" CodeFile="~/Controller/Usuario/AsignarCita.aspx.cs" Inherits="View_Usuario_AsignarCita" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="contenido" Runat="Server">
 
@@ -25,6 +25,7 @@
             flex-wrap: wrap;
             justify-content: space-around;
             margin-bottom: 30px;
+            align-items: center;
         }
 
         div.tipo_cita{
@@ -42,12 +43,18 @@
         }
 
         div.disponibilidad_horaria{
-            height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+        div.disponibilidad_horaria h3{
+            margin-bottom: 50px;
         }
 
-        .BTN_BuscarCita{
-            display: block;
-            margin: 0 auto;
+        .BTN_SeleccionarCita{
+            /*display: block;
+            margin: 0 auto;*/
             border-radius: 5px;
             background-color: rgb(0, 200, 248);
             color: white;
@@ -59,27 +66,13 @@
     <asp:ScriptManager runat="server"></asp:ScriptManager>
 
     <h1 class="titulo_usuario">Asignar Citas</h1>
-
     <div class="tipocita_fechasdisponibles">
         <div class="tipo_cita">
             <div class="campo">
                 <asp:Label ID="LB_TipoCita" class="LB_TipoCita" runat="server" Text="Tipo de cita: "></asp:Label>
-                <asp:DropDownList ID="DDL_TipoCita" class="DDL_TipoCita" runat="server">
-                    <asp:ListItem>Odontologica</asp:ListItem>
-                    <asp:ListItem>Medicina General</asp:ListItem>
+                <asp:DropDownList ID="DDL_TipoCita" class="DDL_TipoCita" runat="server" DataSourceID="ODS_ObtenerEspecialidades" DataTextField="nombre" DataValueField="id" AutoPostBack="True" OnSelectedIndexChanged="DDL_TipoCita_SelectedIndexChanged">
                 </asp:DropDownList>
-            </div>
-
-            <div class="campo">
-                <asp:Label ID="LB_Jornada" class="LB_Jornada" runat="server" Text="Jornada: "></asp:Label>
-                <asp:RadioButtonList ID="RBL_Jornada" class="RBL_Jornada" runat="server">
-                    <asp:ListItem Value="Mañana">Mañana</asp:ListItem>
-                    <asp:ListItem>Tarde</asp:ListItem>
-                </asp:RadioButtonList>
-            </div>
-
-            <div class="campo">
-                <asp:Button class="BTN_BuscarCita" ID="BTN_BuscarCita" runat="server" Text="Buscar Cita"></asp:Button>
+                <asp:ObjectDataSource ID="ODS_ObtenerEspecialidades" runat="server" SelectMethod="obtenerTipoEspecialidad" TypeName="DBEspecialidad"></asp:ObjectDataSource>
             </div>
         </div>
 
@@ -88,7 +81,7 @@
 
             <asp:UpdatePanel runat="server">
                 <ContentTemplate>
-                    <asp:Calendar ID="C_FechasDisponibles" class="C_FechasDisponibles" runat="server" BackColor="White" BorderColor="#0099CC" BorderWidth="2px" CellPadding="3" DayNameFormat="Shortest" Font-Names="Arial" Font-Size="12pt" ForeColor="#003399" Height="270px" Width="300px" BorderStyle="None" CellSpacing="3" OnDayRender="C_FechasDisponibles_DayRender">
+                    <asp:Calendar ID="C_FechasDisponibles" class="C_FechasDisponibles" runat="server" BackColor="White" BorderColor="#0099CC" BorderWidth="2px" CellPadding="3" DayNameFormat="Shortest" Font-Names="Arial" Font-Size="12pt" ForeColor="#003399" Height="270px" Width="300px" BorderStyle="None" CellSpacing="3" OnDayRender="C_FechasDisponibles_DayRender" OnSelectionChanged="C_FechasDisponibles_SelectionChanged">
                         <DayHeaderStyle BackColor="#99CCCC" ForeColor="#336666" Height="1px" />
                         <NextPrevStyle Font-Size="8pt" ForeColor="#CCCCFF" />
                         <OtherMonthDayStyle ForeColor="#999999" />
@@ -101,6 +94,7 @@
                 </ContentTemplate>
                 <Triggers>
                     <asp:AsyncPostBackTrigger ControlID="GV_DisponibilidadHoraria" />
+                    <asp:AsyncPostBackTrigger ControlID="DDL_TipoCita" EventName="SelectedIndexChanged" />
                 </Triggers>
             </asp:UpdatePanel>
             
@@ -109,7 +103,36 @@
 
     <div class="disponibilidad_horaria">
         <h3>Disponibilidad Horaria</h3>
-        <asp:GridView ID="GV_DisponibilidadHoraria" class="GV_DisponibilidadHoraria" runat="server"></asp:GridView>
+        <asp:UpdatePanel runat="server">
+            <ContentTemplate>
+                <asp:GridView ID="GV_DisponibilidadHoraria" class="GV_DisponibilidadHoraria" runat="server" AutoGenerateColumns="False" EmptyDataText="Sin horarios" CellPadding="4" ForeColor="#333333" GridLines="None" Width="400px">
+                    <AlternatingRowStyle BackColor="White" />
+                    <Columns>
+                        <asp:BoundField DataField="id_medico" HeaderText="Medico" />
+                        <asp:BoundField DataField="hora_inicio" HeaderText="Hora inicio" />
+                        <asp:BoundField DataField="hora_fin" HeaderText="Hora fin" />
+                        <asp:TemplateField>
+                            <ItemTemplate>
+                                <asp:Button ID="BTN_SeleccionarCita" class="BTN_SeleccionarCita" runat="server" CommandName='<%# Eval("id") %>' Text="Seleccionar" OnClick="BTN_SeleccionarCita_Click" />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                    <EditRowStyle BackColor="#2461BF" Height="50px" />
+                    <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                    <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                    <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                    <RowStyle BackColor="#EFF3FB" Height="40px" />
+                    <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                    <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                    <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                    <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                    <SortedDescendingHeaderStyle BackColor="#4870BE" />
+                </asp:GridView>
+            </ContentTemplate>
+            <Triggers>
+                <asp:AsyncPostBackTrigger ControlID="C_FechasDisponibles" EventName="SelectionChanged" />
+            </Triggers>
+        </asp:UpdatePanel>
     </div>
 
 </asp:Content>

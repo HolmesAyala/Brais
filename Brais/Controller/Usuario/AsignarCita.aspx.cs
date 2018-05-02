@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Web;
@@ -13,6 +14,23 @@ public partial class View_Usuario_AsignarCita : System.Web.UI.Page
 
     }
 
+    protected void DDL_TipoCita_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        DataTable dtCitas = DBCita.obtenerCitas(int.Parse(DDL_TipoCita.SelectedValue.ToString()));
+        Session["fechasDisponibles"] = obtenerFechaDeCitas(dtCitas);
+        mostrarDisponibilidadHoraria();
+    }
+
+    protected List<DateTime> obtenerFechaDeCitas(DataTable dtCitas)
+    {
+        List<DateTime> fechas = new List<DateTime>();
+        foreach (DataRow fila in dtCitas.Rows)
+        {
+            fechas.Add(DateTime.Parse(fila["dia"].ToString()));
+        }
+        return fechas;
+    }
+
     protected void C_FechasDisponibles_DayRender(object sender, DayRenderEventArgs e)
     {
         e.Day.IsSelectable = validarFecha(e.Day.Date);
@@ -20,22 +38,64 @@ public partial class View_Usuario_AsignarCita : System.Web.UI.Page
         {
             e.Cell.BorderColor = Color.Red;
             e.Cell.BorderStyle = BorderStyle.Ridge;
-            e.Cell.BorderWidth = 1;
+            e.Cell.BorderWidth = 2;
         }
 
     }
 
     protected Boolean validarFecha(DateTime dateTime)
     {
-        string[] fechas = new string[] { "2018-04-23", "2018-04-24", "2018-04-25", "2018-04-26" };
-        foreach (string fecha in fechas)
+        List<DateTime> fechasDisponibles = new List<DateTime>();
+
+        if (Session["fechasDisponibles"] != null) fechasDisponibles = (List<DateTime>)Session["fechasDisponibles"];
+
+        foreach (DateTime fecha in fechasDisponibles)
         {
-            if (dateTime == DateTime.Parse(fecha))
+            if (dateTime == fecha)
             {
                 return true;
             }
         }
         return false;
+    }
+
+
+    protected void C_FechasDisponibles_SelectionChanged(object sender, EventArgs e)
+    {
+        mostrarDisponibilidadHoraria();
+    }
+
+    protected void mostrarDisponibilidadHoraria()
+    {
+        DataTable dtCitas = DBCita.obtenerCitas(int.Parse(DDL_TipoCita.SelectedValue.ToString()), C_FechasDisponibles.SelectedDate);
+        GV_DisponibilidadHoraria.DataSource = dtCitas;
+        GV_DisponibilidadHoraria.DataBind();
+    }
+
+
+    protected void BTN_SeleccionarCita_Click(object sender, EventArgs e)
+    {
+
+        Button btnSeleccionarCita = (Button)sender;
+
+        string idCita = btnSeleccionarCita.CommandName;
+
+        ECita eCita = ECita.dataTableToECita(DBCita.obtenerCita(int.Parse(idCita)));
+
+        Session["eCita"] = eCita;
+
+        if (DBCita.verificarDisponibilidadCita(eCita.Id))
+        {
+            Response.Redirect("~/View/Usuario/ConfirmarCita.aspx");
+        }
+        else
+        {
+            string script = @"<script type='text/javascript'>alert('La cita ya se encuentra reservada!');</script>";
+            ScriptManager.RegisterStartupScript(this, typeof(Page), "alerta", script, false);
+
+            mostrarDisponibilidadHoraria();
+        }
+        
     }
 
 }

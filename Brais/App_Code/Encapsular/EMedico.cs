@@ -10,6 +10,7 @@ public class EMedico
 {
     private string identificacion, nombre, apellido, correo, password, fechaNacimiento,horario;
     private int tipoEspecialidad, consultorio, tipoUsuario, tipoIdentificacion;
+    private EEspecialidad eEspecialidad;
 
     public string Identificacion
     {
@@ -151,6 +152,19 @@ public class EMedico
         set
         {
             horario = value;
+        }
+    }
+
+    public EEspecialidad EEspecialidad
+    {
+        get
+        {
+            return eEspecialidad;
+        }
+
+        set
+        {
+            eEspecialidad = value;
         }
     }
 }

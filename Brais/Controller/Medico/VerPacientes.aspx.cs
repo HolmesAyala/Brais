@@ -9,7 +9,7 @@ public partial class View_Medico_VerPacientes : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        obtenerDatosPaciente();
+        //obtenerDatosPaciente();
     }
 
     protected void obtenerDatosPaciente()
@@ -23,7 +23,7 @@ public partial class View_Medico_VerPacientes : System.Web.UI.Page
     protected void GV_Pacientes_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
         GV_Pacientes.PageIndex = e.NewPageIndex;
-        obtenerDatosPaciente();
+        //obtenerDatosPaciente();
     }
 
     protected void BTN_Modificar_Historial_Click(object sender, EventArgs e)
