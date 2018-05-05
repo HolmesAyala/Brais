@@ -17,14 +17,14 @@ res2 text:='';
 dia text;
 iterador integer:=0;
 BEGIN
-	FOR res.horario IN SELECT horario FROM medico.horario_medico 
+	FOR res IN SELECT * FROM medico.horario_medico 
 	LOOP
 		IF (res.horario->'Lunes')::text <> 'null' THEN
 			dia:=((res.horario->'Lunes')::text)::json;
 			iterador:=0;
 			/*Si EL Dia No Es Nulo Se Empiezan A Recorrer Los Rangos Y Finalmente Generar Las Series*/
 			WHILE ((dia::json)->(iterador::integer))::text <> '[null]' LOOP
-				res2=res2||((dia::json)->iterador::integer);
+				res2=res2||((dia::json)->iterador::integer)||res.fk_medico;
 				iterador:=iterador+1;
 			END LOOP;
 		ELSE
@@ -35,7 +35,7 @@ BEGIN
 				iterador:=0;
 				/*Si EL Dia No Es Nulo Se Empiezan A Recorrer Los Rangos Y Finalmente Generar Las Series*/
 				WHILE ((dia::json)->(iterador::integer))::text <> '[null]' LOOP
-					res2=res2||((dia::json)->iterador::integer);
+					res2=res2||((dia::json)->iterador::integer)||res.fk_medico;
 					iterador:=iterador+1;
 				END LOOP;
 		ELSE
@@ -46,7 +46,7 @@ BEGIN
 				iterador:=0;
 				/*Si EL Dia No Es Nulo Se Empiezan A Recorrer Los Rangos Y Finalmente Generar Las Series*/
 				WHILE ((dia::json)->(iterador::integer))::text <> '[null]' LOOP
-					res2=res2||((dia::json)->iterador::integer);
+					res2=res2||((dia::json)->iterador::integer)||res.fk_medico;
 					iterador:=iterador+1;
 				END LOOP;
 		ELSE
@@ -57,7 +57,7 @@ BEGIN
 					iterador:=0;
 					/*Si EL Dia No Es Nulo Se Empiezan A Recorrer Los Rangos Y Finalmente Generar Las Series*/
 					WHILE ((dia::json)->(iterador::integer))::text <> '[null]' LOOP
-						res2=res2||((dia::json)->iterador::integer);
+						res2=res2||((dia::json)->iterador::integer)||res.fk_medico;
 						iterador:=iterador+1;
 					END LOOP;
 		ELSE
@@ -68,7 +68,7 @@ BEGIN
 					iterador:=0;
 					/*Si EL Dia No Es Nulo Se Empiezan A Recorrer Los Rangos Y Finalmente Generar Las Series*/
 					WHILE ((dia::json)->(iterador::integer))::text <> '[null]' LOOP
-						res2=res2||((dia::json)->iterador::integer);
+						res2=res2||((dia::json)->iterador::integer)||res.fk_medico;
 						iterador:=iterador+1;
 					END LOOP;
 		ELSE
@@ -79,7 +79,7 @@ BEGIN
 					iterador:=0;
 					/*Si EL Dia No Es Nulo Se Empiezan A Recorrer Los Rangos Y Finalmente Generar Las Series*/
 					WHILE ((dia::json)->(iterador::integer))::text <> '[null]' LOOP
-						res2=res2||((dia::json)->iterador::integer);
+						res2=res2||((dia::json)->iterador::integer)||res.fk_medico;
 						iterador:=iterador+1;
 					END LOOP;
 		ELSE
