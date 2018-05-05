@@ -1,0 +1,96 @@
+-- FUNCTION: pruebas.crear_citas()
+
+-- DROP FUNCTION pruebas.crear_citas();
+
+CREATE OR REPLACE FUNCTION pruebas.crear_citas(
+	)
+    RETURNS text
+    LANGUAGE 'plpgsql'
+
+    COST 100
+    VOLATILE 
+AS $BODY$
+
+DECLARE 
+res medico.horario_medico%ROWTYPE;
+res2 text:='';
+dia text;
+iterador integer:=0;
+BEGIN
+	FOR res.horario IN SELECT horario FROM medico.horario_medico 
+	LOOP
+		IF (res.horario->'Lunes')::text <> 'null' THEN
+			dia:=((res.horario->'Lunes')::text)::json;
+			iterador:=0;
+			/*Si EL Dia No Es Nulo Se Empiezan A Recorrer Los Rangos Y Finalmente Generar Las Series*/
+			WHILE ((dia::json)->(iterador::integer))::text <> '[null]' LOOP
+				res2=res2||((dia::json)->iterador::integer);
+				iterador:=iterador+1;
+			END LOOP;
+		ELSE
+			/*res2=res2||'No Existe El Lunes; ';*/
+		END IF;
+		IF (res.horario->'Martes')::text <> 'null' THEN 
+			dia:=((res.horario->'Martes')::text)::json;
+				iterador:=0;
+				/*Si EL Dia No Es Nulo Se Empiezan A Recorrer Los Rangos Y Finalmente Generar Las Series*/
+				WHILE ((dia::json)->(iterador::integer))::text <> '[null]' LOOP
+					res2=res2||((dia::json)->iterador::integer);
+					iterador:=iterador+1;
+				END LOOP;
+		ELSE
+			/*res2=res2||'No Existe El Martes; ';*/	
+		END IF;
+		IF (res.horario->'Miercoles')::text <> 'null' THEN
+			dia:=((res.horario->'Miercoles')::text)::json;
+				iterador:=0;
+				/*Si EL Dia No Es Nulo Se Empiezan A Recorrer Los Rangos Y Finalmente Generar Las Series*/
+				WHILE ((dia::json)->(iterador::integer))::text <> '[null]' LOOP
+					res2=res2||((dia::json)->iterador::integer);
+					iterador:=iterador+1;
+				END LOOP;
+		ELSE
+			/*res2=res2||'No Existe El Miercoles; ';*/
+		END IF;
+		IF (res.horario->'Jueves')::text <> 'null' THEN
+			dia:=((res.horario->'Jueves')::text)::json;
+					iterador:=0;
+					/*Si EL Dia No Es Nulo Se Empiezan A Recorrer Los Rangos Y Finalmente Generar Las Series*/
+					WHILE ((dia::json)->(iterador::integer))::text <> '[null]' LOOP
+						res2=res2||((dia::json)->iterador::integer);
+						iterador:=iterador+1;
+					END LOOP;
+		ELSE
+			/*res2=res2||'No Existe El Jueves; ';*/
+		END IF;
+		IF (res.horario->'Viernes')::text <> 'null' THEN
+			dia:=((res.horario->'Viernes')::text)::json;
+					iterador:=0;
+					/*Si EL Dia No Es Nulo Se Empiezan A Recorrer Los Rangos Y Finalmente Generar Las Series*/
+					WHILE ((dia::json)->(iterador::integer))::text <> '[null]' LOOP
+						res2=res2||((dia::json)->iterador::integer);
+						iterador:=iterador+1;
+					END LOOP;
+		ELSE
+			/*res2=res2||'No Existe El Viernes; ';*/
+		END IF;
+		IF (res.horario->'sabado')::text <> 'null' THEN 
+			dia:=((res.horario->'sabado')::text)::json;
+					iterador:=0;
+					/*Si EL Dia No Es Nulo Se Empiezan A Recorrer Los Rangos Y Finalmente Generar Las Series*/
+					WHILE ((dia::json)->(iterador::integer))::text <> '[null]' LOOP
+						res2=res2||((dia::json)->iterador::integer);
+						iterador:=iterador+1;
+					END LOOP;
+		ELSE
+			/*res2=res2||'No Existe El Sabado; ';*/
+		END IF;
+	END LOOP;
+	RETURN res2;
+END;
+
+$BODY$;
+
+ALTER FUNCTION pruebas.crear_citas()
+    OWNER TO postgres;
+
