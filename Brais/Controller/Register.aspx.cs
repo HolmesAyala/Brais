@@ -19,7 +19,7 @@ public partial class View_Default : System.Web.UI.Page
     {
         EUsuario user = new EUsuario();
         ClientScriptManager cm = this.ClientScript;
-        if (int.Parse(eps.SelectedItem.Value.ToString())== 0)
+        if (int.Parse(eps.SelectedItem.Value.ToString())== 2)
         {
             cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('Seleccione una EPS')</script>;");
         }else if (TB_pasword.Text == TB_password2.Text)

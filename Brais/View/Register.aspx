@@ -123,14 +123,14 @@
                 <td class="auto-style10">&nbsp;
                     <asp:Label ID="Label10" runat="server" Font-Bold="True" Text="Numero De Documento"></asp:Label>
                 </td>
-                <td class="auto-style9"><asp:TextBox ID="TB_id" runat="server" Width="117px" CssClass="auto-style7"></asp:TextBox>
+                <td class="auto-style9"><asp:TextBox ID="TB_id" runat="server" Width="117px" CssClass="auto-style7" MaxLength="15"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TB_id" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
                 </td>
                 <td>
                     <asp:Label ID="Label7" runat="server" Font-Bold="True" Text="Correo Electronico"></asp:Label>
                 </td>
                 <td>
-                    <asp:TextBox ID="TB_email" runat="server" TextMode="Email"></asp:TextBox>
+                    <asp:TextBox ID="TB_email" runat="server" TextMode="Email" MaxLength="80"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="TB_email" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
                 </td>
             </tr>
@@ -138,14 +138,14 @@
                 <td class="auto-style10">&nbsp;
                     <asp:Label ID="Label3" runat="server" Font-Bold="True" Text="Nombres"></asp:Label>
                 </td>
-                <td class="auto-style9"><asp:TextBox ID="TB_name" runat="server" Width="117px"></asp:TextBox>
+                <td class="auto-style9"><asp:TextBox ID="TB_name" runat="server" Width="117px" MaxLength="50"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TB_name" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
                 </td>
                 <td>
                     <asp:Label ID="Label8" runat="server" Font-Bold="True" Text="Clave"></asp:Label>
                 </td>
                 <td>
-                    <asp:TextBox ID="TB_pasword" runat="server" TextMode="Password"></asp:TextBox>
+                    <asp:TextBox ID="TB_pasword" runat="server" TextMode="Password" MaxLength="10"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="TB_pasword" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
                 </td>
             </tr>
@@ -153,14 +153,14 @@
                 <td class="auto-style12">&nbsp;
                     <asp:Label ID="Label4" runat="server" Font-Bold="True" Text="Apellidos"></asp:Label>
                 </td>
-                <td class="auto-style13"><asp:TextBox ID="TB_lastName" runat="server" Width="117px"></asp:TextBox>
+                <td class="auto-style13"><asp:TextBox ID="TB_lastName" runat="server" Width="117px" MaxLength="50"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="TB_lastName" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
                 </td>
                 <td class="auto-style14">
                     <asp:Label ID="Label9" runat="server" Font-Bold="True" Text="Confirmar Clave"></asp:Label>
                 </td>
                 <td class="auto-style14">
-                    <asp:TextBox ID="TB_password2" runat="server" TextMode="Password"></asp:TextBox>
+                    <asp:TextBox ID="TB_password2" runat="server" TextMode="Password" MaxLength="10"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="TB_password2" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
                 </td>
             </tr>
