@@ -209,7 +209,7 @@ public class DBUsuario
         return dtUsuario.Rows.Count == 0;
     }
 
-    public DataTable obtenerPaciente(String id_medico)
+    public DataTable obtenerPacientesAgendados(String id_medico)
     {
         DataTable usuario = new DataTable();
 
@@ -217,7 +217,7 @@ public class DBUsuario
 
         try
         {
-            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_buscar_paciente", conection);
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_buscar_pacientes_agendados", conection);
             dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
             dataAdapter.SelectCommand.Parameters.Add("_id_medico", NpgsqlDbType.Text).Value = id_medico;
 
