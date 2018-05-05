@@ -32,6 +32,7 @@ public partial class View_Administrador_MPAdministrador : System.Web.UI.MasterPa
 
     protected void BTN_CerrarSesion_Click(object sender, EventArgs e)
     {
+        Session.Clear();
         Session["usuario"] = null;
         Response.Redirect("~/View/Login.aspx");
     }

@@ -20,6 +20,7 @@ public partial class Controller_Usuario_MPUsuario : System.Web.UI.MasterPage
 
     protected void BTN_CerrarSesion_Click(object sender, EventArgs e)
     {
+        Session.Clear();
         Session["usuario"] = null;
         Response.Redirect("~/View/Login.aspx");
     }

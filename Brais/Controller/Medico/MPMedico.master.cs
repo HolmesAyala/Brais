@@ -25,6 +25,7 @@ public partial class View_Medico_MPMedico : System.Web.UI.MasterPage
 
     protected void BTN_CerrarSesion_Click(object sender, EventArgs e)
     {
+        Session.Clear();
         Session["Usuario"] = null;
         Response.Redirect("~/View/Login.aspx");
     }
