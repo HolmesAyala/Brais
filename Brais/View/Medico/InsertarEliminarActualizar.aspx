@@ -117,7 +117,7 @@
             <td>
                 <asp:DropDownList ID="DDL_Consultorio" runat="server" DataSourceID="ODS_Consultorio" DataTextField="nombre_consultorio" DataValueField="id">
                 </asp:DropDownList>
-                <asp:ObjectDataSource ID="ODS_Consultorio" runat="server" SelectMethod="obtenerConsultoriosDisponibles" TypeName="DBConsultorio"></asp:ObjectDataSource>
+                <asp:ObjectDataSource ID="ODS_Consultorio" runat="server" SelectMethod="obtenerConsultorios" TypeName="DBConsultorio"></asp:ObjectDataSource>
             </td>
         </tr>
         <tr>

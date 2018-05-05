@@ -11,6 +11,7 @@ public partial class View_Default : System.Web.UI.Page
     bool validacionCorreo;
     protected void Page_Load(object sender, EventArgs e)
     {
+        MaintainScrollPositionOnPostBack = true;
         Response.Cache.SetNoStore();
     }
 
@@ -35,7 +36,11 @@ public partial class View_Default : System.Web.UI.Page
             DBUsuario bd =new DBUsuario();
             DataTable error;
             error = bd.CrearUsuario(user);
-            if (error.Rows[0]["error"].ToString() == "error"){
+            if (error.Rows.Count==0){
+                cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('Se Ha Creado Usuario Exitosamente');</script>");
+                Response.Redirect("PaginaPrincipal.aspx");
+            }
+            else if (error.Rows[0]["error"].ToString() == "error"){
                 //fallo
                 cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('El correo ingresado ya existe');</script>");
             }
