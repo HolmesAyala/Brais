@@ -1,0 +1,83 @@
+-- FUNCTION: usuario.f_buscar_pacientes_agendados(text)
+
+-- DROP FUNCTION usuario.f_buscar_pacientes_agendados(text);
+
+CREATE OR REPLACE FUNCTION usuario.f_buscar_pacientes_agendados(
+	_id_medico text)
+    RETURNS SETOF usuario.view_obtener_paciente_medico 
+    LANGUAGE 'plpgsql'
+
+    COST 100
+    VOLATILE 
+    ROWS 1000
+AS $BODY$
+
+BEGIN 
+	RETURN QUERY
+		SELECT 
+			usuario.cita.hora_inicio, 
+			usuario.tipo_identificacion.nombre,
+			usuario.usuario.identificacion, 
+			usuario.usuario.nombre, 
+			usuario.usuario.apellido
+		FROM 
+			usuario.usuario, usuario.cita, usuario.tipo_identificacion
+		WHERE 
+			usuario.usuario.tipo = 3 and usuario.usuario.identificacion = usuario.cita.id_usuario and 
+			usuario.cita.id_medico = _id_medico and
+			usuario.tipo_identificacion.id = usuario.usuario.id_tipo_identificacion
+		ORDER BY usuario.cita.hora_inicio;
+END
+
+$BODY$;
+
+ALTER FUNCTION usuario.f_buscar_pacientes_agendados(text)
+    OWNER TO postgres;
+
+
+
+-- View: usuario.view_obtener_paciente_medico
+
+-- DROP VIEW usuario.view_obtener_paciente_medico;
+
+CREATE OR REPLACE VIEW usuario.view_obtener_paciente_medico AS
+ SELECT '00:00:00'::time without time zone AS hora,
+    ''::text AS tipo_identificacion,
+    ''::text AS identificacion,
+    ''::text AS nombre,
+    ''::text AS apellido;
+
+ALTER TABLE usuario.view_obtener_paciente_medico
+    OWNER TO postgres;
+
+
+
+-- FUNCTION: usuario.f_eliminar_cita_paciente(text, integer)
+
+-- DROP FUNCTION usuario.f_eliminar_cita_paciente(text, integer);
+
+CREATE OR REPLACE FUNCTION usuario.f_eliminar_cita_paciente(
+	_id_usuario text,
+	_id_cita integer)
+    RETURNS SETOF void 
+    LANGUAGE 'plpgsql'
+
+    COST 100
+    VOLATILE 
+    ROWS 1000
+AS $BODY$
+
+BEGIN
+		UPDATE usuario.cita
+		SET id_usuario = null
+		WHERE id = _id_cita and 
+		id_usuario = _id_usuario;
+
+END
+
+$BODY$;
+
+ALTER FUNCTION usuario.f_eliminar_cita_paciente(text, integer)
+    OWNER TO postgres;
+
+
