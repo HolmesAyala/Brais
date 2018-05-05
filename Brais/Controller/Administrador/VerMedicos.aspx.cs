@@ -58,4 +58,9 @@ public partial class View_Administrador_VerMedicos : System.Web.UI.Page
         GV_Medicos.PageIndex = e.NewPageIndex;
         obtenerDatosMedico("");
     }
+
+    protected void BTN_Reporte_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/View/Administrador/Reporte_Medicos.aspx");
+    }
 }
