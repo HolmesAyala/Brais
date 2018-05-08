@@ -115,7 +115,7 @@
         </tr>
         <tr>
             <td style="text-align: center;" colspan="2" class="auto-style6">
-                <asp:Button ID="Button2" runat="server" Height="24px" Text="Confirmar Dia" Width="108px" OnClick="Button2_Click" BackColor="#0099FF" Font-Bold="True" ForeColor="White" />
+                <asp:Button class="BTN BTN_Azul" ID="Button2" runat="server" Text="Confirmar Dia" OnClick="Button2_Click"/>
             </td>
         </tr>
         <tr>

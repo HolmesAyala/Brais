@@ -28,7 +28,6 @@
     </style>
 
     <div class="mensaje_botones">
-        <asp:Label ID="LB_MensajeBienvenida" class="LB_MensajeBienvenida" runat="server" Text="Bienvenido: "></asp:Label>
         <div>
             <asp:Button ID="BTN_ActualizarDatos" class="BTN_ActualizarDatos" runat="server" Text="Actualizar Datos" OnClick="BTN_ActualizarDatos_Click" CausesValidation="False"></asp:Button>
             <asp:Button ID="BTN_CerrarSesion" class="BTN_CerrarSesion" runat="server" Text="Cerrar Sesión" OnClick="BTN_CerrarSesion_Click" CausesValidation="False"></asp:Button>

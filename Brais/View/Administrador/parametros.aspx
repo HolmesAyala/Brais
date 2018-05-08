@@ -100,7 +100,7 @@
                 <br />
                 <br />
                 <br />
-                <asp:Button ID="Button1" runat="server" Text="Agregar" Width="96px" BackColor="#1A9996" CssClass="bordes" Height="29px" OnClick="Button1_Click" />
+                <asp:Button class="BTN BTN_Azul" ID="Button1" runat="server" Text="Agregar" OnClick="Button1_Click" />
             </td>
         </tr>
         <tr>
@@ -141,7 +141,7 @@
             <td style="width: 33%; height: 20px">
                 &nbsp;</td>
             <td style="width: 33%; height: 20px" class="auto-style1">
-                <asp:Button ID="Button4" runat="server" Text="Aceptar" BackColor="Blue" CssClass="bordes" Font-Bold="True" ForeColor="White" Height="27px" Width="69px" OnClick="Button4_Click" />
+                <asp:Button class="BTN BTN_Azul" ID="Button4" runat="server" Text="Aceptar" OnClick="Button4_Click" />
             </td>
             <td colspan="2" style="height: 20px">&nbsp;</td>
         </tr>

@@ -13,9 +13,6 @@ public partial class Controller_Usuario_MPUsuario : System.Web.UI.MasterPage
         {
             Response.Redirect("~/View/Login.aspx");
         }
-        DBUsuario dBUsuario = new DBUsuario();
-        Session["usuario"] = Funcion.dataTableToEUsuario(dBUsuario.obtenerUsuario(((EUsuario)Session["usuario"]).Identificacion));
-        LB_MensajeBienvenida.Text = ((EUsuario)Session["usuario"]).Nombre + " " + ((EUsuario)Session["usuario"]).Apellido;
     }
 
     protected void BTN_CerrarSesion_Click(object sender, EventArgs e)

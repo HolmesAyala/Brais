@@ -55,6 +55,17 @@
             cursor: pointer;
         }
 
+        .BTN_Azul{
+            background-color: rgb(24, 177, 228);
+            color: white;
+            border: 1px solid rgb(24, 177, 228);
+            border-radius: 5px;
+        }
+
+        .BTN_Azul:hover{
+            background-color: rgb(0, 131, 175);
+        }
+
         header nav ul{
             display: flex;
             justify-content: center;
@@ -77,10 +88,8 @@
             justify-content: space-between;
         }
 
-        header div #BTN_Recargar{
-            margin: 30px;
-            padding: 10px;
-            align-self: flex-start;
+        header div{
+
         }
 
         header div *[id^="BTN"]:hover{
@@ -126,7 +135,7 @@
             <div>
                 <asp:Image runat="server" ID="IMG_Logo" ImageAlign="Middle" ImageUrl="~/Imagen/logo.png" Width="200px"></asp:Image>
                 <h1 class="titulo">Brais</h1>
-                <asp:ImageButton runat="server" ImageUrl="~/Imagen/recargar.svg" Width="30px" ID="BTN_Recargar" OnClick="BTN_Recargar_Click"></asp:ImageButton>
+                <asp:Label runat="server" Text=""></asp:Label>
             </div>
             
             <nav>

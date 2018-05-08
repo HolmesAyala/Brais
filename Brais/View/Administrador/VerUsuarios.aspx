@@ -85,10 +85,10 @@
             <AlternatingRowStyle BackColor="White" />
             <Columns>
                 <asp:BoundField DataField="identificacion" HeaderText="Identificacion" />
-                <asp:BoundField DataField="id_tipo_identificacion" HeaderText="Tipo" />
+                <asp:BoundField DataField="nombre_identificacion" HeaderText="Tipo" />
                 <asp:BoundField DataField="nombre" HeaderText="Nombre" />
                 <asp:BoundField DataField="apellido" HeaderText="Apellido" />
-                <asp:BoundField DataField="id_tipo_afiliacion" HeaderText="Afiliacion" />
+                <asp:BoundField DataField="nombre_afiliacion" HeaderText="Afiliacion" />
                 <asp:BoundField DataField="correo" HeaderText="Correo" />
                 <asp:TemplateField>
                     <EditItemTemplate>

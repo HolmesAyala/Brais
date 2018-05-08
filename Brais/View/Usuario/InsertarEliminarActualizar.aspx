@@ -99,7 +99,7 @@
 
         <div class="campo">
             <asp:Label class="LB_Correo" ID="LB_Correo" runat="server" Text="Correo electronico: "></asp:Label>
-            <asp:TextBox class="TB_Correo" ID="TB_Correo" runat="server" TextMode="Email" MaxLength="50"></asp:TextBox>
+            <asp:TextBox class="TB_Correo" ID="TB_Correo" runat="server" TextMode="Email" MaxLength="40"></asp:TextBox>
         </div>
 
         <div class="campo">

@@ -103,7 +103,7 @@
         </tr>
         <tr>
             <td colspan="2" class="boton">
-                <asp:Button ID="B_Ingresar" runat="server" Text="Ingresar" CssClass="estilo_boton" OnClick="B_Ingresar_Click"/>
+                <asp:Button class="BTN BTN_Azul" ID="B_Ingresar" runat="server" Text="Ingresar" OnClick="B_Ingresar_Click"/>
             </td>
         </tr>
         <tr>

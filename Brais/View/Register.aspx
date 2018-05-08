@@ -182,7 +182,7 @@
             </tr>
             <tr>
                 <td class="auto-style2" colspan="4">
-                    <asp:Button ID="Button1" runat="server" BackColor="#66FFFF" Font-Bold="False" Font-Names="Arial" Font-Size="20px" ForeColor="#0066FF" OnClick="Button1_Click" Text="Registrarse" CssClass="reg" Height="42px" Width="193px" />
+                    <asp:Button class="BTN BTN_Azul" ID="Button1" runat="server" OnClick="Button1_Click" Text="Registrarse"/>
                     <br />
                     <br />
                 </td>

@@ -14,8 +14,6 @@ public partial class View_Medico_MPMedico : System.Web.UI.MasterPage
             Response.Redirect("~/View/Login.aspx");
         }
 
-        //LB_MensajeBienvenida.Text += ((EMedico)Session["usuario"]).Nombre + " " + ((EMedico)Session["usuario"]).Apellido;
-
     }
 
     protected void BTN_VerPacientes_Click(object sender, EventArgs e)

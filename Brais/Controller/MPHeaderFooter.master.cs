@@ -32,9 +32,4 @@ public partial class View_MPHeaderFooter : System.Web.UI.MasterPage
         Response.Redirect("~/View/Login.aspx");
     }
 
-    protected void BTN_Recargar_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("~/View/PaginaPrincipal.aspx");
-    }
-
 }

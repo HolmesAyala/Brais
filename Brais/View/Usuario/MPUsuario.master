@@ -25,7 +25,6 @@
     </style>
 
     <div class="mensaje_botones">
-        <asp:Label ID="LB_MensajeBienvenida" class="LB_MensajeBienvenida" runat="server" Text="Bienvenido: "></asp:Label>
         <div>
             <asp:Button ID="BTN_HistorialMedico" class="BTN_Historial_Medico" runat="server" Text="Ver historial Médico"></asp:Button>
             <asp:Button ID="BTN_ActualizarDatos" class="BTN_ActualizarDatos" runat="server" Text="Actualizar Datos" OnClick="BTN_ActualizarDatos_Click"></asp:Button>
