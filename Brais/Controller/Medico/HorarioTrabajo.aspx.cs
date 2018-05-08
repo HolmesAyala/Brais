@@ -11,7 +11,7 @@ public partial class View_Medico_HorarioTrabajo : System.Web.UI.Page
     bool validate=true;
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        MaintainScrollPositionOnPostBack = true;
     }
 
     protected void Button1_Click(object sender, EventArgs e)
@@ -193,39 +193,74 @@ public partial class View_Medico_HorarioTrabajo : System.Web.UI.Page
         }
     }
 
+
+    private String crear_cadena_dias(EDia [] dias)
+    {
+        String cadena = "";
+        for (int i = 0; i < dias.Length; i++)
+        {
+            cadena=cadena+dias[i].Hora_inicio+"-";
+            cadena = cadena + dias[i].Hora_fin + "</br>";
+        }
+        return cadena;
+    }
+
+    private EDia[] llenar_eDias(String[] json)
+    {
+        List<EDia> day= new List<EDia>(); 
+        for (int i = 0; i < json.Length; i++)
+        {
+            EDia aux=JsonConvert.DeserializeObject<EDia>(json[i]);
+            day.Add(aux);    
+        }
+        return day.ToArray();
+    }
+
     protected void mostrar_datos()
     {
         String dias="";
         ESemana sem=(ESemana)Session["semana"];
         if (sem.Lunes != null)
         {
-            dias=dias+" Lunes ";
-            dias = dias + Environment.NewLine + "</br>" + JsonConvert.SerializeObject(sem.Lunes)+ "</br>";
+            dias=dias+" Lunes "+"</br>";
+            String [] d  = sem.Lunes.ToArray();
+            EDia [] di= llenar_eDias(d);
+            dias = dias + crear_cadena_dias(di)+ "</br>";
         }
         if (sem.Martes != null)
         {
-            dias=dias+" Martes ";
-            dias = dias + Environment.NewLine + "</br>" + sem.Martes + "</br>";
+            dias = dias + " Martes " + "</br>";
+            String[] d = sem.Martes.ToArray();
+            EDia[] di = llenar_eDias(d);
+            dias = dias + crear_cadena_dias(di) + "</br>";
         }
         if (sem.Miercoles != null)
         {
-            dias = dias + " Miercoles ";
-            dias = dias + Environment.NewLine + "</br>" + sem.Miercoles + "</br>";
+            dias = dias + " Miercoles "+"</br>";
+            String[] d = sem.Miercoles.ToArray();
+            EDia[] di = llenar_eDias(d);
+            dias = dias + crear_cadena_dias(di) + "</br>";
         }
         if (sem.Jueves != null)
         {
-            dias = dias + " Jueves ";
-            dias = dias + Environment.NewLine +"</br>"+ sem.Jueves + "</br>";
+            dias = dias + " Jueves "+"</br>";
+            String[] d = sem.Jueves.ToArray();
+            EDia[] di = llenar_eDias(d);
+            dias = dias + crear_cadena_dias(di) + "</br>";
         }
         if (sem.Viernes != null)
         {
-            dias = dias + " Viernes ";
-            dias = dias + Environment.NewLine + "</br>" + sem.Viernes + "</br>";
+            dias = dias + " Viernes "+"</br>";
+            String[] d = sem.Viernes.ToArray();
+            EDia[] di = llenar_eDias(d);
+            dias = dias + crear_cadena_dias(di) + "</br>";
         }
         if (sem.Sabado != null)
         {
-            dias = dias + " Sabado ";
-            dias = dias + Environment.NewLine + "</br>" + sem.Sabado + "</br>";
+            dias = dias + " Sabado "+"</br>";
+            String[] d = sem.Sabado.ToArray();
+            EDia[] di = llenar_eDias(d);
+            dias = dias + crear_cadena_dias(di) + "</br>";
         }
         dias_escogidos.Text = dias;
     }
@@ -244,6 +279,8 @@ public partial class View_Medico_HorarioTrabajo : System.Web.UI.Page
             Session["ant_day"] = DL_dias.SelectedItem.ToString();
             String ayu = JsonConvert.SerializeObject(dia);
             dias_escogidos.Text = ayu;
+            pintar_rango(dia);
+
         }
     }
 
@@ -292,8 +329,20 @@ public partial class View_Medico_HorarioTrabajo : System.Web.UI.Page
             Session["rang"] = dias;
             String ayu = JsonConvert.SerializeObject(dias);
             dias_escogidos.Text = ayu;
+            pintar_rango(dias);
         }
     }
+
+    private void pintar_rango(EDia [] dias) {
+        String cadena="";
+        for (int i = 0; i < dias.Length; i++)
+        {
+            cadena = cadena + dias[i].Hora_inicio+"-";
+            cadena = cadena + dias[i].Hora_fin + "</br>";
+        }
+        dias_escogidos.Text = cadena;
+    }
+
 
     //VALIDAR RANGO INSERTADO
     private void validarRango(String inicio,String fin)

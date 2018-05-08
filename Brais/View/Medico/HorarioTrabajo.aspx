@@ -110,8 +110,11 @@
         </tr>
         <tr>
             <td class="auto-style8" colspan="2">
-                <asp:Button ID="Button3" runat="server" OnClick="Button3_Click" Text="Establecer Rango" BackColor="#339933" Font-Bold="True" ForeColor="White" />
+                <asp:Button class="BTN boton" ID="Button3" runat="server" OnClick="Button3_Click" Text="Establecer Rango" BackColor="#339933" Font-Bold="True" ForeColor="White"/>
                 </td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
         </tr>
         <tr>
             <td style="text-align: center;" colspan="2" class="auto-style6">
@@ -138,12 +141,12 @@
                 </asp:DropDownList>
             </td>
             <td style="text-align: center;">
-                <asp:Button ID="Button4" runat="server" OnClick="Button4_Click" Text="Eliminar Dia" BackColor="Red" Font-Bold="True" ForeColor="White" />
+                <asp:Button class="BTN boton" ID="Button4" runat="server" OnClick="Button4_Click" Text="Eliminar Dia" BackColor="Red" Font-Bold="True" ForeColor="White"/>
             </td>
         </tr>
         <tr>
             <td style="text-align: center;" colspan="2">
-                <asp:Button ID="Button1" runat="server" Text="Enviar Datos" Height="29px" Width="110px" CssClass="boton" BackColor="#3333CC" OnClick="Button1_Click" />
+                <asp:Button class="BTN boton" ID="Button1" runat="server" Text="Enviar Datos" BackColor="#3333CC" OnClick="Button1_Click" ForeColor="White"/>
                 <br />
                 <br />
             </td>

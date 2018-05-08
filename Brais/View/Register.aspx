@@ -120,7 +120,7 @@
                     <span id="advertencia">(*Obligatorio solo si escogio la opcion EPS)</span></td>
             </tr>
             <tr>
-                <td class="auto-style10">&nbsp;
+                <td class="auto-style10">
                     <asp:Label ID="Label10" runat="server" Font-Bold="True" Text="Numero De Documento"></asp:Label>
                 </td>
                 <td class="auto-style9"><asp:TextBox ID="TB_id" runat="server" Width="117px" CssClass="auto-style7" MaxLength="15"></asp:TextBox>
@@ -130,12 +130,12 @@
                     <asp:Label ID="Label7" runat="server" Font-Bold="True" Text="Correo Electronico"></asp:Label>
                 </td>
                 <td>
-                    <asp:TextBox ID="TB_email" runat="server" TextMode="Email" MaxLength="80"></asp:TextBox>
+                    <asp:TextBox ID="TB_email" runat="server" TextMode="Email" MaxLength="50"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="TB_email" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
-                <td class="auto-style10">&nbsp;
+                <td class="auto-style10">
                     <asp:Label ID="Label3" runat="server" Font-Bold="True" Text="Nombres"></asp:Label>
                 </td>
                 <td class="auto-style9"><asp:TextBox ID="TB_name" runat="server" Width="117px" MaxLength="50"></asp:TextBox>
@@ -150,7 +150,7 @@
                 </td>
             </tr>
             <tr>
-                <td class="auto-style12">&nbsp;
+                <td class="auto-style12">
                     <asp:Label ID="Label4" runat="server" Font-Bold="True" Text="Apellidos"></asp:Label>
                 </td>
                 <td class="auto-style13"><asp:TextBox ID="TB_lastName" runat="server" Width="117px" MaxLength="50"></asp:TextBox>
@@ -166,7 +166,6 @@
             </tr>
             <tr>
                 <td class="auto-style11">
-                    &nbsp;
                     <asp:Label ID="Label5" runat="server" Font-Bold="True" Text="Fecha Nacimiento"></asp:Label>
                 </td>
                 <td class="auto-style4">

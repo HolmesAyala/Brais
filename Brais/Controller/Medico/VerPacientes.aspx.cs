@@ -13,10 +13,14 @@ public partial class View_Medico_VerPacientes : System.Web.UI.Page
     }
 
     protected void obtenerDatosPaciente()
-    { 
-        DBUsuario dBUsuario= new DBUsuario();
-        GV_Pacientes.DataSource = dBUsuario.obtenerPacientesAgendados((String)Session["identificacion_medico"]);
-        GV_Pacientes.DataBind();
+    {
+        if (Session["identificacion_medico"] != null)
+        {
+            DBUsuario dBUsuario = new DBUsuario();
+            GV_Pacientes.DataSource = dBUsuario.obtenerPacientesAgendados((String)Session["identificacion_medico"]);
+            GV_Pacientes.DataBind();
+        }
+        
     }
 
 

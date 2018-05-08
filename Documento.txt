@@ -1,3 +1,0 @@
-SELECT (horario->'Lunes'->>0)::json->'Hora_inicio' FROM medico.horario_medico
-El numero 0 se refiere a la posicion del array puede ser 1,2,3,etc..... Para recorrer todos los rangos...
-Siempre deben hacer ese casting para que lo reconosca como un json y puedan obtener Hora_inicio y Hora_fin

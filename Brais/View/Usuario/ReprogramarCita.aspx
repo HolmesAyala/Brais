@@ -43,7 +43,7 @@
         <h3>
             <asp:Label ID="Label1" runat="server" ForeColor="#33CCFF" Text="Cita a Cambiar"></asp:Label>
         </h3>
-        <asp:GridView ID="GV_CitasAgendadas" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" OnSelectedIndexChanged="GV_CitasAgendadas_SelectedIndexChanged" Width="1261px" CssClass="centrar">
+        <asp:GridView ID="GV_CitasAgendadas" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" Width="1261px" CssClass="centrar">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
                 <asp:TemplateField HeaderText="Seleccione">

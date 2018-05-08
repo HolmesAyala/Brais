@@ -28,8 +28,9 @@
             <AlternatingRowStyle BackColor="White" />
             <Columns>
                 <asp:BoundField DataField="dia" HeaderText="Fecha" SortExpression="dia" DataFormatString="{0:d}" HtmlEncode=false />
-                <asp:BoundField DataField="especialidad" HeaderText="Tipo" />
                 <asp:BoundField DataField="hora_inicio" HeaderText="Hora" />
+                <asp:BoundField DataField="especialidad" HeaderText="Tipo" />
+                <asp:BoundField DataField="nombre_medico" HeaderText="Médico" />
             </Columns>
             <EditRowStyle BackColor="#2461BF" HorizontalAlign="Center" />
             <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />

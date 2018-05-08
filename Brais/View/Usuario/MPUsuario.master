@@ -26,7 +26,7 @@
 
     <div class="mensaje_botones">
         <div>
-            <asp:Button ID="BTN_HistorialMedico" class="BTN_Historial_Medico" runat="server" Text="Ver historial Médico"></asp:Button>
+            <asp:Button ID="BTN_HistorialPaciente" class="BTN_Historial_Paceinte" runat="server" Text="Ver historial"></asp:Button>
             <asp:Button ID="BTN_ActualizarDatos" class="BTN_ActualizarDatos" runat="server" Text="Actualizar Datos" OnClick="BTN_ActualizarDatos_Click"></asp:Button>
             <asp:Button ID="BTN_CerrarSesion" class="BTN_CerrarSesion" runat="server" Text="Cerrar Sesión" OnClick="BTN_CerrarSesion_Click"></asp:Button>
         </div>

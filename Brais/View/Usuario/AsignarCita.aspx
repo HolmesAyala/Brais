@@ -108,7 +108,7 @@
                 <asp:GridView ID="GV_DisponibilidadHoraria" class="GV_DisponibilidadHoraria" runat="server" AutoGenerateColumns="False" EmptyDataText="Sin horarios" CellPadding="4" ForeColor="#333333" GridLines="None" Width="400px">
                     <AlternatingRowStyle BackColor="White" />
                     <Columns>
-                        <asp:BoundField DataField="id_medico" HeaderText="Medico" />
+                        <asp:BoundField DataField="nombre_medico" HeaderText="Medico" />
                         <asp:BoundField DataField="hora_inicio" HeaderText="Hora inicio" />
                         <asp:BoundField DataField="hora_fin" HeaderText="Hora fin" />
                         <asp:TemplateField>

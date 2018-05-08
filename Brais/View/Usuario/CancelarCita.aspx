@@ -44,8 +44,9 @@
                         <AlternatingRowStyle BackColor="White" />
                         <Columns>
                             <asp:BoundField DataField="dia" HeaderText="Fecha" SortExpression="dia" DataFormatString="{0:d}" HtmlEncode=false />
-                            <asp:BoundField DataField="especialidad" HeaderText="Tipo" />
                             <asp:BoundField DataField="hora_inicio" HeaderText="Hora" />
+                            <asp:BoundField DataField="especialidad" HeaderText="Tipo" />
+                            <asp:BoundField DataField="nombre_medico" HeaderText="Médico" />
                             <asp:TemplateField>
                                 <EditItemTemplate>
                                     <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
