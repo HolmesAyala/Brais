@@ -15,7 +15,7 @@ public partial class View_Administrador_parametros : System.Web.UI.Page
 
     private void llenarGridView()
     {
-        DBAdministrador admin = new DBAdministrador();
+        DBAdministrador admin = new DBAdministrador(); 
         GV_consultorios.DataSource = admin.obtenerConsultorios();
         GV_consultorios.DataBind();
     }
@@ -57,5 +57,11 @@ public partial class View_Administrador_parametros : System.Web.UI.Page
         ClientScriptManager cm = this.ClientScript;
         String dato = "<script type='text/javascript'>alert('A Partir de este momento las citas van a durar "+DL_tiempo.SelectedItem+" minutos')</script>;";
         cm.RegisterClientScriptBlock(this.GetType(), "", dato);
+    }
+
+    protected void BTN_Reporte_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/View/Administrador/ReporteConsultorios.aspx");
+
     }
 }

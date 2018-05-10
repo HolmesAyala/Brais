@@ -20,6 +20,12 @@
         .mitad{
            float:left;
         }
+        .BTN_Reporte{
+            border-radius: 5px;
+            border: 1px solid rgb(128, 128, 128);
+            color: white;
+            background-color: rgb(22, 157, 179);
+        }
         .auto-style1 {
             text-align: center;
         }
@@ -107,8 +113,13 @@
             <td colspan="2" style="height: 20px; text-align: center">
                 &nbsp;</td>
         </tr>
+        <tr style="text-align:left">
+            <td colspan="2">
+                <asp:Button runat="server" id="BTN_Reporte" CssClass="BTN_Reporte" Text="Generar Reporte" OnClick="BTN_Reporte_Click"></asp:Button>
+            </td>
+        </tr>
         <tr>
-            <td style="height: 20px" colspan="4"><br /><hr style="height:3px;background-color:deepskyblue" /></td>
+            <td colspan="4">&nbsp;</td>
         </tr>
         <tr>
             <td style="width: 458px; height: 20px">&nbsp;</td>

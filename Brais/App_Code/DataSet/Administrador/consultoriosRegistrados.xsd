@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="consultoriosRegistrados" targetNamespace="http://tempuri.org/consultoriosRegistrados.xsd" xmlns:mstns="http://tempuri.org/consultoriosRegistrados.xsd" xmlns="http://tempuri.org/consultoriosRegistrados.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="consultoriosRegistrados" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="consultoriosRegistrados" msprop:Generator_UserDSName="consultoriosRegistrados">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Consultorio" msprop:Generator_TableClassName="ConsultorioDataTable" msprop:Generator_TableVarName="tableConsultorio" msprop:Generator_TablePropName="Consultorio" msprop:Generator_RowDeletingName="ConsultorioRowDeleting" msprop:Generator_RowChangingName="ConsultorioRowChanging" msprop:Generator_RowEvHandlerName="ConsultorioRowChangeEventHandler" msprop:Generator_RowDeletedName="ConsultorioRowDeleted" msprop:Generator_UserTableName="Consultorio" msprop:Generator_RowChangedName="ConsultorioRowChanged" msprop:Generator_RowEvArgName="ConsultorioRowChangeEvent" msprop:Generator_RowClassName="ConsultorioRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Nombre" msprop:Generator_ColumnVarNameInTable="columnNombre" msprop:Generator_ColumnPropNameInRow="Nombre" msprop:Generator_ColumnPropNameInTable="NombreColumn" msprop:Generator_UserColumnName="Nombre" type="xs:string" minOccurs="0" />
+              <xs:element name="Ubicación" msprop:Generator_ColumnVarNameInTable="columnUbicación" msprop:Generator_ColumnPropNameInRow="Ubicación" msprop:Generator_ColumnPropNameInTable="UbicaciónColumn" msprop:Generator_UserColumnName="Ubicación" type="xs:string" minOccurs="0" />
+              <xs:element name="Disponible" msprop:Generator_ColumnVarNameInTable="columnDisponible" msprop:Generator_ColumnPropNameInRow="Disponible" msprop:Generator_ColumnPropNameInTable="DisponibleColumn" msprop:Generator_UserColumnName="Disponible" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
