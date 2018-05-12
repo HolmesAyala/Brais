@@ -24,4 +24,16 @@ public partial class View_Usuario_cambiarCita : System.Web.UI.Page
     {
 
     }
+
+    protected void b_cam_Click(object sender, EventArgs e)
+    {
+        //Se ACTUALIZA LA CITA Y FALTAN  VALIDACIONES
+        DBCitasUsr bd = new DBCitasUsr();
+        Button btn = (Button)sender;
+        int id_cita_nueva = int.Parse(btn.CommandArgument.ToString());
+        EUsuario usr = (EUsuario)Session["usuario"];
+        bd.act_cita(usr.Identificacion, int.Parse((Session["id_cita"].ToString())), id_cita_nueva);
+        Response.Redirect("ReprogramarCita.aspx");
+
+    }
 }

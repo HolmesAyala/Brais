@@ -26,4 +26,9 @@ public partial class View_Usuario_ReprogramarCita : System.Web.UI.Page
         Session["id_cita"] = id;
         Response.Redirect("cambiarCita.aspx");
     }
+
+    protected void GV_CitasAgendadas_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
 }

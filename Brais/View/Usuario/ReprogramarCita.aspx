@@ -35,6 +35,12 @@
             text-align: center;
         }
 
+        .auto-style2 {
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: auto;
+        }
+
         </style>
 
     <h1 class="titulo_usuario">Reprogramar Citas</h1>
@@ -44,7 +50,7 @@
             <asp:Label ID="Label1" runat="server" ForeColor="#33CCFF" Text="Cita a Cambiar"></asp:Label>
         </h3>
         <div class="auto-style1">
-        <asp:GridView ID="GV_CitasAgendadas" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" Width="1189px" CssClass="centrar" AutoGenerateColumns="False">
+        <asp:GridView ID="GV_CitasAgendadas" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" Width="1189px" CssClass="auto-style2" AutoGenerateColumns="False" OnSelectedIndexChanged="GV_CitasAgendadas_SelectedIndexChanged">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
                 <asp:TemplateField HeaderText="Seleccione">
