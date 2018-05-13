@@ -11,10 +11,7 @@ public partial class View_Usuario_AsignarCita : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if(DDL_TipoCita.SelectedIndex == 0)
-        {
-            Session["fechasDisponibles"] = null;
-        }
+        
     }
 
     protected void DDL_TipoCita_SelectedIndexChanged(object sender, EventArgs e)

@@ -67,6 +67,13 @@
             align-items: center;
             margin-bottom: 50px;
         }
+        .GV_DisponibilidadHoraria{
+            width: 80%;
+            margin: 0 auto;
+        }
+        .up{
+            width: 100%;
+        }
 
     </style>
 
@@ -139,9 +146,9 @@
             <asp:Image class="img" runat="server" ImageUrl="~/Imagen/tres.svg"></asp:Image>
             <h3>Disponibilidad Horaria</h3>
         </div>
-        <asp:UpdatePanel runat="server">
+        <asp:UpdatePanel class="up" runat="server">
             <ContentTemplate>
-                <asp:GridView ID="GV_DisponibilidadHoraria" class="GV_DisponibilidadHoraria" runat="server" AutoGenerateColumns="False" EmptyDataText="Sin horarios" CellPadding="4" ForeColor="#333333" GridLines="None" Width="400px">
+                <asp:GridView ID="GV_DisponibilidadHoraria" class="GV_DisponibilidadHoraria" runat="server" AutoGenerateColumns="False" EmptyDataText="Sin horarios" CellPadding="4" ForeColor="#333333" GridLines="None">
                     <AlternatingRowStyle BackColor="White" />
                     <Columns>
                         <asp:BoundField DataField="nombre_medico" HeaderText="Medico" />
