@@ -46,7 +46,7 @@ public class DBCita
         return dtCita;
     }
 
-    public static DataTable obtenerCitas(int idEspecialidad)
+    public static DataTable obtenerCitas(int idEspecialidad, EUsuario eUsuario)
     {
         DataTable dtCitas = new DataTable();
 
@@ -57,6 +57,7 @@ public class DBCita
             NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_obtener_citas", conexion);
             dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
             dataAdapter.SelectCommand.Parameters.Add("_id_especialidad", NpgsqlTypes.NpgsqlDbType.Integer).Value = idEspecialidad;
+            dataAdapter.SelectCommand.Parameters.Add("_id_usuario", NpgsqlTypes.NpgsqlDbType.Text).Value = eUsuario.Identificacion;
 
             conexion.Open();
             dataAdapter.Fill(dtCitas);
@@ -76,7 +77,7 @@ public class DBCita
         return dtCitas;
     }
 
-    public static DataTable obtenerCitas(int idEspecialidad, DateTime dia)
+    public static DataTable obtenerCitas(int idEspecialidad, DateTime dia, EUsuario eUsuario)
     {
         DataTable dtCitas = new DataTable();
 
@@ -88,6 +89,7 @@ public class DBCita
             dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
             dataAdapter.SelectCommand.Parameters.Add("_id_especialidad", NpgsqlTypes.NpgsqlDbType.Integer).Value = idEspecialidad;
             dataAdapter.SelectCommand.Parameters.Add("_dia", NpgsqlTypes.NpgsqlDbType.Date).Value = dia.Date;
+            dataAdapter.SelectCommand.Parameters.Add("_id_usuario", NpgsqlTypes.NpgsqlDbType.Text).Value = eUsuario.Identificacion;
 
             conexion.Open();
             dataAdapter.Fill(dtCitas);

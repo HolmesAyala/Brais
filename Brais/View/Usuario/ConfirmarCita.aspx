@@ -34,7 +34,7 @@
         }
 
         .label-cita-final {
-            text-align: center;
+            text-align: left;
         }
 
         td.boton_confirmar {
@@ -149,11 +149,11 @@
         </tr>
         <tr>
             <td class="boton_confirmar">
-                <asp:Button class="BTN_Confirmar_Cita" ID="BTN_ConfirmarCita" runat="server" Text="Confirmar cita" OnClick="BTN_ConfirmarCita_Click" />
+                <asp:Button class="BTN_Confirmar_Cita BTN_Azul" ID="BTN_ConfirmarCita" runat="server" Text="Confirmar cita" OnClick="BTN_ConfirmarCita_Click" />
                 &nbsp;&nbsp;
             </td>
             <td class="boton-volver">
-                <asp:Button class="BTN_Volver" ID="Btn_Volver" runat="server" Text="Volver a asignación" OnClick="Btn_Volver_Click" />
+                <asp:Button class="BTN_Volver BTN_Azul" ID="Btn_Volver" runat="server" Text="Volver a asignación" OnClick="Btn_Volver_Click" />
                 &nbsp;&nbsp;
             </td>
         </tr>

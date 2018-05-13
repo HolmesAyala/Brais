@@ -11,13 +11,18 @@ public partial class View_Usuario_AsignarCita : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if(DDL_TipoCita.SelectedIndex == 0)
+        {
+            Session["fechasDisponibles"] = null;
+        }
     }
 
     protected void DDL_TipoCita_SelectedIndexChanged(object sender, EventArgs e)
     {
-        DataTable dtCitas = DBCita.obtenerCitas(int.Parse(DDL_TipoCita.SelectedValue.ToString()));
+        EUsuario eUsuario = (EUsuario)Session["usuario"];
+        DataTable dtCitas = DBCita.obtenerCitas(int.Parse(DDL_TipoCita.SelectedValue.ToString()), eUsuario);
         Session["fechasDisponibles"] = obtenerFechaDeCitas(dtCitas);
+        C_FechasDisponibles.SelectedDate = DateTime.MinValue;
         mostrarDisponibilidadHoraria();
     }
 
@@ -67,7 +72,8 @@ public partial class View_Usuario_AsignarCita : System.Web.UI.Page
 
     protected void mostrarDisponibilidadHoraria()
     {
-        DataTable dtCitas = DBCita.obtenerCitas(int.Parse(DDL_TipoCita.SelectedValue.ToString()), C_FechasDisponibles.SelectedDate);
+        EUsuario eUsuario = (EUsuario)Session["usuario"];
+        DataTable dtCitas = DBCita.obtenerCitas(int.Parse(DDL_TipoCita.SelectedValue.ToString()), C_FechasDisponibles.SelectedDate, eUsuario);
         GV_DisponibilidadHoraria.DataSource = dtCitas;
         GV_DisponibilidadHoraria.DataBind();
     }
@@ -75,9 +81,8 @@ public partial class View_Usuario_AsignarCita : System.Web.UI.Page
 
     protected void BTN_SeleccionarCita_Click(object sender, EventArgs e)
     {
-
         Button btnSeleccionarCita = (Button)sender;
-
+        
         string idCita = btnSeleccionarCita.CommandName;
 
         ECita eCita = ECita.dataTableToECita(DBCita.obtenerCita(int.Parse(idCita)));
@@ -86,16 +91,17 @@ public partial class View_Usuario_AsignarCita : System.Web.UI.Page
 
         if (DBCita.verificarDisponibilidadCita(eCita.Id))
         {
+            DDL_TipoCita.SelectedIndex = 0;
+            C_FechasDisponibles.SelectedDate = DateTime.MinValue;
+
             Response.Redirect("~/View/Usuario/ConfirmarCita.aspx");
         }
         else
         {
             string script = @"<script type='text/javascript'>alert('La cita ya se encuentra reservada!');</script>";
             ScriptManager.RegisterStartupScript(this, typeof(Page), "alerta", script, false);
-
-            mostrarDisponibilidadHoraria();
         }
-        
+        mostrarDisponibilidadHoraria();
     }
 
 }

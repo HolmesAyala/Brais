@@ -10,14 +10,34 @@
             padding: 20px;
         }
 
-        div.campo{
+        div#informacion{
+            width: 50%;
+            margin: 0 auto;
+            margin-bottom: 30px;
+        }
+        div#informacion p{
+            line-height: 1.6;
+        }
+        div#informacion div{
             display: flex;
-            justify-content: center;
-            padding: 10px;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .img{
+            width: 2.5rem;
+            margin-right: 20px;
         }
 
-        div.campo > *{
-            width: 50%;
+        div.campo{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        div.campo .lb{
+            margin-right: 20px;
+            display: block;
         }
 
         div.tipocita_fechasdisponibles{
@@ -29,7 +49,6 @@
         }
 
         div.tipo_cita{
-            padding: 10px;
             width: 300px;
         }
 
@@ -48,37 +67,51 @@
             align-items: center;
             margin-bottom: 50px;
         }
-        div.disponibilidad_horaria h3{
-            margin-bottom: 50px;
-        }
-
-        .BTN_SeleccionarCita{
-            /*display: block;
-            margin: 0 auto;*/
-            border-radius: 5px;
-            background-color: rgb(0, 200, 248);
-            color: white;
-            border: 1px solid rgb(0, 200, 248);
-        }
 
     </style>
 
     <asp:ScriptManager runat="server"></asp:ScriptManager>
 
-    <h1 class="titulo_usuario">Asignar Citas</h1>
+    <h1 class="titulo_usuario">Asignar Cita</h1>
+
+    <div id="informacion">
+        <div>
+            <asp:Image class="img" runat="server" ImageUrl="~/Imagen/uno.svg"></asp:Image>
+            <p>Seleccione el tipo de cita</p>
+        </div>
+        <div>
+            <asp:Image class="img" runat="server" ImageUrl="~/Imagen/dos.svg"></asp:Image>
+            <p>Seleccione un dia disponible marcado con: </p>
+            <asp:Image class="img" runat="server" ImageUrl="~/Imagen/dia_seleccionable.svg"></asp:Image>
+        </div>
+        <div>
+            <asp:Image class="img" runat="server" ImageUrl="~/Imagen/tres.svg"></asp:Image>
+            <p>Seleccione una cita segun la disponibilidad</p>
+        </div>
+        <div>
+            <asp:Image class="img" runat="server" ImageUrl="~/Imagen/informacion.svg"></asp:Image>
+            <p>Tenga en cuenta: <br /> 
+                - Solo puede agendar de a una cita por tipo
+            </p>
+        </div>
+    </div>
+
     <div class="tipocita_fechasdisponibles">
         <div class="tipo_cita">
             <div class="campo">
-                <asp:Label ID="LB_TipoCita" class="LB_TipoCita" runat="server" Text="Tipo de cita: "></asp:Label>
+                <asp:Image class="img" runat="server" ImageUrl="~/Imagen/uno.svg"></asp:Image>
+                <asp:Label ID="LB_TipoCita" class="LB_TipoCita lb" runat="server" Text="Tipo de cita: "></asp:Label>
                 <asp:DropDownList ID="DDL_TipoCita" class="DDL_TipoCita" runat="server" DataSourceID="ODS_ObtenerEspecialidades" DataTextField="nombre" DataValueField="id" AutoPostBack="True" OnSelectedIndexChanged="DDL_TipoCita_SelectedIndexChanged">
                 </asp:DropDownList>
                 <asp:ObjectDataSource ID="ODS_ObtenerEspecialidades" runat="server" SelectMethod="obtenerTipoEspecialidad" TypeName="DBEspecialidad"></asp:ObjectDataSource>
             </div>
         </div>
-
+        
         <div class="fechas_disponibles">
-            <h3>Fechas Disponibles</h3>
-
+            <div class="campo">
+                <asp:Image class="img" runat="server" ImageUrl="~/Imagen/dos.svg"></asp:Image>
+                <h3>Fechas Disponibles</h3>
+            </div>
             <asp:UpdatePanel runat="server">
                 <ContentTemplate>
                     <asp:Calendar ID="C_FechasDisponibles" class="C_FechasDisponibles" runat="server" BackColor="White" BorderColor="#0099CC" BorderWidth="2px" CellPadding="3" DayNameFormat="Shortest" Font-Names="Arial" Font-Size="12pt" ForeColor="#003399" Height="270px" Width="300px" BorderStyle="None" CellSpacing="3" OnDayRender="C_FechasDisponibles_DayRender" OnSelectionChanged="C_FechasDisponibles_SelectionChanged">
@@ -102,7 +135,10 @@
     </div>
 
     <div class="disponibilidad_horaria">
-        <h3>Disponibilidad Horaria</h3>
+        <div class="campo">
+            <asp:Image class="img" runat="server" ImageUrl="~/Imagen/tres.svg"></asp:Image>
+            <h3>Disponibilidad Horaria</h3>
+        </div>
         <asp:UpdatePanel runat="server">
             <ContentTemplate>
                 <asp:GridView ID="GV_DisponibilidadHoraria" class="GV_DisponibilidadHoraria" runat="server" AutoGenerateColumns="False" EmptyDataText="Sin horarios" CellPadding="4" ForeColor="#333333" GridLines="None" Width="400px">
@@ -113,7 +149,7 @@
                         <asp:BoundField DataField="hora_fin" HeaderText="Hora fin" />
                         <asp:TemplateField>
                             <ItemTemplate>
-                                <asp:Button ID="BTN_SeleccionarCita" class="BTN_SeleccionarCita" runat="server" CommandName='<%# Eval("id") %>' Text="Seleccionar" OnClick="BTN_SeleccionarCita_Click" />
+                                <asp:Button ID="BTN_SeleccionarCita" class="BTN_SeleccionarCita BTN_Azul" runat="server" CommandName='<%# Eval("id") %>' Text="Seleccionar" OnClick="BTN_SeleccionarCita_Click" />
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
