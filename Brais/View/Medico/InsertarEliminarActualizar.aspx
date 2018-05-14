@@ -40,7 +40,7 @@
         }
     </style>
     <asp:ScriptManager runat="server"></asp:ScriptManager>
-    <asp:Label ID="prueba" runat="server" Text="Label"></asp:Label>
+    <asp:Label ID="prueba" runat="server" Text="Label" Visible="False"></asp:Label>
     <table style="width: 100%">
         <tr>
             <td colspan="2" style="text-align: center; height: 29px"><strong>
@@ -111,18 +111,27 @@
         </tr>
         <tr>
             <td class="label">
-                <asp:Label ID="L_Consultorio" runat="server" Text="Consultorio: "></asp:Label>
+                <asp:Label ID="L_Consultorio" runat="server" Text="Consultorio: " Visible="False"></asp:Label>
+                &nbsp;&nbsp;&nbsp;
+            </td>
+            <td>
+                <asp:TextBox ID="TB_Consultorio" runat="server" Visible="False"></asp:TextBox>
+            </td>
+        </tr>
+        <tr>
+            <td class="label">
+                <asp:Label ID="L_Consultorio_Disponibles" runat="server" Text="Consultorios Disponibles: "></asp:Label>
                 &nbsp;&nbsp;&nbsp;
             </td>
             <td>
                 <asp:DropDownList ID="DDL_Consultorio" runat="server" DataSourceID="ODS_Consultorio" DataTextField="nombre_consultorio" DataValueField="id">
                 </asp:DropDownList>
-                <asp:ObjectDataSource ID="ODS_Consultorio" runat="server" SelectMethod="obtenerConsultorios" TypeName="DBConsultorio"></asp:ObjectDataSource>
+                <asp:ObjectDataSource ID="ODS_Consultorio" runat="server" SelectMethod="obtenerConsultoriosDisponibles" TypeName="DBConsultorio"></asp:ObjectDataSource>
             </td>
         </tr>
         <tr>
             <td class="label">
-                <asp:Label ID="L_Correo" runat="server" Text="Correo"></asp:Label>
+                <asp:Label ID="L_Correo" runat="server" Text="Correo: "></asp:Label>
                 &nbsp;&nbsp;&nbsp;
             </td>
             <td>

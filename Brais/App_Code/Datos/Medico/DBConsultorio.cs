@@ -48,6 +48,35 @@ public class DBConsultorio
         return consultorio;
     }
 
+    public DataTable obtenerConsultoriosDisponibles()
+    {
+        DataTable consultorio = new DataTable();
+
+        NpgsqlConnection conexion = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+
+        try
+        {
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("public.f_obtener_consultorios_disponibles", conexion);
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+            conexion.Open();
+            dataAdapter.Fill(consultorio);
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+        finally
+        {
+            if (conexion != null)
+            {
+                conexion.Close();
+            }
+        }
+
+        return consultorio;
+    }
+
     public DataTable guardarDisponibilidad(int id_consultorio)
     {
         DataTable consultorio = new DataTable();
@@ -118,6 +147,36 @@ public class DBConsultorio
         {
             NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("public.f_obtener_consultorio", conexion);
             dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlDbType.Integer).Value = id_consultorio;
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+            conexion.Open();
+            dataAdapter.Fill(consultorio);
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+        finally
+        {
+            if (conexion != null)
+            {
+                conexion.Close();
+            }
+        }
+
+        return consultorio;
+    }
+
+    public DataTable obtenerConsultorio(String nombre_consultorio)
+    {
+        DataTable consultorio = new DataTable();
+
+        NpgsqlConnection conexion = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+
+        try
+        {
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("public.f_obtener_consultorio", conexion);
+            dataAdapter.SelectCommand.Parameters.Add("_nombre_consultorio", NpgsqlDbType.Text).Value = nombre_consultorio;
             dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
 
             conexion.Open();
