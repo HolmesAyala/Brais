@@ -8,11 +8,7 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <style>
-        div.mensaje_botones{
-            display: flex;
-            justify-content: space-between;
-            padding: 20px;
-        }
+        
 
         div.mensaje_botones [class ^= "BTN"], ul.menu [class ^= "BTN"]{
             border-radius: 5px;
@@ -22,21 +18,63 @@
         ul.menu{
             display: flex;
             justify-content: center;
+            align-items: center;
             padding: 20px;
+        }
+        .menu > li{
+            position: relative;
+        }
+        .menu > li > ul{
+            position: absolute;
+            display: none;
+        }
+        .menu > li:hover ul{
+            display: block;
+        }
+        .configuracion{
+            background-color:aqua;
+            width: 40px;
+            border-radius: 5px;
+            padding: 3px;
+            background-color: rgb(68, 161, 178);
+            border: none;
+            transition: all 0.7s ease;
+        }
+        .menu > li:last-child{
+            margin-left: 20px;
+        }
+        .menu > li:last-child:hover .configuracion{
+            background-color: rgb(231, 135, 87);
+        }
+        .menu > li > ul > li > *{
+            width: 100%;
+        }
+        .BTN_CerrarSesion{
+            color: white;
+            background-color: rgb(255, 56, 34);
+            border: 1px solid rgb(0, 77, 99);
+            border-radius: 5px;
         }
 
     </style>
 
     <div class="mensaje_botones">
         <div>
-            <asp:Button ID="BTN_ActualizarDatos" class="BTN_ActualizarDatos" runat="server" Text="Actualizar Datos" OnClick="BTN_ActualizarDatos_Click" CausesValidation="False"></asp:Button>
-            <asp:Button ID="BTN_CerrarSesion" class="BTN_CerrarSesion" runat="server" Text="Cerrar Sesión" OnClick="BTN_CerrarSesion_Click" CausesValidation="False"></asp:Button>
+            
         </div>
     </div>
 
     <ul class="menu">
         <li><asp:Button ID="BTN_VerPacientes" class="BTN_VerPacientes" runat="server" Text="Ver pacientes" OnClick="BTN_VerPacientes_Click1" CausesValidation="False"></asp:Button></li>
         <li><asp:Button ID="BTN_HorarioTrabajo" class="BTN_HorarioTrabajo" runat="server" Text="Horario de trabajo" OnClick="BTN_HorarioTrabajo_Click" CausesValidation="False"></asp:Button></li>
+        <li>
+            <asp:ImageButton class="configuracion" runat="server" ImageUrl="~/Imagen/configuracion.svg"></asp:ImageButton>
+            <ul>
+                <li><asp:Button ID="BTN_ActualizarDatos" class="BTN_ActualizarDatos" runat="server" Text="Actualizar Datos" OnClick="BTN_ActualizarDatos_Click" CausesValidation="False"></asp:Button></li>
+                <li><asp:Button ID="BTN_CerrarSesion" class="BTN_CerrarSesion" runat="server" Text="Cerrar Sesión" OnClick="BTN_CerrarSesion_Click" CausesValidation="False"></asp:Button></li>
+            </ul>
+        </li>
+        
     </ul>
 
     <div>
