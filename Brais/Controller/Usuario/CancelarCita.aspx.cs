@@ -39,4 +39,9 @@ public partial class View_Usuario_CancelarCita : System.Web.UI.Page
         DBCita.eliminarCita(eCita);
         obtenerCitasPaciente();
     }
+
+    protected void GV_Cancelar_Cita_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
 }

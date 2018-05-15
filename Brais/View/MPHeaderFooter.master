@@ -138,7 +138,7 @@
                 <asp:Label runat="server" Text=""></asp:Label>
             </div>
             
-            <nav>
+            <nav class="menu_principal">
                 <ul>
                     <li><asp:Button runat="server" Text="Pagina Principal" class="BTN_PaginaPrincipal" ID="BTN_PaginaPrincipal" OnClick="BTN_PaginaPrincipal_Click" CausesValidation="False" ValidateRequestMode="Disabled"></asp:Button></li>
                     <li><asp:Button runat="server" Text="Sobre Nosotros" class="BTN_SobreNosotros" ID="BTN_SobreNosotros" OnClick="BTN_SobreNosotros_Click" CausesValidation="False" ValidateRequestMode="Disabled"></asp:Button></li>
@@ -173,12 +173,12 @@
             <div class="datos">
                 <div class="telefono">
                     <asp:Image runat="server" ImageUrl="~/Imagen/telefono.svg" Width="30px"></asp:Image>
-                    <h3>######</h3>
+                    <h3>823 712123</h3>
                 </div>
 
                 <div class="ubicacion">
                     <asp:Image runat="server" ImageUrl="~/Imagen/ubicacion.svg" Width="30px"></asp:Image>
-                    <h3>######</h3>
+                    <h3>Dirección falsa N° 12-34</h3>
                 </div>
             </div>
 

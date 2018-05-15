@@ -10,6 +10,8 @@ public partial class View_Usuario_cambiarCita : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        MaintainScrollPositionOnPostBack = true;
+        Response.Cache.SetNoStore();
         DataTable datos = new DataTable();
         DBCitasUsr cite = new DBCitasUsr();
         datos = cite.obtener_disp_tipo(int.Parse((Session["id_cita"].ToString())));
@@ -20,9 +22,17 @@ public partial class View_Usuario_cambiarCita : System.Web.UI.Page
         }
     }
 
-    protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+    protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
-
+        GridView1.PageIndex = e.NewPageIndex;
+        DataTable datos = new DataTable();
+        DBCitasUsr cite = new DBCitasUsr();
+        datos = cite.obtener_disp_tipo(int.Parse((Session["id_cita"].ToString())));
+        if (datos.Rows.Count > 0)
+        {
+            GridView1.DataSource = datos;
+            GridView1.DataBind();
+        }
     }
 
     protected void b_cam_Click(object sender, EventArgs e)

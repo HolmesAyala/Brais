@@ -6,6 +6,7 @@
         .centrar{
             margin:auto;
         }
+
         h1.titulo_usuario{
             color: rgb(0, 200, 248);
             text-align: center;
@@ -31,14 +32,13 @@
             border: 1px solid rgb(0, 200, 248);
         }
 
-        .auto-style1 {
-            text-align: center;
+        div#Tabla{
+            margin-bottom: 30px;
         }
 
-        .auto-style2 {
-            margin-left: auto;
-            margin-right: auto;
-            margin-bottom: auto;
+        div#Tabla .GV_CitasAgendadas{
+            width: 80%;
+            margin: 0 auto;
         }
 
         </style>
@@ -49,25 +49,25 @@
         <h3>
             <asp:Label ID="Label1" runat="server" ForeColor="#33CCFF" Text="Cita a Cambiar"></asp:Label>
         </h3>
-        <div class="auto-style1">
-        <asp:GridView ID="GV_CitasAgendadas" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" Width="1189px" CssClass="auto-style2" AutoGenerateColumns="False" OnSelectedIndexChanged="GV_CitasAgendadas_SelectedIndexChanged">
+        <div id="Tabla">
+        <asp:GridView id="GV_CitasAgendadas" class="GV_CitasAgendadas" runat="server" AllowPaging="True" AutoGenerateColumns="False" CellPadding="10" CellSpacing="5" ForeColor="#333333" GridLines="None" HorizontalAlign="Center" EnableModelValidation="False" OnSelectedIndexChanged="GV_CitasAgendadas_SelectedIndexChanged">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
                 <asp:TemplateField HeaderText="Seleccione">
                     <ItemTemplate>
-                        <asp:Button ID="Button1" runat="server" Text="Seleccionar" CommandArgument='<%# Eval("id") %>' OnClick="Button1_Click"/>
+                        <asp:Button class="BTN_Confirmar" ID="BTN_Confirmar" runat="server" Text="Seleccionar" CommandArgument='<%# Eval("id") %>' OnClick="Button1_Click"/>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:BoundField DataField="id_medico" HeaderText="Medico" />
+                <asp:BoundField DataField="nombre_medico" HeaderText="Medico" />
                 <asp:BoundField DataField="hora_inicio" HeaderText="Hora Inicio" />
                 <asp:BoundField DataField="hora_fin" HeaderText="Hora Fin" />
-                <asp:BoundField DataField="dia" HeaderText="Dia" />
+                <asp:BoundField DataField="dia" HeaderText="Dia" SortExpression="dia" DataFormatString="{0:d}" HtmlEncode=false/>
             </Columns>
-            <EditRowStyle BackColor="#2461BF" />
+            <EditRowStyle BackColor="#2461BF" HorizontalAlign="Center" />
             <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-            <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+            <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" />
             <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
-            <RowStyle BackColor="#EFF3FB" />
+            <RowStyle BackColor="#EFF3FB" HorizontalAlign="Center" />
             <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
             <SortedAscendingCellStyle BackColor="#F5F7FB" />
             <SortedAscendingHeaderStyle BackColor="#6D95E1" />
@@ -75,8 +75,6 @@
             <SortedDescendingHeaderStyle BackColor="#4870BE" />
         </asp:GridView>
         </div>
-    </div>
-    <div class="auto-style1">
     </div>
 
 </asp:Content>

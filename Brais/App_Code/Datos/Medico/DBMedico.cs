@@ -317,6 +317,7 @@ public class DBMedico
                 dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
                 dataAdapter.SelectCommand.Parameters.Add("_id_medic", NpgsqlDbType.Text).Value = medico.Identificacion;
                 dataAdapter.SelectCommand.Parameters.Add("_horario", NpgsqlDbType.Json).Value = medico.Horario;
+                conexion.Open();
                 dataAdapter.Fill(data);
             }
            
@@ -336,6 +337,7 @@ public class DBMedico
             
            
     }
+
 
     public bool schedule_is_already(String id)
     {
