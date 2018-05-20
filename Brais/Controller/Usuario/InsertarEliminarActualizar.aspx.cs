@@ -44,32 +44,71 @@ public partial class View_Usuario_InsertarEliminarActualizar : System.Web.UI.Pag
 
     protected void adecuarParaActualizar()
     {
-        string identificacion = Session["identificacion"].ToString();
-
-        DBUsuario dBUsuario = new DBUsuario();
-
-        DataTable dtUsuario = dBUsuario.obtenerUsuario(identificacion);
-
-        EUsuario eUsuario = Funcion.dataTableToEUsuario(dtUsuario);
-
-        DDL_Tipo_Documento.SelectedIndex = eUsuario.Tipo_id;
-        TB_Numero_Documento.Text = eUsuario.Identificacion;
-        TB_Numero_Documento.Enabled = false;
-        TB_Nombre.Text = eUsuario.Nombre;
-        TB_Apellido.Text = eUsuario.Apellido;
-        TB_FechaNacimiento.TextMode = TextBoxMode.Date;
-        TB_FechaNacimiento.Text = DateTime.Parse(eUsuario.Fecha).ToString("yyyy-MM-dd");
-        DDL_TipoAfiliacion.SelectedIndex = eUsuario.Tipo_afiliacion;
-        DDL_Eps.SelectedIndex = eUsuario.IdEps;
-        TB_Correo.Text = eUsuario.Correo;
-        TB_Clave.Attributes.Add("value", eUsuario.Password);
-        TB_RepetirClave.Attributes.Add("value", eUsuario.Password);
-        BTN_Accion.Text = "Actualizar";
-
-        if (eUsuario.Tipo_afiliacion == 2)
+        if (((EUsuario)Session["usuario"]).TipoUsuario == 1)
         {
+            string identificacion = Session["identificacion"].ToString();
+
+            DBUsuario dBUsuario = new DBUsuario();
+
+            DataTable dtUsuario = dBUsuario.obtenerUsuario(identificacion);
+
+            EUsuario eUsuario = Funcion.dataTableToEUsuario(dtUsuario);
+
+            DDL_Tipo_Documento.SelectedIndex = eUsuario.Tipo_id;
+            TB_Numero_Documento.Text = eUsuario.Identificacion;
+            TB_Numero_Documento.Enabled = false;
+            TB_Nombre.Text = eUsuario.Nombre;
+            TB_Apellido.Text = eUsuario.Apellido;
+            TB_FechaNacimiento.TextMode = TextBoxMode.Date;
+            TB_FechaNacimiento.Text = DateTime.Parse(eUsuario.Fecha).ToString("yyyy-MM-dd");
+            DDL_TipoAfiliacion.SelectedIndex = eUsuario.Tipo_afiliacion;
+            DDL_Eps.SelectedIndex = eUsuario.IdEps;
+            TB_Correo.Text = eUsuario.Correo;
+            TB_Clave.Attributes.Add("value", eUsuario.Password);
+            TB_RepetirClave.Attributes.Add("value", eUsuario.Password);
+            BTN_Accion.Text = "Actualizar";
+
+            if (eUsuario.Tipo_afiliacion == 2)
+            {
+                DDL_Eps.Enabled = false;
+            }
+
+        }else if(((EUsuario)Session["usuario"]).TipoUsuario == 3)
+        {
+            string identificacion = Session["identificacion"].ToString();
+
+            DBUsuario dBUsuario = new DBUsuario();
+
+            DataTable dtUsuario = dBUsuario.obtenerUsuario(identificacion);
+
+            EUsuario eUsuario = Funcion.dataTableToEUsuario(dtUsuario);
+
+            DDL_Tipo_Documento.SelectedIndex = eUsuario.Tipo_id;
+            DDL_Tipo_Documento.Enabled = false;
+            TB_Numero_Documento.Text = eUsuario.Identificacion;
+            TB_Numero_Documento.Enabled = false;
+            TB_Nombre.Text = eUsuario.Nombre;
+            TB_Nombre.Enabled = false;
+            TB_Apellido.Text = eUsuario.Apellido;
+            TB_Apellido.Enabled = false;
+            TB_FechaNacimiento.TextMode = TextBoxMode.Date;
+            TB_FechaNacimiento.Text = DateTime.Parse(eUsuario.Fecha).ToString("yyyy-MM-dd");
+            TB_FechaNacimiento.Enabled = false;
+            DDL_TipoAfiliacion.SelectedIndex = eUsuario.Tipo_afiliacion;
+            DDL_TipoAfiliacion.Enabled = false;
+            DDL_Eps.SelectedIndex = eUsuario.IdEps;
             DDL_Eps.Enabled = false;
+            TB_Correo.Text = eUsuario.Correo;
+            TB_Clave.Attributes.Add("value", eUsuario.Password);
+            TB_RepetirClave.Attributes.Add("value", eUsuario.Password);
+            BTN_Accion.Text = "Actualizar";
+
+            if (eUsuario.Tipo_afiliacion == 2)
+            {
+                DDL_Eps.Enabled = false;
+            }
         }
+        
 
     }
 
