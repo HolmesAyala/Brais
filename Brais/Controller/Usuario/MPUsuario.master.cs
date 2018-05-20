@@ -13,6 +13,7 @@ public partial class Controller_Usuario_MPUsuario : System.Web.UI.MasterPage
         {
             Response.Redirect("~/View/Login.aspx");
         }
+
     }
 
     protected void BTN_CerrarSesion_Click(object sender, EventArgs e)

@@ -13,6 +13,10 @@ public partial class View_Default : System.Web.UI.Page
     {
         MaintainScrollPositionOnPostBack = true;
         Response.Cache.SetNoStore();
+        if (Session["usuario"] != null)
+        {
+            Response.Redirect("~/View/Usuario/AsignarCita.aspx");
+        }
     }
 
     protected void Button1_Click(object sender, EventArgs e)

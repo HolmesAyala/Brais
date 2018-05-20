@@ -10,7 +10,10 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-
+     <script>
+         //console.log("ejecuto");
+        //window.history.replaceState({},'','page');
+    </script>
     <style>
 
         *{
@@ -126,6 +129,9 @@
             justify-content: space-around;
             margin: 10px;
         }
+        .ocultar_menu{
+            display: none;
+        }
 
     </style>
 
@@ -135,10 +141,12 @@
             <div>
                 <asp:Image runat="server" ID="IMG_Logo" ImageAlign="Middle" ImageUrl="~/Imagen/logo.png" Width="200px"></asp:Image>
                 <h1 class="titulo">Brais</h1>
-                <asp:Label runat="server" Text=""></asp:Label>
+                <div>
+                    <asp:Button runat="server" Text="Casa" class="BTN BTN_Azul" ID="BTN_Casa" CausesValidation="False" ValidateRequestMode="Disabled" Visible="False" OnClick="BTN_Casa_Click"></asp:Button>
+                </div>
             </div>
             
-            <nav class="menu_principal">
+            <nav runat="server" class="menu_principal" id="menu_principal">
                 <ul>
                     <li><asp:Button runat="server" Text="Pagina Principal" class="BTN_PaginaPrincipal" ID="BTN_PaginaPrincipal" OnClick="BTN_PaginaPrincipal_Click" CausesValidation="False" ValidateRequestMode="Disabled"></asp:Button></li>
                     <li><asp:Button runat="server" Text="Sobre Nosotros" class="BTN_SobreNosotros" ID="BTN_SobreNosotros" OnClick="BTN_SobreNosotros_Click" CausesValidation="False" ValidateRequestMode="Disabled"></asp:Button></li>
