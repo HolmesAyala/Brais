@@ -12,6 +12,7 @@ public partial class View_Medico_InsertarEliminarActualizar : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         MaintainScrollPositionOnPostBack = true;
+        LB_Mensaje.Visible = false;
         Response.Cache.SetNoStore();
         if (Session["usuario"] == null)
         {
@@ -46,7 +47,7 @@ public partial class View_Medico_InsertarEliminarActualizar : System.Web.UI.Page
     protected void adecuarParaActualizar()
     {
 
-        if (Session["usuario"].GetType() == new EMedico().GetType() )
+        if (Session["usuario"].GetType() == new EMedico().GetType())
         {
             string identificacion = Session["identificacion_medico"].ToString();
 
@@ -68,15 +69,14 @@ public partial class View_Medico_InsertarEliminarActualizar : System.Web.UI.Page
             TB_Fecha_Nacimiento.Text = DateTime.Parse(eMedico.FechaNacimiento).ToString("yyyy-MM-dd");
             TB_Fecha_Nacimiento.Enabled = false;
             DDL_Especialidad.SelectedIndex = eMedico.TipoEspecialidad;
-            Session["consultorio"] = eMedico.Consultorio;
-            DDL_Consultorio.SelectedIndex = eMedico.Consultorio;
+            adecuarConsultorio(eMedico.Consultorio);
             TB_Correo.Text = eMedico.Correo;
             TB_Contrasena.Attributes.Add("value", eMedico.Password);
             TB_Repetir_Contrasena.Attributes.Add("value", eMedico.Password);
             BTN_Accion.Text = "Actualizar";
 
         }
-        else if( Session["usuario"].GetType() == new EUsuario().GetType() )
+        else if (Session["usuario"].GetType() == new EUsuario().GetType())
         {
             string identificacion = Session["identificacion"].ToString();
 
@@ -94,15 +94,26 @@ public partial class View_Medico_InsertarEliminarActualizar : System.Web.UI.Page
             TB_Fecha_Nacimiento.TextMode = TextBoxMode.Date;
             TB_Fecha_Nacimiento.Text = DateTime.Parse(eMedico.FechaNacimiento).ToString("yyyy-MM-dd");
             DDL_Especialidad.SelectedIndex = eMedico.TipoEspecialidad;
-            DDL_Consultorio.SelectedIndex = eMedico.Consultorio;
-            Session["consultorio"] = eMedico.Consultorio;
+            adecuarConsultorio(eMedico.Consultorio);
             TB_Correo.Text = eMedico.Correo;
             TB_Contrasena.Attributes.Add("value", eMedico.Password);
             TB_Repetir_Contrasena.Attributes.Add("value", eMedico.Password);
             BTN_Accion.Text = "Actualizar";
-            
+
         }
 
+    }
+
+    protected void adecuarConsultorio(int id_Consultorio)
+    {
+        DBConsultorio dBConsultorio = new DBConsultorio();
+        DataTable consultorio = dBConsultorio.obtenerConsultorio(id_Consultorio);
+        L_Consultorio.Visible = true;
+        TB_Consultorio.Visible = true;
+        TB_Consultorio.Text = consultorio.Rows[0]["nombre_consultorio"].ToString();
+        TB_Consultorio.Enabled = false;
+        DDL_Consultorio.SelectedIndex = 0;
+        Session["consultorio"] = id_Consultorio;
     }
 
     protected Boolean validarDatos()
@@ -162,16 +173,16 @@ public partial class View_Medico_InsertarEliminarActualizar : System.Web.UI.Page
 
             DataTable medico = dBConsultorio.obtenerConsultorios();
 
-            if (medico.Rows.Count == 1)
+            if(TB_Consultorio.Text.ToString() == "" || TB_Consultorio.Text.ToString() == "Ninguno")
             {
-                mensaje += "- No hay consultorios disponibles.<br/>";
-            }
-            else if(medico.Rows.Count > 1)
-            {
-                mensaje += "- No ha seleccionado el consultorio.<br/>";
-            }
-            else
-            {
+                if (medico.Rows.Count == 1)
+                {
+                    mensaje += "- No hay consultorios disponibles.<br/>";
+                }
+                else if (medico.Rows.Count > 1)
+                {
+                    mensaje += "- No ha seleccionado el consultorio.<br/>";
+                }
             }
         }
 
@@ -195,7 +206,7 @@ public partial class View_Medico_InsertarEliminarActualizar : System.Web.UI.Page
 
         if (!mensaje.Equals(""))
         {
-            if(mensaje.Equals("- No hay consultorios disponibles.<br/>"))
+            if (mensaje.Equals("- No hay consultorios disponibles.<br/>"))
             {
                 return true;
             }
@@ -210,13 +221,22 @@ public partial class View_Medico_InsertarEliminarActualizar : System.Web.UI.Page
     protected EMedico recolectarDatos()
     {
         EMedico eMedico = new EMedico();
+        DBConsultorio dBConsultorio = new DBConsultorio();
         eMedico.TipoIdentificacion = int.Parse(DDL_Tipo_Documento.SelectedItem.Value);
         eMedico.Identificacion = TB_Numero_Documento.Text.Trim();
         eMedico.Nombre = TB_Nombre.Text.Trim();
         eMedico.Apellido = TB_Apellido.Text.Trim();
         eMedico.FechaNacimiento = TB_Fecha_Nacimiento.Text;
         eMedico.TipoEspecialidad = int.Parse(DDL_Especialidad.SelectedItem.Value);
-        eMedico.Consultorio = int.Parse(DDL_Consultorio.SelectedItem.Value);
+        if (int.Parse(DDL_Consultorio.SelectedItem.Value) != 0)
+        {
+            eMedico.Consultorio = int.Parse(DDL_Consultorio.SelectedItem.Value);
+        }
+        else
+        {
+            DataTable consultorio = dBConsultorio.obtenerConsultorio(TB_Consultorio.Text.ToString());
+            eMedico.Consultorio = int.Parse(consultorio.Rows[0]["id"].ToString());
+        }
         eMedico.Correo = TB_Correo.Text.Trim();
         eMedico.Password = TB_Contrasena.Text;
         return eMedico;
@@ -234,7 +254,7 @@ public partial class View_Medico_InsertarEliminarActualizar : System.Web.UI.Page
             if (btnAccion.Text.Equals("Agregar"))
             {
                 dBMedico.CrearMedico(eMedico);
-                if(eMedico.Consultorio != Convert.ToInt32(Session["consultorio"]))
+                if (eMedico.Consultorio != Convert.ToInt32(Session["consultorio"]))
                 {
                     dBConsultorio.guardarDisponibilidad(eMedico.Consultorio);
                     dBConsultorio.liberarDisponibilidad(Convert.ToInt32(Session["consultorio"]));
@@ -248,6 +268,10 @@ public partial class View_Medico_InsertarEliminarActualizar : System.Web.UI.Page
                 {
                     dBConsultorio.guardarDisponibilidad(eMedico.Consultorio);
                     dBConsultorio.liberarDisponibilidad(Convert.ToInt32(Session["consultorio"]));
+                }
+                else if (eMedico.Consultorio == Convert.ToInt32(Session["consultorio"]))
+                {
+                    dBConsultorio.guardarDisponibilidad(eMedico.Consultorio);
                 }
             }
             else if (btnAccion.Text.Equals("Eliminar"))

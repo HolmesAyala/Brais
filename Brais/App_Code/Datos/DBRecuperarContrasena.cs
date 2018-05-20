@@ -78,7 +78,7 @@ public class DBRecuperarContrasena
         return solicitud;
     }
 
-    public DataTable agregarSolicitudDeRestablecerContrasena(string identificacionUsuario, string token)
+    public DataTable agregarSolicitudDeRestablecerContrasena(string identificacionUsuario, string token,String sesion)
     {
         DataTable solicitud = new DataTable();
 
@@ -90,6 +90,7 @@ public class DBRecuperarContrasena
             dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
             dataAdapter.SelectCommand.Parameters.Add("_identificacion_usuario", NpgsqlDbType.Text).Value = identificacionUsuario;
             dataAdapter.SelectCommand.Parameters.Add("_token", NpgsqlDbType.Text).Value = token;
+            dataAdapter.SelectCommand.Parameters.Add("_sesion", NpgsqlDbType.Text).Value = sesion;
 
             conection.Open();
             dataAdapter.Fill(solicitud);

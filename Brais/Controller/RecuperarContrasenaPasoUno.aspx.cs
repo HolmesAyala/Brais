@@ -33,8 +33,8 @@ public partial class View_RecuperarContrasenaPasoUno : System.Web.UI.Page
         else
         {
             string token = Funcion.encriptar(TB_Identificacion.Text.ToString());
-
-            dBRecuperarContrasena.agregarSolicitudDeRestablecerContrasena(TB_Identificacion.Text.ToString(), token);
+            String sesion = Session.SessionID;
+            dBRecuperarContrasena.agregarSolicitudDeRestablecerContrasena(TB_Identificacion.Text.ToString(), token,sesion);
 
             string mensaje = "Su link para restablecer su contraseña: " + "http://localhost:51250/View/RecuperarContrasenaPasoDos.aspx?" + token;
 

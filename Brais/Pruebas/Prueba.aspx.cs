@@ -39,4 +39,11 @@ public partial class Pruebas_Prueba : System.Web.UI.Page
 
         LB_Prueba.InnerText = dia2.Rangos.ToString();
     }
+
+
+    protected void BTN_Prueba_Click(object sender, EventArgs e)
+    {
+        Button btnPrueba = (Button)sender;
+        LB_Mensaje.Text = btnPrueba.Text;
+    }
 }

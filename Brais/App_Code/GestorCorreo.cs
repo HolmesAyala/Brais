@@ -27,7 +27,7 @@ public class GestorCorreo
                   asunto,
                   mensaje);
 
-        cliente.Credentials = new NetworkCredential("edgarkrejci12345@gmail.com", "mediayfelix.12345");
+        cliente.Credentials = new NetworkCredential("edgarkrejci12345@gmail.com", "postgrescacatuo");
         cliente.Port = 587;
         cliente.EnableSsl = true;
         cliente.Send(m);

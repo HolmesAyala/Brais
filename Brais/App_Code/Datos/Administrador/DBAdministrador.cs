@@ -150,16 +150,20 @@ public class DBAdministrador
     }
 
     //FUNCION PARA SETEAR EL NUEVO PARAMETRO SE VA A CREAR EN LA TABLA POR LO TANTO EL PARAMETRO ACTUAL SERA SIEMPRE EL ULTIMO REGISTRO
-    public DataTable actualizar_param (int fk_parametro)
+    public DataTable actualizar_param (int fk_parametro,String sesion)
     {
         DataTable actu = new DataTable();
         NpgsqlConnection conexion = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
         try
         {
-            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_actualizar_parametro", conexion);
+            NpgsqlDataAdapter dataAdapter= new NpgsqlDataAdapter("usuario.f_eliminar_parametro", conexion);
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            conexion.Open();
+            dataAdapter.Fill(actu);
+            dataAdapter = new NpgsqlDataAdapter("usuario.f_actualizar_parametro", conexion);
             dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
             dataAdapter.SelectCommand.Parameters.Add("_fk_actual", NpgsqlDbType.Integer).Value = fk_parametro;
-            conexion.Open();
+            dataAdapter.SelectCommand.Parameters.Add("_sesion", NpgsqlDbType.Text).Value = sesion;
             dataAdapter.Fill(actu);
         }catch(Exception ex)
         {

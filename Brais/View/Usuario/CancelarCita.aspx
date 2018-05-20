@@ -40,7 +40,7 @@
         <asp:ScriptManager runat="server"></asp:ScriptManager>
         <asp:UpdatePanel runat="server">
                 <ContentTemplate>
-                    <asp:GridView class="GV_Cancelar_Cita" runat="server" ID="GV_Cancelar_Cita" AllowPaging="True" AutoGenerateColumns="False" CellPadding="10" CellSpacing="5" ForeColor="#333333" GridLines="None" HorizontalAlign="Center" EnableModelValidation="False" OnPageIndexChanging="GV_Cancelar_Cita_PageIndexChanging">
+                    <asp:GridView class="GV_Cancelar_Cita" runat="server" ID="GV_Cancelar_Cita" AllowPaging="True" AutoGenerateColumns="False" CellPadding="10" CellSpacing="5" ForeColor="#333333" GridLines="None" HorizontalAlign="Center" EnableModelValidation="False" OnPageIndexChanging="GV_Cancelar_Cita_PageIndexChanging" OnSelectedIndexChanged="GV_Cancelar_Cita_SelectedIndexChanged">
                         <AlternatingRowStyle BackColor="White" />
                         <Columns>
                             <asp:BoundField DataField="dia" HeaderText="Fecha" SortExpression="dia" DataFormatString="{0:d}" HtmlEncode=false />
