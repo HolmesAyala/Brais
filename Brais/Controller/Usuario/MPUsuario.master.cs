@@ -13,6 +13,12 @@ public partial class Controller_Usuario_MPUsuario : System.Web.UI.MasterPage
         {
             Response.Redirect("~/View/Login.aspx");
         }
+        else
+        {
+            String nombre = "Bienvenido: Usuario " + ((EUsuario)Session["usuario"]).Nombre + " " + ((EUsuario)Session["usuario"]).Apellido;
+            L_Bienvenido.Text = nombre;
+            L_Bienvenido.Visible = true;
+        }
 
     }
 

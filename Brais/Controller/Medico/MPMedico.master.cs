@@ -13,7 +13,13 @@ public partial class View_Medico_MPMedico : System.Web.UI.MasterPage
         {
             Response.Redirect("~/View/Login.aspx");
         }
-
+        else
+        {
+            String nombre = "Bienvenido: Doctor(a) " + ((EMedico)Session["usuario"]).Nombre + " " + ((EMedico)Session["usuario"]).Apellido;
+            L_Bienvenido.Text = nombre;
+            L_Bienvenido.Visible = true;
+        }
+        
     }
 
     protected void BTN_VerPacientes_Click(object sender, EventArgs e)

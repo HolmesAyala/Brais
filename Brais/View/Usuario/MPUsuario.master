@@ -54,6 +54,17 @@
 
     </style>
 
+    <div>
+        &nbsp;
+    </div>
+
+    <div class="mensaje_botones">
+        <div>
+            &nbsp;&nbsp;
+            <asp:Label ID="L_Bienvenido" runat="server" Visible="False"></asp:Label>       
+        </div>
+    </div>
+
     <ul class="menu">
         <li><asp:Button ID="BTN_AsignarCita" class="BTN_AsignarCita" runat="server" Text="Asignar cita" OnClick="BTN_AsignarCita_Click"></asp:Button></li>
         <li><asp:Button ID="BTN_ReprogramarCita" class="BTN_ReprogramarCita" runat="server" Text="Reprogramar cita" OnClick="BTN_ReprogramarCita_Click"></asp:Button></li>

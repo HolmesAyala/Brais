@@ -17,7 +17,22 @@ public partial class View_Login : System.Web.UI.Page
     {
         if (Session["usuario"] != null)
         {
-            Response.Redirect("~/View/Usuario/AsignarCita.aspx");
+            if (Session["usuario"].GetType() == new EMedico().GetType())
+            {
+                Response.Redirect("~/View/Medico/VerPacientes.aspx");
+            }
+            else if (Session["usuario"].GetType() == new EUsuario().GetType())
+            {
+                if (((EUsuario)Session["usuario"]).TipoUsuario.Equals(1))
+                {
+                    Response.Redirect("~/View/Administrador/VerUsuarios.aspx");
+                }
+                else
+                {
+                    Response.Redirect("~/View/Usuario/AsignarCita.aspx");
+                }
+            }
+
         }
     }
 
@@ -34,7 +49,7 @@ public partial class View_Login : System.Web.UI.Page
 
         if (usuario.Rows.Count == 0)
         {
-            L_Informacion.Text = "El usuario no existe";
+            L_Informacion.Text = "Usuario o contraseña incorrectos";
             Session["usuario"] = null;
         }
         else

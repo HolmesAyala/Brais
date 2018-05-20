@@ -58,9 +58,14 @@
 
     </style>
 
+    <div>
+        &nbsp;
+    </div>
+
     <div class="mensaje_botones">
         <div>
-            
+            &nbsp;&nbsp;
+            <asp:Label ID="L_Bienvenido" runat="server" Visible="False"></asp:Label>       
         </div>
     </div>
 

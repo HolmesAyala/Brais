@@ -46,9 +46,9 @@ public partial class View_Medico_InsertarEliminarActualizar : System.Web.UI.Page
 
     protected void adecuarParaActualizar()
     {
-
         if (Session["usuario"].GetType() == new EMedico().GetType())
         {
+
             string identificacion = Session["identificacion_medico"].ToString();
 
             DBMedico dBMedico = new DBMedico();
