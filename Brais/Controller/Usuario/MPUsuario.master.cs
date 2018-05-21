@@ -56,4 +56,9 @@ public partial class Controller_Usuario_MPUsuario : System.Web.UI.MasterPage
     {
         Response.Redirect("~/View/Usuario/VerCitasProgramadas.aspx");
     }
+
+    protected void BTN_PAGO_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/view/Usuario/citas_no_pag.aspx");
+    }
 }

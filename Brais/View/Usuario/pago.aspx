@@ -108,7 +108,7 @@
                          </tr>
                          <tr>
                              <td colspan="2">
-                                 <asp:Button ID="Button1" runat="server" Text="Pagar" Width="118px" BackColor="#33CC33" Font-Bold="True" CssClass="btn_pay" Height="36px" />
+                                 <asp:Button ID="Button1" runat="server" Text="Pagar" Width="118px" BackColor="#33CC33" Font-Bold="True" CssClass="btn_pay" Height="36px" OnClick="Button1_Click" />
                              </td>
                          </tr>
                      </table>

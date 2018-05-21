@@ -105,4 +105,50 @@ public class DBCitasUsr
         }
     }
 
+    public DataTable citas_pendientes_pago(String id_user)
+    {
+        DataTable datos = new DataTable();
+        NpgsqlConnection conexion = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["postgres"].ConnectionString);
+        try
+        {
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_obtener_citas_no_pagadas",conexion);
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dataAdapter.SelectCommand.Parameters.Add("_id_usr",NpgsqlDbType.Text).Value=id_user;
+            conexion.Open();
+            dataAdapter.Fill(datos);
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+        finally
+        {
+            conexion.Close();
+        }
+        return datos;
+    }
+
+    public void activar_pago(String id_user,int id_cita)
+    {
+        DataTable datos = new DataTable();
+        NpgsqlConnection conexion = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["postgres"].ConnectionString);
+        try
+        {
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_activar_pago", conexion);
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dataAdapter.SelectCommand.Parameters.Add("_identificacion", NpgsqlDbType.Text).Value = id_user;
+            dataAdapter.SelectCommand.Parameters.Add("_id_cita", NpgsqlDbType.Integer).Value = id_cita;
+            conexion.Open();
+            dataAdapter.Fill(datos);
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+        finally
+        {
+            conexion.Close();
+        }
+    }
+
 }
