@@ -75,6 +75,11 @@ public partial class View_Usuario_AsignarCita : System.Web.UI.Page
         GV_DisponibilidadHoraria.DataBind();
     }
 
+    protected void GV_DisponibilidadHoraria_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        GV_DisponibilidadHoraria.PageIndex = e.NewPageIndex;
+        mostrarDisponibilidadHoraria();
+    }
 
     protected void BTN_SeleccionarCita_Click(object sender, EventArgs e)
     {

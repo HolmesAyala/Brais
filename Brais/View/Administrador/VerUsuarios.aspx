@@ -68,6 +68,19 @@
             border-radius: 5px;
         }
 
+        div#reporte{
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 30px;
+        }
+
+        .BTN_Reporte{
+            border-radius: 5px;
+            border: 1px solid rgb(128, 128, 128);
+            color: white;
+            background-color: rgb(22, 157, 179);
+        }
+
     </style>
 
     <h2>Usuarios Registrados</h2>
@@ -119,7 +132,9 @@
             <SortedDescendingHeaderStyle BackColor="#4870BE" />
         </asp:GridView>
     </div>
-
+    <div id="reporte">
+        <asp:Button runat="server" id="BTN_Reporte" CssClass="BTN_Reporte" Text="Generar Reporte" OnClick="BTN_Reporte_Click"></asp:Button>
+    </div>
         
 </asp:Content>
 

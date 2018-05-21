@@ -50,4 +50,9 @@ public partial class View_Medico_VerPacientes : System.Web.UI.Page
     {
     }
 
+
+    protected void BTN_Reporte_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/View/Medico/ReporteCitas.aspx");
+    }
 }

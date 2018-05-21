@@ -50,7 +50,7 @@
             <asp:Label ID="Label1" runat="server" ForeColor="#33CCFF" Text="Cita a Cambiar"></asp:Label>
         </h3>
         <div id="Tabla">
-        <asp:GridView id="GV_CitasAgendadas" class="GV_CitasAgendadas" runat="server" AllowPaging="True" AutoGenerateColumns="False" CellPadding="10" CellSpacing="5" ForeColor="#333333" GridLines="None" HorizontalAlign="Center" EnableModelValidation="False" OnSelectedIndexChanged="GV_CitasAgendadas_SelectedIndexChanged">
+        <asp:GridView id="GV_CitasAgendadas" class="GV_CitasAgendadas" runat="server" AllowPaging="True" AutoGenerateColumns="False" CellPadding="10" CellSpacing="5" ForeColor="#333333" GridLines="None" HorizontalAlign="Center" EnableModelValidation="False" OnSelectedIndexChanged="GV_CitasAgendadas_SelectedIndexChanged" OnPageIndexChanging="GV_CitasAgendadas_PageIndexChanging">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
                 <asp:TemplateField HeaderText="Seleccione">

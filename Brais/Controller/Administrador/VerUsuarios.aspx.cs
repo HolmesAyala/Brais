@@ -60,4 +60,9 @@ public partial class View_Administrador_VerUsuarios : System.Web.UI.Page
     {
         Response.Write("<script>console.log('" + mensaje + "');</script>");
     }
+
+    protected void BTN_Reporte_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/View/Administrador/ReporteUsuarios.aspx");
+    }
 }

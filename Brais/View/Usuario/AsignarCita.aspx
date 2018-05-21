@@ -148,7 +148,7 @@
         </div>
         <asp:UpdatePanel class="up" runat="server">
             <ContentTemplate>
-                <asp:GridView ID="GV_DisponibilidadHoraria" class="GV_DisponibilidadHoraria" runat="server" AutoGenerateColumns="False" EmptyDataText="Sin horarios" CellPadding="4" ForeColor="#333333" GridLines="None">
+                <asp:GridView ID="GV_DisponibilidadHoraria" class="GV_DisponibilidadHoraria" runat="server" AllowPaging="True" AutoGenerateColumns="False" EmptyDataText="Sin horarios" CellPadding="4" ForeColor="#333333" GridLines="None" OnPageIndexChanging="GV_DisponibilidadHoraria_PageIndexChanging">
                     <AlternatingRowStyle BackColor="White" />
                     <Columns>
                         <asp:BoundField DataField="nombre_medico" HeaderText="Medico" />
