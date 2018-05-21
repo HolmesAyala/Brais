@@ -367,5 +367,68 @@ public class DBMedico
         }
         else return true;
     }
+    //FUNCTION WHERE I GET THE SCHEDULE OF THE MEDIC BY EACH DAYS IN JSON
+    public DataTable get_schedule(String id_medic) {
+        DataTable data = new DataTable();
+        NpgsqlConnection conexion = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+        try
+        {
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("medico.f_obtener_horario_medico", conexion);
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dataAdapter.SelectCommand.Parameters.Add("_id_medic", NpgsqlDbType.Text).Value = id_medic;
+            dataAdapter.Fill(data);
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+        finally {
+            conexion.Close();
+        }
+        return data;
+    }
+
+    public DataTable get_schedule_organized(String id_medic)
+    {
+        DataTable data = new DataTable();
+        NpgsqlConnection conexion = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+        try
+        {
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("medico.f_obtener_horario_organizado", conexion);
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dataAdapter.SelectCommand.Parameters.Add("_id_medic", NpgsqlDbType.Text).Value = id_medic;
+            dataAdapter.Fill(data);
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+        finally
+        {
+            conexion.Close();
+        }
+        return data;
+    }
+
+    public void delete_aux_schedule()
+    {
+        DataTable data = new DataTable();
+        NpgsqlConnection conexion = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+        try
+        {
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("medico.delete_aux_schedule", conexion);
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dataAdapter.Fill(data);
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+        finally
+        {
+            conexion.Close();
+        }
+    }
+
 
 }

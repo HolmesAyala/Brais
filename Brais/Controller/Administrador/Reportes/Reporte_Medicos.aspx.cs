@@ -44,4 +44,9 @@ public partial class View_Administrador_Reporte_Medicos : System.Web.UI.Page
     }
 
 
+
+    protected void CrystalReportViewer1_Init(object sender, EventArgs e)
+    {
+
+    }
 }

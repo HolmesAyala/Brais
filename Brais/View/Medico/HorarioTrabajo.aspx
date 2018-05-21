@@ -41,6 +41,10 @@
             text-align: center;
         }
 
+        .auto-style9 {
+            height: 23px;
+        }
+
     </style>
     <h2 style="text-align:center">Horario de Trabajo</h2>
     <p style="text-align:center">&nbsp;</p>
@@ -149,6 +153,68 @@
                 <asp:Button class="BTN boton" ID="Button1" runat="server" Text="Enviar Datos" BackColor="#3333CC" OnClick="Button1_Click" ForeColor="White"/>
                 <br />
                 <br />
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center;" colspan="2">
+                <asp:Label ID="Label7" runat="server" Font-Bold="True" ForeColor="#00CCFF" Text="Su Horario De Trabajo Actual"></asp:Label>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center;" colspan="2">
+                <asp:Label ID="LB_nohay" runat="server"></asp:Label>
+                <br />
+                <asp:Button ID="Button5" runat="server" Text="Generar Reporte De Su Horario" CssClass="BTN_Azul" OnClick="Button5_Click" />
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center;" colspan="2">
+                <asp:Label ID="text_Lunes" runat="server" Font-Bold="True" ForeColor="#009900"></asp:Label>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center;" colspan="2">
+                <asp:Label ID="Lun" runat="server"></asp:Label>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center;" colspan="2">
+                <asp:Label ID="text_Martes" runat="server" Font-Bold="True" ForeColor="#6600FF"></asp:Label>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center;" colspan="2">
+                <asp:Label ID="Mar" runat="server"></asp:Label>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center;" colspan="2">
+                <asp:Label ID="text_Mercoles" runat="server" Font-Bold="True" ForeColor="#FF6600"></asp:Label>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center;" colspan="2" class="auto-style9">
+                <asp:Label ID="Mier" runat="server"></asp:Label>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center;" colspan="2">
+                <asp:Label ID="text_Jueves" runat="server" Font-Bold="True" ForeColor="#CC9900"></asp:Label>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center;" colspan="2">
+                <asp:Label ID="Juev" runat="server"></asp:Label>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center;" colspan="2">
+                <asp:Label ID="text_viernes" runat="server" Font-Bold="True" ForeColor="#CC00CC"></asp:Label>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center;" colspan="2">
+                <asp:Label ID="Vier" runat="server"></asp:Label>
             </td>
         </tr>
     </table>
