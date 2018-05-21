@@ -34,10 +34,48 @@ public partial class View_Usuario_CancelarCita : System.Web.UI.Page
         DBUsuario dBUsuario = new DBUsuario();
         ECita eCita = new ECita();
         EUsuario eUsuario = (EUsuario)Session["usuario"];
-        eCita.Id = Convert.ToInt32(btnSeleccionar.CommandName);
-        eCita.EUsuario = eUsuario;
-        DBCita.eliminarCita(eCita);
-        obtenerCitasPaciente();
+        Boolean resultado = validarCita(btnSeleccionar);
+        if (resultado == true)
+        {
+            eCita.Id = Convert.ToInt32(btnSeleccionar.CommandName);
+            eCita.EUsuario = eUsuario;
+            DBCita.eliminarCita(eCita);
+            obtenerCitasPaciente();
+        }
+        else
+        {
+            string script = @"<script type='text/javascript'>alert('Las citas se deben cancelar con 6 horas de antelación!');</script>";
+            ScriptManager.RegisterStartupScript(this, typeof(Page), "alerta", script, false);
+        }
+    }
+
+    protected Boolean validarCita(Button btnSeleccionar)
+    {
+        DataTable cita = new DataTable();
+        cita = DBCita.obtenerCita(Convert.ToInt32(btnSeleccionar.CommandName));
+        DateTime fecha_actual = new DateTime();
+        fecha_actual = DateTime.Now;
+        String hora_cita, aux_fecha;
+        DateTime dia_cita = new DateTime();
+        dia_cita = DateTime.Parse(cita.Rows[0]["dia"].ToString());
+        aux_fecha = Convert.ToString(dia_cita.ToShortDateString());
+        hora_cita = cita.Rows[0]["hora_inicio"].ToString();
+        aux_fecha = aux_fecha + " " + hora_cita;
+        System.TimeSpan diferencia_dias = DateTime.Parse(aux_fecha).Subtract(fecha_actual);
+        int dias = int.Parse(diferencia_dias.ToString("dd"));
+        int horas = int.Parse(diferencia_dias.ToString("hh"));
+        if (dias > 0)
+        {
+            return true;
+        }
+        else if (horas >= 6)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     protected void GV_Cancelar_Cita_SelectedIndexChanged(object sender, EventArgs e)

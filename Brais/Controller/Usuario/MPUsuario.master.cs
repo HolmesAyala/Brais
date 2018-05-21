@@ -15,7 +15,7 @@ public partial class Controller_Usuario_MPUsuario : System.Web.UI.MasterPage
         }
         else
         {
-            String nombre = "Bienvenido: Usuario " + ((EUsuario)Session["usuario"]).Nombre + " " + ((EUsuario)Session["usuario"]).Apellido;
+            String nombre = "Bienvenido: " + ((EUsuario)Session["usuario"]).Nombre + " " + ((EUsuario)Session["usuario"]).Apellido;
             L_Bienvenido.Text = nombre;
             L_Bienvenido.Visible = true;
         }

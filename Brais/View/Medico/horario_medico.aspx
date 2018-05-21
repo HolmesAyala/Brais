@@ -7,8 +7,11 @@
 <%@ Register assembly="CrystalDecisions.Web, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" namespace="CrystalDecisions.Web" tagprefix="CR" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="contenido" Runat="Server">
+    <div style="height:50px">
+        &nbsp;
+    </div>
     <CR:CrystalReportSource ID="CR_horar_medic" runat="server">
-        <Report FileName="D:\Informacion\Informacion\Universidad\Quinto Semestre\Ingenieria Del Software\Proyecto\Proyecto En git\Brais\View\Medico\Reportes\Reporte_horario.rpt">
+        <Report FileName="~\View\Medico\Reportes\Reporte_horario.rpt">
         </Report>
     </CR:CrystalReportSource>
     <CR:CrystalReportViewer ID="CrystalReportViewer1" runat="server" AutoDataBind="true" ReportSourceID="CrystalReportSource1" />
