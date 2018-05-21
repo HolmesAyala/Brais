@@ -9,7 +9,11 @@ public partial class View_MPHeaderFooter : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if ( Session["usuario"] != null)
+        {
+            BTN_Casa.Visible = true;
+            menu_principal.Visible = false;
+        }
     }
 
     protected void BTN_PaginaPrincipal_Click(object sender, EventArgs e)
@@ -32,4 +36,9 @@ public partial class View_MPHeaderFooter : System.Web.UI.MasterPage
         Response.Redirect("~/View/Login.aspx");
     }
 
+
+    protected void BTN_Casa_Click(object sender, EventArgs e)
+    {
+        Response.Redirect(Session["casa"].ToString());
+    }
 }

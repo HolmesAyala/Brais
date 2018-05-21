@@ -46,9 +46,9 @@ public partial class View_Medico_InsertarEliminarActualizar : System.Web.UI.Page
 
     protected void adecuarParaActualizar()
     {
-
         if (Session["usuario"].GetType() == new EMedico().GetType())
         {
+
             string identificacion = Session["identificacion_medico"].ToString();
 
             DBMedico dBMedico = new DBMedico();
@@ -258,6 +258,10 @@ public partial class View_Medico_InsertarEliminarActualizar : System.Web.UI.Page
                 {
                     dBConsultorio.guardarDisponibilidad(eMedico.Consultorio);
                     dBConsultorio.liberarDisponibilidad(Convert.ToInt32(Session["consultorio"]));
+                }
+                else if (eMedico.Consultorio == Convert.ToInt32(Session["consultorio"]))
+                {
+                    dBConsultorio.guardarDisponibilidad(eMedico.Consultorio);
                 }
 
             }

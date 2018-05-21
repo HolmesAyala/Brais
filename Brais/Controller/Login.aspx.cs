@@ -15,7 +15,25 @@ public partial class View_Login : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["usuario"] != null)
+        {
+            if (Session["usuario"].GetType() == new EMedico().GetType())
+            {
+                Response.Redirect("~/View/Medico/VerPacientes.aspx");
+            }
+            else if (Session["usuario"].GetType() == new EUsuario().GetType())
+            {
+                if (((EUsuario)Session["usuario"]).TipoUsuario.Equals(1))
+                {
+                    Response.Redirect("~/View/Administrador/VerUsuarios.aspx");
+                }
+                else
+                {
+                    Response.Redirect("~/View/Usuario/AsignarCita.aspx");
+                }
+            }
 
+        }
     }
 
     protected void B_Ingresar_Click(object sender, EventArgs e)
@@ -31,7 +49,7 @@ public partial class View_Login : System.Web.UI.Page
 
         if (usuario.Rows.Count == 0)
         {
-            L_Informacion.Text = "El usuario no existe";
+            L_Informacion.Text = "Usuario o contraseña incorrectos";
             Session["usuario"] = null;
         }
         else
@@ -39,12 +57,14 @@ public partial class View_Login : System.Web.UI.Page
             if ( int.Parse(usuario.Rows[0]["tipo"].ToString()) == 3)
             {
                 Session["usuario"] = Funcion.dataTableToEUsuario(usuario);
-                Response.Redirect("Usuario/AsignarCita.aspx");
+                Session["casa"] = "~/View/Usuario/AsignarCita.aspx";
+                Response.Redirect("~/View/Usuario/AsignarCita.aspx");
             }
             else if ( int.Parse(usuario.Rows[0]["tipo"].ToString()) == 2)
             {
                 Session["usuario"] = Funcion.dataTableToEMedico(usuario);
                 Session["identificacion_medico"] = datosUsuario.Identificacion;
+                Session["casa"] = "~/View/Medico/VerPacientes.aspx";
                 Response.Redirect("~/View/Medico/VerPacientes.aspx");
             }
             else if ( int.Parse(usuario.Rows[0]["tipo"].ToString()) == 1)
@@ -52,10 +72,9 @@ public partial class View_Login : System.Web.UI.Page
                 EUsuario eUsuario = new EUsuario();
                 eUsuario.TipoUsuario = 1;
                 Session["usuario"] = eUsuario;
-                Response.Redirect("Administrador/VerUsuarios.aspx");
+                Session["casa"] = "~/View/Administrador/VerUsuarios.aspx";
+                Response.Redirect("~/View/Administrador/VerUsuarios.aspx");
             }
-
-            //L_Informacion.Text = "Correcto! " + usuario.Rows[0]["usuario"] + usuario.Rows[0]["clave"] + usuario.Rows[0]["rol_id"];
         }
     }
 }
