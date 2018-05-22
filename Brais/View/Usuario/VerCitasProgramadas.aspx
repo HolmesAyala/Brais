@@ -19,6 +19,10 @@
             margin: 0 auto;
         }
 
+        .auto-style1 {
+            text-align: center;
+        }
+
     </style>
 
     <h1 class="titulo_usuario">Citas Programadas</h1>
@@ -45,7 +49,9 @@
             <SortedDescendingHeaderStyle BackColor="#4870BE" />
         </asp:GridView>
     </div>
-
+    <div class="auto-style1">
+        <asp:Button ID="BT_Date" runat="server" Text="Generar Reporte De Historial De Citas" CssClass="BTN_Azul" OnClick="BT_Date_Click"/>
+    </div>
 </asp:Content>
 
 
