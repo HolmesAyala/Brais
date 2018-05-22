@@ -53,6 +53,13 @@ public class GestorHorario
                     {
                         return false;
                     }
+                    if ((DateTime.Parse(r.Inicio) == DateTime.Parse(rango.Inicio) && DateTime.Parse(r.Fin) == DateTime.Parse(rango.Fin)) ||
+                         (DateTime.Parse(r.Inicio) < DateTime.Parse(rango.Inicio) && DateTime.Parse(rango.Inicio) < DateTime.Parse(r.Fin)) ||
+                         (DateTime.Parse(r.Inicio) < DateTime.Parse(rango.Fin) && DateTime.Parse(rango.Fin) < DateTime.Parse(r.Fin))
+                        )
+                    {
+                        return false;
+                    }
                 }
             }
         }
