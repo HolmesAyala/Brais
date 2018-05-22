@@ -47,6 +47,13 @@ public class GestorHorario
                 foreach (Rango r in d.Rangos)
                 {
                     if ( (DateTime.Parse(r.Inicio) == DateTime.Parse(rango.Inicio) && DateTime.Parse(r.Fin) == DateTime.Parse(rango.Fin)) ||
+                         (DateTime.Parse(rango.Inicio) < DateTime.Parse(r.Inicio) && DateTime.Parse(r.Inicio) < DateTime.Parse(rango.Fin)) ||
+                         (DateTime.Parse(rango.Inicio) < DateTime.Parse(r.Fin) && DateTime.Parse(r.Fin) < DateTime.Parse(rango.Fin))
+                        )
+                    {
+                        return false;
+                    }
+                    if ((DateTime.Parse(r.Inicio) == DateTime.Parse(rango.Inicio) && DateTime.Parse(r.Fin) == DateTime.Parse(rango.Fin)) ||
                          (DateTime.Parse(r.Inicio) < DateTime.Parse(rango.Inicio) && DateTime.Parse(rango.Inicio) < DateTime.Parse(r.Fin)) ||
                          (DateTime.Parse(r.Inicio) < DateTime.Parse(rango.Fin) && DateTime.Parse(rango.Fin) < DateTime.Parse(r.Fin))
                         )

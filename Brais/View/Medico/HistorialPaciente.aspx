@@ -42,6 +42,9 @@
             color: crimson;
         }
 
+        .auto-style1 {
+            text-align: center;
+        }
     </style>
 
     <h3>Agregar al historial</h3>
@@ -117,6 +120,15 @@
             <asp:AsyncPostBackTrigger ControlID="GV_Historial" EventName="PageIndexChanging" />
         </Triggers>
     </asp:UpdatePanel>
-
+    <div class="auto-style1">
+        <asp:Label ID="Label1" runat="server" Text="Comentarios Hacia El Paciente" Font-Bold="True" Font-Size="14pt" ForeColor="#33CCFF"></asp:Label>
+        <asp:Label ID="Label2" runat="server" Font-Bold="True" Font-Size="8pt" Text="(OPCIONAL)"></asp:Label>
+        <br />
+        <br />
+        <asp:TextBox ID="TextBox1" runat="server" Height="75px" Width="335px"></asp:TextBox>
+        <br />
+        <br />
+        <asp:Button ID="Button1" runat="server" Text="Enviar" CssClass="BTN_Azul" />
+    </div>
     </asp:Content>
 
