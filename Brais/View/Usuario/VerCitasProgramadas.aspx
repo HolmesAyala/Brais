@@ -48,8 +48,6 @@
             <SortedDescendingCellStyle BackColor="#E9EBEF" />
             <SortedDescendingHeaderStyle BackColor="#4870BE" />
         </asp:GridView>
-        
-
     </div>
     <div class="auto-style1">
         <asp:Button ID="BT_Date" runat="server" Text="Generar Reporte De Historial De Citas" CssClass="BTN_Azul" OnClick="BT_Date_Click"/>

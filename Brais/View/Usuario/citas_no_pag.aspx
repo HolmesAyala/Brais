@@ -2,13 +2,25 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="contenido" Runat="Server">
     <style>
-        .payment{
-            border-radius:3px;
-        }
-
         .auto-style1 {
             height: 20px;
             text-align: center;
+        }
+
+        td#Tabla{
+            margin-bottom: 30px;
+        }
+
+        tr#Tabla .GridView1{
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        .BTN_Pagar{
+            color: white;
+            background-color: red;
+            border: 1px solid rgb(0, 77, 99);
+            border-radius: 5px;
         }
 
     </style>
@@ -28,27 +40,34 @@
             </td>
         </tr>
         <tr>
-            <td colspan="2" style="height: 20px; text-align: center; margin:0 15%;">
-                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="White" BorderStyle="Ridge" BorderWidth="2px" CellPadding="3" CellSpacing="1" GridLines="None" Width="100%" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
+            <td colspan="2">
+                &nbsp;
+            </td>
+        </tr>
+        <tr id="Tabla" class="Tabla">
+            <td colspan="2">
+                <asp:GridView ID="GridView1" class="GridView1" runat="server" AllowPaging="True" AutoGenerateColumns="False" CellPadding="10" CellSpacing="5" ForeColor="#333333" GridLines="None" HorizontalAlign="Center" EnableModelValidation="False">
+                    <AlternatingRowStyle BackColor="White" />
                     <Columns>
                         <asp:BoundField DataField="hora_inicio" HeaderText="Hora Inicio" />
                         <asp:BoundField DataField="hora_fin" HeaderText="Hora Fin" />
-                        <asp:BoundField DataField="dia" HeaderText="Fecha" />
+                        <asp:BoundField DataField="dia" HeaderText="Fecha" SortExpression="dia" DataFormatString="{0:d}" HtmlEncode=false />
                         <asp:TemplateField HeaderText="Pagar Cita">
                             <ItemTemplate>
-                                <asp:Button ID="Button1" runat="server" BackColor="Red" Font-Bold="True" Font-Size="13pt" ForeColor="White" Text="Pagar" CssClass="payment" CommandArgument='<%# Eval("id") %>' OnClick="Button1_Click" />
+                                <asp:Button ID="BTN_Pagar" class="BTN_Pagar" runat="server" Text="Pagar" CommandArgument='<%# Eval("id") %>' OnClick="Button1_Click" />
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
-                    <FooterStyle BackColor="#C6C3C6" ForeColor="Black" />
-                    <HeaderStyle BackColor="#4A3C8C" Font-Bold="True" ForeColor="#E7E7FF" />
-                    <PagerStyle BackColor="#C6C3C6" ForeColor="Black" HorizontalAlign="Right" />
-                    <RowStyle BackColor="#DEDFDE" ForeColor="Black" />
-                    <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
-                    <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                    <SortedAscendingHeaderStyle BackColor="#594B9C" />
-                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                    <SortedDescendingHeaderStyle BackColor="#33276A" />
+                    <EditRowStyle BackColor="#2461BF" HorizontalAlign="Center" />
+                    <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                    <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" />
+                    <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                    <RowStyle BackColor="#EFF3FB" HorizontalAlign="Center" />
+                    <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                    <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                    <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                    <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                    <SortedDescendingHeaderStyle BackColor="#4870BE" />
                 </asp:GridView>
             </td>
         </tr>

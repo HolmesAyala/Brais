@@ -70,6 +70,7 @@
         <li><asp:Button ID="BTN_ReprogramarCita" class="BTN_ReprogramarCita" runat="server" Text="Reprogramar cita" OnClick="BTN_ReprogramarCita_Click"></asp:Button></li>
         <li><asp:Button ID="BTN_CancelarCita" class="BTN_CancelarCita" runat="server" Text="Cancelar cita" OnClick="BTN_CancelarCita_Click"></asp:Button></li>
         <li><asp:Button ID="BTN_VerCitasProgramadas" class="BTN_VerCitasProgramadas" runat="server" Text="Ver citas Programadas" OnClick="BTN_VerCitasProgramadas_Click"></asp:Button></li>
+        <li><asp:Button ID="BTN_Comentarios" runat="server" class="BTN_Comentarios" Text="Dejar Comentario" OnClick="BTN_Comentarios_Click"/></li>
         <li><asp:Button ID="BTN_PAGO" runat="server" class="BTN_AsignarCita" Text="Pago" OnClick="BTN_PAGO_Click" /></li>
         <li>
             <asp:ImageButton class="configuracion" runat="server" ImageUrl="~/Imagen/configuracion.svg"></asp:ImageButton>
