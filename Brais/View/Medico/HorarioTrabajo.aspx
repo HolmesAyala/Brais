@@ -45,6 +45,68 @@
             height: 23px;
         }
 
+         h1.titulo_horario{
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: 40px;
+            color: rgb(24, 177, 228);
+        }
+        .rango{
+            margin-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .rango h3{
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .campo{
+            display: flex;
+            margin-bottom: 20px;
+        }
+        .LB{
+            width: 100px;
+        }
+        .P_Contenedor{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .P_Dia{
+            display: block;
+            border-radius: 10px;
+            border: 2px solid #EEEEEE;
+            margin-bottom: 10px;
+            width: 400px;
+        }
+        .LB_Dia{
+            display: block;
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 5px 0;
+            font-size: 1.3rem;
+            border-top-right-radius: 10px;
+            border-top-left-radius: 10px;
+            background-color: rgb(24, 177, 228);
+        }
+        .P_Rangos{
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .LB_Inicio, .LB_Fin{
+            display: block;
+            padding: 0 10px;
+            margin: 3px;
+        }
+        .BTN_Eliminar{
+            border-radius: 5px;
+            background-color: rgb(221, 80, 68);
+            border: 1px solid rgb(255, 0, 0);
+            color: white;
+        }
     </style>
     <h2 style="text-align:center">Horario de Trabajo</h2>
     <p style="text-align:center">&nbsp;</p>

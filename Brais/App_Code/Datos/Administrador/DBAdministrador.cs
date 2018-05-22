@@ -179,5 +179,27 @@ public class DBAdministrador
         return actu;
     }
 
+    //FUNCION QUE OBTIENE EL PARAMETRO ACTUAL
+    public DataTable param_actual()
+    {
+        DataTable actu = new DataTable();
+        NpgsqlConnection conexion = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+        try{
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("administrador.f_obtener_parametro_actual", conexion);
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            conexion.Open();
+            dataAdapter.Fill(actu);
+        }
+        catch(Exception e)
+        {
+            throw e;
+        }
+        finally
+        {
+            conexion.Close();
+        }
+        return actu;
+    }
+
 
 }

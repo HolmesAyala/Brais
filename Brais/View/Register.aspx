@@ -124,6 +124,10 @@
                     <asp:Label ID="Label10" runat="server" Font-Bold="True" Text="Numero De Documento"></asp:Label>
                 </td>
                 <td class="auto-style9"><asp:TextBox ID="TB_id" runat="server" Width="117px" CssClass="auto-style7" MaxLength="15"></asp:TextBox>
+                     <asp:RegularExpressionValidator  runat="server" ID="regexpName"      
+                                    ErrorMessage="Solo Numeros" 
+                                    ControlToValidate="TB_id"     
+                                    ValidationExpression="^\d+$" ForeColor="Red" />
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TB_id" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
                 </td>
                 <td>

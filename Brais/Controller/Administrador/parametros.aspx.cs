@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -9,8 +10,22 @@ public partial class View_Administrador_parametros : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        DBAdministrador bd = new DBAdministrador();
+        DataTable info = bd.param_actual();
+        String value = info.Rows[0]["info"].ToString();
+        if (info.Rows.Count > 0)
+        {
+            if (!IsPostBack)
+            {
+
+                DL_tiempo.SelectedValue= value;
+
+            }
+        }
+        
 
     }
+
 
 
     private void llenarGridView()
@@ -25,11 +40,19 @@ public partial class View_Administrador_parametros : System.Web.UI.Page
     {
         DBAdministrador admin = new DBAdministrador();
         EConsultorio consul = new EConsultorio();
-        consul.Nombre = TB_Consultorio.Text;
-        consul.Ubicacion = TB_Ubicacion.Text;
-        consul.Session = Session.SessionID;
-        admin.insertarConsultorio(consul);
-        Response.Redirect("parametros.aspx");
+        if ((TB_Consultorio.Text == "")||(TB_Consultorio.Text==""))
+        {
+            ClientScript.RegisterClientScriptBlock(this.GetType(), "Nombre", "<script> alert('Ingrese los datos del consultorio a ingresar'); </script>");
+        }
+        else
+        {
+            consul.Nombre = TB_Consultorio.Text;
+            consul.Ubicacion = TB_Ubicacion.Text;
+            consul.Session = Session.SessionID;
+            admin.insertarConsultorio(consul);
+            Response.Redirect("parametros.aspx");
+        }
+        
     }
 
     protected void Button2_Click(object sender, EventArgs e)
