@@ -48,7 +48,7 @@ public partial class View_Medico_MPMedico : System.Web.UI.MasterPage
 
     protected void BTN_HorarioTrabajo_Click(object sender, EventArgs e)
     {
-        Response.Redirect("~/View/Medico/HorarioTrabajo.aspx");
+        Response.Redirect("~/View/Medico/HorarioTrabajoPrueba.aspx");
     }
 
 }

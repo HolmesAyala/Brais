@@ -76,6 +76,8 @@ public abstract class Funcion
             eMedico.TipoUsuario = int.Parse(dtMedico.Rows[0]["tipo"].ToString());
             eMedico.Consultorio = int.Parse(dtMedico.Rows[0]["consultorio_pk"].ToString());
             eMedico.EEspecialidad = EEspecialidad.dataTableToEEspecialidad(new DBEspecialidad().obtenerEspecialidad(int.Parse(dtMedico.Rows[0]["id_especialidad"].ToString())));
+            DataTable dt = DBHorario.obtenerHorario(eMedico);
+            eMedico.Horario = dt.Rows[0]["dias"].ToString();
         }
         catch (Exception)
         {
