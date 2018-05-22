@@ -41,10 +41,6 @@
             text-align: center;
         }
 
-        .auto-style9 {
-            height: 23px;
-        }
-
          h1.titulo_horario{
             text-align: center;
             margin-top: 10px;
@@ -107,7 +103,40 @@
             border: 1px solid rgb(255, 0, 0);
             color: white;
         }
+        .auto-style10 {
+            width: 290px;
+        }
+        .auto-style11 {
+            width: 249px;
+        }
+        .auto-style12 {
+            width: 20%;
+            height: 21px;
+        }
+        .auto-style13 {
+            width: 20%;
+            height: 21px;
+        }
+        .auto-style14 {
+            height: 21px;
+            width: 20%;
+        }
+        .auto-style15 {
+            height: 21px;
+           width: 20%;
+        }
+        .auto-style16 {
+            width: 204px;
+        }
+        .auto-style17 {
+            height: 21px;
+            width: 20%;
+        }
+        .auto-style18 {
+            width: 206px;
+        }
     </style>
+     <asp:ScriptManager runat="server"></asp:ScriptManager>
     <h2 style="text-align:center">Horario de Trabajo</h2>
     <p style="text-align:center">&nbsp;</p>
     <table class="auto-style7">
@@ -227,57 +256,70 @@
                 <asp:Label ID="LB_nohay" runat="server"></asp:Label>
                 <br />
                 <asp:Button ID="Button5" runat="server" Text="Generar Reporte De Su Horario" CssClass="BTN_Azul" OnClick="Button5_Click" />
+                <br />
+            </td>
+        </tr>
+        
+        <tr>
+            <td style="text-align: center;" colspan="2">
+                &nbsp;</td>
+        </tr>
+        
+            <td style="text-align: center;" colspan="2">
+                <asp:UpdatePanel runat="server">
+        <ContentTemplate>
+            <asp:Panel ID="P_Contenedor" CssClass="P_Contenedor" runat="server">
+                <table class="auto-style7">
+                    <tbody style="background-color:orange"><tr style="background-color:darkgray">
+                        <td class="auto-style12">
+                            <asp:Label ID="text_Lunes" runat="server" Font-Bold="True" ForeColor="#009900">Lunes</asp:Label>
+                        </td>
+                        <td class="auto-style13">
+                            <asp:Label ID="text_Martes" runat="server" Font-Bold="True" ForeColor="#6600FF">Martes</asp:Label>
+                        </td>
+                        <td class="auto-style15">
+                            <asp:Label ID="text_Mercoles" runat="server" Font-Bold="True" ForeColor="#FF6600">Miercoles</asp:Label>
+                        </td>
+                        <td class="auto-style17">
+                            <asp:Label ID="text_Jueves" runat="server" Font-Bold="True" ForeColor="#CC9900">Jueves</asp:Label>
+                        </td>
+                        <td class="auto-style14">
+                            <asp:Label ID="text_viernes" runat="server" Font-Bold="True" ForeColor="#CC00CC">Viernes</asp:Label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="auto-style11">
+                            <asp:Label ID="Lun" runat="server"></asp:Label>
+                        </td>
+                        <td class="auto-style10">
+                            <asp:Label ID="Mar" runat="server"></asp:Label>
+                        </td>
+                        <td class="auto-style16">
+                            <asp:Label ID="Mier" runat="server"></asp:Label>
+                        </td>
+                        <td class="auto-style18">
+                            <asp:Label ID="Juev" runat="server"></asp:Label>
+                        </td>
+                        <td>
+                            <asp:Label ID="Vier" runat="server"></asp:Label>
+                        </td>
+                    </tr></tbody>
+                    
+                </table>
+                
+               
+                </asp:Panel>
+        </ContentTemplate>
+        <Triggers>
+            <asp:AsyncPostBackTrigger ControlID="Button1" EventName="Click" />
+        </Triggers>
+    </asp:UpdatePanel>
+                
             </td>
         </tr>
         <tr>
             <td style="text-align: center;" colspan="2">
-                <asp:Label ID="text_Lunes" runat="server" Font-Bold="True" ForeColor="#009900"></asp:Label>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: center;" colspan="2">
-                <asp:Label ID="Lun" runat="server"></asp:Label>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: center;" colspan="2">
-                <asp:Label ID="text_Martes" runat="server" Font-Bold="True" ForeColor="#6600FF"></asp:Label>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: center;" colspan="2">
-                <asp:Label ID="Mar" runat="server"></asp:Label>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: center;" colspan="2">
-                <asp:Label ID="text_Mercoles" runat="server" Font-Bold="True" ForeColor="#FF6600"></asp:Label>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: center;" colspan="2" class="auto-style9">
-                <asp:Label ID="Mier" runat="server"></asp:Label>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: center;" colspan="2">
-                <asp:Label ID="text_Jueves" runat="server" Font-Bold="True" ForeColor="#CC9900"></asp:Label>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: center;" colspan="2">
-                <asp:Label ID="Juev" runat="server"></asp:Label>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: center;" colspan="2">
-                <asp:Label ID="text_viernes" runat="server" Font-Bold="True" ForeColor="#CC00CC"></asp:Label>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: center;" colspan="2">
-                <asp:Label ID="Vier" runat="server"></asp:Label>
-            </td>
+                </td>
         </tr>
     </table>
 

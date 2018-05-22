@@ -14,38 +14,41 @@ public partial class View_Medico_HorarioTrabajo : System.Web.UI.Page
     {
         MaintainScrollPositionOnPostBack = true;
         //WE LOAD THE DATA OF DB IN THE GRIDVIEW BUT BEFORE I HAVE TO EDIT THE VALUES FOR SOME MORE ORGANIZED
+        pintar_schedule();
+    }
+
+    private void pintar_schedule()
+    {
         DBMedico bdM = new DBMedico();
         DataTable data = new DataTable();
-        data=bdM.get_schedule((String)Session["identificacion_medico"]);
-        if (data.Rows.Count > 0){
-            
-            
-           
-            
-            
+        data = bdM.get_schedule((String)Session["identificacion_medico"]);
+        if (data.Rows.Count > 0)
+        {
             EDia[] Lun, mar, mier, juev, vier, sab = null;
             ESemana sem;
             sem = JsonConvert.DeserializeObject<ESemana>(data.Rows[0]["horario"].ToString());
             List<String> horar = new List<string>();
-            if (sem.Lunes != null) {
+            if (sem.Lunes != null)
+            {
                 text_Lunes.Text = "Lunes";
                 Lun = new EDia[sem.Lunes.Count];
                 String aux = "";
                 for (int i = 0; i < sem.Lunes.Count; i++)
                 {
                     Lun[i] = JsonConvert.DeserializeObject<EDia>(sem.Lunes.ElementAt<String>(i));
-                    aux = aux + Lun[i].Hora_inicio + "-" + Lun[i].Hora_fin+"</br>";  
+                    aux = aux + Lun[i].Hora_inicio + "-" + Lun[i].Hora_fin + "</br>";
                 }
                 this.Lun.Text = aux;
             }
-            if (sem.Martes != null){
+            if (sem.Martes != null)
+            {
                 text_Martes.Text = "Martes";
                 mar = new EDia[sem.Martes.Count];
                 String aux = "";
                 for (int i = 0; i < mar.Length; i++)
                 {
                     mar[i] = JsonConvert.DeserializeObject<EDia>(sem.Martes.ElementAt<String>(i));
-                    aux = aux + mar[i].Hora_inicio + "-" + mar[i].Hora_fin+"</br>";
+                    aux = aux + mar[i].Hora_inicio + "-" + mar[i].Hora_fin + "</br>";
                 }
                 this.Mar.Text = aux;
             }
@@ -57,19 +60,20 @@ public partial class View_Medico_HorarioTrabajo : System.Web.UI.Page
                 for (int i = 0; i < mier.Length; i++)
                 {
                     mier[i] = JsonConvert.DeserializeObject<EDia>(sem.Miercoles.ElementAt<String>(i));
-                    aux = aux + mier[i].Hora_inicio + "-" + mier[i].Hora_fin+"</br>";
+                    aux = aux + mier[i].Hora_inicio + "-" + mier[i].Hora_fin + "</br>";
                 }
                 this.Mier.Text = aux;
 
             }
-            if (sem.Jueves != null){
+            if (sem.Jueves != null)
+            {
                 juev = new EDia[sem.Jueves.Count];
                 String aux = "";
                 text_Jueves.Text = "Jueves";
                 for (int i = 0; i < juev.Length; i++)
                 {
                     juev[i] = JsonConvert.DeserializeObject<EDia>(sem.Jueves.ElementAt<String>(i));
-                    aux= aux + juev[i].Hora_inicio + "-" + juev[i].Hora_fin + "</br>";
+                    aux = aux + juev[i].Hora_inicio + "-" + juev[i].Hora_fin + "</br>";
                 }
                 this.Juev.Text = aux;
             }
@@ -85,7 +89,8 @@ public partial class View_Medico_HorarioTrabajo : System.Web.UI.Page
                 }
                 this.Vier.Text = aux;
             }
-            if (sem.Sabado != null) {
+            if (sem.Sabado != null)
+            {
                 sab = new EDia[sem.Sabado.Count];
                 String aux = "";
                 for (int i = 0; i < sab.Length; i++)
@@ -94,9 +99,10 @@ public partial class View_Medico_HorarioTrabajo : System.Web.UI.Page
                     aux = aux + sab[i].Hora_inicio + "-" + sab[i].Hora_fin + "</br>";
                 }
             }
-           
+
         }
-        else{
+        else
+        {
             LB_nohay.Text = "No Hay Creado Su Horario De Trabajo";
         }
     }
@@ -114,7 +120,12 @@ public partial class View_Medico_HorarioTrabajo : System.Web.UI.Page
             medicdb.crear_horario(medic);
             dias_escogidos.Text = horario_full;
             pintar_horario();
-
+            Lun.Text = "";
+            Mar.Text = "";
+            Mier.Text = "";
+            Juev.Text = "";
+            Vier.Text = "";
+            pintar_schedule();
 
         }
         else
