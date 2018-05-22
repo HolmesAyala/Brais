@@ -64,6 +64,7 @@
                 <asp:TemplateField HeaderText="Seleccione">
                     <ItemTemplate>
                         <asp:Button ID="BTN_Seleccionar" class="BTN_Seleccionar" runat="server" CommandArgument='<%# Eval("id_cita") %>' Text="Seleccionar" OnClick="BTN_Seleccionar_Click" />
+                        <asp:Label ID="Label1" runat="server" Text='<%# Eval("id_cita") %>' Visible="<%# false %>"></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>

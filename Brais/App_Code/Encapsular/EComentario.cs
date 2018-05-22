@@ -8,7 +8,7 @@ using System.Web;
 /// </summary>
 public class EComentario
 {
-    int id, id_motivo;
+    int id, id_motivo,id_cita;
     String comentario, id_remitente, id_receptor;
 
     public EComentario()
@@ -77,6 +77,19 @@ public class EComentario
         set
         {
             id_receptor = value;
+        }
+    }
+
+    public int Id_cita
+    {
+        get
+        {
+            return id_cita;
+        }
+
+        set
+        {
+            id_cita = value;
         }
     }
 }

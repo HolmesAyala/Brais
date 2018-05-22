@@ -29,7 +29,7 @@ public class DBComentario
             dataAdapter.SelectCommand.Parameters.Add("_comentario", NpgsqlTypes.NpgsqlDbType.Text).Value = eComentario.Comentario;
             dataAdapter.SelectCommand.Parameters.Add("_id_remitente", NpgsqlTypes.NpgsqlDbType.Text).Value = eComentario.Id_remitente;
             dataAdapter.SelectCommand.Parameters.Add("_id_receptor", NpgsqlTypes.NpgsqlDbType.Text).Value = eComentario.Id_receptor;
-
+            dataAdapter.SelectCommand.Parameters.Add("_id_cita", NpgsqlTypes.NpgsqlDbType.Integer).Value = eComentario.Id_cita;
             conexion.Open();
             dataAdapter.Fill(dtComentario);
         }
