@@ -107,7 +107,7 @@
                                 &nbsp;
                             </td>
                             <td class="label-cita-final">
-                                <asp:Label ID="L_Fecha_f" runat="server" Text=""></asp:Label>
+                                <asp:Label ID="L_Fecha_f" runat="server"></asp:Label>
                             </td>
                         </tr>
                         <tr>

@@ -26,7 +26,7 @@ public partial class View_Usuario_ConfirmarCita : System.Web.UI.Page
 
         L_Nombre_Paciente_f.Text = eUsuario.Nombre + " " + eUsuario.Apellido;
         L_Especialidad_f.Text = eCita.EMedico.EEspecialidad.Nombre;
-        L_Fecha_f.Text = eCita.Dia;
+        L_Fecha_f.Text = Convert.ToString(DateTime.Parse(eCita.Dia).ToShortDateString());
         L_Hora_f.Text = eCita.HoraInicio;
         L_Medico_f.Text = eCita.EMedico.Nombre + " " + eCita.EMedico.Apellido;
 
@@ -42,14 +42,13 @@ public partial class View_Usuario_ConfirmarCita : System.Web.UI.Page
             DBCita.reservarCita(eCita);
             string script = @"<script type='text/javascript'>alert('Agendo la cita correctamente!');</script>";
             ScriptManager.RegisterStartupScript(this, typeof(Page), "alerta", script, false);
-            
+
         }
         else
         {
             string script = @"<script type='text/javascript'>alert('La cita ya se encuentra reservada!');</script>";
             ScriptManager.RegisterStartupScript(this, typeof(Page), "alerta", script, false);
         }
-        Session["eCita"] = null;
         BTN_ConfirmarCita.Enabled = false;
     }
 

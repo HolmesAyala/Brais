@@ -75,7 +75,7 @@
         <li>
             <asp:ImageButton class="configuracion" runat="server" ImageUrl="~/Imagen/configuracion.svg"></asp:ImageButton>
             <ul>
-                <li><asp:Button ID="BTN_HistorialPaciente" class="BTN_Historial_Paceinte" runat="server" Text="Ver historial"></asp:Button></li>
+                <li><asp:Button ID="BTN_HistorialPaciente" class="BTN_Historial_Paceinte" runat="server" Text="Ver historial" OnClick="BTN_Historial_Paceinte_Click"></asp:Button></li>
                 <li><asp:Button ID="BTN_ActualizarDatos" class="BTN_ActualizarDatos" runat="server" Text="Actualizar Datos" OnClick="BTN_ActualizarDatos_Click"></asp:Button></li>
                 <li><asp:Button ID="BTN_CerrarSesion" class="BTN_CerrarSesion" runat="server" Text="Cerrar Sesión" OnClick="BTN_CerrarSesion_Click"></asp:Button></li>
             </ul>

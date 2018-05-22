@@ -28,10 +28,19 @@ public partial class View_Usuario_vista_reporte_historial_user : System.Web.UI.P
         for (int i = 0; i < intermedio.Rows.Count; i++)
         {
             fila = inf_medc.NewRow();
-            fila["Fecha"] = intermedio.Rows[i]["dia"].ToString();
+            DateTime dia = DateTime.Parse(intermedio.Rows[i]["dia"].ToString());
+            fila["Fecha"] = Convert.ToString(dia.ToShortDateString());
             fila["Hora Inicio"] = intermedio.Rows[i]["hora_inicio"].ToString();
             fila["Hora Fin"] = intermedio.Rows[i]["hora_fin"].ToString();
-            fila["Pago"] = intermedio.Rows[i]["pago"].ToString();
+            if (intermedio.Rows[i]["pago"].Equals(true))
+            {
+                fila["Pago"] = "Si";
+            }
+            else if (intermedio.Rows[i]["pago"].Equals(false))
+            {
+                fila["Pago"] = "No";
+            }
+            
             inf_medc.Rows.Add(fila);
         }
         return datos;
