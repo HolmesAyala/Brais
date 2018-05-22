@@ -29,7 +29,7 @@
         </tr>
         <tr>
             <td colspan="2" style="height: 20px; text-align: center; margin:0 15%;">
-                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="White" BorderStyle="Ridge" BorderWidth="2px" CellPadding="3" CellSpacing="1" GridLines="None" Width="100%">
+                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="White" BorderStyle="Ridge" BorderWidth="2px" CellPadding="3" CellSpacing="1" GridLines="None" Width="100%" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
                     <Columns>
                         <asp:BoundField DataField="hora_inicio" HeaderText="Hora Inicio" />
                         <asp:BoundField DataField="hora_fin" HeaderText="Hora Fin" />

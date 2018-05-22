@@ -29,4 +29,9 @@ public partial class View_Usuario_citas_no_pag : System.Web.UI.Page
         Session["id_payment"] = int.Parse(id);
         Response.Redirect("~/View/Usuario/pago.aspx");
     }
+
+    protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
 }
