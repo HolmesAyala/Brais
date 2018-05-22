@@ -28,7 +28,10 @@ public partial class View_MPHeaderFooter : System.Web.UI.MasterPage
 
     protected void BTN_CrearCuenta_Click(object sender, EventArgs e)
     {
-        Response.Redirect("~/View/Register.aspx");
+        Session["Accion"] = "Insertar";
+        Session["Crear_cuenta"] = "Crear cuenta";
+        Session["PaginaAnterior"] = "~/View/Login.aspx";
+        Response.Redirect("~/View/Usuario/InsertarEliminarActualizar.aspx");
     }
 
     protected void BTN_Login_Click(object sender, EventArgs e)

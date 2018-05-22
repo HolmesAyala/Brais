@@ -13,7 +13,7 @@ public partial class View_Usuario_InsertarEliminarActualizar : System.Web.UI.Pag
     {
         MaintainScrollPositionOnPostBack = true;
         Response.Cache.SetNoStore();
-        if (Session["usuario"] == null)
+        if (Session["usuario"] == null && Session["Crear_cuenta"] == null)
         {
             Response.Redirect("~/View/Login.aspx");
         }
@@ -33,6 +33,10 @@ public partial class View_Usuario_InsertarEliminarActualizar : System.Web.UI.Pag
             }
             Session["Accion"] = null;
             Session["identificacion"] = null;
+        }
+        if (Session["Crear_cuenta"].ToString().Equals("Crear cuenta"))
+        {
+            adecuarParaInsertar();
         }
     }
 
@@ -132,6 +136,7 @@ public partial class View_Usuario_InsertarEliminarActualizar : System.Web.UI.Pag
             {
 
             }
+            Session["Crear_cuenta"] = null;
             Response.Redirect(Session["PaginaAnterior"].ToString());
         }
     }

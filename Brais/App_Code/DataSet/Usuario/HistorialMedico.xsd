@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="HistorialMedico" targetNamespace="http://tempuri.org/HistorialMedico.xsd" xmlns:mstns="http://tempuri.org/HistorialMedico.xsd" xmlns="http://tempuri.org/HistorialMedico.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="HistorialMedico" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="HistorialMedico" msprop:Generator_DataSetName="HistorialMedico">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Historial" msprop:Generator_TableClassName="HistorialDataTable" msprop:Generator_TableVarName="tableHistorial" msprop:Generator_TablePropName="Historial" msprop:Generator_RowDeletingName="HistorialRowDeleting" msprop:Generator_RowChangingName="HistorialRowChanging" msprop:Generator_RowEvHandlerName="HistorialRowChangeEventHandler" msprop:Generator_RowDeletedName="HistorialRowDeleted" msprop:Generator_UserTableName="Historial" msprop:Generator_RowChangedName="HistorialRowChanged" msprop:Generator_RowEvArgName="HistorialRowChangeEvent" msprop:Generator_RowClassName="HistorialRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Fecha" msprop:Generator_ColumnVarNameInTable="columnFecha" msprop:Generator_ColumnPropNameInRow="Fecha" msprop:Generator_ColumnPropNameInTable="FechaColumn" msprop:Generator_UserColumnName="Fecha" type="xs:string" minOccurs="0" />
+              <xs:element name="Motivo_x0020_Consulta" msprop:Generator_ColumnVarNameInTable="columnMotivo_Consulta" msprop:Generator_ColumnPropNameInRow="Motivo_Consulta" msprop:Generator_ColumnPropNameInTable="Motivo_ConsultaColumn" msprop:Generator_UserColumnName="Motivo Consulta" type="xs:string" minOccurs="0" />
+              <xs:element name="Observación" msprop:Generator_ColumnVarNameInTable="columnObservación" msprop:Generator_ColumnPropNameInRow="Observación" msprop:Generator_ColumnPropNameInTable="ObservaciónColumn" msprop:Generator_UserColumnName="Observación" type="xs:string" minOccurs="0" />
+              <xs:element name="Especialidad" msprop:Generator_ColumnVarNameInTable="columnEspecialidad" msprop:Generator_ColumnPropNameInRow="Especialidad" msprop:Generator_ColumnPropNameInTable="EspecialidadColumn" msprop:Generator_UserColumnName="Especialidad" type="xs:string" minOccurs="0" />
+              <xs:element name="Médico" msprop:Generator_ColumnVarNameInTable="columnMédico" msprop:Generator_ColumnPropNameInRow="Médico" msprop:Generator_ColumnPropNameInTable="MédicoColumn" msprop:Generator_UserColumnName="Médico" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
