@@ -61,4 +61,9 @@ public partial class Controller_Usuario_MPUsuario : System.Web.UI.MasterPage
     {
         Response.Redirect("~/view/Usuario/citas_no_pag.aspx");
     }
+
+    protected void BTN_Comentarios_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/view/Usuario/Comentarios.aspx");
+    }
 }
