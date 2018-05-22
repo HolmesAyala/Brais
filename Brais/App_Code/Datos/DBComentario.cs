@@ -25,7 +25,10 @@ public class DBComentario
         {
             NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("public.f_agregar_comentario", conexion);
             dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
-            //dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlTypes.NpgsqlDbType.Integer).Value = idCita;
+            dataAdapter.SelectCommand.Parameters.Add("_id_motivo", NpgsqlTypes.NpgsqlDbType.Integer).Value = eComentario.Id_motivo;
+            dataAdapter.SelectCommand.Parameters.Add("_comentario", NpgsqlTypes.NpgsqlDbType.Text).Value = eComentario.Comentario;
+            dataAdapter.SelectCommand.Parameters.Add("_id_remitente", NpgsqlTypes.NpgsqlDbType.Text).Value = eComentario.Id_remitente;
+            dataAdapter.SelectCommand.Parameters.Add("_id_receptor", NpgsqlTypes.NpgsqlDbType.Text).Value = eComentario.Id_receptor;
 
             conexion.Open();
             dataAdapter.Fill(dtComentario);

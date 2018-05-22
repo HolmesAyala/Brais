@@ -55,7 +55,7 @@
     <h1 class="titulo_usuario">Dejar PQRF</h1>
 
     <div id="Tabla">
-        <asp:GridView class="GV_Comentarios" runat="server" ID="GV_Comentarios" AllowPaging="True" AutoGenerateColumns="False" CellPadding="10" CellSpacing="5" ForeColor="#333333" GridLines="None" HorizontalAlign="Center" EnableModelValidation="False" OnPageIndexChanging="GV_Comentarios_PageIndexChanging" OnSelectedIndexChanged="GV_Comentarios_SelectedIndexChanged">
+        <asp:GridView class="GV_Comentarios" runat="server" ID="GV_Comentarios" EmptyDataText="No tiene citas para comentar" AllowPaging="True" AutoGenerateColumns="False" CellPadding="10" CellSpacing="5" ForeColor="#333333" GridLines="None" HorizontalAlign="Center" EnableModelValidation="False" OnPageIndexChanging="GV_Comentarios_PageIndexChanging" OnSelectedIndexChanged="GV_Comentarios_SelectedIndexChanged">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
                 <asp:BoundField DataField="dia" HeaderText="Fecha" SortExpression="dia" DataFormatString="{0:d}" HtmlEncode=false />
