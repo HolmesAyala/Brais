@@ -199,6 +199,35 @@ public class DBCita
         return usuario;
     }
 
+    public DataTable obtenerCitasPacienteComentario(String id_usuario)
+    {
+        DataTable usuario = new DataTable();
+
+        NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+
+        try
+        {
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_obtener_citas_paciente_Comentario", conection);
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dataAdapter.SelectCommand.Parameters.Add("_id_usuario", NpgsqlTypes.NpgsqlDbType.Text).Value = id_usuario;
+
+            conection.Open();
+            dataAdapter.Fill(usuario);
+        }
+        catch (Exception Ex)
+        {
+            throw Ex;
+        }
+        finally
+        {
+            if (conection != null)
+            {
+                conection.Close();
+            }
+        }
+        return usuario;
+    }
+
     public static DataTable eliminarCita(ECita eCita)
     {
         DataTable dtCita = new DataTable();
