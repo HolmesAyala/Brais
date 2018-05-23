@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
+using System.Web.UI;
 
 /// <summary>
 /// Descripción breve de Funcion
@@ -88,9 +89,10 @@ public abstract class Funcion
         return eMedico;
     }
 
-    public static void mostrarMensaje(string mensaje)
+    public static void mostrarMensaje(string mensaje, System.Web.UI.Page page)
     {
-
+        string script = @"<script type='text/javascript'> console.log('"+mensaje+"'); </script>";
+        ScriptManager.RegisterStartupScript(page, typeof(Page), "", script, false);
     }
 
 }

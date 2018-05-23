@@ -77,4 +77,122 @@ public class DBEspecialidad
         return dtEspecialidad;
     }
 
+    public static Boolean hayUnMedicoConEstaEspecialidad(int id)
+    {
+        DataTable resultado = new DataTable();
+
+        NpgsqlConnection conexion = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+
+        try
+        {
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("especialidad.f_hay_un_medico_con_esta_especialidad", conexion);
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlTypes.NpgsqlDbType.Integer).Value = id;
+
+            conexion.Open();
+            dataAdapter.Fill(resultado);
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+        finally
+        {
+            if (conexion != null)
+            {
+                conexion.Close();
+            }
+        }
+
+        return ((Boolean)resultado.Rows[0]["f_hay_un_medico_con_esta_especialidad"]);
+    }
+
+    public static void agregarEspecialidad(string nombre)
+    {
+        DataTable resultado = new DataTable();
+
+        NpgsqlConnection conexion = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+
+        try
+        {
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("especialidad.f_agregar_especialidad", conexion);
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dataAdapter.SelectCommand.Parameters.Add("_nombre", NpgsqlTypes.NpgsqlDbType.Text).Value = nombre;
+
+            conexion.Open();
+            dataAdapter.SelectCommand.ExecuteNonQuery();
+            //dataAdapter.Fill(resultado);
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+        finally
+        {
+            if (conexion != null)
+            {
+                conexion.Close();
+            }
+        }
+
+    }
+
+    public static void actualizarEspecialidad(int id, string nombre)
+    {
+        DataTable resultado = new DataTable();
+
+        NpgsqlConnection conexion = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+
+        try
+        {
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("especialidad.f_actualizar_especialidad", conexion);
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlTypes.NpgsqlDbType.Integer).Value = id;
+            dataAdapter.SelectCommand.Parameters.Add("_nombre", NpgsqlTypes.NpgsqlDbType.Text).Value = nombre;
+
+            conexion.Open();
+            dataAdapter.SelectCommand.ExecuteNonQuery();
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+        finally
+        {
+            if (conexion != null)
+            {
+                conexion.Close();
+            }
+        }
+
+    }
+
+    public static void eliminarEspecialidad(int id)
+    {
+        DataTable resultado = new DataTable();
+
+        NpgsqlConnection conexion = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+
+        try
+        {
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("especialidad.f_eliminar_especialidad", conexion);
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlTypes.NpgsqlDbType.Integer).Value = id;
+
+            conexion.Open();
+            dataAdapter.SelectCommand.ExecuteNonQuery();
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+        finally
+        {
+            if (conexion != null)
+            {
+                conexion.Close();
+            }
+        }
+
+    }
 }

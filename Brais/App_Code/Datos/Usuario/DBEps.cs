@@ -46,4 +46,123 @@ public class DBEps
 
         return dtEps;
     }
+
+    public static Boolean hayUnUsuarioConEstaEps(int id)
+    {
+        DataTable resultado = new DataTable();
+
+        NpgsqlConnection conexion = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+
+        try
+        {
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("eps.f_hay_un_usuario_con_esta_eps", conexion);
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlTypes.NpgsqlDbType.Integer).Value = id;
+
+            conexion.Open();
+            dataAdapter.Fill(resultado);
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+        finally
+        {
+            if (conexion != null)
+            {
+                conexion.Close();
+            }
+        }
+
+        return ((Boolean)resultado.Rows[0]["f_hay_un_usuario_con_esta_eps"]);
+    }
+
+    public static void agregarEps(string nombre)
+    {
+        DataTable resultado = new DataTable();
+
+        NpgsqlConnection conexion = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+
+        try
+        {
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("eps.f_agregar_eps", conexion);
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dataAdapter.SelectCommand.Parameters.Add("_nombre", NpgsqlTypes.NpgsqlDbType.Text).Value = nombre;
+
+            conexion.Open();
+            dataAdapter.SelectCommand.ExecuteNonQuery();
+            //dataAdapter.Fill(resultado);
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+        finally
+        {
+            if (conexion != null)
+            {
+                conexion.Close();
+            }
+        }
+
+    }
+
+    public static void actualizarEps(int id, string nombre)
+    {
+        DataTable resultado = new DataTable();
+
+        NpgsqlConnection conexion = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+
+        try
+        {
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("eps.f_actualizar_eps", conexion);
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlTypes.NpgsqlDbType.Integer).Value = id;
+            dataAdapter.SelectCommand.Parameters.Add("_nombre", NpgsqlTypes.NpgsqlDbType.Text).Value = nombre;
+
+            conexion.Open();
+            dataAdapter.SelectCommand.ExecuteNonQuery();
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+        finally
+        {
+            if (conexion != null)
+            {
+                conexion.Close();
+            }
+        }
+
+    }
+
+    public static void eliminarEps(int id)
+    {
+        DataTable resultado = new DataTable();
+
+        NpgsqlConnection conexion = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+
+        try
+        {
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("eps.f_eliminar_eps", conexion);
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlTypes.NpgsqlDbType.Integer).Value = id;
+
+            conexion.Open();
+            dataAdapter.SelectCommand.ExecuteNonQuery();
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+        finally
+        {
+            if (conexion != null)
+            {
+                conexion.Close();
+            }
+        }
+
+    }
 }

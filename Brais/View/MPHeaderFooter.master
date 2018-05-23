@@ -69,6 +69,16 @@
             background-color: rgb(0, 131, 175);
         }
 
+        .BTN_Rojo{
+            background-color: rgb(230, 94, 79);
+            color: white;
+            border: 1px solid rgb(230, 94, 79);
+            border-radius: 5px;
+        }
+        .BTN_Rojo:hover{
+            background-color: rgb(252, 60, 39);
+        }
+
         header nav ul{
             display: flex;
             justify-content: center;

@@ -1,0 +1,104 @@
+CREATE SCHEMA especialidad
+AUTHORIZATION postgres;
+	
+CREATE SCHEMA eps
+AUTHORIZATION postgres;
+	
+
+create or replace function especialidad.f_hay_un_medico_con_esta_especialidad( _id integer )
+returns boolean as
+$$
+begin
+	if( (select count(*) from usuario.usuario u where u.id_especialidad = _id) = 0 ) then
+		return false;
+	end if;
+	return true;
+end
+$$
+language 'plpgsql';
+
+
+
+create or replace function eps.f_hay_un_usuario_con_esta_eps( _id integer )
+returns boolean as
+$$
+begin
+	if( (select count(*) from usuario.usuario u where u.id_eps = _id) = 0 ) then
+		return false;
+	end if;
+	return true;
+end
+$$
+language 'plpgsql';
+
+
+
+create or replace function especialidad.f_agregar_especialidad( _nombre text )
+returns void as
+$$
+begin
+	insert into usuario.especialidad(nombre) values (_nombre);
+end
+$$
+language 'plpgsql';
+
+
+
+create or replace function eps.f_agregar_eps( _nombre text )
+returns void as
+$$
+begin
+	insert into usuario.eps(nombre) values (_nombre);
+end
+$$
+language 'plpgsql';
+
+
+
+create or replace function especialidad.f_actualizar_especialidad( _id integer, _nombre text )
+returns void as
+$$
+begin
+	UPDATE usuario.especialidad
+	SET nombre=_nombre
+	WHERE id = _id;
+end
+$$
+language 'plpgsql';
+
+
+
+create or replace function eps.f_actualizar_eps( _id integer, _nombre text )
+returns void as
+$$
+begin
+	UPDATE usuario.eps
+	SET nombre=_nombre
+	WHERE id = _id;
+end
+$$
+language 'plpgsql';
+
+
+
+create or replace function especialidad.f_eliminar_especialidad( _id integer )
+returns void as
+$$
+begin
+	DELETE FROM usuario.especialidad
+	WHERE id = _id;
+end
+$$
+language 'plpgsql';
+
+
+
+create or replace function eps.f_eliminar_eps( _id integer )
+returns void as
+$$
+begin
+	DELETE FROM usuario.eps
+	WHERE id = _id;
+end
+$$
+language 'plpgsql';

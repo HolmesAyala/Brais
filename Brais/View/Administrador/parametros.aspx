@@ -1,7 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/View/Administrador/MPAdministrador.master" AutoEventWireup="true" CodeFile="~/Controller/Administrador/parametros.aspx.cs" Inherits="View_Administrador_parametros" %>
+﻿<%@ Page EnableEventValidation="false" Title="" Language="C#" MasterPageFile="~/View/Administrador/MPAdministrador.master" AutoEventWireup="true" CodeFile="~/Controller/Administrador/parametros.aspx.cs" Inherits="View_Administrador_parametros" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="contenido" Runat="Server">
     <style>
+        .p{
+            margin-bottom: 40px;
+        }
+
         .bordes{
             border-radius:5px;
             font-family:Arial;
@@ -42,7 +46,7 @@
             height: 20px;
         }
         </style>
-    <table style="width: 100%">
+    <table class="p" style="width: 100%">
         <tr>
             <td colspan="2" rowspan="3" style="text-align: center">
                 <asp:Label ID="Label1" runat="server" Font-Bold="True" Font-Size="X-Large" ForeColor="#00CCFF" Text="Consultorios"></asp:Label>
@@ -157,5 +161,146 @@
             <td colspan="2" style="height: 20px">&nbsp;</td>
         </tr>
     </table>
+
+
+    <style>
+
+        .crud{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 40px;
+            width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 2px solid #EEEEEE;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        .crud h3, .crud > div{
+            margin-bottom: 30px;
+        }
+        .agregar{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .campo{
+            display: flex;
+            margin-bottom: 20px;
+        }
+        .LB{
+            width: 100px;
+        }
+        .BTN_AzulOpaco{
+            background-color: rgb(0, 141, 177);
+            color: white;
+            border: 1px solid rgb(0, 141, 177);
+            border-radius: 5px;
+        }
+
+    </style>
+
+    <asp:ScriptManager runat="server" />
+
+    <asp:Panel class="crud crud_especialidad" runat="server">
+        <h3>Especialidad</h3>
+        <div>
+            <asp:UpdatePanel runat="server">
+                <ContentTemplate>
+            <div class="agregar">
+                <div class = "campo">
+                    <label class="LB">Nombre:</label>
+                    <asp:TextBox ID="TB_AgregarEspecialidad" runat="server" />
+                </div>
+            <asp:Button ID="BTN_AgregarEspecialidad" CssClass="BTN_Azul BTN" Text="Agregar" runat="server" OnClick="BTN_AgregarEspecialidad_Click" />
+            <asp:Label ID="LB_MensajeEspecialidad" Text="" runat="server" />
+            <asp:Timer ID="T_Especialidad" runat="server" Enabled="False" Interval="2000" OnTick="T_Especialidad_Tick"></asp:Timer>
+            </div>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+        </div>
+
+        <div>
+            <asp:UpdatePanel runat="server" UpdateMode="Always">
+                <ContentTemplate>
+
+
+            <asp:GridView ID="GV_Especialidad" runat="server" AutoGenerateColumns="False" EmptyDataText="Sin especialidades" DataSourceID="ODS_Especialidad" BorderStyle="None" CellPadding="5" CellSpacing="5" GridLines="None">
+                <Columns>
+                    <asp:TemplateField HeaderText="Nombre">
+                        <ItemTemplate>
+                            <asp:TextBox ID="TB_Especialidad" runat="server" Text='<%# Eval("nombre") %>'/>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField>
+                        <ItemTemplate>
+                            <asp:Button ID="BTN_ActualizarEspecialidad" class="BTN BTN_AzulOpaco" CommandName='<%# Eval("id") %>' runat="server" Text="Actualizar" OnClick="BTN_ActualizarEspecialidad_Click"/>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField>
+                        <ItemTemplate>
+                            <asp:Button ID="BTN_EliminarEspecialidad" class="BTN BTN_Rojo" CommandName='<%# Eval("id") %>' runat="server" Text="Eliminar" OnClick="BTN_EliminarEspecialidad_Click" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                </Columns>
+            </asp:GridView>
+
+            </ContentTemplate>
+            </asp:UpdatePanel>
+            <asp:ObjectDataSource ID="ODS_Especialidad" runat="server" SelectMethod="obtenerTipoEspecialidad" TypeName="DBEspecialidad"></asp:ObjectDataSource>
+        </div>
+    </asp:Panel>
+
+    <asp:Panel class="crud crud_eps" runat="server">
+        <h3>EPS</h3>
+        <div>
+            <asp:UpdatePanel runat="server">
+                <ContentTemplate>
+
+            <div class="agregar">
+                <div class="campo">
+                    <label class="LB">Nombre:</label>
+                    <asp:TextBox ID="TB_AgregarEps" runat="server" />
+                </div>
+            <asp:Button ID="BTN_AgregarEps" CssClass="BTN_Azul BTN" Text="Agregar" runat="server" OnClick="BTN_AgregarEps_Click" />
+            <asp:Label ID="LB_MensajeEps" Text="" runat="server" />
+            <asp:Timer ID="T_Eps" runat="server" Enabled="False" Interval="2000" OnTick="T_Eps_Tick"></asp:Timer>
+            </div>
+
+                </ContentTemplate>
+            </asp:UpdatePanel>
+        </div>
+
+        <div>
+            <asp:UpdatePanel runat="server">
+                <ContentTemplate>
+
+            <asp:GridView ID="GV_Eps" runat="server" AutoGenerateColumns="False" EmptyDataText="Sin especialidades" DataSourceID="ODS_Eps" CellPadding="5" CellSpacing="5" GridLines="None">
+                <Columns>
+                    <asp:TemplateField HeaderText="Nombre">
+                        <ItemTemplate>
+                            <asp:TextBox ID="TB_Eps" Text='<%# Eval("nombre") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField>
+                        <ItemTemplate>
+                            <asp:Button ID="BTN_ActualizarEps" class="BTN BTN_AzulOpaco" CommandName='<%# Eval("id") %>' runat="server" Text="Actualizar" OnClick="BTN_ActualizarEps_Click"/>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField>
+                        <ItemTemplate>
+                            <asp:Button ID="BTN_EliminarEps" class="BTN BTN_Rojo" CommandName='<%# Eval("id") %>' runat="server" Text="Eliminar" OnClick="BTN_EliminarEps_Click" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                </Columns>
+            </asp:GridView>
+            <asp:ObjectDataSource ID="ODS_Eps" runat="server" SelectMethod="obtenerEps" TypeName="DBEps"></asp:ObjectDataSource>
+
+            </ContentTemplate>
+            </asp:UpdatePanel>
+        </div>
+    </asp:Panel>
+    
 </asp:Content>
 

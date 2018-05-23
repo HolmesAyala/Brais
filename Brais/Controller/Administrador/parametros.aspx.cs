@@ -22,8 +22,6 @@ public partial class View_Administrador_parametros : System.Web.UI.Page
 
             }
         }
-        
-
     }
 
 
@@ -88,4 +86,118 @@ public partial class View_Administrador_parametros : System.Web.UI.Page
         Response.Redirect("~/View/Administrador/ReporteConsultorios.aspx");
 
     }
+
+    protected void T_Especialidad_Tick(object sender, EventArgs e)
+    {
+        LB_MensajeEspecialidad.Text = "";
+        T_Especialidad.Enabled = false;
+    }
+
+    protected void T_Eps_Tick(object sender, EventArgs e)
+    {
+        LB_MensajeEps.Text = "";
+        T_Eps.Enabled = false;
+    }
+
+    protected void BTN_AgregarEspecialidad_Click(object sender, EventArgs e)
+    {
+        if (!TB_AgregarEspecialidad.Text.Trim().Equals(""))
+        {
+            Funcion.mostrarMensaje(TB_AgregarEspecialidad.Text, this);
+            DBEspecialidad.agregarEspecialidad(TB_AgregarEspecialidad.Text.Trim());
+            TB_AgregarEspecialidad.Text = "";
+            GV_Especialidad.DataBind();
+            LB_MensajeEspecialidad.Text = "Agrego correctamente!";
+        }
+        else
+        {
+            LB_MensajeEspecialidad.Text = "Esta vacio!";
+        }
+        T_Especialidad.Enabled = true;
+    }
+
+    protected void BTN_AgregarEps_Click(object sender, EventArgs e)
+    {
+        if (!TB_AgregarEps.Text.Trim().Equals(""))
+        {
+            Funcion.mostrarMensaje(TB_AgregarEps.Text, this);
+            DBEps.agregarEps(TB_AgregarEps.Text.Trim());
+            TB_AgregarEps.Text = "";
+            GV_Eps.DataBind();
+            LB_MensajeEps.Text = "Agrego correctamente!";
+        }
+        else
+        {
+            LB_MensajeEps.Text = "Esta vacio!";
+        }
+        T_Eps.Enabled = true;
+    }
+
+    protected void BTN_ActualizarEspecialidad_Click(object sender, EventArgs e)
+    {
+        Button btn = (Button)sender;
+        TextBox tb = (TextBox)btn.Parent.FindControl("TB_Especialidad");
+
+        if (!tb.Text.Trim().Equals(""))
+        {
+            DBEspecialidad.actualizarEspecialidad( int.Parse(btn.CommandName), tb.Text );
+            LB_MensajeEspecialidad.Text = "Actualizo correctamente!";
+            GV_Especialidad.DataBind();
+        }
+        else
+        {
+            LB_MensajeEspecialidad.Text = "El nombre que va a actualizar esta vacio!";
+        }
+        T_Especialidad.Enabled = true;
+    }
+
+    protected void BTN_EliminarEspecialidad_Click(object sender, EventArgs e)
+    {
+        Button btn = (Button)sender;
+        if ( !DBEspecialidad.hayUnMedicoConEstaEspecialidad(int.Parse(btn.CommandName)) ){
+            DBEspecialidad.eliminarEspecialidad(int.Parse(btn.CommandName));
+            LB_MensajeEspecialidad.Text = "Elimino correctamente!";
+            GV_Especialidad.DataBind();
+        }
+        else
+        {
+            LB_MensajeEspecialidad.Text = "Hay medicos registrados con esa especialidad!";
+        }
+        T_Especialidad.Enabled = true;
+    }
+
+    protected void BTN_ActualizarEps_Click(object sender, EventArgs e)
+    {
+        Button btn = (Button)sender;
+        TextBox tb = (TextBox)btn.Parent.FindControl("TB_Eps");
+
+        if (!tb.Text.Trim().Equals(""))
+        {
+            DBEps.actualizarEps(int.Parse(btn.CommandName), tb.Text);
+            LB_MensajeEps.Text = "Actualizo correctamente!";
+            GV_Eps.DataBind();
+        }
+        else
+        {
+            LB_MensajeEps.Text = "El nombre que va a actualizar esta vacio!";
+        }
+        T_Eps.Enabled = true;
+    }
+
+    protected void BTN_EliminarEps_Click(object sender, EventArgs e)
+    {
+        Button btn = (Button)sender;
+        if (!DBEps.hayUnUsuarioConEstaEps(int.Parse(btn.CommandName)))
+        {
+            DBEps.eliminarEps(int.Parse(btn.CommandName));
+            LB_MensajeEps.Text = "Elimino correctamente!";
+            GV_Eps.DataBind();
+        }
+        else
+        {
+            LB_MensajeEps.Text = "Hay usuarios registrados con esa eps!";
+        }
+        T_Eps.Enabled = true;
+    }
+
 }
