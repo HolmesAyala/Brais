@@ -82,7 +82,7 @@
         </asp:GridView>
     </div>
     <div id="reporte">
-        <asp:Button runat="server" id="BTN_Reporte" CssClass="BTN_Reporte" Text="Generar Reporte" OnClick="BTN_Reporte_Click"></asp:Button>
+        <asp:Button runat="server" id="BTN_Reporte" CssClass="BTN BTN_Verde" Text="Generar Reporte" OnClick="BTN_Reporte_Click"></asp:Button>
     </div>
 
 </asp:Content>

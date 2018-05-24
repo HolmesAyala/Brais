@@ -79,6 +79,8 @@
             <td class="auto-style2">
                 <asp:TextBox ID="Tx_Identificacion" runat="server" Width="25%" CssClass="estilo_Text" TextChanged="OnTextBoxTextChanged" MaxLength="15"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RFV_identificacion" runat="server" ControlToValidate="Tx_Identificacion" ErrorMessage="La identificación es obligatoria" CssClass="auto-style1" ToolTip="La identificación es obligatoria">*</asp:RequiredFieldValidator>
+                <asp:RegularExpressionValidator runat="server" ErrorMessage="Hay caracteres especiales" ValidationExpression="^[\s\w]*$" ForeColor="#CC0000" ControlToValidate="Tx_Identificacion"></asp:RegularExpressionValidator>
+                
             </td>
         </tr>
         <tr>
@@ -89,6 +91,8 @@
             <td class="textBox">
                 <asp:TextBox ID="Tx_contrasena" runat="server" Width="25%" TextMode="Password" MaxLength="10"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RFV_Contrasena" runat="server" ErrorMessage="La Contraseña es obligatoria" CssClass="RFV_estilos" ToolTip="La Contraseña es obligatoria" ControlToValidate="Tx_contrasena">*</asp:RequiredFieldValidator>
+                <asp:RegularExpressionValidator runat="server" ErrorMessage="Hay caracteres especiales" ValidationExpression="^[\s\w]*$" ForeColor="#CC0000" ControlToValidate="Tx_contrasena"></asp:RegularExpressionValidator>
+                
             </td>
         </tr>
         <tr>

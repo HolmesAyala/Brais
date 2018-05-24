@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 
@@ -95,4 +96,9 @@ public abstract class Funcion
         ScriptManager.RegisterStartupScript(page, typeof(Page), "", script, false);
     }
 
+    public static Boolean tieneCaracteresEspeciales(string texto)
+    {
+        Regex regex = new Regex(@"^[\s\w]*$");
+        return !regex.IsMatch(texto);
+    }
 }

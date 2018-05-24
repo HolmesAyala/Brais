@@ -68,6 +68,7 @@
             </td>
             <td>
                 <asp:TextBox ID="TB_Numero_Documento" runat="server"></asp:TextBox>
+                <asp:RegularExpressionValidator runat="server" ErrorMessage="Hay caracteres especiales" ValidationExpression="^[\s\w]*$" ForeColor="#CC0000" ControlToValidate="TB_Numero_Documento"></asp:RegularExpressionValidator>
             </td>
         </tr>
         <tr>
@@ -77,6 +78,7 @@
             </td>
             <td>
                 <asp:TextBox ID="TB_Nombre" runat="server"></asp:TextBox>
+                <asp:RegularExpressionValidator runat="server" ErrorMessage="Hay caracteres especiales" ValidationExpression="^[\s\w]*$" ForeColor="#CC0000" ControlToValidate="TB_Nombre"></asp:RegularExpressionValidator>
             </td>
         </tr>
         <tr>
@@ -86,6 +88,7 @@
             </td>
             <td>
                 <asp:TextBox ID="TB_Apellido" runat="server"></asp:TextBox>
+                <asp:RegularExpressionValidator runat="server" ErrorMessage="Hay caracteres especiales" ValidationExpression="^[\s\w]*$" ForeColor="#CC0000" ControlToValidate="TB_Apellido"></asp:RegularExpressionValidator>
             </td>
         </tr>
         <tr>
@@ -144,6 +147,7 @@
             </td>
             <td>
                 <asp:TextBox ID="TB_Contrasena" runat="server" TextMode="Password"></asp:TextBox>
+                <asp:RegularExpressionValidator runat="server" ErrorMessage="Hay caracteres especiales" ValidationExpression="^[\s\w]*$" ForeColor="#CC0000" ControlToValidate="TB_Contrasena"></asp:RegularExpressionValidator>
             </td>
         </tr>
         <tr>
@@ -153,6 +157,7 @@
             </td>
             <td>
                 <asp:TextBox ID="TB_Repetir_Contrasena" runat="server" TextMode="Password"></asp:TextBox>
+                <asp:RegularExpressionValidator runat="server" ErrorMessage="Hay caracteres especiales" ValidationExpression="^[\s\w]*$" ForeColor="#CC0000" ControlToValidate="TB_Repetir_Contrasena"></asp:RegularExpressionValidator>
             </td>
         </tr>
     </table>

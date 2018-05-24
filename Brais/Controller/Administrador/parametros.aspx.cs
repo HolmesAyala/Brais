@@ -38,9 +38,10 @@ public partial class View_Administrador_parametros : System.Web.UI.Page
     {
         DBAdministrador admin = new DBAdministrador();
         EConsultorio consul = new EConsultorio();
-        if ((TB_Consultorio.Text == "")||(TB_Consultorio.Text==""))
+
+        if ((TB_Consultorio.Text.Trim() == "")||(TB_Ubicacion.Text.Trim() ==""))
         {
-            ClientScript.RegisterClientScriptBlock(this.GetType(), "Nombre", "<script> alert('Ingrese los datos del consultorio a ingresar'); </script>");
+            ClientScript.RegisterClientScriptBlock(this.GetType(), "Nombre", "<script> alert('No ha ingresado datos para el consultorio'); </script>");
         }
         else
         {
@@ -66,8 +67,9 @@ public partial class View_Administrador_parametros : System.Web.UI.Page
     protected void Button3_Click(object sender, EventArgs e)
     {
         Button btn = (Button)sender;
-        String id;
-        id = btn.CommandArgument.ToString();
+        String id = btn.CommandArgument.ToString();
+        DBConsultorio dBConsultorio = new DBConsultorio();
+
     }
 
     protected void Button4_Click(object sender, EventArgs e)

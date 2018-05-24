@@ -25,6 +25,7 @@
         <h3>Paso 1 para restablecer su contraseña</h3>
         <asp:Label runat="server" Text="Digite su numero de Identificacion:" ID="LB_Identificacion"></asp:Label>
         <asp:TextBox runat="server" ID="TB_Identificacion"></asp:TextBox>
+        <asp:RegularExpressionValidator runat="server" ErrorMessage="Hay caracteres especiales" ControlToValidate="TB_Identificacion" ValidationExpression="^[\s\w]*$" ForeColor="#CC0000"></asp:RegularExpressionValidator>
         <asp:Label runat="server" ID="LB_Mensaje"></asp:Label>
         <asp:Button runat="server" Text="Restablecer" class="BTN BTN_Azul" ID="BTN_Restablecer" OnClick="BTN_Restablecer_Click"></asp:Button>
         

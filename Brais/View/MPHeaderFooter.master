@@ -78,7 +78,15 @@
         .BTN_Rojo:hover{
             background-color: rgb(252, 60, 39);
         }
-
+        .BTN_Verde{
+            background-color: rgb(5, 153, 65);
+            color: white;
+            border: 1px solid rgb(0, 205, 106);
+            border-radius: 5px;
+        }
+        .BTN_Verde:hover{
+            background-color: rgb(0, 176, 91);
+        }
         header nav ul{
             display: flex;
             justify-content: center;

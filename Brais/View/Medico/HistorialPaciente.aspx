@@ -72,11 +72,13 @@
     <div class="campo">
         <asp:Label class="LB" runat="server" Text="Motivo de consulta"></asp:Label>
         <asp:TextBox class="TB" ID="TB_MotivoConsulta" runat="server" Height="100px" TextMode="MultiLine" Width="300px"></asp:TextBox>
+        <asp:RegularExpressionValidator runat="server" ErrorMessage="Hay caracteres especiales" ValidationExpression="^[\s\w]*$" ForeColor="#CC0000" ControlToValidate="TB_MotivoConsulta"></asp:RegularExpressionValidator>
     </div>
     
     <div class="campo">
         <asp:Label class="LB" runat="server" Text="Observaciones"></asp:Label>
         <asp:TextBox class="TB" ID="TB_Observacion" runat="server" Height="100px" TextMode="MultiLine" Width="300px"></asp:TextBox>
+        <asp:RegularExpressionValidator runat="server" ErrorMessage="Hay caracteres especiales" ValidationExpression="^[\s\w]*$" ForeColor="#CC0000" ControlToValidate="TB_Observacion"></asp:RegularExpressionValidator>
     </div>
 
     <div class="campo">
@@ -126,6 +128,7 @@
         <br />
         <br />
         <asp:TextBox ID="TextBox1" runat="server" Height="75px" Width="335px"></asp:TextBox>
+        <asp:RegularExpressionValidator runat="server" ErrorMessage="Hay caracteres especiales" ValidationExpression="^[\s\w]*$" ForeColor="#CC0000" ControlToValidate="TextBox1"></asp:RegularExpressionValidator>
         <br />
         <br />
         <asp:Button ID="Button1" runat="server" Text="Enviar" CssClass="BTN_Azul" />
