@@ -76,6 +76,7 @@ public class DBUsuario
             dataAdapter.SelectCommand.Parameters.Add("_correo", NpgsqlDbType.Text).Value = eUsuario.Correo;
             dataAdapter.SelectCommand.Parameters.Add("_contrasena", NpgsqlDbType.Text).Value = eUsuario.Password;
             dataAdapter.SelectCommand.Parameters.Add("_id_eps", NpgsqlDbType.Integer).Value = eUsuario.IdEps;
+            dataAdapter.SelectCommand.Parameters.Add("_session", NpgsqlDbType.Text).Value = eUsuario.Session;
             conection.Open();
             dataAdapter.Fill(resultado);
         }
@@ -151,7 +152,7 @@ public class DBUsuario
         return usuario;
     }
 
-    public DataTable eliminarUsuario(string id)
+    public DataTable eliminarUsuario(string id, string _session)
     {
         DataTable resultado = new DataTable();
 
@@ -162,6 +163,7 @@ public class DBUsuario
             NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_eliminar_usuario", conection);
             dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
             dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlDbType.Text).Value = id;
+            dataAdapter.SelectCommand.Parameters.Add("_session", NpgsqlDbType.Text).Value = _session;
 
             conection.Open();
             dataAdapter.Fill(resultado);

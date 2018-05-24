@@ -9,7 +9,7 @@ using System.Web;
 public class EComentario
 {
     int id, id_motivo,id_cita;
-    String comentario, id_remitente, id_receptor;
+    String comentario, id_remitente, id_receptor, session;
 
     public EComentario()
     { 
@@ -90,6 +90,19 @@ public class EComentario
         set
         {
             id_cita = value;
+        }
+    }
+
+    public string Session
+    {
+        get
+        {
+            return session;
+        }
+
+        set
+        {
+            session = value;
         }
     }
 }

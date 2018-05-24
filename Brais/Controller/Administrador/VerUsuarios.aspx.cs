@@ -39,7 +39,7 @@ public partial class View_Administrador_VerUsuarios : System.Web.UI.Page
     {
         Button btnEliminar = (Button)sender;
         DBUsuario dBUsuario = new DBUsuario();
-        dBUsuario.eliminarUsuario(btnEliminar.CommandName);
+        dBUsuario.eliminarUsuario(btnEliminar.CommandName, Session.SessionID);
         llenarDatosUsuarios(TB_Buscar.Text.Trim());
     }
 

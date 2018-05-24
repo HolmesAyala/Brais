@@ -58,6 +58,7 @@ public partial class View_Medico_HistorialPaciente : System.Web.UI.Page
         eHistorial.Servicio = TB_NombreServicio.Text.Trim();
         eHistorial.MotivoConsulta = TB_MotivoConsulta.Text.Trim();
         eHistorial.Observacion = TB_Observacion.Text.Trim();
+        eHistorial.Session = Session.SessionID;
 
         DBHistorial.agregarHistorial(eHistorial);
 

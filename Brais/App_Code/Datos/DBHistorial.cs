@@ -32,6 +32,7 @@ public class DBHistorial
             dataAdapter.SelectCommand.Parameters.Add("_observacion", NpgsqlTypes.NpgsqlDbType.Text).Value = eHistorial.Observacion;
             dataAdapter.SelectCommand.Parameters.Add("_fecha", NpgsqlTypes.NpgsqlDbType.Date).Value = eHistorial.Fecha;
             dataAdapter.SelectCommand.Parameters.Add("_servicio", NpgsqlTypes.NpgsqlDbType.Text).Value = eHistorial.Servicio;
+            dataAdapter.SelectCommand.Parameters.Add("_session", NpgsqlTypes.NpgsqlDbType.Text).Value = eHistorial.Session;
 
             conexion.Open();
             dataAdapter.Fill(resultado);

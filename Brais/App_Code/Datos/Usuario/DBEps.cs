@@ -77,7 +77,7 @@ public class DBEps
         return ((Boolean)resultado.Rows[0]["f_hay_un_usuario_con_esta_eps"]);
     }
 
-    public static void agregarEps(string nombre)
+    public static void agregarEps(string nombre, string _session)
     {
         DataTable resultado = new DataTable();
 
@@ -88,6 +88,7 @@ public class DBEps
             NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("eps.f_agregar_eps", conexion);
             dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
             dataAdapter.SelectCommand.Parameters.Add("_nombre", NpgsqlTypes.NpgsqlDbType.Text).Value = nombre;
+            dataAdapter.SelectCommand.Parameters.Add("_session", NpgsqlTypes.NpgsqlDbType.Text).Value = _session;
 
             conexion.Open();
             dataAdapter.SelectCommand.ExecuteNonQuery();
@@ -107,7 +108,7 @@ public class DBEps
 
     }
 
-    public static void actualizarEps(int id, string nombre)
+    public static void actualizarEps(int id, string nombre, String _session)
     {
         DataTable resultado = new DataTable();
 
@@ -119,6 +120,7 @@ public class DBEps
             dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
             dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlTypes.NpgsqlDbType.Integer).Value = id;
             dataAdapter.SelectCommand.Parameters.Add("_nombre", NpgsqlTypes.NpgsqlDbType.Text).Value = nombre;
+            dataAdapter.SelectCommand.Parameters.Add("_session", NpgsqlTypes.NpgsqlDbType.Text).Value = _session;
 
             conexion.Open();
             dataAdapter.SelectCommand.ExecuteNonQuery();

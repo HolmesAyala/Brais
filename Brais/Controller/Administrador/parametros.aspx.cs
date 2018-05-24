@@ -104,7 +104,7 @@ public partial class View_Administrador_parametros : System.Web.UI.Page
         if (!TB_AgregarEspecialidad.Text.Trim().Equals(""))
         {
             Funcion.mostrarMensaje(TB_AgregarEspecialidad.Text, this);
-            DBEspecialidad.agregarEspecialidad(TB_AgregarEspecialidad.Text.Trim());
+            DBEspecialidad.agregarEspecialidad(TB_AgregarEspecialidad.Text.Trim(), Session.SessionID);
             TB_AgregarEspecialidad.Text = "";
             GV_Especialidad.DataBind();
             LB_MensajeEspecialidad.Text = "Agrego correctamente!";
@@ -121,7 +121,7 @@ public partial class View_Administrador_parametros : System.Web.UI.Page
         if (!TB_AgregarEps.Text.Trim().Equals(""))
         {
             Funcion.mostrarMensaje(TB_AgregarEps.Text, this);
-            DBEps.agregarEps(TB_AgregarEps.Text.Trim());
+            DBEps.agregarEps(TB_AgregarEps.Text.Trim(), Session.SessionID);
             TB_AgregarEps.Text = "";
             GV_Eps.DataBind();
             LB_MensajeEps.Text = "Agrego correctamente!";
@@ -140,7 +140,7 @@ public partial class View_Administrador_parametros : System.Web.UI.Page
 
         if (!tb.Text.Trim().Equals(""))
         {
-            DBEspecialidad.actualizarEspecialidad( int.Parse(btn.CommandName), tb.Text );
+            DBEspecialidad.actualizarEspecialidad( int.Parse(btn.CommandName), tb.Text, Session.SessionID);
             LB_MensajeEspecialidad.Text = "Actualizo correctamente!";
             GV_Especialidad.DataBind();
         }
@@ -155,7 +155,7 @@ public partial class View_Administrador_parametros : System.Web.UI.Page
     {
         Button btn = (Button)sender;
         if ( !DBEspecialidad.hayUnMedicoConEstaEspecialidad(int.Parse(btn.CommandName)) ){
-            DBEspecialidad.eliminarEspecialidad(int.Parse(btn.CommandName));
+            DBEspecialidad.eliminarEspecialidad(int.Parse(btn.CommandName), Session.SessionID);
             LB_MensajeEspecialidad.Text = "Elimino correctamente!";
             GV_Especialidad.DataBind();
         }
@@ -173,7 +173,7 @@ public partial class View_Administrador_parametros : System.Web.UI.Page
 
         if (!tb.Text.Trim().Equals(""))
         {
-            DBEps.actualizarEps(int.Parse(btn.CommandName), tb.Text);
+            DBEps.actualizarEps(int.Parse(btn.CommandName), tb.Text, Session.SessionID);
             LB_MensajeEps.Text = "Actualizo correctamente!";
             GV_Eps.DataBind();
         }

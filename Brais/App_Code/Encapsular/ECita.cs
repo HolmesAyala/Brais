@@ -22,6 +22,9 @@ public class ECita
 
     private string dia;
 
+    private string session;
+
+
     public ECita()
     {
 
@@ -120,6 +123,19 @@ public class ECita
         set
         {
             eUsuario = value;
+        }
+    }
+
+    public string Session
+    {
+        get
+        {
+            return session;
+        }
+
+        set
+        {
+            session = value;
         }
     }
 }

@@ -87,6 +87,7 @@ public class DBMedico
             dataAdapter.SelectCommand.Parameters.Add("_consultorio_pk", NpgsqlDbType.Integer).Value = eMedico.Consultorio;
             dataAdapter.SelectCommand.Parameters.Add("_correo", NpgsqlDbType.Text).Value = eMedico.Correo;
             dataAdapter.SelectCommand.Parameters.Add("_contrasena", NpgsqlDbType.Text).Value = eMedico.Password;
+            dataAdapter.SelectCommand.Parameters.Add("_session", NpgsqlDbType.Text).Value = eMedico.Session;
             conection.Open();
             dataAdapter.Fill(resultado);
         }
@@ -164,7 +165,7 @@ public class DBMedico
         return medico;
     }
 
-    public DataTable eliminarMedico(string id)
+    public DataTable eliminarMedico(string id, string _session)
     {
         DataTable resultado = new DataTable();
 
@@ -175,6 +176,7 @@ public class DBMedico
             NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_eliminar_medico", conection);
             dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
             dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlDbType.Text).Value = id;
+            dataAdapter.SelectCommand.Parameters.Add("_session", NpgsqlDbType.Text).Value = _session;
 
             conection.Open();
             dataAdapter.Fill(resultado);
@@ -309,6 +311,7 @@ public class DBMedico
                 dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
                 dataAdapter.SelectCommand.Parameters.Add("_id_medic", NpgsqlDbType.Text).Value = medico.Identificacion;
                 dataAdapter.SelectCommand.Parameters.Add("_horario", NpgsqlDbType.Json).Value = medico.Horario;
+                dataAdapter.SelectCommand.Parameters.Add("_session", NpgsqlDbType.Json).Value = medico.Session;
                 dataAdapter.Fill(data);
             }
             else
@@ -317,6 +320,7 @@ public class DBMedico
                 dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
                 dataAdapter.SelectCommand.Parameters.Add("_id_medic", NpgsqlDbType.Text).Value = medico.Identificacion;
                 dataAdapter.SelectCommand.Parameters.Add("_horario", NpgsqlDbType.Json).Value = medico.Horario;
+                dataAdapter.SelectCommand.Parameters.Add("_session", NpgsqlDbType.Json).Value = medico.Session;
                 conexion.Open();
                 dataAdapter.Fill(data);
             }

@@ -77,7 +77,7 @@ public class DBConsultorio
         return consultorio;
     }
 
-    public DataTable guardarDisponibilidad(int id_consultorio)
+    public DataTable guardarDisponibilidad(int id_consultorio, string _session)
     {
         DataTable consultorio = new DataTable();
 
@@ -87,6 +87,7 @@ public class DBConsultorio
         {
             NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("public.f_guardar_disponibilidad", conexion);
             dataAdapter.SelectCommand.Parameters.Add("_id_consultorio", NpgsqlDbType.Integer).Value = id_consultorio;
+            dataAdapter.SelectCommand.Parameters.Add("_session", NpgsqlDbType.Text).Value = _session;
             dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
 
             conexion.Open();
@@ -107,7 +108,7 @@ public class DBConsultorio
         return consultorio;
     }
 
-    public DataTable liberarDisponibilidad(int id_consultorio)
+    public DataTable liberarDisponibilidad(int id_consultorio, string _session)
     {
         DataTable consultorio = new DataTable();
 
@@ -117,6 +118,7 @@ public class DBConsultorio
         {
             NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("public.f_liberar_disponibilidad", conexion);
             dataAdapter.SelectCommand.Parameters.Add("_id_consultorio", NpgsqlDbType.Integer).Value = id_consultorio;
+            dataAdapter.SelectCommand.Parameters.Add("_session", NpgsqlDbType.Text).Value = _session;
             dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
 
             conexion.Open();

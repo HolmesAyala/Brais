@@ -39,6 +39,7 @@ public partial class View_Usuario_CancelarCita : System.Web.UI.Page
         {
             eCita.Id = Convert.ToInt32(btnSeleccionar.CommandName);
             eCita.EUsuario = eUsuario;
+            eCita.Session = Session.SessionID;
             DBCita.eliminarCita(eCita);
             obtenerCitasPaciente();
         }

@@ -8,7 +8,7 @@ using System.Web;
 /// </summary>
 public class EMedico
 {
-    private string identificacion, nombre, apellido, correo, password, fechaNacimiento,horario;
+    private string identificacion, nombre, apellido, correo, password, fechaNacimiento,horario, session;
     private int tipoEspecialidad, consultorio, tipoUsuario, tipoIdentificacion;
     private EEspecialidad eEspecialidad;
 
@@ -165,6 +165,19 @@ public class EMedico
         set
         {
             eEspecialidad = value;
+        }
+    }
+
+    public string Session
+    {
+        get
+        {
+            return session;
+        }
+
+        set
+        {
+            session = value;
         }
     }
 }

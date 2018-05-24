@@ -124,11 +124,11 @@
                     <asp:Label ID="Label10" runat="server" Font-Bold="True" Text="Numero De Documento"></asp:Label>
                 </td>
                 <td class="auto-style9"><asp:TextBox ID="TB_id" runat="server" Width="117px" CssClass="auto-style7" MaxLength="15"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TB_id" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
                      <asp:RegularExpressionValidator  runat="server" ID="regexpName"      
                                     ErrorMessage="Solo Numeros" 
                                     ControlToValidate="TB_id"     
                                     ValidationExpression="^\d+$" ForeColor="Red" />
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TB_id" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
                 </td>
                 <td>
                     <asp:Label ID="Label7" runat="server" Font-Bold="True" Text="Correo Electronico"></asp:Label>
@@ -144,6 +144,10 @@
                 </td>
                 <td class="auto-style9"><asp:TextBox ID="TB_name" runat="server" Width="117px" MaxLength="50"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TB_name" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
+                    <asp:RegularExpressionValidator  runat="server" ID="RegularExpressionValidator1"      
+                                    ErrorMessage="Caracter No Valido" 
+                                    ControlToValidate="TB_name"     
+                                    ValidationExpression="^[a-zA-Z''-'\s]{1,40}$" ForeColor="Red" />
                 </td>
                 <td>
                     <asp:Label ID="Label8" runat="server" Font-Bold="True" Text="Clave"></asp:Label>

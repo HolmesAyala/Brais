@@ -39,6 +39,7 @@ public partial class View_Usuario_ConfirmarCita : System.Web.UI.Page
         if (DBCita.verificarDisponibilidadCita(eCita.Id))
         {
             eCita.EUsuario = (EUsuario)Session["usuario"];
+            eCita.Session = Session.SessionID;
             DBCita.reservarCita(eCita);
             string script = @"<script type='text/javascript'>alert('Agendo la cita correctamente!');</script>";
             ScriptManager.RegisterStartupScript(this, typeof(Page), "alerta", script, false);

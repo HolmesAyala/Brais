@@ -8,7 +8,7 @@ using System.Web;
 /// </summary>
 public class EUsuario
 {
-    private string identificacion, nombre, apellido, correo, password,fecha;
+    private string identificacion, nombre, apellido, correo, password,fecha, session;
     private int tipo_afiliacion, tipo_id, tipoUsuario, idEps;
 
     public string Identificacion
@@ -138,6 +138,19 @@ public class EUsuario
         set
         {
             idEps = value;
+        }
+    }
+
+    public string Session
+    {
+        get
+        {
+            return session;
+        }
+
+        set
+        {
+            session = value;
         }
     }
 }

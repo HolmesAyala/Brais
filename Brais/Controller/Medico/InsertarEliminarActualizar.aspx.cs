@@ -239,6 +239,7 @@ public partial class View_Medico_InsertarEliminarActualizar : System.Web.UI.Page
         }
         eMedico.Correo = TB_Correo.Text.Trim();
         eMedico.Password = TB_Contrasena.Text;
+        eMedico.Session = Session.SessionID;
         return eMedico;
     }
 
@@ -256,12 +257,12 @@ public partial class View_Medico_InsertarEliminarActualizar : System.Web.UI.Page
                 dBMedico.CrearMedico(eMedico);
                 if (eMedico.Consultorio != Convert.ToInt32(Session["consultorio"]))
                 {
-                    dBConsultorio.guardarDisponibilidad(eMedico.Consultorio);
-                    dBConsultorio.liberarDisponibilidad(Convert.ToInt32(Session["consultorio"]));
+                    dBConsultorio.guardarDisponibilidad(eMedico.Consultorio, Session.SessionID);
+                    dBConsultorio.liberarDisponibilidad(Convert.ToInt32(Session["consultorio"]), Session.SessionID);
                 }
                 else if (eMedico.Consultorio == Convert.ToInt32(Session["consultorio"]))
                 {
-                    dBConsultorio.guardarDisponibilidad(eMedico.Consultorio);
+                    dBConsultorio.guardarDisponibilidad(eMedico.Consultorio, Session.SessionID);
                 }
 
             }
@@ -270,17 +271,16 @@ public partial class View_Medico_InsertarEliminarActualizar : System.Web.UI.Page
                 dBMedico.actualizarMedico(eMedico);
                 if (eMedico.Consultorio != Convert.ToInt32(Session["consultorio"]))
                 {
-                    dBConsultorio.guardarDisponibilidad(eMedico.Consultorio);
-                    dBConsultorio.liberarDisponibilidad(Convert.ToInt32(Session["consultorio"]));
+                    dBConsultorio.guardarDisponibilidad(eMedico.Consultorio, Session.SessionID);
+                    dBConsultorio.liberarDisponibilidad(Convert.ToInt32(Session["consultorio"]), Session.SessionID);
                 }
                 else if (eMedico.Consultorio == Convert.ToInt32(Session["consultorio"]))
                 {
-                    dBConsultorio.guardarDisponibilidad(eMedico.Consultorio);
+                    dBConsultorio.guardarDisponibilidad(eMedico.Consultorio, Session.SessionID);
                 }
             }
             else if (btnAccion.Text.Equals("Eliminar"))
             {
-
             }
             Response.Redirect(Session["PaginaAnterior"].ToString());
         }
