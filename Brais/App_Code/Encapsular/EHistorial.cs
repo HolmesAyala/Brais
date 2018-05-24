@@ -21,6 +21,8 @@ public class EHistorial
 
     private string servicio;
 
+    private string session;
+
     public EHistorial()
     {
 
@@ -101,6 +103,19 @@ public class EHistorial
         set
         {
             idUsuario = value;
+        }
+    }
+
+    public string Session
+    {
+        get
+        {
+            return session;
+        }
+
+        set
+        {
+            session = value;
         }
     }
 }

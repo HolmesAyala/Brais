@@ -34,10 +34,6 @@ public partial class View_Usuario_InsertarEliminarActualizar : System.Web.UI.Pag
             Session["Accion"] = null;
             Session["identificacion"] = null;
         }
-        if (Session["Crear_cuenta"].ToString().Equals("Crear cuenta"))
-        {
-            adecuarParaInsertar();
-        }
     }
 
     protected void adecuarParaInsertar()
@@ -168,6 +164,7 @@ public partial class View_Usuario_InsertarEliminarActualizar : System.Web.UI.Pag
         eUsuario.IdEps = int.Parse(DDL_Eps.SelectedItem.Value);
         eUsuario.Correo = TB_Correo.Text.Trim();
         eUsuario.Password = TB_Clave.Text;
+        eUsuario.Session = Session.SessionID;
         return eUsuario;
     }
 

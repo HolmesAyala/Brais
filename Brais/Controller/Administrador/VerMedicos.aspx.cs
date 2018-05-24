@@ -41,9 +41,9 @@ public partial class View_Administrador_VerMedicos : System.Web.UI.Page
         DBMedico dBMedico = new DBMedico();
         DBConsultorio dBConsultorio = new DBConsultorio();
         DataTable medico = dBMedico.obtenerMedico(btnEliminar.CommandName);
-        dBMedico.eliminarMedico(btnEliminar.CommandName);
+        dBMedico.eliminarMedico(btnEliminar.CommandName, Session.SessionID);
         obtenerDatosMedico(TB_Buscar.Text.Trim());
-        dBConsultorio.liberarDisponibilidad(int.Parse(medico.Rows[0]["id_especialidad"].ToString()));
+        dBConsultorio.liberarDisponibilidad(int.Parse(medico.Rows[0]["consultorio_pk"].ToString()), Session.SessionID);
     }
 
     protected void BTN_AgregarMedico_Click(object sender, EventArgs e)

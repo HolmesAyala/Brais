@@ -98,7 +98,7 @@ public class DBAdministrador
         return consultorio;
     }
 
-    public void eliminarConsultorio(int id)
+    public void eliminarConsultorio(int id, string _session)
     {
         DataTable delete = new DataTable();
         NpgsqlConnection conexion = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
@@ -107,6 +107,7 @@ public class DBAdministrador
             NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("f_delete_consultorio", conexion);
             dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
             dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlDbType.Integer).Value = id;
+            dataAdapter.SelectCommand.Parameters.Add("_session", NpgsqlDbType.Text).Value = _session;
             conexion.Open();
             dataAdapter.Fill(delete);
         }
@@ -158,6 +159,7 @@ public class DBAdministrador
         {
             NpgsqlDataAdapter dataAdapter= new NpgsqlDataAdapter("usuario.f_eliminar_parametro", conexion);
             dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dataAdapter.SelectCommand.Parameters.Add("_session", NpgsqlDbType.Text).Value = sesion;
             conexion.Open();
             dataAdapter.Fill(actu);
             dataAdapter = new NpgsqlDataAdapter("usuario.f_actualizar_parametro", conexion);

@@ -54,6 +54,7 @@ public partial class View_Usuario_Comentarios : System.Web.UI.Page
             EComentario eComentario = new EComentario();
             recolectarDatos(eComentario);
             eComentario.Id_cita = int.Parse(Session["cita"].ToString());
+            eComentario.Session = Session.SessionID;
             DBComentario.guardarComentario(eComentario);
             string script = @"<script type='text/javascript'>alert('El comentario se agrego correctamente');</script>";
             ScriptManager.RegisterStartupScript(this, typeof(Page), "alerta", script, false);

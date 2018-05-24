@@ -107,7 +107,7 @@ public class DBEspecialidad
         return ((Boolean)resultado.Rows[0]["f_hay_un_medico_con_esta_especialidad"]);
     }
 
-    public static void agregarEspecialidad(string nombre)
+    public static void agregarEspecialidad(string nombre, string _session)
     {
         DataTable resultado = new DataTable();
 
@@ -118,6 +118,7 @@ public class DBEspecialidad
             NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("especialidad.f_agregar_especialidad", conexion);
             dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
             dataAdapter.SelectCommand.Parameters.Add("_nombre", NpgsqlTypes.NpgsqlDbType.Text).Value = nombre;
+            dataAdapter.SelectCommand.Parameters.Add("_session", NpgsqlTypes.NpgsqlDbType.Text).Value = _session;
 
             conexion.Open();
             dataAdapter.SelectCommand.ExecuteNonQuery();
@@ -137,7 +138,7 @@ public class DBEspecialidad
 
     }
 
-    public static void actualizarEspecialidad(int id, string nombre)
+    public static void actualizarEspecialidad(int id, string nombre, string _session)
     {
         DataTable resultado = new DataTable();
 
@@ -149,6 +150,7 @@ public class DBEspecialidad
             dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
             dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlTypes.NpgsqlDbType.Integer).Value = id;
             dataAdapter.SelectCommand.Parameters.Add("_nombre", NpgsqlTypes.NpgsqlDbType.Text).Value = nombre;
+            dataAdapter.SelectCommand.Parameters.Add("_session", NpgsqlTypes.NpgsqlDbType.Text).Value = _session;
 
             conexion.Open();
             dataAdapter.SelectCommand.ExecuteNonQuery();
@@ -167,7 +169,7 @@ public class DBEspecialidad
 
     }
 
-    public static void eliminarEspecialidad(int id)
+    public static void eliminarEspecialidad(int id, string _session)
     {
         DataTable resultado = new DataTable();
 
@@ -178,6 +180,7 @@ public class DBEspecialidad
             NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("especialidad.f_eliminar_especialidad", conexion);
             dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
             dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlTypes.NpgsqlDbType.Integer).Value = id;
+            dataAdapter.SelectCommand.Parameters.Add("_session", NpgsqlTypes.NpgsqlDbType.Text).Value = _session;
 
             conexion.Open();
             dataAdapter.SelectCommand.ExecuteNonQuery();

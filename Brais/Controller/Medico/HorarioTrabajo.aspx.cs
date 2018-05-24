@@ -117,6 +117,7 @@ public partial class View_Medico_HorarioTrabajo : System.Web.UI.Page
           
             medic.Horario = horario_full;
             medic.Identificacion = (String)Session["identificacion_medico"];
+            medic.Session = Session.SessionID;
             medicdb.crear_horario(medic);
             dias_escogidos.Text = horario_full;
             pintar_horario();
