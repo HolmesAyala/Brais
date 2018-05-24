@@ -69,6 +69,9 @@ public partial class View_Administrador_parametros : System.Web.UI.Page
         Button btn = (Button)sender;
         String id = btn.CommandArgument.ToString();
         DBConsultorio dBConsultorio = new DBConsultorio();
+        //VALIDAR LO DEL COSULTORIO OCUPADO
+        dBConsultorio.eliminar_consultorio(int.Parse(id));
+
 
     }
 

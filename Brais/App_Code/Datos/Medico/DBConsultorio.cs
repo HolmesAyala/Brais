@@ -199,4 +199,59 @@ public class DBConsultorio
         return consultorio;
     }
 
+    public Boolean validar_consultorio(int id_consultorio) {
+        DataTable validate = new DataTable();
+
+        NpgsqlConnection conexion = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+
+        try{
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_is_occupied_consul", conexion);
+            dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlDbType.Integer).Value = id_consultorio;
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+        }
+        catch(Exception e)
+        {
+            throw e;
+        }
+        finally
+        {
+            conexion.Close();
+        }
+        if (validate.Rows.Count>0)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    public void eliminar_consultorio(int id)
+    {
+        DataTable validate = new DataTable();
+
+        NpgsqlConnection conexion = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+        try
+        {
+            if (validar_consultorio(id)) {
+                NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_delete_consultorio", conexion);
+                dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlDbType.Integer).Value = id;
+                dataAdapter.SelectCommand.Parameters.Add("_session", NpgsqlDbType.Text).Value = "fdsaf3243";
+                dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            }
+            else{
+                //NO ES VALIDO
+            }
+            
+        }
+        catch(Exception e)
+        {
+            throw e;
+        }
+        finally{
+            conexion.Close();
+        }
+
+    }
 }
