@@ -1,0 +1,134 @@
+
+delete from usuario.horario_medico where id_medico = '1234'
+
+select * from cita.f_generar_citas_entre_fechas( '2018-05-21', '2018-05-26')
+
+select * from cita.f_generar_citas_medico( '2222', '2018-05-21', '2018-05-26')
+
+
+
+
+CREATE OR REPLACE FUNCTION cita.f_generar_citas_entre_fechas(
+	_fecha_inicio date,
+	_fecha_fin date)
+    RETURNS void
+AS $BODY$
+
+declare
+fecha date;
+begin
+	for fecha in (select serie::date from generate_series(_fecha_inicio::timestamp,  _fecha_fin::timestamp, '1 day'::interval) as serie)
+	loop
+		perform cita.f_generar_series(fecha);
+	end loop;
+end
+$BODY$
+LANGUAGE 'plpgsql';
+	
+	
+	
+	
+
+CREATE OR REPLACE FUNCTION cita.f_generar_series(
+	_fecha date)
+    RETURNS void
+AS $BODY$
+declare
+dia_semana integer;
+horario usuario.horario_medico%ROWTYPE;
+dia json;
+rango json;
+serie timestamp;
+begin
+	dia_semana := extract(dow from _fecha);
+	for horario in (select * from usuario.horario_medico) loop
+		for dia in (select json_array_elements(horario.dias)) loop
+			if ( (dia->>'DiaSemana')::integer = dia_semana) then
+				for rango in (select json_array_elements(dia->'Rangos')) loop
+					for serie in select generate_series(('2000-01-01 '||(rango->>'Inicio'))::timestamp , ('2000-01-01 '||(rango->>'Fin'))::timestamp - '30 min'::interval,'30 min'::interval)
+					loop
+						perform cita.f_agregar_cita(horario.id_medico, serie::time, serie::time + '30 min',  _fecha);
+					end loop;
+				end loop;
+			end if;
+		end loop;
+	end loop;
+end
+$BODY$
+LANGUAGE 'plpgsql';
+	
+	
+	
+	
+	
+CREATE OR REPLACE FUNCTION cita.f_generar_citas_medico(
+	_id_medico text,
+	_fecha_inicio date,
+	_fecha_fin date)
+    RETURNS void
+AS $BODY$
+
+declare
+fecha date;
+begin
+	for fecha in (select serie::date from generate_series(_fecha_inicio::timestamp,  _fecha_fin::timestamp, '1 day'::interval) as serie)
+	loop
+		perform cita.f_generar_series_medico(_id_medico, fecha);
+	end loop;
+end
+
+$BODY$
+LANGUAGE 'plpgsql';
+	
+	
+	
+	
+	
+	
+	
+CREATE OR REPLACE FUNCTION cita.f_generar_series_medico(
+	_id_medico text,
+	_fecha date)
+    RETURNS void
+AS $BODY$
+
+declare
+dia_semana integer;
+horario usuario.horario_medico%ROWTYPE;
+dia json;
+rango json;
+serie timestamp;
+begin
+	dia_semana := extract(dow from _fecha);
+	for horario in (select * from usuario.horario_medico where id_medico = _id_medico) loop
+		for dia in (select json_array_elements(horario.dias)) loop
+			if ( (dia->>'DiaSemana')::integer = dia_semana) then
+				for rango in (select json_array_elements(dia->'Rangos')) loop
+					for serie in select generate_series(('2000-01-01 '||(rango->>'Inicio'))::timestamp , ('2000-01-01 '||(rango->>'Fin'))::timestamp - '30 min'::interval,'30 min'::interval)
+					loop
+						
+						perform cita.f_agregar_cita(_id_medico, serie::time, serie::time + '30 min',  _fecha);
+					end loop;
+				end loop;
+			end if;
+		end loop;
+	end loop;
+end
+$BODY$
+LANGUAGE 'plpgsql';
+
+
+
+
+CREATE OR REPLACE FUNCTION cita.f_agregar_cita(
+	_id_medico text,
+	_hora_inicio time without time zone,
+	_hora_fin time without time zone,
+	_dia date)
+    RETURNS void
+AS $BODY$
+begin
+	INSERT INTO usuario.cita(id_medico, id_usuario, hora_inicio, hora_fin, dia) VALUES (_id_medico, null, _hora_inicio, _hora_fin, _dia);
+end 
+$BODY$
+LANGUAGE 'plpgsql';
