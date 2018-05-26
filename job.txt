@@ -1,0 +1,45 @@
+DO $$
+DECLARE
+    jid integer;
+    scid integer;
+BEGIN
+-- Creating a new job
+INSERT INTO pgagent.pga_job(
+    jobjclid, jobname, jobdesc, jobhostagent, jobenabled
+) VALUES (
+    1::integer, '1'::text, ''::text, ''::text, true
+) RETURNING jobid INTO jid;
+
+-- Steps
+-- Inserting a step (jobid: NULL)
+INSERT INTO pgagent.pga_jobstep (
+    jstjobid, jstname, jstenabled, jstkind,
+    jstconnstr, jstdbname, jstonerror,
+    jstcode, jstdesc
+) VALUES (
+    jid, '1'::text, true, 's'::character(1),
+    'user=postgres host=localhost port=5432 dbname=brais password=1234'::text, ''::name, 'f'::character(1),
+    'SELECT * FROM pruebas.crear_citas()'::text, ''::text
+) ;
+
+-- Schedules
+-- Inserting a schedule
+INSERT INTO pgagent.pga_schedule(
+    jscjobid, jscname, jscdesc, jscenabled,
+    jscstart,     jscminutes, jschours, jscweekdays, jscmonthdays, jscmonths
+) VALUES (
+    jid, '1'::text, ''::text, true,
+    '2018-05-21 23:59:59+02'::timestamp with time zone, 
+    -- Minutes
+    ARRAY[false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]::boolean[],
+    -- Hours
+    ARRAY[false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]::boolean[],
+    -- Week days
+    ARRAY[false, false, false, false, false, false, false]::boolean[],
+    -- Month days
+    ARRAY[false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true]::boolean[],
+    -- Months
+    ARRAY[true, true, true, true, true, true, true, true, true, true, true, true]::boolean[]
+) RETURNING jscid INTO scid;
+END
+$$;
