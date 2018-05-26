@@ -137,6 +137,10 @@
                 <td>
                     <asp:TextBox ID="TB_email" runat="server" TextMode="Email" MaxLength="50"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="TB_email" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
+                    <asp:RegularExpressionValidator  runat="server" ID="RegularExpressionValidator3"      
+                                    ErrorMessage="Caracter No Valido" 
+                                    ControlToValidate="TB_email"     
+                                    ValidationExpression="^[a-z0-9][-a-z0-9.!#$%&'*+-=?^_`{|}~\/]+@([-a-z0-9]+\.)+[a-z]{2,5}$" ForeColor="Red" />
                 </td>
             </tr>
             <tr>
@@ -156,6 +160,10 @@
                 <td>
                     <asp:TextBox ID="TB_pasword" runat="server" TextMode="Password" MaxLength="10"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="TB_pasword" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
+                    <asp:RegularExpressionValidator  runat="server" ID="RegularExpressionValidator4"      
+                                    ErrorMessage="Caracter No Valido" 
+                                    ControlToValidate="TB_pasword"     
+                                    ValidationExpression="^[a-zA-Z''-'\s]{1,40}$" ForeColor="Red" />
                 </td>
             </tr>
             <tr>
@@ -164,6 +172,10 @@
                 </td>
                 <td class="auto-style13"><asp:TextBox ID="TB_lastName" runat="server" Width="117px" MaxLength="50"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="TB_lastName" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
+                    <asp:RegularExpressionValidator  runat="server" ID="RegularExpressionValidator2"      
+                                    ErrorMessage="Caracter No Valido" 
+                                    ControlToValidate="TB_lastName"     
+                                    ValidationExpression="^[a-zA-Z''-'\s]{1,40}$" ForeColor="Red" />
                 </td>
                 <td class="auto-style14">
                     <asp:Label ID="Label9" runat="server" Font-Bold="True" Text="Confirmar Clave"></asp:Label>
@@ -171,6 +183,10 @@
                 <td class="auto-style14">
                     <asp:TextBox ID="TB_password2" runat="server" TextMode="Password" MaxLength="10"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="TB_password2" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
+                    <asp:RegularExpressionValidator  runat="server" ID="RegularExpressionValidator5"      
+                                    ErrorMessage="Caracter No Valido" 
+                                    ControlToValidate="TB_password2"     
+                                    ValidationExpression="^[a-zA-Z''-'\s]{1,40}$" ForeColor="Red" />
                 </td>
             </tr>
             <tr>

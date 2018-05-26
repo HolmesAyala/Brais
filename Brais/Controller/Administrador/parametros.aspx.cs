@@ -71,8 +71,13 @@ public partial class View_Administrador_parametros : System.Web.UI.Page
         String id = btn.CommandArgument.ToString();
         DBConsultorio dBConsultorio = new DBConsultorio();
         //VALIDAR LO DEL COSULTORIO OCUPADO
-        dBConsultorio.eliminar_consultorio(int.Parse(id));
-
+        bool is_copuied=dBConsultorio.eliminar_consultorio(int.Parse(id));
+        GV_consultorios.DataBind();
+        if (is_copuied == true)
+        {
+            //PINTAR JS
+            ClientScript.RegisterClientScriptBlock(this.GetType(), "", "<script> alert('No ha ingresado datos para el consultorio'); </script>");
+        }
 
     }
 

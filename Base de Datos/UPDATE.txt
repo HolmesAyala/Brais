@@ -1,0 +1,90 @@
+-- FUNCTION: usuario.f_obtener_citas_seg_esp(integer)
+
+-- DROP FUNCTION usuario.f_obtener_citas_seg_esp(integer);
+
+CREATE OR REPLACE FUNCTION usuario.f_obtener_citas_seg_esp(
+	_id integer)
+    RETURNS TABLE(ci integer, da date, es text, h_i time without time zone, h_f time without time zone, nm text, session text) 
+    LANGUAGE 'plpgsql'
+
+    COST 100
+    VOLATILE 
+    ROWS 1000
+AS $BODY$
+
+DECLARE 
+esp integer;
+id_cita text;
+BEGIN 
+	SELECT id_medico into id_cita from usuario.cita where _id=usuario.cita.id;
+	select * into esp from usuario.f_obtener_especialidad_medico(id_cita);
+	RETURN query
+		SELECT 
+			cita.id,dia,
+			usuario.especialidad.nombre,
+			usuario.cita.hora_inicio,
+			usuario.cita.hora_fin, 
+			(usuario.usuario.nombre||' '||usuario.usuario.apellido),
+			usuario.cita.session
+		FROM 
+			usuario.cita INNER JOIN usuario.usuario ON usuario.usuario.identificacion=usuario.cita.id_medico 
+			INNER JOIN usuario.especialidad ON usuario.id_especialidad=usuario.especialidad.id
+		WHERE 
+		cita.id_usuario is null AND usuario.id_especialidad=esp
+		ORDER BY
+		dia, usuario.cita.hora_inicio;
+END;
+
+--FUNCION 2
+
+CREATE OR REPLACE FUNCTION usuario.f_is_occupied_consul(
+	_id integer)
+    RETURNS SETOF public.consultorio
+    LANGUAGE 'plpgsql'
+
+    COST 100
+    VOLATILE 
+    ROWS 1000
+AS $BODY$
+
+BEGIN 
+	RETURN QUERY
+		SELECT 
+			*
+		FROM 
+			public.consultorio 
+		WHERE 
+			public.consultorio.id=_id and public.consultorio.disponibilidad=true;
+			
+END
+
+$BODY$;
+
+ALTER FUNCTION  usuario.f_is_occupied_consul(integer)
+    OWNER TO postgres;
+
+
+
+
+
+--FUNCION 3
+
+
+
+CREATE OR REPLACE FUNCTION usuario.f_delete_consultorio(
+	_id integer,_session text)
+    RETURNS SETOF void
+    LANGUAGE 'plpgsql'
+
+    COST 100
+    VOLATILE 
+AS $BODY$
+
+BEGIN 
+		DELETE FROM public.consultorio WHERE consultorio.id=_id;
+END
+
+$BODY$;
+
+ALTER FUNCTION  usuario.f_delete_consultorio(integer,text)
+    OWNER TO postgres;

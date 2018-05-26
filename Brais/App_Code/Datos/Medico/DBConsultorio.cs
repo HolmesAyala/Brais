@@ -208,6 +208,9 @@ public class DBConsultorio
             NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_is_occupied_consul", conexion);
             dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlDbType.Integer).Value = id_consultorio;
             dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            conexion.Open();
+            dataAdapter.Fill(validate);
+
         }
         catch(Exception e)
         {
@@ -227,7 +230,7 @@ public class DBConsultorio
         }
     }
 
-    public void eliminar_consultorio(int id)
+    public bool eliminar_consultorio(int id)
     {
         DataTable validate = new DataTable();
 
@@ -239,9 +242,13 @@ public class DBConsultorio
                 dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlDbType.Integer).Value = id;
                 dataAdapter.SelectCommand.Parameters.Add("_session", NpgsqlDbType.Text).Value = "fdsaf3243";
                 dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+                conexion.Open();
+                dataAdapter.Fill(validate);
+                return false;
             }
             else{
                 //NO ES VALIDO
+                return true;
             }
             
         }
