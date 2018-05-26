@@ -114,6 +114,7 @@
                 <td>
                     <span id="opcion">Seleccione su EPS</span>
                     <asp:DropDownList ID="eps" runat="server" CssClass="auto-style8" DataSourceID="ODS_eps" DataTextField="nombre" DataValueField="id">
+                        <asp:ListItem Value="0">Ninguno</asp:ListItem>
                     </asp:DropDownList>
                     <asp:ObjectDataSource ID="ODS_eps" runat="server" SelectMethod="obtenerEps" TypeName="DBEps"></asp:ObjectDataSource>
                     <br />

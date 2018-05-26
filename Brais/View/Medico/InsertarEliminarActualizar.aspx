@@ -38,6 +38,7 @@
         .auto-style1 {
             font-size: large;
         }
+
     </style>
     <asp:ScriptManager runat="server"></asp:ScriptManager>
     <table style="width: 100%">
@@ -106,18 +107,8 @@
                 &nbsp;&nbsp;&nbsp;
             </td>
             <td>
-                <asp:DropDownList ID="DDL_Especialidad" runat="server" DataSourceID="ODS_Tipo_Especialidad" DataTextField="nombre" DataValueField="id">
+                <asp:DropDownList ID="DDL_Especialidad" runat="server">
                 </asp:DropDownList>
-                <asp:ObjectDataSource ID="ODS_Tipo_Especialidad" runat="server" SelectMethod="obtenerTipoEspecialidad" TypeName="DBEspecialidad"></asp:ObjectDataSource>
-            </td>
-        </tr>
-        <tr>
-            <td class="label">
-                <asp:Label ID="L_Consultorio" runat="server" Text="Consultorio: " Visible="False"></asp:Label>
-                &nbsp;&nbsp;&nbsp;
-            </td>
-            <td>
-                <asp:TextBox ID="TB_Consultorio" runat="server" Visible="False"></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -126,9 +117,8 @@
                 &nbsp;&nbsp;&nbsp;
             </td>
             <td>
-                <asp:DropDownList ID="DDL_Consultorio" runat="server" DataSourceID="ODS_Consultorio" DataTextField="nombre_consultorio" DataValueField="id">
+                <asp:DropDownList ID="DDL_Consultorio" runat="server">
                 </asp:DropDownList>
-                <asp:ObjectDataSource ID="ODS_Consultorio" runat="server" SelectMethod="obtenerConsultoriosDisponibles" TypeName="DBConsultorio"></asp:ObjectDataSource>
             </td>
         </tr>
         <tr>
@@ -138,6 +128,7 @@
             </td>
             <td>
                 <asp:TextBox ID="TB_Correo" runat="server"></asp:TextBox>
+                <asp:RegularExpressionValidator CssClass="expresion"  runat="server" ErrorMessage="Ejemplo: ejemplo@dominio.com" ValidationExpression="^\s*[a-zA-Z0-9_\-\.~]{2,}@[a-zA-Z0-9_\-\.~]{2,}\.[a-zA-Z]{2,4}\s*$" ForeColor="#CC0000" ControlToValidate="TB_Correo" Display="Dynamic"></asp:RegularExpressionValidator>
             </td>
         </tr>
         <tr>

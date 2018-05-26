@@ -71,7 +71,7 @@
             <asp:UpdatePanel runat="server">
                 <ContentTemplate>
 
-            <asp:GridView ID="GV_consultorios" CssClass="GV" runat="server" AutoGenerateColumns="False" DataSourceID="ODS_consultorios" AllowPaging="True" PageSize="3" CellPadding="5" CellSpacing="5" GridLines="None">
+            <asp:GridView ID="GV_consultorios" CssClass="GV" runat="server" AutoGenerateColumns="False" DataSourceID="ODS_consultorios" AllowPaging="True" PageSize="3" CellPadding="5" CellSpacing="5" GridLines="None" OnRowCreated="GV_consultorios_RowCreated">
             <Columns>
                 <asp:BoundField DataField="nombre_consultorio" HeaderText="Nombre" >
                 <ControlStyle Font-Names="Arial" />
@@ -193,7 +193,7 @@
             <asp:UpdatePanel runat="server">
                 <ContentTemplate>
 
-            <asp:GridView ID="GV_Eps" runat="server" AutoGenerateColumns="False" EmptyDataText="Sin especialidades" DataSourceID="ODS_Eps" CellPadding="5" CellSpacing="5" GridLines="None">
+            <asp:GridView ID="GV_Eps" runat="server" AutoGenerateColumns="False" EmptyDataText="Sin especialidades" DataSourceID="ODS_Eps" CellPadding="5" CellSpacing="5" GridLines="None" OnRowCreated="GV_Eps_RowCreated">
                 <Columns>
                     <asp:TemplateField HeaderText="Nombre">
                         <ItemTemplate>

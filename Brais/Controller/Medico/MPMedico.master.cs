@@ -38,6 +38,7 @@ public partial class View_Medico_MPMedico : System.Web.UI.MasterPage
     {
         Session["Accion"] = "Actualizar";
         Session["PaginaAnterior"] = Request.Url.AbsoluteUri;
+        Session["identificacion_medico"] = ((EMedico)Session["usuario"]).Identificacion;
         Response.Redirect("~/View/Medico/InsertarEliminarActualizar.aspx");
     }
 

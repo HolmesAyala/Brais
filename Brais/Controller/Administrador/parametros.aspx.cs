@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -108,7 +109,6 @@ public partial class View_Administrador_parametros : System.Web.UI.Page
     {
         if (!TB_AgregarEspecialidad.Text.Trim().Equals(""))
         {
-            Funcion.mostrarMensaje(TB_AgregarEspecialidad.Text, this);
             DBEspecialidad.agregarEspecialidad(TB_AgregarEspecialidad.Text.Trim(), Session.SessionID);
             TB_AgregarEspecialidad.Text = "";
             GV_Especialidad.DataBind();
@@ -125,7 +125,6 @@ public partial class View_Administrador_parametros : System.Web.UI.Page
     {
         if (!TB_AgregarEps.Text.Trim().Equals(""))
         {
-            Funcion.mostrarMensaje(TB_AgregarEps.Text, this);
             DBEps.agregarEps(TB_AgregarEps.Text.Trim(), Session.SessionID);
             TB_AgregarEps.Text = "";
             GV_Eps.DataBind();
@@ -205,4 +204,22 @@ public partial class View_Administrador_parametros : System.Web.UI.Page
         T_Eps.Enabled = true;
     }
 
+    protected void GV_consultorios_RowCreated(object sender, GridViewRowEventArgs e)
+    {
+        if (e.Row.RowIndex == 0)
+        {
+            e.Row.Visible = false;
+        }
+    }
+
+    protected void GV_Eps_RowCreated(object sender, GridViewRowEventArgs e)
+    {
+
+        if ( e.Row.RowIndex == 0 )
+        {
+            e.Row.Visible = false;
+        }
+        
+    }
+    
 }

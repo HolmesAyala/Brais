@@ -123,6 +123,35 @@ public class DBUsuario
         return usuario;
     }
 
+    public static Boolean verificarUsuario(String identificacion)
+    {
+        DataTable resultado = new DataTable();
+
+        NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+
+        try
+        {
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_verificar_usuario", conection);
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dataAdapter.SelectCommand.Parameters.Add("_identificacion", NpgsqlDbType.Text).Value = identificacion;
+
+            conection.Open();
+            dataAdapter.Fill(resultado);
+        }
+        catch (Exception Ex)
+        {
+            throw Ex;
+        }
+        finally
+        {
+            if (conection != null)
+            {
+                conection.Close();
+            }
+        }
+        return resultado.Rows.Count == 0;
+    }
+
     public DataTable buscarUsuario(string id)
     {
         DataTable usuario = new DataTable();

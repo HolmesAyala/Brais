@@ -14,6 +14,7 @@
 
         .campo{
             display: flex;
+            flex-wrap: wrap;
             justify-content: center;
             margin: 7px;
         }
@@ -44,7 +45,10 @@
             padding: 10px;
             border-radius: 5px;
         }
-
+        .expresion{
+            width: 100%;
+            text-align: center;
+        }
     </style>
 
     <asp:Label ID="LB_Titulo" runat="server" Text=""></asp:Label>
@@ -61,19 +65,19 @@
         <div class="campo">
             <asp:Label class="LB_Numero_Documento" ID="LB_Numero_Documento" runat="server" Text="Numero Documento: "></asp:Label>
             <asp:TextBox class="TB_Numero_Documento" ID="TB_Numero_Documento" runat="server" MaxLength="20"></asp:TextBox>
-            <asp:RegularExpressionValidator runat="server" ErrorMessage="Hay caracteres especiales" ValidationExpression="^[\s\w]*$" ForeColor="#CC0000" ControlToValidate="TB_Numero_Documento"></asp:RegularExpressionValidator>
+            <asp:RegularExpressionValidator CssClass="expresion" runat="server" ErrorMessage="Hay caracteres especiales" ValidationExpression="^[\s\w]*$" ForeColor="#CC0000" ControlToValidate="TB_Numero_Documento" Display="Dynamic"></asp:RegularExpressionValidator>
         </div>
 
         <div class="campo">
             <asp:Label class="LB_Nombre" ID="LB_Nombre" runat="server" Text="Nombres: "></asp:Label>
             <asp:TextBox class="TB_Nombre" ID="TB_Nombre" runat="server" MaxLength="20"></asp:TextBox>
-            <asp:RegularExpressionValidator runat="server" ErrorMessage="Hay caracteres especiales" ValidationExpression="^[\s\w]*$" ForeColor="#CC0000" ControlToValidate="TB_Nombre"></asp:RegularExpressionValidator>
+            <asp:RegularExpressionValidator CssClass="expresion"  runat="server" ErrorMessage="Hay caracteres especiales" ValidationExpression="^[\s\w]*$" ForeColor="#CC0000" ControlToValidate="TB_Nombre" Display="Dynamic"></asp:RegularExpressionValidator>
         </div>
 
         <div class="campo">
             <asp:Label class="LB_Apellido" ID="LB_Apellido" runat="server" Text="Apellidos: "></asp:Label>
             <asp:TextBox class="TB_Apellido" ID="TB_Apellido" runat="server" MaxLength="20"></asp:TextBox>
-            <asp:RegularExpressionValidator runat="server" ErrorMessage="Hay caracteres especiales" ValidationExpression="^[\s\w]*$" ForeColor="#CC0000" ControlToValidate="TB_Apellido"></asp:RegularExpressionValidator>
+            <asp:RegularExpressionValidator CssClass="expresion"  runat="server" ErrorMessage="Hay caracteres especiales" ValidationExpression="^[\s\w]*$" ForeColor="#CC0000" ControlToValidate="TB_Apellido" Display="Dynamic"></asp:RegularExpressionValidator>
         </div>
 
         <div class="campo">
@@ -91,30 +95,31 @@
             <asp:Label class="LB_Eps" ID="LB_Eps" runat="server" Text="EPS: "></asp:Label>
             <asp:UpdatePanel runat="server">
                 <ContentTemplate>
-                    <asp:DropDownList class="DDL_Eps" ID="DDL_Eps" runat="server" DataSourceID="ODS_ObtenerEps" DataTextField="nombre" DataValueField="id" Width="100%"></asp:DropDownList>
+                    <asp:DropDownList class="DDL_Eps" ID="DDL_Eps" runat="server"></asp:DropDownList>
                 </ContentTemplate>
                 <Triggers>
                     <asp:AsyncPostBackTrigger ControlID="DDL_TipoAfiliacion" EventName="SelectedIndexChanged" />
                 </Triggers>
             </asp:UpdatePanel>
-            <asp:ObjectDataSource ID="ODS_ObtenerEps" runat="server" SelectMethod="obtenerEps" TypeName="DBEps"></asp:ObjectDataSource>
+            
         </div>
 
         <div class="campo">
             <asp:Label class="LB_Correo" ID="LB_Correo" runat="server" Text="Correo electronico: "></asp:Label>
             <asp:TextBox class="TB_Correo" ID="TB_Correo" runat="server" TextMode="Email" MaxLength="40"></asp:TextBox>
+            <asp:RegularExpressionValidator CssClass="expresion"  runat="server" ErrorMessage="Ejemplo: ejemplo@dominio.com" ValidationExpression="^\s*[a-zA-Z0-9_\-\.~]{2,}@[a-zA-Z0-9_\-\.~]{2,}\.[a-zA-Z]{2,4}\s*$" ForeColor="#CC0000" ControlToValidate="TB_Correo" Display="Dynamic"></asp:RegularExpressionValidator>
         </div>
 
         <div class="campo">
             <asp:Label class="LB_Clave" ID="LB_Clave" runat="server" Text="Clave: "></asp:Label>
             <asp:TextBox class="TB_Clave" ID="TB_Clave" runat="server" TextMode="Password" MaxLength="20"></asp:TextBox>
-            <asp:RegularExpressionValidator runat="server" ErrorMessage="Hay caracteres especiales" ValidationExpression="^[\s\w]*$" ForeColor="#CC0000" ControlToValidate="TB_Clave"></asp:RegularExpressionValidator>
+            <asp:RegularExpressionValidator CssClass="expresion"  runat="server" ErrorMessage="Hay caracteres especiales" ValidationExpression="^[\s\w]*$" ForeColor="#CC0000" ControlToValidate="TB_Clave" Display="Dynamic"></asp:RegularExpressionValidator>
         </div>
 
         <div class="campo">
             <asp:Label class="LB_RepetirClave" ID="LB_RepetirClave" runat="server" Text="Repetir clave: "></asp:Label>
             <asp:TextBox class="TB_RepetirClave" ID="TB_RepetirClave" runat="server" TextMode="Password" MaxLength="20"></asp:TextBox>
-            <asp:RegularExpressionValidator runat="server" ErrorMessage="Hay caracteres especiales" ValidationExpression="^[\s\w]*$" ForeColor="#CC0000" ControlToValidate="TB_RepetirClave"></asp:RegularExpressionValidator>
+            <asp:RegularExpressionValidator CssClass="expresion"  runat="server" ErrorMessage="Hay caracteres especiales" ValidationExpression="^[\s\w]*$" ForeColor="#CC0000" ControlToValidate="TB_RepetirClave" Display="Dynamic"></asp:RegularExpressionValidator>
         </div>
         
         <div class="campo">

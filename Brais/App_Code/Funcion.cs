@@ -90,12 +90,6 @@ public abstract class Funcion
         return eMedico;
     }
 
-    public static void mostrarMensaje(string mensaje, System.Web.UI.Page page)
-    {
-        string script = @"<script type='text/javascript'> console.log('"+mensaje+"'); </script>";
-        ScriptManager.RegisterStartupScript(page, typeof(Page), "", script, false);
-    }
-
     public static Boolean tieneCaracteresEspeciales(string texto)
     {
         Regex regex = new Regex(@"^[\s\w]*$");
