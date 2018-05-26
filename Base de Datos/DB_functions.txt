@@ -1,0 +1,101 @@
+-- FUNCTION: pruebas.f_generar_citas(integer, text, text, text, integer)
+
+-- DROP FUNCTION pruebas.f_generar_citas(integer, text, text, text, integer);
+
+CREATE OR REPLACE FUNCTION pruebas.f_generar_citas(
+	_parametro_admin integer,
+	_hor_in text,
+	_hor_fi text,
+	_id_medico text,
+	_dia integer)
+    RETURNS SETOF void 
+    LANGUAGE 'plpgsql'
+
+    COST 100
+    VOLATILE 
+    ROWS 1000
+AS $BODY$
+
+DECLARE 
+fecha date;
+next_month integer;
+dur text:=_parametro_admin::TEXT||'MINUTE';
+inter text:='';
+dif text:='';
+aux text:='';
+ano integer;
+BEGIN 
+    SELECT EXTRACT (MONTH FROM current_date) INTO next_month;
+    next_month:=next_month+1;
+    RAISE NOTICE 'Siguiente Mes %', next_month;
+    IF (next_month<10) THEN
+        inter:=inter||'0'||next_month;
+    END IF;
+    RAISE NOTICE 'Intervalo del Mes %', inter;
+    SELECT EXTRACT (YEAR FROM current_date) INTO ano;
+    IF (next_month=1) THEN
+        ano:=ano+1;
+    END IF;
+    RAISE NOTICE 'Año Actual %', ano;
+    inter:=ano||'-'||inter||'-'||'01';
+    RAISE NOTICE 'Intervalo Completo %', inter;
+    dif=(inter::DATE-current_date)||' day';
+    INSERT INTO usuario.cita (id_medico,hora_inicio,hora_fin,dia,session) SELECT _id_medico AS id_medico,(generate_series::TIME(6)) AS hora_inicio,
+           ((generate_series+dur::INTERVAL)::TIME(6)) AS hora_fin,
+        generate_series::DATE AS dia,
+		'asdhj-hjkh-kk' AS session
+    FROM generate_series((current_date+interval '1 day'+_hor_in::INTERVAL)::TIMESTAMP,(current_date+dif::INTERVAL+_hor_fi::INTERVAL)::TIMESTAMP,dur::INTERVAL)
+    WHERE generate_series::time BETWEEN _hor_in::TIME AND _hor_fi::TIME AND 
+    (generate_series+dur::INTERVAL)::TIME BETWEEN _hor_in::TIME AND _hor_fi::TIME AND
+        date_part('dow',generate_series::timestamp)=_dia;
+END;
+
+$BODY$;
+
+
+
+--FUNCTION 2
+
+-- FUNCTION: usuario.f_obtener_citas(integer, date, text)
+
+-- DROP FUNCTION usuario.f_obtener_citas(integer, date, text);
+CREATE OR REPLACE FUNCTION usuario.f_obtener_citas(
+	_id_especialidad integer,
+	_dia date,
+	_id_usuario text)
+    RETURNS TABLE(id integer, id_medico text, id_usuario text, hora_inicio time without time zone, hora_fin time without time zone, dia date, pago boolean, cometariada boolean,session text ,nombre_medico text) 
+    LANGUAGE 'plpgsql'
+
+    COST 100
+    VOLATILE 
+    ROWS 1000
+AS $BODY$
+
+begin
+    return query
+
+    select cita.*, (medico.nombre||' '||medico.apellido)::text
+    from usuario.cita cita
+    join usuario.usuario usuario on usuario.identificacion = cita.id_medico
+    join usuario.usuario medico on medico.identificacion = cita.id_medico
+    join usuario.especialidad especialidad on especialidad.id = usuario.id_especialidad
+    where especialidad.id = _id_especialidad 
+    and cita.dia = _dia 
+    and cita.id_usuario is null
+    and usuario.f_validar_cantidad_de_citas_del_mismo_tipo( _id_especialidad, _id_usuario) = true
+    and usuario.f_validar_cruce_de_citas_de_usuario( cita.id, _id_usuario ) = true
+    order by cita.hora_inicio;
+end
+
+$BODY$;
+
+ALTER FUNCTION usuario.f_obtener_citas(integer, date, text)
+    OWNER TO postgres;
+
+
+
+
+
+
+ALTER FUNCTION pruebas.f_generar_citas(integer, text, text, text, integer)
+    OWNER TO postgres;
