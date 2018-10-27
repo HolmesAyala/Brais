@@ -1,22 +1,25 @@
-﻿using System;
+﻿using Logica.Clases.Usuario;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Utilitaria.Clases.Administrador;
+using Utilitaria.Clases.Usuario;
 
 public partial class View_Usuario_ConfirmarCita : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["eCita"] != null)
+        try
         {
+            LCita lCita = new LCita();
+            lCita.validarSession(Session["eCita"]);
             mostrarDatos();
         }
-        else
-        {
-            Response.Redirect("~/View/Usuario/AsignarCita.aspx");
-        }
+        catch { Response.Redirect("~/View/Usuario/AsignarCita.aspx"); }
+        
     }
 
     protected void mostrarDatos()
@@ -36,16 +39,17 @@ public partial class View_Usuario_ConfirmarCita : System.Web.UI.Page
     protected void BTN_ConfirmarCita_Click(object sender, EventArgs e)
     {
         ECita eCita = (ECita)Session["eCita"];
-        if (DBCita.verificarDisponibilidadCita(eCita.Id))
+        LCita lCita = new LCita();
+        try
         {
+            lCita.verificarDisponibilidadCita(eCita.Id);
             eCita.EUsuario = (EUsuario)Session["usuario"];
             eCita.Session = Session.SessionID;
-            DBCita.reservarCita(eCita);
+            lCita.reservarCita(eCita);
             string script = @"<script type='text/javascript'>alert('Agendo la cita correctamente!');</script>";
             ScriptManager.RegisterStartupScript(this, typeof(Page), "alerta", script, false);
-
         }
-        else
+        catch
         {
             string script = @"<script type='text/javascript'>alert('La cita ya se encuentra reservada!');</script>";
             ScriptManager.RegisterStartupScript(this, typeof(Page), "alerta", script, false);

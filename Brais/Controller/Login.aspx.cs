@@ -6,6 +6,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Windows;
+using Utilitaria.Clases.Medico;
+using Utilitaria.Clases.Usuario;
+using Logica.Clases;
 
 
 public partial class View_Login : System.Web.UI.Page
@@ -39,6 +42,7 @@ public partial class View_Login : System.Web.UI.Page
     protected void B_Ingresar_Click(object sender, EventArgs e)
     {
         EUsuario datosUsuario= new EUsuario();
+        LFuncion lFuncion = new LFuncion();
 
         datosUsuario.Identificacion = Tx_Identificacion.Text.ToString();
         datosUsuario.Password = Tx_contrasena.Text.ToString();
@@ -56,13 +60,13 @@ public partial class View_Login : System.Web.UI.Page
         {
             if ( int.Parse(usuario.Rows[0]["tipo"].ToString()) == 3)
             {
-                Session["usuario"] = Funcion.dataTableToEUsuario(usuario);
+                Session["usuario"] = lFuncion.dataTableToEUsuario(usuario);
                 Session["casa"] = "~/View/Usuario/AsignarCita.aspx";
                 Response.Redirect("~/View/Usuario/AsignarCita.aspx");
             }
             else if ( int.Parse(usuario.Rows[0]["tipo"].ToString()) == 2)
             {
-                Session["usuario"] = Funcion.dataTableToEMedico(usuario);
+                Session["usuario"] = lFuncion.dataTableToEMedico(usuario);
                 Session["identificacion_medico"] = datosUsuario.Identificacion;
                 Session["casa"] = "~/View/Medico/VerPacientes.aspx";
                 Response.Redirect("~/View/Medico/VerPacientes.aspx");

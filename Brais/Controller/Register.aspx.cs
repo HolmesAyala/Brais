@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Utilitaria.Clases.Usuario;
 
 public partial class View_Default : System.Web.UI.Page
 {

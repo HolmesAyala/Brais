@@ -1,24 +1,29 @@
-﻿using System;
+﻿using Logica.Clases.Medico;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Utilitaria.Clases.Medico;
 
 public partial class View_Medico_MPMedico : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["usuario"] == null || ((EMedico)Session["usuario"]).TipoUsuario != 2)
+        try
         {
+            LMedico lMedico = new LMedico();
+            lMedico.validarTipoMedico(Session["usuario"], ((EMedico)Session["usuario"]).TipoUsuario);
             Response.Redirect("~/View/Login.aspx");
         }
-        else
+        catch (Exception ex)
         {
             String nombre = "Bienvenido: Doctor(a) " + ((EMedico)Session["usuario"]).Nombre + " " + ((EMedico)Session["usuario"]).Apellido;
             L_Bienvenido.Text = nombre;
             L_Bienvenido.Visible = true;
         }
+        
         
     }
 

@@ -7,6 +7,8 @@ using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Logica.Clases;
+using Data.Clases.Usuario;
 
 public partial class View_RecuperarContrasenaPasoUno : System.Web.UI.Page
 {
@@ -18,7 +20,7 @@ public partial class View_RecuperarContrasenaPasoUno : System.Web.UI.Page
     protected void BTN_Restablecer_Click(object sender, EventArgs e)
     {
         DBRecuperarContrasena dBRecuperarContrasena = new DBRecuperarContrasena();
-        DBUsuario dBUsuario = new DBUsuario();
+        DAOUsuario dBUsuario = new DAOUsuario();
 
         if (dBUsuario.obtenerUsuario(TB_Identificacion.Text.ToString()).Rows.Count == 0)
         {
@@ -32,7 +34,8 @@ public partial class View_RecuperarContrasenaPasoUno : System.Web.UI.Page
         }
         else
         {
-            string token = Funcion.encriptar(TB_Identificacion.Text.ToString());
+            LFuncion lFuncion = new LFuncion();
+            string token = lFuncion.encriptar(TB_Identificacion.Text.ToString());
             String sesion = Session.SessionID;
             dBRecuperarContrasena.agregarSolicitudDeRestablecerContrasena(TB_Identificacion.Text.ToString(), token,sesion);
 

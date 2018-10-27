@@ -6,6 +6,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Utilitaria.Clases.Medico;
+using Logica.Clases.Medico;
+using Logica.Clases.Administrador;
 
 public partial class View_Medico_InsertarEliminarActualizar : System.Web.UI.Page
 {
@@ -51,12 +54,12 @@ public partial class View_Medico_InsertarEliminarActualizar : System.Web.UI.Page
 
     protected void adecuarParaActualizar()
     {
-
         string identificacion = Session["identificacion_medico"].ToString();
 
-        DBMedico dBMedico = new DBMedico();
+        LMedico lMedico = new LMedico();
+        LConsultorio lConsultorio = new LConsultorio();
 
-        EMedico eMedico = Funcion.dataTableToEMedico(dBMedico.obtenerMedico(identificacion));
+        EMedico eMedico = lMedico.adecuarParaActualizar(identificacion);
 
         DDL_Tipo_Documento.SelectedIndex = eMedico.TipoIdentificacion;
         TB_Numero_Documento.Text = eMedico.Identificacion; ;
@@ -72,8 +75,7 @@ public partial class View_Medico_InsertarEliminarActualizar : System.Web.UI.Page
             listItem.Selected = listItem.Text == eMedico.EEspecialidad.Nombre;
         }
 
-        DBConsultorio dBConsultorio = new DBConsultorio();
-        DataRow drConsultorioMedico = dBConsultorio.obtenerConsultorio(eMedico.Consultorio).Rows[0];
+        DataRow drConsultorioMedico = lConsultorio.obtenerConsultorio(eMedico.Consultorio);
 
         Session["consultorio"] = drConsultorioMedico["id"].ToString();
         ListItem consultorioMedico = new ListItem(drConsultorioMedico["nombre_consultorio"].ToString(), drConsultorioMedico["id"].ToString());
@@ -103,130 +105,76 @@ public partial class View_Medico_InsertarEliminarActualizar : System.Web.UI.Page
 
     protected void cargarEspecialidades()
     {
-        DBEspecialidad dBEspecialidad = new DBEspecialidad();
+        LEspecialidad lEspecialidad = new LEspecialidad();
         DDL_Especialidad.Items.Add(new ListItem("Ninguno", "0"));
+        ListItem listItem = lEspecialidad.cargarEspecialidades();
 
-        foreach (DataRow fila in dBEspecialidad.obtenerTipoEspecialidad().Rows)
-        {
-            ListItem listItem = new ListItem(fila["nombre"].ToString(), fila["id"].ToString());
-            DDL_Especialidad.Items.Add(listItem);
-        }
+        DDL_Especialidad.Items.Add(listItem);
     }
 
     protected void cargarConsultoriosDisponibles()
     {
-        DBConsultorio dBConsultorio = new DBConsultorio();
-        foreach (DataRow fila in dBConsultorio.obtenerConsultoriosDisponibles().Rows)
-        {
-            ListItem listItem = new ListItem(fila["nombre_consultorio"].ToString(), fila["id"].ToString());
-            DDL_Consultorio.Items.Add(listItem);
-        }
+        LConsultorio lConsultorio = new LConsultorio();
+        ListItem listItem = new ListItem();
+        listItem = lConsultorio.cargarConsultoriosDisponibles();
+        DDL_Consultorio.Items.Add(listItem);
     }
 
     protected Boolean validarDatos()
     {
         string mensaje = "";
-        if (DDL_Tipo_Documento.SelectedIndex == 0)
+        LMedico lMedico = new LMedico();
+        EMedico eMedico = new EMedico();
+
+        eMedico.Identificacion = TB_Numero_Documento.Text.Trim();
+        eMedico.Nombre = TB_Nombre.Text.Trim();
+        eMedico.Apellido = TB_Apellido.Text.Trim();
+        eMedico.FechaNacimiento = TB_Fecha_Nacimiento.Text;
+        eMedico.Correo = TB_Correo.Text.Trim();
+        eMedico.Password = TB_Contrasena.Text.Trim();
+
+        try
         {
-            mensaje += "- No ha seleccionado un tipo de documento.<br/>";
+            lMedico.validarTipoDocumento(DDL_Tipo_Documento.SelectedIndex);
         }
-        if (TB_Numero_Documento.Text.Trim().Equals(""))
+        catch (Exception ex)
         {
-            mensaje += "- El campo Numero de documento esta vacio.<br/>";
+            mensaje += ex.Message.ToString();
         }
-        else
+
+        try
         {
-            if (BTN_Accion.Text.Equals("Agregar") && DBUsuario.verificarUsuario(TB_Numero_Documento.Text.Trim()) )
-            {
-                mensaje += "- YA EXISTE UN MÉDICO CON ESA IDENTIFICACION.<br/>";
-            }
-
-            if (Session["identificacion_medico"] != null)
-            {
-                string identificacion = Session["identificacion_medico"].ToString();
-
-                DBUsuario dBUsuario = new DBUsuario();
-
-                DBMedico dBMedico = new DBMedico();
-
-                EMedico eMedico = Funcion.dataTableToEMedico( dBMedico.obtenerMedico(TB_Numero_Documento.Text.Trim()) );
-
-                if (BTN_Accion.Text.Equals("Actualizar") &&
-                     eMedico.Identificacion != TB_Numero_Documento.Text.Trim() &&
-                     !DBUsuario.verificarUsuario((TB_Numero_Documento.Text.Trim())))
-                {
-                    mensaje += "- YA EXISTE UN USUARIO CON ESA IDENTIFICACION<br/>";
-                }
-            }
-
+            lMedico.validarNumeroDocumentoVacio(TB_Numero_Documento.Text.Trim());
             try
             {
-                int.Parse(TB_Numero_Documento.Text.Trim());
+                lMedico.validarnueroIdentificacion(TB_Numero_Documento.Text.Trim(), BTN_Accion.Text, Session["identificacion_medico"]);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                mensaje += "- El numero de documento solo debe incluir numeros.<br/>";
+                mensaje += ex.Message.ToString();
             }
         }
-
-        if (TB_Nombre.Text.Trim().Equals(""))
+        catch (Exception ex)
         {
-            mensaje += "- El campo nombre esta vacio.<br/>";
-        }
-        if (TB_Apellido.Text.Trim().Equals(""))
-        {
-            mensaje += "- El campo apellido esta vacio.<br/>";
+            mensaje += ex.Message.ToString();
         }
 
-        if (TB_Fecha_Nacimiento.Text.Equals(""))
+        try
         {
-            mensaje += "- No ha seleccionado fecha de nacimiento.<br/>";
+            lMedico.validarDDLEspecialidad(DDL_Especialidad.SelectedItem.Text);
         }
-        else if (Convert.ToDateTime(TB_Fecha_Nacimiento.Text) > DateTime.Now)
+        catch (Exception ex)
         {
-            mensaje += "- Su fecha de nacimiento debe <br/>  ser menor a la fecha actual.<br/>";
-        }
-
-        if (DDL_Especialidad.SelectedItem.Text == "Ninguno")
-        {
-            mensaje += "- No ha seleccionado la especialidad.<br/>";
+            mensaje += ex.Message.ToString();
         }
 
-        if (TB_Correo.Text.Trim().Equals(""))
+        try
         {
-            mensaje += "- El campo correo esta vacio.<br/>";
+            lMedico.validarDatos(eMedico, BTN_Accion.Text, Session["identificacion_medico"], TB_Repetir_Contrasena.Text.Trim());
         }
-        else if (!DBUsuario.validarExistenciaCorreo(TB_Correo.Text.Trim()) && BTN_Accion.Text.Equals("Agregar"))
+        catch (Exception ex)
         {
-            mensaje += "- El correo ya se encuentra registrado.<br/>";
-        }
-        else if (Session["identificacion_medico"] != null)
-        {
-            string identificacion = Session["identificacion_medico"].ToString();
-
-            DBMedico dBMedico = new DBMedico();
-
-            EMedico eMedico = Funcion.dataTableToEMedico(dBMedico.obtenerMedico(identificacion));
-
-            if (BTN_Accion.Text.Equals("Actualizar") &&
-                 eMedico.Correo != TB_Correo.Text.Trim() &&
-                 !DBUsuario.validarExistenciaCorreo((TB_Correo.Text.Trim())))
-            {
-                mensaje += "- El correo ya se encuentra registrado<br/>";
-            }
-        }
-
-        if (TB_Contrasena.Text.Equals("") || TB_Repetir_Contrasena.Text.Equals(""))
-        {
-            mensaje += "- Los campos de contraseña estan vacios.<br/>";
-        }
-        else if (!TB_Contrasena.Text.Equals(TB_Repetir_Contrasena.Text))
-        {
-            mensaje += "- Las contraseñas no coinciden.<br/>";
-        }
-
-        if (!mensaje.Equals(""))
-        {
+            mensaje += ex.Message.ToString();
             LB_Mensaje.Text = "Tenga en cuenta:<br/>" + mensaje;
             LB_Mensaje.Visible = true;
             return false;
@@ -255,42 +203,21 @@ public partial class View_Medico_InsertarEliminarActualizar : System.Web.UI.Page
     protected void BTN_Accion_Click(object sender, EventArgs e)
     {
         Button btnAccion = (Button)sender;
-        if (validarDatos())
+
+        try
         {
-            EMedico eMedico = recolectarDatos();
-            DBMedico dBMedico = new DBMedico();
-            DBConsultorio dBConsultorio = new DBConsultorio();
-
-            if (btnAccion.Text.Equals("Agregar"))
+            if (validarDatos())
             {
-                dBMedico.CrearMedico(eMedico);
-                if (eMedico.Consultorio != Convert.ToInt32(Session["consultorio"]))
-                {
-                    dBConsultorio.guardarDisponibilidad(eMedico.Consultorio, Session.SessionID);
-                    dBConsultorio.liberarDisponibilidad(Convert.ToInt32(Session["consultorio"]), Session.SessionID);
-                }
-                else if (eMedico.Consultorio == Convert.ToInt32(Session["consultorio"]))
-                {
-                    dBConsultorio.guardarDisponibilidad(eMedico.Consultorio, Session.SessionID);
-                }
-
+                EMedico eMedico = recolectarDatos();
+                LMedico lMedico = new LMedico();
+                lMedico.guardarMedico(eMedico, btnAccion.Text, Session["consultorio"], Session.SessionID);
+                Session["Accion"] = null;
+                Response.Redirect(Session["PaginaAnterior"].ToString());
             }
-            else if (btnAccion.Text.Equals("Actualizar"))
-            {
-                dBMedico.actualizarMedico(eMedico);
-                if (eMedico.Consultorio != Convert.ToInt32(Session["consultorio"]))
-                {
-                    dBConsultorio.guardarDisponibilidad(eMedico.Consultorio, Session.SessionID);
-                    dBConsultorio.liberarDisponibilidad(Convert.ToInt32(Session["consultorio"]), Session.SessionID);
-                }
-                else if (eMedico.Consultorio == Convert.ToInt32(Session["consultorio"]))
-                {
-                    dBConsultorio.guardarDisponibilidad(eMedico.Consultorio, Session.SessionID);
-                }
-            }
+        }
+        catch (Exception ex)
+        {
 
-            Session["Accion"] = null;
-            Response.Redirect(Session["PaginaAnterior"].ToString());
         }
     }
 }

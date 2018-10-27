@@ -6,6 +6,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Logica.Clases.Medico;
+using Logica.Clases.Administrador;
 
 public partial class View_Administrador_VerMedicos : System.Web.UI.Page
 {
@@ -16,8 +18,8 @@ public partial class View_Administrador_VerMedicos : System.Web.UI.Page
 
     protected void obtenerDatosMedico(string id)
     {
-        DBMedico dBMedico = new DBMedico();
-        GV_Medicos.DataSource = dBMedico.buscarMedico(id);
+        LMedico lMedico = new LMedico();
+        GV_Medicos.DataSource = lMedico.buscarMedico(id);
         GV_Medicos.DataBind();
     }
 
@@ -38,12 +40,15 @@ public partial class View_Administrador_VerMedicos : System.Web.UI.Page
     protected void BTN_Eliminar_Click(object sender, EventArgs e)
     {
         Button btnEliminar = (Button)sender;
-        DBMedico dBMedico = new DBMedico();
-        DBConsultorio dBConsultorio = new DBConsultorio();
-        DataTable medico = dBMedico.obtenerMedico(btnEliminar.CommandName);
-        dBMedico.eliminarMedico(btnEliminar.CommandName, Session.SessionID);
+
+        LMedico lMedico = new LMedico();
+        LConsultorio lConsultorio = new LConsultorio();
+
+        DataTable medico = lMedico.obtenerMedico(btnEliminar.CommandName);
+        lMedico.eliminarMedico(btnEliminar.CommandName, Session.SessionID);
+
         obtenerDatosMedico("");
-        dBConsultorio.liberarDisponibilidad(int.Parse(medico.Rows[0]["consultorio_pk"].ToString()), Session.SessionID);
+        lConsultorio.liberarDisponibilidad(int.Parse(medico.Rows[0]["consultorio_pk"].ToString()), Session.SessionID);
     }
 
     protected void BTN_AgregarMedico_Click(object sender, EventArgs e)

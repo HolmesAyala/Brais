@@ -4,15 +4,23 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Logica.Clases.Administrador;
+using Utilitaria.Clases.Usuario;
 
 public partial class View_Administrador_MPAdministrador : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if ( Session["usuario"] == null || ((EUsuario)Session["usuario"]).TipoUsuario != 1 )
+        try
+        {
+            LAdministrador lAdministrador = new LAdministrador();
+            lAdministrador.validarUsuario((EUsuario)Session["usuario"]);
+        }
+        catch(Exception ex)
         {
             Response.Redirect("~/View/Login.aspx");
         }
+        
     }
 
     protected void BTN_VerUsuarios_Click(object sender, EventArgs e)

@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Logica.Clases.Usuario;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Utilitaria.Clases.Usuario;
 
 public partial class View_Usuario_Comentarios : System.Web.UI.Page
 {
@@ -16,8 +18,8 @@ public partial class View_Usuario_Comentarios : System.Web.UI.Page
     protected void obtenerCitas()
     {
         EUsuario eUsuario = (EUsuario)Session["usuario"];
-        DBCita dBCita = new DBCita();
-        GV_Comentarios.DataSource = dBCita.obtenerCitasPacienteComentario(eUsuario.Identificacion);
+        LCita lCita = new LCita();
+        GV_Comentarios.DataSource = lCita.obtenerCitasPacienteComentario(eUsuario.Identificacion);
         GV_Comentarios.DataBind();
     }
 
@@ -40,8 +42,8 @@ public partial class View_Usuario_Comentarios : System.Web.UI.Page
         btnSeleccionarCita.CommandArgument.ToString();
         Session["cita"] = btnSeleccionarCita.CommandArgument.ToString();
         EUsuario eUsuario = (EUsuario)Session["usuario"];
-        DBCita dBCita = new DBCita();
-        DataTable cita = dBCita.obtenerCitasPacienteComentario(eUsuario.Identificacion);
+        LCita lCita = new LCita();
+        DataTable cita = lCita.obtenerCitasPacienteComentario(eUsuario.Identificacion);
         L_Especialidad.Text = cita.Rows[0]["especialidad"].ToString();
         L_medico.Text = cita.Rows[0]["nombre_medico"].ToString();
         T_Comentario.Visible = true;
@@ -55,7 +57,8 @@ public partial class View_Usuario_Comentarios : System.Web.UI.Page
             recolectarDatos(eComentario);
             eComentario.Id_cita = int.Parse(Session["cita"].ToString());
             eComentario.Session = Session.SessionID;
-            DBComentario.guardarComentario(eComentario);
+            LComentario lComentario = new LComentario();
+            lComentario.guardarComentario(eComentario);
             string script = @"<script type='text/javascript'>alert('El comentario se agrego correctamente');</script>";
             ScriptManager.RegisterStartupScript(this, typeof(Page), "alerta", script, false);
             TB_Comentario.Visible = false;
@@ -68,7 +71,8 @@ public partial class View_Usuario_Comentarios : System.Web.UI.Page
     {
         String _id_cita = Session["cita"].ToString();
         int id_cita = Convert.ToInt32(_id_cita);
-        DataTable cita = DBCita.obtenerCita(id_cita);
+        LCita lCita = new LCita();
+        DataTable cita = lCita.obtenerCita(id_cita);
         eComentario.Id_motivo = int.Parse(DDL_Motivo.SelectedItem.Value);
         eComentario.Id_receptor = cita.Rows[0]["id_medico"].ToString();
         eComentario.Id_remitente = cita.Rows[0]["id_usuario"].ToString();
@@ -77,21 +81,19 @@ public partial class View_Usuario_Comentarios : System.Web.UI.Page
 
     protected Boolean validarDatos()
     {
-        String mensaje = "";
-        if (DDL_Motivo.SelectedIndex == 0)
+        LComentario lComentario = new LComentario();
+        Boolean validar = false;
+        try
         {
-            mensaje += "- No ha seleccionado un motivo de PQR<br/>";
+            lComentario.validarComentario(DDL_Motivo.SelectedIndex, TB_Comentario.Text.ToString().Length);
+            validar = true;
         }
-        if (TB_Comentario.Text.ToString().Length == 0)
+        catch (Exception ex)
         {
-            mensaje += "- No puede dejar el campo vacio.<br/>";
-        }
-        if (!mensaje.Equals(""))
-        {
-            LB_Mensaje.Text = "Tenga en cuenta:<br/>" + mensaje;
+            LB_Mensaje.Text = "Tenga en cuenta:<br/>" + ex.Message.ToString();
             LB_Mensaje.Visible = true;
-            return false;
+            validar = false;
         }
-        return true;
+        return validar;
     }
 }

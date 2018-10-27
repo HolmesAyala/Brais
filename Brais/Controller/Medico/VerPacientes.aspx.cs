@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Logica.Clases;
+using Data.Clases.Usuario;
+using Logica.Clases.Usuario;
 
 public partial class View_Medico_VerPacientes : System.Web.UI.Page
 {
@@ -14,13 +17,14 @@ public partial class View_Medico_VerPacientes : System.Web.UI.Page
 
     protected void obtenerDatosPaciente()
     {
-        if (Session["identificacion_medico"] != null)
+        try
         {
-            DBUsuario dBUsuario = new DBUsuario();
-            GV_Pacientes.DataSource = dBUsuario.obtenerPacientesAgendados((String)Session["identificacion_medico"]);
+            LUsuario lUsuario = new LUsuario();
+            lUsuario.validarUsuario(Session["identificacion_medico"]);
+            GV_Pacientes.DataSource = lUsuario.obtenerPacientesAgendados(Session["identificacion_medico"]);
             GV_Pacientes.DataBind();
         }
-        
+        catch { }
     }
 
 
@@ -33,11 +37,12 @@ public partial class View_Medico_VerPacientes : System.Web.UI.Page
     protected void BTN_Modificar_Historial_Click(object sender, EventArgs e)
     {
         Button btnModificarHistorial = (Button)sender;
+        LFuncion lFuncion = new LFuncion();
         string idPaciente = btnModificarHistorial.CommandName;
 
-        DBUsuario dBUsuario = new DBUsuario();
+        DAOUsuario dBUsuario = new DAOUsuario();
 
-        Session["paciente"] = Funcion.dataTableToEUsuario(dBUsuario.obtenerUsuario(idPaciente));
+        Session["paciente"] = lFuncion.dataTableToEUsuario(dBUsuario.obtenerUsuario(idPaciente));
 
         Session["medico"] = Session["usuario"];
 

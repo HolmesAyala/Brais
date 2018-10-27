@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Logica.Clases.Administrador;
 
 public partial class View_Administrador_editar_consultorio : System.Web.UI.Page
 {
@@ -17,9 +18,8 @@ public partial class View_Administrador_editar_consultorio : System.Web.UI.Page
     private DataTable getConsultorio()
     {
         int id = int.Parse(Session["id"].ToString());
-        DBAdministrador admin = new DBAdministrador();
-        DataTable consultorio;
-        consultorio = admin.obtenerConsultorio(id);
+        LAdministrador lAdministrador = new LAdministrador();
+        DataTable consultorio = lAdministrador.obtenerConsultorio(id);
         return consultorio;
     }
 
@@ -30,7 +30,7 @@ public partial class View_Administrador_editar_consultorio : System.Web.UI.Page
 
     }
 
-    protected void Button1_Click(object sender, EventArgs e)
+    protected void BTN_Enviar_Click(object sender, EventArgs e)
     {
 
     }

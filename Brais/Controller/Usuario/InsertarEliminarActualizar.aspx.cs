@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Data.Clases;
+using Logica.Clases;
+using Logica.Clases.Administrador;
+using Logica.Clases.Usuario;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
@@ -6,6 +10,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Utilitaria.Clases.Usuario;
 
 public partial class View_Usuario_InsertarEliminarActualizar : System.Web.UI.Page
 {
@@ -46,12 +51,12 @@ public partial class View_Usuario_InsertarEliminarActualizar : System.Web.UI.Pag
 
     protected void cargarEps()
     {
-        DBEps dBEps = new DBEps();
-
-        foreach (DataRow fila in dBEps.obtenerEps().Rows)
+        LEps lEps = new LEps();
+       
+        foreach (DataRow fila in lEps.obtenerEps().Rows)
         {
             ListItem listItem = new ListItem(fila["nombre"].ToString(), fila["id"].ToString());
-            DDL_Eps.Items.Add(listItem);
+             DDL_Eps.Items.Add(listItem);
         }
     }
 
@@ -59,11 +64,12 @@ public partial class View_Usuario_InsertarEliminarActualizar : System.Web.UI.Pag
     {
         string identificacion = Session["identificacion"].ToString();
 
-        DBUsuario dBUsuario = new DBUsuario();
+        LUsuario lUsuario = new LUsuario();
+        LFuncion  lFuncion = new LFuncion();
 
-        DataTable dtUsuario = dBUsuario.obtenerUsuario(identificacion);
+        DataTable dtUsuario = lUsuario.obtenerUsuario(identificacion);
 
-        EUsuario eUsuario = Funcion.dataTableToEUsuario(dtUsuario);
+        EUsuario eUsuario = lFuncion.dataTableToEUsuario(dtUsuario);
 
         DDL_Tipo_Documento.SelectedIndex = eUsuario.Tipo_id;
         TB_Numero_Documento.Text = eUsuario.Identificacion;
@@ -107,20 +113,9 @@ public partial class View_Usuario_InsertarEliminarActualizar : System.Web.UI.Pag
         if (validarDatos())
         {
             EUsuario eUsuario = recolectarDatos();
-            DBUsuario dBUsuario = new DBUsuario();
 
-            if (btnAccion.Text.Equals("Agregar"))
-            {
-                dBUsuario.CrearUsuario(eUsuario);
-            }
-            else if (btnAccion.Text.Equals("Actualizar"))
-            {
-                dBUsuario.actualizarUsuario(eUsuario);
-            }
-            else if (btnAccion.Text.Equals("Eliminar"))
-            {
-
-            }
+            LUsuario lUsuario = new LUsuario();
+            lUsuario.insertarActualizar(btnAccion.Text, eUsuario);
 
             Session["Accion"] = null;
             Session["identificacion"] = null;
@@ -161,117 +156,21 @@ public partial class View_Usuario_InsertarEliminarActualizar : System.Web.UI.Pag
 
     protected Boolean validarDatos()
     {
-        string mensaje = "";
-        if (DDL_Tipo_Documento.SelectedIndex == 0)
+        EUsuario eUsuario = recolectarDatos();
+        LUsuario lUsuario = new LUsuario();
+        Boolean validar = false;
+        try
         {
-            mensaje += "- No ha seleccionado un tipo de documento<br/>";
+            validar = lUsuario.validarDatos(BTN_Accion.Text, Session["identificacion"], eUsuario, DDL_TipoAfiliacion.SelectedItem.Text, TB_RepetirClave.ToString());
+            validar = true;
         }
-
-        if (TB_Numero_Documento.Text.Trim().Equals(""))
+        catch (Exception ex)
         {
-            mensaje += "- El campo Numero de documento esta vacio<br/>";
-        }
-        else
-        {
-
-            if (BTN_Accion.Text.Equals("Agregar") && !DBUsuario.verificarUsuario((TB_Numero_Documento.Text.Trim())) )
-            {
-                mensaje += "- YA EXISTE UN USUARIO CON ESA IDENTIFICACION<br/>";
-            }
-
-            if (Session["identificacion"] != null)
-            {
-                string identificacion = Session["identificacion"].ToString();
-
-                DBUsuario dBUsuario = new DBUsuario();
-
-                EUsuario eUsuario = Funcion.dataTableToEUsuario(dBUsuario.obtenerUsuario(identificacion));
-
-                if (BTN_Accion.Text.Equals("Actualizar") &&
-                     eUsuario.Identificacion != TB_Numero_Documento.Text.Trim() &&
-                     !DBUsuario.verificarUsuario((TB_Numero_Documento.Text.Trim())))
-                {
-                    mensaje += "- YA EXISTE UN USUARIO CON ESA IDENTIFICACION<br/>";
-                }
-            }
-
-            try
-            {
-                int.Parse(TB_Numero_Documento.Text.Trim());
-            }
-            catch (Exception)
-            {
-                mensaje += "- El numero de documento solo debe incluir numeros<br/>";
-            }
-        }
-
-        if (TB_Nombre.Text.Trim().Equals(""))
-        {
-            mensaje += "- El campo nombre esta vacio<br/>";
-        }
-        if (TB_Apellido.Text.Trim().Equals(""))
-        {
-            mensaje += "- El campo apellido esta vacio<br/>";
-        }
-
-        if (TB_FechaNacimiento.Text.Equals(""))
-        {
-            mensaje += "- No ha seleccionado fecha de nacimiento<br/>";
-        }
-        else if (Convert.ToDateTime(TB_FechaNacimiento.Text) > DateTime.Now)
-        {
-            mensaje += "- Su fecha de nacimiento debe <br/>  ser menor a la fecha actual<br/>";
-        }
-
-        if (DDL_TipoAfiliacion.SelectedIndex == 0)
-        {
-            mensaje += "- No ha seleccionado el tipo de afiliacion<br/>";
-        }
-        else if (DDL_TipoAfiliacion.SelectedItem.Text.Equals("E.P.S.") && DDL_Eps.SelectedIndex == 0)
-        {
-            mensaje += "- No ha seleccionado su E.P.S.<br/>";
-        }
-
-        if (TB_Correo.Text.Trim().Equals(""))
-        {
-            mensaje += "- El campo correo esta vacio<br/>";
-        }
-        else if (!DBUsuario.validarExistenciaCorreo(TB_Correo.Text.Trim()) && BTN_Accion.Text.Equals("Agregar"))
-        {
-            mensaje += "- El correo ya se encuentra registrado<br/>";
-        }
-        else if (Session["identificacion"] != null)
-        {
-            string identificacion = Session["identificacion"].ToString();
-
-            DBUsuario dBUsuario = new DBUsuario();
-
-            EUsuario eUsuario = Funcion.dataTableToEUsuario(dBUsuario.obtenerUsuario(identificacion));
-
-            if (BTN_Accion.Text.Equals("Actualizar") &&
-                 eUsuario.Correo != TB_Correo.Text.Trim() &&
-                 !DBUsuario.validarExistenciaCorreo((TB_Correo.Text.Trim())))
-            {
-                mensaje += "- El correo ya se encuentra registrado<br/>";
-            }
-        }
-
-        if (TB_Clave.Text.Equals("") || TB_RepetirClave.Text.Equals(""))
-        {
-            mensaje += "- Los campos de contraseña estan vacios<br/>";
-        }
-        else if (!TB_Clave.Text.Equals(TB_RepetirClave.Text))
-        {
-            mensaje += "- Las contraseñas no coinciden<br/>";
-        }
-
-        if (!mensaje.Equals(""))
-        {
-            LB_Mensaje.Text = "Tenga en cuenta:<br/>" + mensaje;
+            LB_Mensaje.Text = "Tenga en cuenta:<br/>" + ex.Message.ToString();
             LB_Mensaje.Visible = true;
-            return false;
+            validar = false;
         }
-        return true;
+        return validar;
     }
 
     protected void imprimirConsola(String mensaje)

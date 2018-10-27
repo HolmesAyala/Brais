@@ -7,6 +7,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Utilitaria.Clases.Medico;
+
 //RETOCAR LOGICA PARA QUE ESTE DE ACUERDO AL FORMATO YA ESTABLECIDO DE JSON
 public partial class View_Medico_HorarioTrabajoPrueba : System.Web.UI.Page
 {

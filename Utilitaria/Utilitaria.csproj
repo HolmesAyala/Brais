@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3E48ACB7-0A5E-4F17-8DB7-34765D7325FD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Utilitaria</RootNamespace>
+    <AssemblyName>Utilitaria</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Clases\Administrador\consultoriosRegistrados.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>consultoriosRegistrados.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Clases\Administrador\ECita.cs" />
+    <Compile Include="Clases\Administrador\EConsultorio.cs" />
+    <Compile Include="Clases\Administrador\EDia.cs" />
+    <Compile Include="Clases\Administrador\ESemana.cs" />
+    <Compile Include="Clases\Administrador\InfoMedicos.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InfoMedicos.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Clases\Administrador\InfoUsuarios.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InfoUsuarios.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Clases\Administrador\ReporteConsultorios.cs" />
+    <Compile Include="Clases\Administrador\ReporteMedico.cs" />
+    <Compile Include="Clases\Administrador\ReporteUsuario.cs" />
+    <Compile Include="Clases\Medico\EEspecialidad.cs" />
+    <Compile Include="Clases\Medico\EMedico.cs" />
+    <Compile Include="Clases\Medico\horario_medico.cs">
+      <DependentUpon>horario_medico.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Clases\Medico\horario_medico.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>horario_medico.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Clases\Medico\InfoPacientesCitas.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InfoPacientesCitas.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Clases\Medico\ReporteCita.cs" />
+    <Compile Include="Clases\Medico\ReporteHorario.cs" />
+    <Compile Include="Clases\Usuario\EComentario.cs" />
+    <Compile Include="Clases\Usuario\EHistorial.cs" />
+    <Compile Include="Clases\Usuario\EUsuario.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Clases\Administrador\consultoriosRegistrados.xsc">
+      <DependentUpon>consultoriosRegistrados.xsd</DependentUpon>
+    </None>
+    <None Include="Clases\Administrador\consultoriosRegistrados.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>consultoriosRegistrados.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Clases\Administrador\consultoriosRegistrados.xss">
+      <DependentUpon>consultoriosRegistrados.xsd</DependentUpon>
+    </None>
+    <None Include="Clases\Administrador\InfoMedicos.xsc">
+      <DependentUpon>InfoMedicos.xsd</DependentUpon>
+    </None>
+    <None Include="Clases\Administrador\InfoMedicos.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>InfoMedicos.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Clases\Administrador\InfoMedicos.xss">
+      <DependentUpon>InfoMedicos.xsd</DependentUpon>
+    </None>
+    <None Include="Clases\Administrador\InfoUsuarios.xsc">
+      <DependentUpon>InfoUsuarios.xsd</DependentUpon>
+    </None>
+    <None Include="Clases\Administrador\InfoUsuarios.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>InfoUsuarios.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Clases\Administrador\InfoUsuarios.xss">
+      <DependentUpon>InfoUsuarios.xsd</DependentUpon>
+    </None>
+    <None Include="Clases\Medico\horario_medico.xsc">
+      <DependentUpon>horario_medico.xsd</DependentUpon>
+    </None>
+    <None Include="Clases\Medico\horario_medico.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>horario_medico.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Clases\Medico\horario_medico.xss">
+      <DependentUpon>horario_medico.xsd</DependentUpon>
+    </None>
+    <None Include="Clases\Medico\InfoPacientesCitas.xsc">
+      <DependentUpon>InfoPacientesCitas.xsd</DependentUpon>
+    </None>
+    <None Include="Clases\Medico\InfoPacientesCitas.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>InfoPacientesCitas.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Clases\Medico\InfoPacientesCitas.xss">
+      <DependentUpon>InfoPacientesCitas.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

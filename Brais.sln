@@ -6,6 +6,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Brais", "Brais\", "{3D3408CB-8888-4982-866C-987BC8295F53}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
+		ProjectReferences = "{7b1b7c54-d70f-4519-873c-7b6f14ca3eb1}|Logica.dll;{3e48acb7-0a5e-4f17-8db7-34765d7325fd}|Utilitaria.dll;{6CFBECC3-EF87-4469-B1CF-065C1352C3EB}|Data.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_51250"
 		Debug.AspNetCompiler.PhysicalPath = "Brais\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_51250\"
@@ -25,13 +26,34 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Brais", "Brais\", "{3D3408C
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{6CFBECC3-EF87-4469-B1CF-065C1352C3EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logica", "Logica\Logica.csproj", "{7B1B7C54-D70F-4519-873C-7B6F14CA3EB1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilitaria", "Utilitaria\Utilitaria.csproj", "{3E48ACB7-0A5E-4F17-8DB7-34765D7325FD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{3D3408CB-8888-4982-866C-987BC8295F53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3D3408CB-8888-4982-866C-987BC8295F53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D3408CB-8888-4982-866C-987BC8295F53}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D3408CB-8888-4982-866C-987BC8295F53}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{6CFBECC3-EF87-4469-B1CF-065C1352C3EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CFBECC3-EF87-4469-B1CF-065C1352C3EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CFBECC3-EF87-4469-B1CF-065C1352C3EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CFBECC3-EF87-4469-B1CF-065C1352C3EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B1B7C54-D70F-4519-873C-7B6F14CA3EB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B1B7C54-D70F-4519-873C-7B6F14CA3EB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B1B7C54-D70F-4519-873C-7B6F14CA3EB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B1B7C54-D70F-4519-873C-7B6F14CA3EB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E48ACB7-0A5E-4F17-8DB7-34765D7325FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E48ACB7-0A5E-4F17-8DB7-34765D7325FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E48ACB7-0A5E-4F17-8DB7-34765D7325FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E48ACB7-0A5E-4F17-8DB7-34765D7325FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -31,7 +31,7 @@
         </tr>
         <tr>
             <td style="text-align: center">
-                <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Enviar" />
+                <asp:Button ID="BTN_Enviar" runat="server" Text="Enviar" OnClick="BTN_Enviar_Click" />
             </td>
         </tr>
     </table>

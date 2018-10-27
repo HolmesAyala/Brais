@@ -4,6 +4,12 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Utilitaria.Clases.Usuario;
+using Utilitaria.Clases.Medico;
+using Logica.Clases.Medico;
+using Logica.Clases.Administrador;
+using Logica.Clases.Usuario;
+using Logica.Clases;
 
 public partial class View_Medico_HistorialPaciente : System.Web.UI.Page
 {
@@ -14,12 +20,13 @@ public partial class View_Medico_HistorialPaciente : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-
-        if (Session["medico"] != null  && Session["paciente"] != null)
+        try
         {
+            LMedico lMedico = new LMedico();
+            lMedico.validarMedico(eUsuario = (EUsuario)Session["paciente"], eMedico = (EMedico)Session["medico"]);
             mostrarInformacionBasica();
         }
-        else
+        catch (Exception ex)
         {
             Response.Redirect("~/View/Login.aspx");
         }
@@ -35,8 +42,8 @@ public partial class View_Medico_HistorialPaciente : System.Web.UI.Page
         TB_NombreMedico.Text = eMedico.Nombre + " " + eMedico.Apellido;
         TB_NombrePaciente.Text = eUsuario.Nombre + " " + eUsuario.Apellido;
 
-        DBEspecialidad dBEspecialidad = new DBEspecialidad();
-        TB_NombreServicio.Text = dBEspecialidad.obtenerEspecialidad(eMedico.TipoEspecialidad).Rows[0]["nombre"].ToString();
+        LEspecialidad lEspecialidad = new LEspecialidad();
+        TB_NombreServicio.Text = lEspecialidad.obtenerEspecialidad(eMedico.TipoEspecialidad).Rows[0]["nombre"].ToString();
 
         cargarDatosHistorial(eUsuario.Identificacion);
 
@@ -60,21 +67,29 @@ public partial class View_Medico_HistorialPaciente : System.Web.UI.Page
         eHistorial.Observacion = TB_Observacion.Text.Trim();
         eHistorial.Session = Session.SessionID;
 
-        DBHistorial.agregarHistorial(eHistorial);
+        LHistorial lHistorial = new LHistorial();
+        lHistorial.agregarHistorial(eHistorial);
 
         Session["medico"] = null;
         Session["paciente"] = null;
 
-        if (Session["paginaAnterior"] != null)
+        try
+        {
+            LFuncion lFuncion = new LFuncion();
+            lFuncion.validarPaginaAnterior(Session["paginaAnterior"]);
+        }
+        catch (Exception ex)
         {
             Response.Redirect(Session["paginaAnterior"].ToString());
         }
+
+
     }
 
     protected void cargarDatosHistorial(string idUsuario)
     {
-        DBHistorial dBHistorial = new DBHistorial();
-        GV_Historial.DataSource = dBHistorial.obtenerHistorial(idUsuario);
+        LHistorial lHistorial = new LHistorial();
+        GV_Historial.DataSource = lHistorial.obtenerHistorial(idUsuario);
         GV_Historial.DataBind();
     }
 

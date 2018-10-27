@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Utilitaria.Clases.Usuario;
 
 public partial class Controller_Usuario_MPUsuario : System.Web.UI.MasterPage
 {

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Logica.Clases.Usuario;
 
 public partial class View_Administrador_VerUsuarios : System.Web.UI.Page
 {
@@ -38,8 +39,8 @@ public partial class View_Administrador_VerUsuarios : System.Web.UI.Page
     protected void BTN_Eliminar_Click(object sender, EventArgs e)
     {
         Button btnEliminar = (Button)sender;
-        DBUsuario dBUsuario = new DBUsuario();
-        dBUsuario.eliminarUsuario(btnEliminar.CommandName, Session.SessionID);
+        LUsuario lUsuario = new LUsuario();
+        lUsuario.eliminarUsuario(btnEliminar.CommandName, Session.SessionID);
         llenarDatosUsuarios(TB_Buscar.Text.Trim());
     }
 
@@ -51,8 +52,8 @@ public partial class View_Administrador_VerUsuarios : System.Web.UI.Page
 
     protected void llenarDatosUsuarios(string id)
     {
-        DBUsuario dBUsuario = new DBUsuario();
-        GV_Usuarios.DataSource = dBUsuario.buscarUsuario(id);
+        LUsuario lUsuario = new LUsuario(); 
+        GV_Usuarios.DataSource = lUsuario.buscarUsuario(id);
         GV_Usuarios.DataBind();
     }
 

@@ -6,6 +6,7 @@ using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Web;
+using Utilitaria.Clases.Usuario;
 
 /// <summary>
 /// Descripción breve de DBLogin
