@@ -5,15 +5,18 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using Utilitaria.Clases.Usuario;
+using Utilitaria.Clases.Administrador;
+using Logica.Clases.Usuario;
 
 public partial class View_Usuario_ReprogramarCita : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
         EUsuario usr = (EUsuario) Session["usuario"];
-        DBCitasUsr cite = new DBCitasUsr();
+        LUsuario lUsuario = new LUsuario();
         DataTable datos = new DataTable();
-        datos = cite.obtener_citas_user(usr.Identificacion);
+        datos = lUsuario.obtener_citas_user(usr.Identificacion);
         GV_CitasAgendadas.DataSource = datos;
         GV_CitasAgendadas.DataBind();
     }
@@ -25,26 +28,26 @@ public partial class View_Usuario_ReprogramarCita : System.Web.UI.Page
         String id;
         id = btn.CommandArgument.ToString();
         Session["id_cita"] = id;
-        DBUsuario dBUsuario = new DBUsuario();
+
         ECita eCita = new ECita();
         EUsuario eUsuario = (EUsuario)Session["usuario"];
-        Boolean resultado = validarCita(id);
-        if (resultado == true)
+        try
         {
+            Boolean resultado = validarCita(id);
             Response.Redirect("~/View/Usuario/cambiarCita.aspx");
         }
-        else
+        catch
         {
             string script = @"<script type='text/javascript'>alert('Las citas se deben cancelar con 6 horas de antelación!');</script>";
             ScriptManager.RegisterStartupScript(this, typeof(Page), "alerta", script, false);
         }
-
     }
 
     protected Boolean validarCita(String id)
     {
         DataTable cita = new DataTable();
-        cita = DBCita.obtenerCita(Convert.ToInt32(id));
+        LCita lCita = new LCita();
+        cita = lCita.obtenerCita(Convert.ToInt32(id));
         DateTime fecha_actual = new DateTime();
         fecha_actual = DateTime.Now;
         String hora_cita, aux_fecha;
@@ -66,16 +69,16 @@ public partial class View_Usuario_ReprogramarCita : System.Web.UI.Page
         }
         else
         {
-            return false;
+            throw new Exception();
         }
     }
 
     protected void GV_CitasAgendadas_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
         EUsuario usr = (EUsuario)Session["usuario"];
-        DBCitasUsr cite = new DBCitasUsr();
+        LUsuario lUsuario = new LUsuario();
         DataTable datos = new DataTable();
-        datos = cite.obtener_citas_user(usr.Identificacion);
+        datos = lUsuario.obtener_citas_user(usr.Identificacion);
         GV_CitasAgendadas.DataSource = datos;
         GV_CitasAgendadas.DataBind();
     }

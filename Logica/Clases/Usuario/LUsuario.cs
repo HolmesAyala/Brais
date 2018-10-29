@@ -11,6 +11,23 @@ namespace Logica.Clases.Usuario
 {
     public class LUsuario
     {
+        public void validarUsuarioTipo(Object usuario)
+        {
+            if (usuario == null || ((EUsuario)usuario).TipoUsuario != 3)
+            {
+            }
+            else
+            {
+                throw new Exception();
+            }
+        }
+
+        public DataTable obtener_citas_user(String id)
+        {
+            DAOUsuario dAOUsuario = new DAOUsuario();
+            return dAOUsuario.obtener_citas_user(id);
+        }
+
         public void insertarActualizar(String accion, EUsuario eUsuario)
         {
             if (accion.Equals("Agregar"))

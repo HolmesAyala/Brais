@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Logica.Clases.Usuario;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Utilitaria.Clases.Usuario;
 
 public partial class View_Usuario_VerCitasProgramadas : System.Web.UI.Page
 {
@@ -15,8 +17,8 @@ public partial class View_Usuario_VerCitasProgramadas : System.Web.UI.Page
     protected void obtenerCitasProgramadas()
     {
         EUsuario eUsuario = (EUsuario)Session["usuario"];
-        DBCita dBCita = new DBCita();
-        GV_Ver_citas.DataSource = dBCita.obtenerCitasPaciente(eUsuario.Identificacion);
+        LCita lCita = new LCita();
+        GV_Ver_citas.DataSource = lCita.obtenerCitasPaciente(eUsuario.Identificacion);
         GV_Ver_citas.DataBind();
     }
 

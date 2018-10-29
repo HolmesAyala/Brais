@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Logica.Clases.Usuario;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,17 +11,18 @@ public partial class Controller_Usuario_MPUsuario : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["usuario"] == null || ((EUsuario)Session["usuario"]).TipoUsuario != 3)
+        try
         {
+            LUsuario lUsuario = new LUsuario();
+            lUsuario.validarUsuarioTipo(Session["usuario"]);
             Response.Redirect("~/View/Login.aspx");
         }
-        else
+        catch
         {
             String nombre = "Bienvenido: " + ((EUsuario)Session["usuario"]).Nombre + " " + ((EUsuario)Session["usuario"]).Apellido;
             L_Bienvenido.Text = nombre;
             L_Bienvenido.Visible = true;
         }
-
     }
 
     protected void BTN_CerrarSesion_Click(object sender, EventArgs e)

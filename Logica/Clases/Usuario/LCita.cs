@@ -203,5 +203,41 @@ namespace Logica.Clases.Usuario
             DAOCita dAOCita = new DAOCita();
             return dAOCita.reservarCita(eCita);
         }
+
+        public void activar_pago(String id_user, int id_cita, String _session)
+        {
+            DAOUsuario dAOUsuario = new DAOUsuario();
+            dAOUsuario.activar_pago(id_user, id_cita, _session);
+        }
+
+        public List<ReporteHistorialCitas> carharReporteCitas(Object usuario)
+        {
+
+            DataTable inf_medc = new DataTable();
+            DAOCita dAOCita = new DAOCita();
+            EUsuario eUsuario = (EUsuario)usuario;
+            DataTable intermedio = dAOCita.obtener_all_cites(eUsuario.Identificacion);
+            List<ReporteHistorialCitas> reporteHistorialCitas = new List<ReporteHistorialCitas>();
+
+            for (int i = 0; i < intermedio.Rows.Count; i++)
+            {
+                ReporteHistorialCitas reporteHistorialCita = new ReporteHistorialCitas();
+                DateTime dia = DateTime.Parse(intermedio.Rows[i]["dia"].ToString());
+                reporteHistorialCita.Fecha = Convert.ToString(dia.ToShortDateString());
+                reporteHistorialCita.HoraInicio = intermedio.Rows[i]["hora_inicio"].ToString();
+                reporteHistorialCita.HoraFin = intermedio.Rows[i]["hora_fin"].ToString();
+                if (intermedio.Rows[i]["pago"].Equals(true))
+                {
+                    reporteHistorialCita.Pago = "Si";
+                }
+                else if (intermedio.Rows[i]["pago"].Equals(false))
+                {
+                    reporteHistorialCita.Pago = "No";
+                }
+
+                reporteHistorialCitas.Add(reporteHistorialCita);
+            }
+            return reporteHistorialCitas;
+        }
     }
 }
